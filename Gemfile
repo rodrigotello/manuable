@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'sqlite3'
+gem 'paperclip'
+gem 'will_paginate'
 gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-github"
