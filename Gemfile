@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'sqlite3'
 gem 'paperclip'
-gem 'will_paginate'
+gem 'kaminari'
 gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-github"
@@ -43,6 +43,7 @@ end
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'meta_request'
 end
 
 group :development, :test do

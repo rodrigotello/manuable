@@ -10,6 +10,7 @@ Manuable::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
+  resources :categories, only: [:show, :index]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -66,4 +67,5 @@ Manuable::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-match ':action' => 'home#:action'end
+
+end

@@ -28,14 +28,22 @@
             %span.icon-bar
           %a.brand(href="#") Manuable
           .container.nav-collapse
-            %ul.nav.pull-right#login-options
+            %ul.nav
               %li
+                %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Browse
+                %ul.dropdown-menu
+                  %li
+                    - Category.all.each do |category|
+                      = link_to category.name, category_path(category)
+            %ul.nav.pull-right
+              %li#login-options
                 %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Sign in
-                %ul.dropdown-menu{ role: "menu", "aria-labelledby" => "dLabel" }
+                %ul.dropdown-menu
                   %li
                     = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook)
                     = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
                     = link_to "<i class='icon-twitter-sign'></i>".html_safe,  user_omniauth_authorize_path(:twitter)
+                    = link_to "<i class='icon-envelope-alt'></i>".html_safe,  user_omniauth_authorize_path(:twitter)
 
     .container
 
