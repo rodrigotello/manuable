@@ -57,6 +57,7 @@ group :development, :test do
   gem "growl", :require => false
   gem "pry"
   gem "pry-nav"
+  gem "debugger"
 end
 
 group :test do

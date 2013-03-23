@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :provider, :uid
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -41,16 +41,27 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_twitter_oauth(omniauth)
-    authentication = Authentication.where(provider: omniauth['provider'], uuid: omniauth['uid']).first
+    transaction do
+      authentication = Authentication.where(provider: omniauth['provider'], uuid: omniauth['uid']).first
 
-    if authentication && authentication.user
-      authentication.user
-    else
-      user = User.create!(:nickname => omniauth['nickname'],
-                            :name => omniauth['name'])
-      user.authentications.create!(:provider => omniauth['provider'], :uuid => omniauth['uid'])
-      user.save
-      user
+      if authentication && authentication.user
+        authentication.user
+      else
+
+        screen_name = omniauth["info"]["nickname"]
+        name = omniauth["info"]["name"]
+        avatar = omniauth["info"]["image"]
+
+        password = SecureRandom.hex(4)
+        user = User.create!(nickname: screen_name,
+                            name: name,
+                            email: "#{screen_name}@manuablefakeemail.com",
+                            password: password,
+                            password_confirmation: password)
+        user.authentications.create!(:provider => omniauth['provider'], :uuid => omniauth['uid'])
+        user.save
+        user
+      end
     end
   end
 

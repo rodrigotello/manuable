@@ -10,7 +10,7 @@ Devise.setup do |config|
   config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
   config.omniauth :facebook, "APP_ID", "APP_SECRET"
   config.omniauth :google_oauth2, "APP_ID", "APP_SECRET", { access_type: "offline", approval_prompt: "" }
-  config.omniauth :twitter, "APP_ID", "APP_SECRET"
+  config.omniauth :twitter, "1MWaPUAMZYAdAA3mGwXQ", "SboyIHLCFi25AdZcZCQ9T88JFOSU7oE2aTSLMsJLk"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
