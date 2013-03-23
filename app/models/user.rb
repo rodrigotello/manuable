@@ -27,17 +27,26 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-    data = access_token.info
-    user = User.where(:email => data["email"]).first
+    transaction do
 
-    unless user
-        user = User.create(name: data["name"],
+      data = access_token.info
+      user = User.where(:email => data["email"]).first
+      password = Devise.friendly_token[0,20]
+
+      authentication = Authentication.where(provider: access_token.provider, uuid: access_token.uid ).first
+
+      if authentication && authentication.user
+        authentication.user
+      else
+        user = User.create!(name: data["name"],
              email: data["email"],
-             password: Devise.friendly_token[0,20]
+             password: password,
+             password_confirmation: password
             )
-        user.authentications.create(provider: 'google', uid: auth.uid)
+        user.authentications.create!( provider: access_token.provider, uuid: access_token.uid  )
+      end
+      user
     end
-    user
   end
 
   def self.find_for_twitter_oauth(omniauth)
