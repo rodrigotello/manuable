@@ -1,0 +1,29 @@
+<%= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f| %>
+  <%= f.input :name, input_html: { class: 'input-xlarge' } %>
+  <%= f.input :made_by, collection: ['me', 'store', 'someone_else'] %>
+  <%= f.input :price %>
+  <%= f.input :available_items %>
+
+  <%= f.input :weight %>
+  <%= f.input :width %>
+  <%= f.input :height %>
+  <%= f.input :depth %>
+
+  <%= f.input :how_is_done, input_html: { rows: 3, class: 'input-xlarge' } %>
+  <%= f.input :what_it_is, input_html: { rows: 3, class: 'input-xlarge' } %>
+  <%= f.input :usage, input_html: { rows: 3, class: 'input-xlarge' } %>
+  <%= f.input :about, input_html: { rows: 3, class: 'input-xlarge' }, hint: t('activerecord.attributes.product.about_help') %>
+
+  <%= f.input :delivery_method, collection: ['pickup', 'packaging'] %>
+  <%= f.input :on_demand %>
+
+
+  <%= f.input :factoring_time %>
+
+  <%= f.input :available_at, :wrapper => :append do %>
+    <%= f.input_field :available_at, class: 'datepicker', as: :string %>
+    <span class="add-on"><i class="icon-calendar"></i></span>
+  <% end %>
+
+  <%= f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path) %>
+<% end -%>

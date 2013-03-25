@@ -18,9 +18,10 @@ gem "haml"
 gem "haml-rails"
 gem "twitter-bootstrap-rails"
 gem "less-rails"
-gem "formtastic"
-gem "formtastic-bootstrap"
-gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
+gem 'simple_form'
+gem 'nested_form'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 gem "devise"
 gem "cancan"
 gem "activeadmin"

@@ -1,0 +1,26 @@
+es:
+  activerecord:
+    models:
+      product: Producto
+    attributes:
+      product:
+        name: Nombre
+        user_id: Artesano
+        weight: Peso
+        height: Altura
+        width: Ancho
+        depth: Profundidad
+        price: Precio
+        available_items: Artículos disponibles
+        available_at: Disponibilidad en
+        on_demand: Contra pedido
+        factoring_time: Tiempo de fabricación
+        made_by: Hecho por
+        delivery_method: Métoda de entrega
+        how_is_done: ¿Cómo lo haces?
+        what_it_is: ¿Qué es?
+        usage: ¿Cómo se usa?
+        about: "Acerca"
+        about_help: "Proceso elaboración, historia, etc"
+        materials: Materiales
+    errors:

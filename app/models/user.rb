@@ -7,8 +7,10 @@ class User < ActiveRecord::Base
 
 
   has_many :authentications
+  has_many :products
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { small: "50x50>", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates :nickname, uniqueness: true, allow_nil: true
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     authentication = Authentication.where(provider: auth.provider, uuid: auth.uid).first

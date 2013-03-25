@@ -10,7 +10,18 @@ Manuable::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
+
+  resources :users, only: [:show, :edit, :destroy, :update] do
+    resources :products, only: [:index, :show]
+  end
+
+  namespace :my do
+    resource :profile, except: :create
+    resources :products
+  end
+
   resources :categories, only: [:show, :index]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

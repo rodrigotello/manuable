@@ -23,7 +23,38 @@
     .container
       .row
         = bootstrap_flash
-        = yield
+
+        .span3
+          .layout-container.user-option-panel
+            %dl
+              %dt
+                Cuenta
+              %dd{ class: @my_section == "profile" ? 'active' : "" }
+                = link_to "#" do
+                  %i{ class: "icon-user" }
+                  Perfil
+              %dd{ class: @my_section == "settings" ? 'active' : "" }
+                = link_to "#" do
+                  %i{ class: "icon-cogs" }
+                  Preferencias
+              %dd{ class: @my_section == "password" ? 'active' : "" }
+                = link_to "#" do
+                  %i{ class: "icon-lock" }
+                  Contraseña
+              %dt
+                Productos/Artesanías
+              %dd{ class: @my_section == "products" ? 'active' : "" }
+                = link_to my_products_path do
+                  %i{ class: "icon-th-large" }
+                  Mis Producto
+              %dd{ class: @my_section == "new_product" ? 'active' : "" }
+                = link_to new_my_product_path do
+                  %i{ class: "icon-cloud-upload" }
+                  Subir Producto
+
+        .span7
+          .layout-container
+            = yield
       %footer
         %p &copy; Manuable 2013
     /
