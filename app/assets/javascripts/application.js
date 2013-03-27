@@ -19,12 +19,20 @@
 //= require jquery_nested_form
 //= require jquery.chosen.min
 //= require bootstrap-datepicker
+//= require jquery.fileupload
 //= require_tree .
 
 ClientSideValidations.formBuilders['NestedForm::SimpleBuilder'] = ClientSideValidations.formBuilders['SimpleForm::FormBuilder'];
 
 "use strict";
 $(function(){
+  $('input[type=file]').fileupload({
+    done : function(e, data) {
+      console.log("Done", data.result)
+      $(data.result).appendTo(this);
+    }
+  });
+
   var page = $("body").data("page");
   if( "object" === typeof window[page] )
     window[page].init();
@@ -52,3 +60,5 @@ $(function(){
     });
   });
 });
+
+

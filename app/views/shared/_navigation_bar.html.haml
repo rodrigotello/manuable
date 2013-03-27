@@ -27,7 +27,7 @@
           - else
             %li
               %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
-                = image_tag current_user.avatar.url(:small)
+                = image_tag current_user.avatar.url(:small).to_s
                 %span
                   &nbsp;&nbsp;
                   = current_user.name

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   validates :nickname, uniqueness: true, allow_nil: true
 
+  mount_uploader :avatar, AvatarUploader
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     authentication = Authentication.where(provider: auth.provider, uuid: auth.uid).first
 

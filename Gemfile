@@ -21,6 +21,8 @@ gem 'rails'
   gem "omniauth-oauth"
   gem "omniauth-oauth2"
   gem "omniauth-twitter"
+  gem "squeel"
+
 # authorization & authentication
   gem "devise"
   gem "cancan"
@@ -49,6 +51,7 @@ gem "therubyracer", :require => false
 gem "foreman", :require => false
 
 group :assets do
+  gem 'jquery.fileupload-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
@@ -70,6 +73,7 @@ group :development, :test do
   gem "guard-spork", :require => false
   gem "growl", :require => false
   gem "pry"
+  gem "pry-rails"
   gem "pry-nav"
   gem "debugger"
 end

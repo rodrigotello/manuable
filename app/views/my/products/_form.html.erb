@@ -17,13 +17,20 @@
   <%= f.input :delivery_method, collection: ['pickup', 'packaging'] %>
   <%= f.input :on_demand %>
 
-
   <%= f.input :factoring_time %>
 
   <%= f.input :available_at, :wrapper => :append do %>
     <%= f.input_field :available_at, class: 'datepicker', as: :string %>
     <span class="add-on"><i class="icon-calendar"></i></span>
   <% end %>
+
+  <%= f.input :media, class: 'form' do %>
+    <%= f.fields_for :attachments do |attachments| %>
+      <%= attachments.file_field :attachment, multiple: true %>
+      <%= attachments.link_to_remove "<i class='icon-trash'></i>".html_safe %>
+    <% end %>
+    <%= f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments %>
+  <% end -%>
 
   <%= f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path) %>
 <% end -%>
