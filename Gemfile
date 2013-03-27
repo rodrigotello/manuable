@@ -1,29 +1,42 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'sqlite3'
-gem 'paperclip'
-gem 'kaminari'
-gem "omniauth"
-gem "omniauth-facebook"
-gem "omniauth-github"
-gem "omniauth-google-oauth2"
-gem "omniauth-oauth"
-gem "omniauth-oauth2"
-gem "omniauth-twitter"
-gem 'jquery-rails'
-gem 'unicorn'
-gem "pg"
-gem "haml"
-gem "haml-rails"
-gem "twitter-bootstrap-rails"
-gem "less-rails"
-gem 'simple_form'
-gem 'nested_form'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
-gem "devise"
-gem "cancan"
+# DB
+  gem 'sqlite3'
+  gem "pg"
+
+# attachments
+  gem 'carrierwave'
+  gem "fog", "~> 1.3.1"
+  gem 'rmagick'
+
+# pagination
+  gem 'kaminari'
+
+# social login
+  gem "omniauth"
+  gem "omniauth-facebook"
+  gem "omniauth-github"
+  gem "omniauth-google-oauth2"
+  gem "omniauth-oauth"
+  gem "omniauth-oauth2"
+  gem "omniauth-twitter"
+# authorization & authentication
+  gem "devise"
+  gem "cancan"
+
+# dev tools
+  gem 'jquery-rails'
+  gem 'unicorn'
+  gem "haml"
+  gem "haml-rails"
+  gem "twitter-bootstrap-rails"
+  gem "less-rails"
+  gem 'simple_form'
+  gem 'nested_form'
+  gem 'client_side_validations'
+  gem 'client_side_validations-simple_form'
+
 gem "activeadmin"
 gem "meta_search", ">= 1.1.0.pre"
 gem "capistrano", :require => false
