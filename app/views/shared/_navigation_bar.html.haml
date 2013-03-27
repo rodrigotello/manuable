@@ -25,7 +25,7 @@
                   = link_to "<i class='icon-twitter-sign'></i>".html_safe,  user_omniauth_authorize_path(:twitter)
                   = link_to "<i class='icon-envelope-alt'></i>".html_safe,  new_user_registration_path
           - else
-            %li
+            %li#current-user-options
               %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
                 = image_tag current_user.avatar.url(:small).to_s
                 %span

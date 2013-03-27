@@ -4,6 +4,7 @@ class My::ProductsController < ApplicationController
   def new
     @my_section = "new_product"
     @product = current_user.products.create
+    @product.attachments.build
   end
 
   def index
@@ -16,18 +17,25 @@ class My::ProductsController < ApplicationController
   end
 
   def update
-    attachments_attributes = []
+    attachments_attributes = {}
     params[:product][:attachments_attributes].each do |k, v|
+      i = attachments_attributes.length + 1
+
+      attachments_attributes[ i ] = {}
+      attachments_attributes[ i ]["_destroy"] = 'false'
+
       if v[:attachment].is_a? Array
-        attachments_attributes[attachments_attributes.length*1][(rand*100000000).to_i] = v[:attachment].first
+        attachments_attributes[ i ][:attachment] = v[:attachment].first
       else
-        attachments_attributes[k] = v
+        attachments_attributes[ i ][:attachment] = v
       end
     end
 
     params[:product][:attachments_attributes] = attachments_attributes
 
-    @product = current_user.products.create(params[:product])
+    @product = current_user.products.find(params[:id])
+    @product.update_attributes(params[:product])
+
     render json: [@product.attachments.collect(&:ajax_uploader_data)]
   end
 end

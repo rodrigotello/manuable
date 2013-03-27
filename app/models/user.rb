@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -62,14 +62,15 @@ class User < ActiveRecord::Base
 
         screen_name = omniauth["info"]["nickname"]
         name = omniauth["info"]["name"]
-        avatar = omniauth["info"]["image"]
+        remote_avatar_url = omniauth["info"]["image"]
 
         password = SecureRandom.hex(4)
         user = User.create!(nickname: screen_name,
                             name: name,
                             email: "#{screen_name}@manuablefakeemail.com",
                             password: password,
-                            password_confirmation: password)
+                            password_confirmation: password,
+                            remote_avatar_url: remote_avatar_url)
         user.authentications.create!(:provider => omniauth['provider'], :uuid => omniauth['uid'])
         user.save
         user
