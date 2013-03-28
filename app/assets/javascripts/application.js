@@ -41,7 +41,7 @@ $(function(){
         for(var i in files){
           console.log(files[i].name);
           var $upload = $( $.trim(template({ "filename" : new Handlebars.SafeString( files[i].name ) })));
-            $('#file-dropzone').append($upload);
+            data.context = $('#file-dropzone').append($upload).children(":last");
         }
 
         // data.submit();
