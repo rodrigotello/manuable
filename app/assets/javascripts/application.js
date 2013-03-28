@@ -24,14 +24,17 @@
 
 ClientSideValidations.formBuilders['NestedForm::SimpleBuilder'] = ClientSideValidations.formBuilders['SimpleForm::FormBuilder'];
 
-"use strict";
 $(function(){
+  "use strict";
   $('input[type=file]').fileupload({
     done : function(e, data) {
       console.log("Done", data.result)
-      $(data.result).appendTo(this);
-    }
-  });
+      // $(data.result).appendTo(this);
+    },
+    dropZone: $('#file-dropzone')
+  }).bind('fileuploadprogress', function (e, data) {
+    console.log(data);
+  });;
 
   var page = $("body").data("page");
   if( "object" === typeof window[page] )
@@ -58,6 +61,25 @@ $(function(){
         $modal.remove();
       })
     });
+  });
+
+  $(document).bind('dragover', function (e) {
+    var $dropZone = $('#file-dropzone'),
+        timeout = window.dropZoneTimeout;
+    if (!timeout) {
+        $dropZone.addClass('in');
+    } else {
+        clearTimeout(timeout);
+    }
+    if (e.target === $dropZone[0]) {
+        $dropZone.addClass('hover');
+    } else {
+        $dropZone.removeClass('hover');
+    }
+    window.dropZoneTimeout = setTimeout(function () {
+        window.dropZoneTimeout = null;
+        $dropZone.removeClass('in hover');
+    }, 100);
   });
 });
 
