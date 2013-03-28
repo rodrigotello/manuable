@@ -57,8 +57,15 @@
             = yield
       %footer
         %p &copy; Manuable 2013
-    /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
+      %script{ id: "upload-template", type: "text/x-handlebars-template" }
+        \ <div class="image-upload">
+        \   <div class="filename">
+        \     {{filename}}
+        \   <a href="javascript:void(0)" class="remove-attachment"><i class="icon-remove"></i></a>
+        \   </div>
+        \   <div class="progress progress-success progress-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        \     <div class="bar" style="width:0%;"></div>
+        \   </div>
+        \ </div>
+
     = javascript_include_tag "application"
