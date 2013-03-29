@@ -250,6 +250,8 @@ GEM
       pry (~> 0.9.10)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
+    puma (1.6.3)
+      rack (~> 1.2)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -414,6 +416,7 @@ DEPENDENCIES
   pry
   pry-nav
   pry-rails
+  puma
   rails
   rails3-generators
   rmagick

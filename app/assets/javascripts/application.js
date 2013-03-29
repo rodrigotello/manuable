@@ -27,84 +27,57 @@ ClientSideValidations.formBuilders['NestedForm::SimpleBuilder'] = ClientSideVali
 $(function(){
   "use strict";
   $('input[type=file]').fileupload({
-    autoUpload: false,
     dropZone: $('#file-dropzone'),
     filesContainer: $('#file-dropzone'),
-    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+    sequentialUploads: true,
+    singleFileUploads: true,
     add: function (e, data) {
+
         var $uploader = $(this).data('blueimp-fileupload') ||
                 $(this).data('fileupload'),
             options = $uploader.options,
             template = Handlebars.compile( $("#upload-template").html()),
             files = data.files;
-
         for(var i in files){
-          console.log(files[i].name);
-          var $upload = $( $.trim(template({ "filename" : new Handlebars.SafeString( files[i].name ) })));
-            data.context = $('#file-dropzone').append($upload).children(":last");
+          var $upload = $('#file-dropzone').append($( $.trim(template({ "filename" : new Handlebars.SafeString( files[i].name ) })))).children(":last");
+          files[i].context = $upload;
+          $upload.find('.remove-attachment').bind('click.fu', function(e){
+            e.preventDefault();
+            var $this = $(this);
+            if (!data.jqXHR) {
+              console.log('no jqXHR');
+            } else {
+              console.log('aborting');
+              data.jqXHR.abort();
+            }
+            $this.parent().remove();
+          });
+
         }
-
-        // data.submit();
-
+        data.submit();
     },
     done: function (e, data) {
-      var $uploader = $(this).data('blueimp-fileupload') ||
-              $(this).data('fileupload'),
-          files = $uploader._getFilesFromResponse(data),
-          template,
-          deferred;
+      var context = data.files[0].context,
+          result = data.result[data.result.length - 1];
+      context.find(".progress").remove();
+      context.find(".remove-attachment").unbind('click.fu').bind('click.fu', function(e){
+        e.preventDefault();
+        $.post('/my/' + result.delete_url, { '_method' : 'delete' }, function(){
+          context.remove();
+        });
 
-      if (data.context) {
-          data.context.each(function (index) {
-              var file = files[index] ||
-                      {error: 'Empty file upload result'},
-                  deferred = $uploader._addFinishedDeferreds();
-              if (file.error) {
-                  $uploader._adjustMaxNumberOfFiles(1);
-              }
-              $uploader._transition($(this)).done(
-                  function () {
-                      var node = $(this);
-                      template = $uploader._renderDownload([file])
-                          .replaceAll(node);
-                      $uploader._forceReflow(template);
-                      $uploader._transition(template).done(
-                          function () {
-                              data.context = $(this);
-                              $uploader._trigger('completed', e, data);
-                              $uploader._trigger('finished', e, data);
-                              deferred.resolve();
-                          }
-                      );
-                  }
-              );
-          });
-      } else {
-          if (files.length) {
-              $.each(files, function (index, file) {
-                  if (data.maxNumberOfFilesAdjusted && file.error) {
-                      $uploader._adjustMaxNumberOfFiles(1);
-                  } else if (!data.maxNumberOfFilesAdjusted &&
-                          !file.error) {
-                      $uploader._adjustMaxNumberOfFiles(-1);
-                  }
-              });
-              data.maxNumberOfFilesAdjusted = true;
-          }
-          template = $uploader._renderDownload(files)
-              .appendTo($uploader.options.filesContainer);
-          $uploader._forceReflow(template);
-          deferred = $uploader._addFinishedDeferreds();
-          $uploader._transition(template).done(
-              function () {
-                  data.context = $(this);
-                  $uploader._trigger('completed', e, data);
-                  $uploader._trigger('finished', e, data);
-                  deferred.resolve();
-              }
-          );
+      });
+    },
+    progress: function (e, data) {
+      var context = data.files[0].context;
+      if (context) {
+          var progress = Math.floor(data.loaded / data.total * 100);
+          context.find('.progress')
+              .attr('aria-valuenow', progress)
+              .find('.bar').css( 'width', progress + '%');
       }
     }
+
   });
 
   var page = $("body").data("page");

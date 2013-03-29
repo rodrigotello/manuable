@@ -9,5 +9,9 @@ class Ability
     can :read, :all
 
     can :edit, User, id: user.id
+    can :manage, Product, user_id: user.id
+    can :manage, Attachment do |attachment|
+      attachment.attachable.user_id == user.id
+    end
   end
 end

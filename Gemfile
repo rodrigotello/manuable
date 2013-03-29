@@ -29,7 +29,6 @@ gem 'rails'
 
 # dev tools
   gem 'jquery-rails'
-  gem 'unicorn'
   gem "haml"
   gem "haml-rails"
   gem "twitter-bootstrap-rails"
@@ -50,6 +49,8 @@ gem "libv8", "~> 3.11.8"
 gem "therubyracer", :require => false
 gem "foreman", :require => false
 gem "jquery-fileupload-rails"
+gem 'puma'
+gem 'unicorn'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

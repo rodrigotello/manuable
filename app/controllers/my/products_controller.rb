@@ -1,5 +1,6 @@
 class My::ProductsController < ApplicationController
   layout 'my'
+  load_and_authorize_resource
 
   def new
     @my_section = "new_product"
@@ -13,7 +14,7 @@ class My::ProductsController < ApplicationController
   end
 
   def edit
-    @product = current_user.products.find(params[:id])
+    # @product = current_user.products.find(params[:id])
   end
 
   def update
@@ -36,6 +37,6 @@ class My::ProductsController < ApplicationController
     @product = current_user.products.find(params[:id])
     @product.update_attributes(params[:product])
 
-    render json: @product.attachments.collect(&:ajax_uploader_data)
+    render json: @product.attachments
   end
 end

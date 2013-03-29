@@ -33,7 +33,7 @@
     <% end %>
     <%= f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments %>
   <% end -%>
-  <div id='file-dropzone'></div>
+  <div id='file-dropzone' class='clearfix'></div>
 
   <%= f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path) %>
 <% end -%>

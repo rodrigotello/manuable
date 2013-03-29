@@ -15,9 +15,15 @@ Manuable::Application.routes.draw do
     resources :products, only: [:index, :show]
   end
 
+  resources :products do
+    resources :attachments
+  end
+
   namespace :my do
     resource :profile, except: :create
-    resources :products
+    resources :products do
+      resources :attachments
+    end
   end
 
   resources :categories, only: [:show, :index]

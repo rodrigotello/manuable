@@ -38,19 +38,19 @@ class AttachUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
+  version :thumb, if: :image? do
     process resize_to_limit: [50, 50]
   end
 
-  version :small do
+  version :small, if: :image? do
     process resize_to_limit: [100, 100]
   end
 
-  version :medium do
+  version :medium, if: :image? do
     process resize_to_limit: [200, 200]
   end
 
-  version :large do
+  version :large, if: :image? do
     process resize_to_limit: [300, 300]
   end
 
@@ -67,4 +67,8 @@ class AttachUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  protected
+    def image?(new_file)
+      new_file.content_type.include? 'image'
+    end
 end

@@ -1,17 +1,21 @@
 class Attachment < ActiveRecord::Base
   attr_accessible :attachable_id, :attachable_type, :attachment
-  belongs_to :attachable
+  belongs_to :attachable, polymorphic: true
 
   mount_uploader :attachment, AttachUploader
+  include Rails.application.routes.url_helpers
 
-  def ajax_uploader_data
+  def as_json options={}
     {
+      id: id,
       name: attachment.identifier,
+      attachable_type: attachable_type,
+      attachable_id: attachable_id,
       size: attachment.size,
       url: attachment.url,
       thumbnail_url: attachment.url(:thumb),
-      delete_url: attachment.url(:thumb),
-      delete_type: "DELETE"
+      delete_url: polymorphic_path([self.attachable, self])
     }
   end
+
 end
