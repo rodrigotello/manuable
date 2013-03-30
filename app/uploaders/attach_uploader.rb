@@ -67,6 +67,10 @@ class AttachUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  def default_url
+    "holder.js/200x200/industrial"
+  end
+
   protected
     def image?(new_file)
       new_file.content_type.include? 'image'

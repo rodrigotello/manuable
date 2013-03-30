@@ -2,6 +2,7 @@ class Attachment < ActiveRecord::Base
   attr_accessible :attachable_id, :attachable_type, :attachment
   belongs_to :attachable, polymorphic: true
 
+  scope :random, order("RANDOM()")
   mount_uploader :attachment, AttachUploader
   include Rails.application.routes.url_helpers
 

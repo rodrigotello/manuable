@@ -39,4 +39,9 @@ class My::ProductsController < ApplicationController
 
     render json: @product.attachments
   end
+
+  def destroy
+    @product.destroy
+    redirect_to :back
+  end
 end

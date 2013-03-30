@@ -19,6 +19,7 @@
 //= require jquery_nested_form
 //= require jquery.chosen.min
 //= require bootstrap-datepicker
+//= require holder
 //= require jquery-fileupload/basic
 //= require_tree .
 

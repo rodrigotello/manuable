@@ -1,0 +1,8 @@
+= div_for product do
+  = link_to my_product_path(product), title: (product.name.present? ? product.name : "--") do
+    - if att = product.attachments.random.first || product.attachments.build
+      = image_tag att.attachment.url(:medium), class: "product-image", id: att.id
+  .actions
+    = link_to "<i class='icon-pencil'></i>".html_safe, edit_my_product_path(product)
+    = link_to "<i class='icon-off'></i>".html_safe, edit_my_product_path(product, a: 'off')
+    = link_to "<i class='icon-remove'></i>".html_safe, my_product_path(product), method: :delete, confirm: "Seguration?"
