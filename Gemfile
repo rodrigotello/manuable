@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 # DB
-  gem 'sqlite3'
-  gem "pg"
+  gem "pg", group: :production
 
 # attachments
   gem 'carrierwave'
@@ -65,6 +64,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'sqlite3', '1.3.7'
   gem "yard", :require => false
   gem "simplecov", :require => false
   gem "simplecov-rcov", :require => false
@@ -80,7 +80,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "sqlite3"
+
   gem "rspec-rails"
   gem "database_cleaner"
   gem "factory_girl_rails"

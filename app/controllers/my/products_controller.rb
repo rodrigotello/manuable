@@ -10,7 +10,7 @@ class My::ProductsController < ApplicationController
 
   def index
     @my_section = "products"
-    @products = current_user.products
+    @products = current_user.products.page params[:page]
   end
 
   def edit

@@ -1,35 +1,38 @@
 = simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
   = f.input :name, input_html: { class: 'input-xlarge' }
   = f.input :made_by, collection: ['me', 'store', 'someone_else']
-  = f.input :price
-  = f.input :available_items
+  = field_set_tag nil, id: 'product-fields' do
+    = f.input :price
+    = f.input :available_items
 
-  = f.input :weight
-  = f.input :width
-  = f.input :height
-  = f.input :depth
+    = f.input :weight
+    = f.input :width
+    = f.input :height
+    = f.input :depth
 
-  = f.input :how_is_done, input_html: { rows: 3, class: 'input-xlarge' }
-  = f.input :what_it_is, input_html: { rows: 3, class: 'input-xlarge' }
-  = f.input :usage, input_html: { rows: 3, class: 'input-xlarge' }
-  = f.input :about, input_html: { rows: 3, class: 'input-xlarge' }, hint: t('activerecord.attributes.product.about_help')
+    = f.input :how_is_done, input_html: { rows: 3, class: 'input-xlarge' }
+    = f.input :what_it_is, input_html: { rows: 3, class: 'input-xlarge' }
+    = f.input :usage, input_html: { rows: 3, class: 'input-xlarge' }
+    = f.input :about, input_html: { rows: 3, class: 'input-xlarge' }, hint: t('activerecord.attributes.product.about_help')
 
-  = f.input :delivery_method, collection: ['pickup', 'packaging']
-  = f.input :on_demand
+    = f.input :delivery_method, collection: ['pickup', 'packaging']
+    = f.input :on_demand
 
-  = f.input :factoring_time
+    = f.input :factoring_time
 
-  = f.input :available_at, :wrapper => :append do
-    = f.input_field :available_at, class: 'datepicker', as: :string
-    %span.add-on
-      %i.icon-calendar
+    = f.input :available_at, :wrapper => :append do
+      = f.input_field :available_at, class: 'datepicker', as: :string
+      %span.add-on
+        %i.icon-calendar
 
-  = f.input :media, class: 'form' do
-    = f.fields_for :attachments do |attachments|
-      = attachments.file_field :attachment, multiple: true
-      = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe
-    = f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
+    = f.input :media, class: 'form' do
+      = f.fields_for :attachments do |attachments|
+        = attachments.file_field :attachment, multiple: true
+        = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe
+      = f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
 
-  #file-dropzone.clearfix
+    #file-dropzone.clearfix
 
-  = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)
+    = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)
+  #only_artisant_error.alert.alert-error
+    Solo artesanos pueden agregar sus productos
