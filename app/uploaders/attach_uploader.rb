@@ -1,5 +1,7 @@
 # encoding: utf-8
 require 'carrierwave/processing/mime_types'
+require 'carrierwave/storage/fog'
+
 class AttachUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
