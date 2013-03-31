@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   # validates :made_by, inclusion: { in: [ 'me', 'store' ] }
   # validates :name, :price, :user_id, presence: true
 
-  accepts_nested_attributes_for :attachments, reject_if: proc{|at| ta[:attachment].blank? }
+  accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }
 
   # def photos= attrs
   #    attrs.each { |attr| self.attachments.build(:attachment => attr) }
