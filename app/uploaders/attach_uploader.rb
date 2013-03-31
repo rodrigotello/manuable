@@ -68,7 +68,7 @@ class AttachUploader < CarrierWave::Uploader::Base
   # end
 
   def default_url
-    size = AttachUploader.versions[version_name][:uploader].processors[0][1].join("x")
+    size = AttachUploader.versions[version_name||:medium][:uploader].processors[0][1].join("x")
     "holder.js/#{size}/industrial"
   end
 
