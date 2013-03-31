@@ -2,7 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails'
 # DB
-  gem "pg", group: :production
+  group :production do
+    gem "pg"
+    gem 'newrelic_rpm'
+  end
 
 # attachments
   gem 'carrierwave'
