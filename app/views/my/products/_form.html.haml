@@ -2,13 +2,14 @@
   = f.input :name, input_html: { class: 'input-xlarge' }
   = f.input :made_by, collection: ['me', 'store', 'someone_else']
   = field_set_tag nil, id: 'product-fields' do
-    = f.input :price
+    .field
+    = f.input :price, hint: "Pesos Mexicanos"
     = f.input :available_items
 
-    = f.input :weight
-    = f.input :width
-    = f.input :height
-    = f.input :depth
+    = f.input :weight, hint: "Kilogramos"
+    = f.input :width, hint: "Centímetros"
+    = f.input :height, hint: "Centímetros"
+    = f.input :depth, hint: "Centímetros"
 
     = f.input :how_is_done, input_html: { rows: 3, class: 'input-xlarge' }
     = f.input :what_it_is, input_html: { rows: 3, class: 'input-xlarge' }
