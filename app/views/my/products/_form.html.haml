@@ -1,20 +1,22 @@
+.instructions
+  Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
+%br
 = simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
-  = f.input :name, input_html: { class: 'input-xlarge' }
+  = f.input :name, input_html: { class: 'input-xlarge'}
   = f.input :made_by, collection: ['me', 'store', 'someone_else']
   = field_set_tag nil, id: 'product-fields' do
-    .field
-    = f.input :price, hint: "Pesos Mexicanos"
+    = f.input :price, input_html: {class: 'tipinfo', "data-content" => t('general.mexicanpeso')}
     = f.input :available_items
 
-    = f.input :weight, hint: "Kilogramos"
-    = f.input :width, hint: "Centímetros"
-    = f.input :height, hint: "Centímetros"
-    = f.input :depth, hint: "Centímetros"
+    = f.input :weight, input_html: {class: 'tipinfo', "data-content" => t('general.kilograms')}
+    = f.input :width, input_html: {class: 'tipinfo', "data-content" => t('general.centimeters')}
+    = f.input :height, input_html: {class: 'tipinfo', "data-content" => t('general.centimeters')}
+    = f.input :depth, input_html: {class: 'tipinfo', "data-content" => t('general.centimeters')}
 
     = f.input :how_is_done, input_html: { rows: 3, class: 'input-xlarge' }
     = f.input :what_it_is, input_html: { rows: 3, class: 'input-xlarge' }
     = f.input :usage, input_html: { rows: 3, class: 'input-xlarge' }
-    = f.input :about, input_html: { rows: 3, class: 'input-xlarge' }, hint: t('activerecord.attributes.product.about_help')
+    = f.input :about, input_html: { rows: 3, class: 'input-xlarge tipinfo',"data-content" => t('activerecord.attributes.product.about_help')}
 
     = f.input :delivery_method, collection: ['pickup', 'packaging']
     = f.input :on_demand

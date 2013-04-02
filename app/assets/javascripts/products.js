@@ -2,7 +2,8 @@ var ProductsNew = new function(){
   "use strict";
   var self = this;
   self.init = function(){
-    $("#product-fields").hide();
+    $('.tipinfo').popover({placement:'right',trigger:'hover'});
+    $("#product-fields").show();
     $("#product_made_by").change(function(e){
       if ( $(this).val() === 'someone_else' ){
         $("#product-fields").hide();

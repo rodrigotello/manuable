@@ -23,4 +23,8 @@ es:
         about: "Acerca"
         about_help: "Proceso elaboración, historia, etc"
         materials: Materiales
-    errors:
+  errors:
+  general:
+    mexicanpeso: Pesos Mexicanos
+    kilograms: Kilogramos
+    centimeters: Centímetros
