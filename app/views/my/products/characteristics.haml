@@ -1,0 +1,40 @@
+%h3.section-title
+	%i{ class: "icon-cloud-upload" }
+	Nuevo Producto
+%h4 2.- Características del Producto
+%h6 La siguiente información será desplegada en la página de descripción del producto. Por favor, complete la información correctamente.
+%br
+= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
+	= field_set_tag nil, id: 'product-fields' do
+		%ul{:id => "tab_characteristics", :class => "nav nav-tabs"}
+			%li.active
+				%a{:href => "#general", "data-toogle" => "tab"} General
+			%li
+				%a{:href => "#categories", "data-toogle" => "tab"} Categorías
+		.tab-content
+			.tab-pane{:id => "general"}
+				= f.input :price, input_html: {class: 'tipinfo',min: 0, value: 0, "data-content" => t('general.mexicanpeso')}
+				= f.input :available_items, input_html: {min: 0, value: 0}
+
+				= f.input :weight, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.kilograms')}
+				= f.input :width, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.centimeters')}
+				= f.input :height, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.centimeters')}
+				= f.input :depth, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.centimeters')}
+
+				= f.input :how_is_done, input_html: { rows: 3, class: 'input-xlarge' }
+				= f.input :what_it_is, input_html: { rows: 3, class: 'input-xlarge' }
+				= f.input :usage, input_html: { rows: 3, class: 'input-xlarge' }
+				= f.input :about, input_html: { rows: 3, class: 'input-xlarge tipinfo',"data-content" => t('activerecord.attributes.product.about_help')}
+
+				= f.input :delivery_method, collection: Category.deliverers, prompt: "Seleccionar", :label_method => :name, :value_method => :value
+				= f.input :on_demand
+
+				= f.input :factoring_time, input_html: {min:0, value: 0}
+
+				= f.input :available_at, :wrapper => :append do
+					= f.input_field :available_at, class: 'datepicker', as: :string
+					%span.add-on
+						%i.icon-calendar
+			.tab-pane.active{:id => "categories"}
+				Hoaoaldalsd
+		= f.button :wrapped, "Actualizar datos del Producto"

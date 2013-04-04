@@ -1,27 +1,30 @@
-.instructions
-  Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
+%h4 1.- Nombre del Producto
+%h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
 %br
 = simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
   = f.input :name, input_html: { class: 'input-xlarge'}
-  = f.input :made_by, collection: ['me', 'store', 'someone_else']
-  = field_set_tag nil, id: 'product-fields' do
-    = f.input :price, input_html: {class: 'tipinfo', "data-content" => t('general.mexicanpeso')}
-    = f.input :available_items
+  = f.input :made_by, collection: Category.producers, prompt: "Seleccionar", :label_method => :name, :value_method => :value
+  = f.button :wrapped, "Registrar Producto", 
+  //= f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)
 
-    = f.input :weight, input_html: {class: 'tipinfo', "data-content" => t('general.kilograms')}
-    = f.input :width, input_html: {class: 'tipinfo', "data-content" => t('general.centimeters')}
-    = f.input :height, input_html: {class: 'tipinfo', "data-content" => t('general.centimeters')}
-    = f.input :depth, input_html: {class: 'tipinfo', "data-content" => t('general.centimeters')}
+  = field_set_tag nil, id: 'product-fields' do
+    = f.input :price, input_html: {class: 'tipinfo',min: 0, value: 0, "data-content" => t('general.mexicanpeso')}
+    = f.input :available_items, input_html: {min: 0, value: 0}
+
+    = f.input :weight, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.kilograms')}
+    = f.input :width, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.centimeters')}
+    = f.input :height, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.centimeters')}
+    = f.input :depth, input_html: {class: 'tipinfo', min: 0, value: 0, "data-content" => t('general.centimeters')}
 
     = f.input :how_is_done, input_html: { rows: 3, class: 'input-xlarge' }
     = f.input :what_it_is, input_html: { rows: 3, class: 'input-xlarge' }
     = f.input :usage, input_html: { rows: 3, class: 'input-xlarge' }
     = f.input :about, input_html: { rows: 3, class: 'input-xlarge tipinfo',"data-content" => t('activerecord.attributes.product.about_help')}
 
-    = f.input :delivery_method, collection: ['pickup', 'packaging']
+    = f.input :delivery_method, collection: Category.deliverers, prompt: "Seleccionar", :label_method => :name, :value_method => :value
     = f.input :on_demand
 
-    = f.input :factoring_time
+    = f.input :factoring_time, input_html: {min:0, value: 0}
 
     = f.input :available_at, :wrapper => :append do
       = f.input_field :available_at, class: 'datepicker', as: :string

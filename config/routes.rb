@@ -26,6 +26,8 @@ Manuable::Application.routes.draw do
   namespace :my do
     resource :profile, except: :create
     resources :products do
+      get 'characteristics'
+      get 'attach'
       resources :attachments
     end
   end

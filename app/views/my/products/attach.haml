@@ -1,0 +1,20 @@
+%h3.section-title
+	%i{ class: "icon-cloud-upload" }
+	Nuevo Producto
+%h4 3.- Imágenes del Producto
+%h6 Las imágenes serán desplegas en la descripción del producto. Por favor considere las siguientes recomendaciones:
+%ul
+	%li Utilice imágenes en formato jpg o png
+	%li No utilice imágenes de más de 500Kb
+
+%br
+= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
+	= field_set_tag nil, id: 'product-fields' do
+		= f.input :media, class: 'form' do
+			= f.fields_for :attachments do |attachments|
+				= attachments.file_field :attachment, multiple: true
+				= attachments.link_to_remove "<i class='icon-trash'></i>".html_safe
+			= f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
+
+		#file-dropzone.clearfix
+	= f.button :wrapped, "Actualizar datos del Producto"
