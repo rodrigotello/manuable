@@ -19,6 +19,10 @@ Manuable::Application.routes.draw do
     resources :attachments
   end
 
+#  resources :categories do
+#    resources :categories
+#  end
+
   namespace :my do
     resource :profile, except: :create
     resources :products do

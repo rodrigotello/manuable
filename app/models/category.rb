@@ -6,4 +6,8 @@ class Category < ActiveRecord::Base
   def self.masters
   	where(:parent_id => nil)
   end
+
+ # def self.producers
+  #	where(:value => 'PRODUCER')
+  #end
 end
