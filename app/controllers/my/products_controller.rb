@@ -29,6 +29,7 @@ class My::ProductsController < ApplicationController
 
   def attach
     @product = Product.find(params[:product_id])
+    @product.attachments.build
   end
 
   def index

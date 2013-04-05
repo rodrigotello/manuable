@@ -1,7 +1,0 @@
-%h4 1.- Nombre del Producto
-%h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
-%br
-= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
-  = f.input :name, input_html: { class: 'input-xlarge'}
-  = f.input :made_by, collection: Category.producers, prompt: "Seleccionar", :label_method => :name, :value_method => :value
-  = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)

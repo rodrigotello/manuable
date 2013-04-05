@@ -6,13 +6,13 @@
 %br
 = simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
 	= field_set_tag nil, id: 'product-fields' do
-		%ul{:id => "tab_characteristics", :class => "nav nav-tabs"}
+		%ul{:id => "tab_char", :class => "nav nav-tabs"}
 			%li.active
-				%a{:href => "#general", "data-toogle" => "tab"} General
+				%a{:href => "#general", "data-toggle" => "tab"} General
 			%li
-				%a{:href => "#categories", "data-toogle" => "tab"} Categorías
+				%a{:href => "#categories", "data-toggle" => "tab"} Categorías
 		.tab-content
-			.tab-pane{:id => "general"}
+			.tab-pane.active{:id => "general"}
 				= f.input :price, input_html: {class: 'tipinfo',min: 0, value: 0, "data-content" => t('general.mexicanpeso')}
 				= f.input :available_items, input_html: {min: 0, value: 0}
 
@@ -35,6 +35,6 @@
 					= f.input_field :available_at, class: 'datepicker', as: :string
 					%span.add-on
 						%i.icon-calendar
-			.tab-pane.active{:id => "categories"}
-				Hoaoaldalsd
+			.tab-pane{:id => "categories"}
+				= f.association :categories , collection: Category.product_category, as: :check_boxes, include_blank: false
 		= f.button :wrapped, "Actualizar datos del Producto"
