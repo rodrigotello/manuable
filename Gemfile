@@ -39,6 +39,7 @@ gem 'rails'
   gem 'nested_form'
   gem 'client_side_validations'
   gem 'client_side_validations-simple_form'
+  gem 'yaml_db'
 
 gem "activeadmin"
 gem "meta_search", ">= 1.1.0.pre"

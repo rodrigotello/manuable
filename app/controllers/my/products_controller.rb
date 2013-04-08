@@ -13,6 +13,10 @@ class My::ProductsController < ApplicationController
     #@product = current_user.products.create
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def create
     @product = Product.new(params[:product])
     @product.user_id = current_user.id

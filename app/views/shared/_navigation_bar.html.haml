@@ -9,10 +9,14 @@
       .container.nav-collapse
         %ul.nav
           %li
+            %a{:href => "#"} Descubre
+          %li
+            %a{:href => "#"} AYUDA
+          %li
             %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Browse
             %ul.dropdown-menu
               %li
-                - Category.all.each do |category|
+                - Category.product_category.each do |category|
                   = link_to category.name, category_path(category)
         %ul.nav.pull-right
           - if !user_signed_in?

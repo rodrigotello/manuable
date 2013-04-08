@@ -1,0 +1,23 @@
+.main_list
+	.ul
+		.li
+			.product_info
+				.ul.thumbnails
+					.span10
+						%a.thumbnail{:href => "#"}
+							%img{"data-src" => "holder.js/640x456", :src => "razer02.jpg", :alt => ""}
+
+.ul.thumbnails
+	.span10
+		%a.thumbnail{:href => "#"}
+			%img{"data-src" => "holder.js/640x456", :alt => ""}
+.ul.thumbnails
+	.span2
+		%a.thumbnail{:href => "#"}
+			%img{"data-src" => "holder.js/100x100", :alt => ""}
+= object.user.name
+.product_info{:style => "border-style: solid;border-color:black;border-width: thin;"}
+	.container-fluid
+		.row-fluid
+			.span2{:style => "border:1;border-color:blue;"}
+			.span10{:style => "border:1;border-color:blue;"}

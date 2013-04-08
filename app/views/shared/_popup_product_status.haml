@@ -1,0 +1,16 @@
+#product_status_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal_title", :role => "dialog", :tabindex => "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#modal_title.text-center Comparte tus productos en manuable
+	.modal-body.text-center
+		.body_question
+			.select_status
+				.status_doing
+					%button{:id => "btt_doing"} Estoy haciendo
+					En cualquier momento del desarrollo
+				.status_selling
+					%button{:id => "btt_selling"} Estoy vendiendo
+					Producto terminado
+			.motto_modal
+				%i.icon-heart
+				Nuestro bien te ayudará a saber

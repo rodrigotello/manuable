@@ -1,0 +1,15 @@
+%a.btn{"data-toggle" => "modal", :href => "#product_type_modal", :role => "button"} Comparte
+
+#product_type_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal_title", :role => "dialog", :tabindex => "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#modal_title.text-center Comparte un producto
+	.modal-body.text-center
+		.body_question
+			%button{:id => "btt_original", :class => "choosing"} Un producto hecho por mi o por alguien de mi tienda
+			%button{:id => "btt_repaired", :class => "choosing"} Restaurado por mi o por alguien de mi tienda
+			%button{:id => "btt_someone_else", :class => "choosing"}	Un producto terminado hecho por otra compañía
+		.modal-footer
+			#error_only_procucers.alert.alert-error.text-center
+				!Lo sentimos!
+				Manuable es un sitio para compartir productos hechos por tí
