@@ -5,19 +5,17 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.brand(href="#") Manuable
+      = link_to 'Manuable', root_path, class: 'brand'
       .container.nav-collapse
         %ul.nav
           %li
-            %a{:href => "#"} Descubre
-          %li
-            %a{:href => "#"} AYUDA
-          %li
-            %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Browse
+            %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Descubre
             %ul.dropdown-menu
-              %li
-                - Category.product_category.each do |category|
+              - Category.product_category.each do |category|
+                %li
                   = link_to category.name, category_path(category)
+          %li
+            = link_to 'Comparte', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
         %ul.nav.pull-right
           - if !user_signed_in?
             %li#login-options

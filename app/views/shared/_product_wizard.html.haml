@@ -1,0 +1,89 @@
+#product_wizard.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal_title", :role => "dialog", :tabindex => "-1"}
+  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+  %h3#modal_title.text-center Comparte un producto
+  .modal-body.text-center
+    #product-sources
+      %p
+        Lo que quiero compartir es&hellip;
+      .row-fluid
+        .span4
+          = link_to "#", id: "btt_original", class: "product-source" do
+            %i{ class: 'icon-ok' }
+            Hecho por mi
+            %br
+            o por alguien
+            %br
+            de mi tienda
+            %br
+        .span4
+          = link_to "#", id: "btt_repaired", class: "product-source" do
+            %i{ class: 'icon-ok' }
+            Restaurado por
+            %br
+            mi o por alguien de
+            %br
+            mi tienda
+            %br
+        .span4
+          = link_to "#", id: "btt_someone_else", class: "product-source" do
+            %i{ class: 'icon-remove' }
+            Un producto
+            %br
+            terminado
+            %br
+            hecho por otra
+            %br
+            compañía
+    .modal-footer
+%script
+  \ ProductsNew.init()
+/ #product_status_modal
+/   .modal-header
+/     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+/     %h3#modal_title.text-center Comparte tus productos en manuable
+/   .modal-body.text-center
+/     .body_question
+/       .select_status
+/         .status_doing
+/           %button{:id => "btt_doing"} Estoy haciendo
+/           En cualquier momento del desarrollo
+/         .status_selling
+/           %button{:id => "btt_selling"} Estoy vendiendo
+/           Producto terminado
+/       .motto_modal
+/         %i.icon-heart
+/         Nuestro bien te ayudará a saber
+/ #product_description_modal
+/   .modal-header
+/     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+/     %h3#modal_title.text-center Comparte tus productos en manuable
+/   .modal-body
+/     .body_question
+/       .category_selector
+/       Categorías
+/       = Category.product_category.select("id,name").each do |cat|
+/         %label.checkbox
+/           %input{:type => "checkbox", :id => "product[category]", :value => "#{cat.id}"}
+/           = cat.name
+/       .product_details
+/       .form-horizontal
+/         .control-group
+/           %label.control-label{:for => "product[price]"} Precio
+/           .controls
+/           .input_prepend.input-append
+/             .add-on $
+/             %input.text-right{:id => "product[price]", :type => "text"}
+/             .add-on .00 MXN
+/         .control-group
+/           %label.control-label{:form => "product[amount]"} Cantidad
+/           .controls
+/             %input.numeric.integer.tipinfo{:id => "product[amount]", :type => "number", :min => "0"}
+/         .control-group
+/           %label.control-label{:for => "product[description]"} Descripción
+/           .controls
+/             %textarea{:id => "product[description]", :rows => 3}
+/     .modal-footer
+/       %p
+/         %button.btn{:id=> "btt_reg_cancel", :type => "button"} Cancelar
+/         %button.btn.btn-success{:id=> "btt_reg",:type => "button"} Registrar
+

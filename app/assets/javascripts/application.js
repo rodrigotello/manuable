@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap-modalmanager
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require handlebars
@@ -38,29 +39,28 @@ $(function(){
     sequentialUploads: true,
     singleFileUploads: true,
     add: function (e, data) {
+      var $uploader = $(this).data('blueimp-fileupload') ||
+              $(this).data('fileupload'),
+          options = $uploader.options,
+          template = Handlebars.compile( $("#upload-template").html()),
+          files = data.files;
+      for(var i in files){
+        var $upload = $('#file-dropzone').append($( $.trim(template({ "filename" : new Handlebars.SafeString( files[i].name ) })))).children(":last");
+        files[i].context = $upload;
+        $upload.find('.remove-attachment').bind('click.fu', function(e){
+          e.preventDefault();
+          var $this = $(this);
+          if (!data.jqXHR) {
+            console.log('no jqXHR');
+          } else {
+            console.log('aborting');
+            data.jqXHR.abort();
+          }
+          $this.parent().remove();
+        });
 
-        var $uploader = $(this).data('blueimp-fileupload') ||
-                $(this).data('fileupload'),
-            options = $uploader.options,
-            template = Handlebars.compile( $("#upload-template").html()),
-            files = data.files;
-        for(var i in files){
-          var $upload = $('#file-dropzone').append($( $.trim(template({ "filename" : new Handlebars.SafeString( files[i].name ) })))).children(":last");
-          files[i].context = $upload;
-          $upload.find('.remove-attachment').bind('click.fu', function(e){
-            e.preventDefault();
-            var $this = $(this);
-            if (!data.jqXHR) {
-              console.log('no jqXHR');
-            } else {
-              console.log('aborting');
-              data.jqXHR.abort();
-            }
-            $this.parent().remove();
-          });
-
-        }
-        data.submit();
+      }
+      data.submit();
     },
     done: function (e, data) {
       var context = data.files[0].context,
@@ -127,4 +127,6 @@ $(function(){
         $dropZone.removeClass('in hover');
     }, 100);
   });
+
 });
+
