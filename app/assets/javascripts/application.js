@@ -110,23 +110,18 @@ $(function(){
   });
 
   $(document).bind('dragover', function (e) {
-    var $dropZone = $('#file-dropzone'),
-        timeout = window.dropZoneTimeout;
-    if (!timeout) {
-        $dropZone.addClass('in');
-    } else {
-        clearTimeout(timeout);
-    }
-    if (e.target === $dropZone[0]) {
-        $dropZone.addClass('hover');
-    } else {
-        $dropZone.removeClass('hover');
-    }
-    window.dropZoneTimeout = setTimeout(function () {
-        window.dropZoneTimeout = null;
-        $dropZone.removeClass('in hover');
-    }, 100);
+    var $dropZone = $('#file-dropzone');
+    $dropZone.addClass('hover');
+  });
+
+  $(document).bind('drop', function (e) {
+    var $dropZone = $('#file-dropzone');
+    $dropZone.removeClass('hover');
+  });
+
+  $(document).bind('dragleave', function (e) {
+    var $dropZone = $('#file-dropzone');
+    $dropZone.removeClass('hover');
   });
 
 });
-

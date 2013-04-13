@@ -45,23 +45,11 @@
         content: attr(title)
         clear: both
         display: block
-#file-dropzone.in
-#file-dropzone.hover
-  background: #f5f5f5
-  min-height: 200px
-
-#file-dropzone.fade
-  @include prefixed-prop('transition', 'all 0.3s ease')
-  opacity: 1
 
 #file-dropzone
-  padding: 10px
   min-height: 100px
-  border: 1px solid #ccc
-  border-radius: 5px
   text-align: center
   font-weight: bold
-
   .image-upload
     float: left
     clear: both
@@ -89,6 +77,16 @@
     .remove-attachment
       float: right
       margin-left: 5px
+#file-dropzone.in
+#file-dropzone.hover
+  border: 3px dotted #ccc
+#file-dropzone.fade
+  @include prefixed-prop('transition', 'all 0.3s ease')
+  opacity: 1
+
+#file-dropzone
+  .fields
+    float: left
 
 #product-sources
   p
@@ -139,7 +137,10 @@
     position: relative
     text-decoration: none
     background-image: url(/assets/absurdidad.png)
-
+.modal
+  #new_product
+    input
+      display: none
 #maker-error
   display: none
   text-align: center

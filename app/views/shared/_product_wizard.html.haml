@@ -3,57 +3,61 @@
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
     %h3.text-center Comparte un producto
   .modal-body.text-center
-    #product-sources
-      %p
-        Lo que quiero compartir es&hellip;
-      .row-fluid
-        .span4
-          = link_to "#", id: "btt_original", class: "product-source" do
-            %i{ class: 'icon-ok' }
-            Hecho por mi
-            %br
-            o por alguien
-            %br
-            de mi tienda
-            %br
-        .span4
-          = link_to "#", id: "btt_repaired", class: "product-source" do
-            %i{ class: 'icon-ok' }
-            Restaurado por
-            %br
-            mi o por alguien de
-            %br
-            mi tienda
-            %br
-        .span4
-          = link_to "#", id: "btt_someone_else", class: "product-source" do
-            %i{ class: 'icon-remove' }
-            Un producto
-            %br
-            terminado
-            %br
-            hecho por otra
-            %br
-            compañía
-    #product-onsale-select
-      %p
-        Comparte fotos de tus productos
-      = form_for [:my, Product.new] do
+    = form_for [:my, Product.new] do |f|
+      #product-sources
+        %p
+          Lo que quiero compartir es&hellip;
         .row-fluid
-          .span6
-            = link_to "#", id: "", class: "product-build" do
-              Estoy
+          .span4
+            = f.radio_button :made_by, 'me'
+            = link_to "#", id: "btt_original", class: "product-source" do
+              %i{ class: 'icon-ok' }
+              Hecho por mi
               %br
-              haciendo
-            %span.expl
-              En cualquier momento del desarrollo
-          .span6
-            = link_to "#", id: "", class: "product-build" do
-              Estoy
+              o por alguien
               %br
-              vendiendo
-            %span.expl
-              Producto terminado
+              de mi tienda
+              %br
+          .span4
+            = f.radio_button :made_by, 'me-restore'
+            = link_to "#", id: "btt_repaired", class: "product-source" do
+              %i{ class: 'icon-ok' }
+              Restaurado por
+              %br
+              mi o por alguien de
+              %br
+              mi tienda
+              %br
+          .span4
+            = link_to "#", id: "btt_someone_else", class: "product-source" do
+              %i{ class: 'icon-remove' }
+              Un producto
+              %br
+              terminado
+              %br
+              hecho por otra
+              %br
+              compañía
+      #product-onsale-select
+        %p
+          Comparte fotos de tus productos
+          = f.check_box :on_sale
+          = hidden_field_tag :editing, '1'
+          .row-fluid
+            .span6
+              = link_to "#", id: "bragging", class: "product-build" do
+                Estoy
+                %br
+                haciendo
+              %span.expl
+                En cualquier momento del desarrollo
+            .span6
+              = link_to "#", id: "onsale", class: "product-build" do
+                Estoy
+                %br
+                vendiendo
+              %span.expl
+                Producto terminado
   .modal-footer
     #maker-error
       Lo sentimos!
