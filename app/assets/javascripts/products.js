@@ -4,7 +4,20 @@ var ProductsNew = new function(){
   self.init = function(){
     var $product_sources = $('#product-sources .product-source').click(function(e){
       e.preventDefault();
-      $('i', $product_sources).fadeIn();
+      var $this = $(this);
+
+      $('i', $product_sources.not($this)).fadeIn(700, function(){
+        $('i', $this).fadeIn(700);
+        if( $this.prop("id") === 'btt_someone_else' ){
+          $('#maker-error').fadeIn(700);
+        }else{
+          $("#product-sources").fadeOut(700);
+          setTimeout(function(){
+            $("#product-onsale-select").fadeIn(700);
+          },350);
+        }
+      });
+
     });
   }
 };

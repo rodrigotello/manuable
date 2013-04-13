@@ -1,6 +1,7 @@
 #product_wizard.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal_title", :role => "dialog", :tabindex => "-1"}
-  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-  %h3#modal_title.text-center Comparte un producto
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3.text-center Comparte un producto
   .modal-body.text-center
     #product-sources
       %p
@@ -34,7 +35,31 @@
             hecho por otra
             %br
             compañía
-    .modal-footer
+    #product-onsale-select
+      %p
+        Comparte fotos de tus productos
+      = form_for [:my, Product.new] do
+        .row-fluid
+          .span6
+            = link_to "#", id: "", class: "product-build" do
+              Estoy
+              %br
+              haciendo
+            %span.expl
+              En cualquier momento del desarrollo
+          .span6
+            = link_to "#", id: "", class: "product-build" do
+              Estoy
+              %br
+              vendiendo
+            %span.expl
+              Producto terminado
+  .modal-footer
+    #maker-error
+      Lo sentimos!
+      %br
+      Manuable es un sitio para compartir productos hechos por ti.
+
 %script
   \ ProductsNew.init()
 / #product_status_modal

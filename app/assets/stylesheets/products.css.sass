@@ -91,6 +91,8 @@
       margin-left: 5px
 
 #product-sources
+  p
+    color: #888
   .product-source
     @include prefixed-prop('border-radius', '5px')
     display: block
@@ -117,4 +119,30 @@
       background-color: rgb(29, 206, 240)
     i.icon-remove
       background-color: rgb(201, 8, 22)
+
+#product-onsale-select
+  display: none
+  .expl
+    color: #999
+    font-size: 11px
+  .product-build
+    @include prefixed-prop('border-radius', '5px')
+    display: block
+    border: 1px solid #ccc
+    color: #777
+    padding: 10px
+    height: 110px
+    width: 110px
+    font-weight: bold
+    font-size: 20px
+    margin: 0 auto
+    position: relative
+    text-decoration: none
+    background-image: url(/assets/absurdidad.png)
+
+#maker-error
+  display: none
+  text-align: center
+  color: #999
+  font-size: 11px
 
