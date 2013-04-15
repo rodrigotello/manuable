@@ -2,6 +2,12 @@ class My::ProductsController < ApplicationController
   layout 'my'
   load_and_authorize_resource
 
+  #May be security issue
+  def get_last_image
+    @product = Product.find(params[:product_id])
+    render  :json => @product.attachments.last
+  end
+
   def new
     @my_section = "new_product"
     @product = current_user.products.new

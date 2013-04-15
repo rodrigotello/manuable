@@ -6,6 +6,7 @@ es:
       product:
         name: Nombre
         user_id: Artesano
+        category_id: Categoría
         weight: Peso
         height: Altura
         width: Ancho

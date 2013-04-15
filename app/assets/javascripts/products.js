@@ -3,22 +3,11 @@ var ProductsNew = new function(){
 	var self = this;
 	self.init = function(){
 
-		$.fn.enterTab = function (fnc) {
-			return this.each(function () {
-				$(this).keypress(function (ev) {
-					var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-					if (keycode == '9') {
-						fnc.call(this, ev);
-					}
-				})
-			})
-		}
-		$(".materials").enterTab(function () {
-			if($(".materials").length < 10){
-				$("#ul_materials").append("<li><input id='product_materials_"+($(".materials").length+1)+"' name='product[materials[]]' class='materials'/></li>");
-			}
-		});
-
+		$('#product_materials').tagsInput({
+			defaultText: 'Nuevo',
+			height: '80px',
+			width: '600px'
+		}); 
 		$("#onsale").click(function(e){
 			e.preventDefault();
 			$("#product_on_sale").prop('checked', true).parents('form').submit();

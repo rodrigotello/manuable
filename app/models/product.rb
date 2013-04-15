@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :about, :made_by, :name, :price,
-                  :attachments_attributes, :category_id, :on_sale
+                  :attachments_attributes, :category_id, :on_sale, :amount
 
   belongs_to :user
   has_many :attachments, as: :attachable, dependent: :destroy

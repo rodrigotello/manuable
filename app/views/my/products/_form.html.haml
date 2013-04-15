@@ -2,7 +2,7 @@
 %h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
 %br
 = simple_nested_form_for [:my, @product], html: { }, validate: true do |f|
-  = f.input :name, input_html: { class: 'input-xxlarge' }, placeholder: "Qué estás haciendo?", label: "&nbsp;"
+  = f.input :name, input_html: { class: 'input-xxlarge' }, placeholder: "¿Qué estás haciendo?", label: "&nbsp;"
   = f.input :media do
     #file-dropzone.clearfix
       = f.fields_for :attachments do |attachments|
@@ -14,11 +14,25 @@
       - unless f.object.attachments.count >= 4
         = f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
 
-  = f.input :category_id, collection: Category.product_category, prompt: "En cuál de estas categorías entra?", :label_method => :name, :value_method => :value, input_html: { class: 'input-xxlarge' }
+  = f.input :category_id, collection: Category.product_category, prompt: "Seleccionar", :label_method => :name, :value_method => :value, input_html: { class: 'input-xxlarge'}, label: "¿En cuál de estas categorías entra?"
 
-  = f.input :price, input_html: { min: 0, value: 0 }, placeholder: 'Cuánto cuesta?'
-  = f.input :about, input_html: { rows: 3, class: 'input-xxlarge' }
+  .row-fluid
+    .span6
+      %p
+        ¿Cuánto cuesta?
+      .input-prepend.input-append
+        %span.add-on $
+        %input#product_price.text-right.input-small{:name => "product[price]", :type => "text"}
+        %span.add-on .00 MXN
+    .span6 
+      %p
+      = f.input :amount, collection: ["Sobre Pedido", "1", "2", "3", "4","5", "Muchos"], prompt: "Seleccionar", label: "¿Cuántos tienes?", input_html: {:class => "dropdown"}
 
+  %p
+    ¿Qué propiedades tiene? (Máximo 10)
+    %input#product_materials{:name =>"product[materials]"}
+
+  = f.input :about, input_html: { rows: 3, class: 'input-xxlarge' }, label: "Cuentanos sobre tu producto"
 
   = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)
 
