@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails'
+gem 'thin'
 # DB
   group :production do
     gem "pg"

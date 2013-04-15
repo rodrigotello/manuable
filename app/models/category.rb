@@ -10,17 +10,18 @@ class Category < ActiveRecord::Base
   end
 
   def self.producers
-  	@master = where(:value => 'PRODUCER')
- 		where(:parent_id => @master)
+  	where(:value => 'PRODUCER').first.childs
  	end
 
   def self.deliverers
-  	@master = where(:value => 'DELIVER')
- 		where(:parent_id => @master)
+  	where(:value => 'DELIVER').first.childs
  	end
 
   def self.product_category
-    @master = where(:value => 'CATPROD')
-    where(:parent_id => @master)   
+    where(:value => 'CATPROD').first.childs
+  end
+
+  def self.materials
+    where(:value => 'MATERIAL').first.childs
   end
 end

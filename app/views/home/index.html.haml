@@ -1,2 +1,6 @@
 %h3 !Bienvenidos a manuable!
 %h4 Descubre y comparte productos hechos a mano
+
+= @products.each do |product|
+	.desc-prod
+		=render :partial => "/shared/product_main_info", :object => product

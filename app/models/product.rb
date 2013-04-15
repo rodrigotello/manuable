@@ -8,4 +8,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
 
   accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }
+
+  has_many :materials
+  has_many :categories, :through => :materials
 end

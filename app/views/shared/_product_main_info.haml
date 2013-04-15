@@ -1,23 +1,34 @@
-.main_list
-	.ul
-		.li
-			.product_info
-				.ul.thumbnails
-					.span10
-						%a.thumbnail{:href => "#"}
-							%img{"data-src" => "holder.js/640x456", :src => "razer02.jpg", :alt => ""}
-
-.ul.thumbnails
-	.span10
-		%a.thumbnail{:href => "#"}
-			%img{"data-src" => "holder.js/640x456", :alt => ""}
-.ul.thumbnails
-	.span2
-		%a.thumbnail{:href => "#"}
-			%img{"data-src" => "holder.js/100x100", :alt => ""}
-= object.user.name
-.product_info{:style => "border-style: solid;border-color:black;border-width: thin;"}
-	.container-fluid
-		.row-fluid
-			.span2{:style => "border:1;border-color:blue;"}
-			.span10{:style => "border:1;border-color:blue;"}
+.product-box
+	.avatar-action
+		.lateral-box.user-avatar.well
+			%a{:href => "elusuario"}
+				%img{:src => "/images/matusperfil.jpeg"}
+		.lateral-box.want-learn.well{"data-original-title" => "Quiero aprender", "data-toogle" => "tooltip"}
+			%a{:href => "learn/#{product_main_info.id}"}
+				%h1
+					%i.icon-eye-open
+		.lateral-box.want-buy.well{"data-original-title" => "Quiero comprar", "data-toogle" => "tooltip"}
+			%a{:href => "buy/#{product_main_info.id}"}
+				%h1
+					%i.icon-shopping-cart
+	.product-picture
+		%img{:src => product_main_info.attachments.first.attachment}
+	.product-description
+		.author-title
+			%h4
+				= product_main_info.name
+		.author-message
+			= product_main_info.about
+		.product-tags
+			"#gato #genético #futurista #leon #grifo"
+	.product-process
+		.thumbnail-title
+			%h4
+				Proceso de elaboración
+		.thumbnail-box
+			.thumbnail-one.thumbnail-process
+				%img{:src => product_main_info.attachments.first.attachment}
+			.thumbnail-two.thumbnail-process
+				%img{:src => product_main_info.attachments.first.attachment}
+			.thumbnail-three.thumbnail-process
+				%img{:src => product_main_info.attachments.first.attachment}

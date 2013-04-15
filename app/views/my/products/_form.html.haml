@@ -20,6 +20,6 @@
   = f.input :about, input_html: { rows: 3, class: 'input-xxlarge' }
 
 
-
   = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)
 
+= javascript_tag "var data_materials = #{Category.materials.select('id,name').to_json};"
