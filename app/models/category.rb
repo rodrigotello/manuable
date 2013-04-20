@@ -21,8 +21,4 @@ class Category < ActiveRecord::Base
   def self.product_category
     where(:value => 'CATPROD').first.childs
   end
-
-  def self.materials
-    where(:value => 'MATERIAL').first.childs
-  end
 end

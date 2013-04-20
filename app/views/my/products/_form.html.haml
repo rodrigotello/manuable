@@ -14,7 +14,7 @@
       - unless f.object.attachments.count >= 4
         = f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
 
-  = f.input :category_id, collection: Category.product_category, prompt: "Seleccionar", :label_method => :name, :value_method => :value, input_html: { class: 'input-xxlarge'}, label: "¿En cuál de estas categorías entra?"
+  = f.input :category_id, collection: Category.product_category, prompt: "Seleccionar", :label_method => :name, :value_method => :id, input_html: { class: 'input-xxlarge'}, label: "¿En cuál de estas categorías entra?"
 
   .row-fluid
     .span6
@@ -35,5 +35,3 @@
   = f.input :about, input_html: { rows: 3, class: 'input-xxlarge' }, label: "Cuentanos sobre tu producto"
 
   = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)
-
-= javascript_tag "var data_materials = #{Category.materials.select('id,name').to_json};"
