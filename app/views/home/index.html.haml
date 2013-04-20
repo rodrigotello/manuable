@@ -2,5 +2,5 @@
 %h4 Descubre y comparte productos hechos a mano
 
 = @products.each do |product|
-	.desc-prod
+	.display-product
 		=render :partial => "/shared/product_main_info", :object => product

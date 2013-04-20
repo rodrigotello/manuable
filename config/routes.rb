@@ -7,6 +7,8 @@ Manuable::Application.routes.draw do
 
   get "home/index"
 
+  match 'product/:id' => 'home#product'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
@@ -26,9 +28,6 @@ Manuable::Application.routes.draw do
   namespace :my do
     resource :profile, except: :create
     resources :products do
-      get 'get_last_image'
-      get 'characteristics'
-      get 'attach'
       resources :attachments
     end
   end

@@ -3,7 +3,8 @@ class Category < ActiveRecord::Base
   belongs_to :parent, foreign_key: 'parent_id', class_name: 'Category'
   has_many :childs, foreign_key: 'parent_id', class_name: 'Category'
 
-  has_and_belongs_to_many :products
+  belongs_to :products
+  #has_and_belongs_to_many :products
 
   def self.masters
   	where(:parent_id => nil)
