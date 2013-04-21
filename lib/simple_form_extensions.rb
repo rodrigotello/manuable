@@ -1,6 +1,5 @@
 module WrappedButton
   def wrapped_button(*args, &block)
-    puts  "---#{args.inspect}"
     template.content_tag :div, :class => "form-actions" do
       options = args.extract_options!
       loading = self.object.new_record? ? I18n.t('simple_form.creating') : I18n.t('simple_form.updating')

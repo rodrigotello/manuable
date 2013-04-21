@@ -5,6 +5,7 @@ class Attachment < ActiveRecord::Base
   scope :random, order("RANDOM()")
   mount_uploader :attachment, AttachUploader
   include Rails.application.routes.url_helpers
+  # validate :attachment_count
 
   def as_json options={}
     {
@@ -18,5 +19,6 @@ class Attachment < ActiveRecord::Base
       delete_url: polymorphic_path([self.attachable, self])
     }
   end
+
 
 end

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'thin'
+
 # DB
   group :production do
     gem "pg"
@@ -24,7 +25,7 @@ gem 'thin'
   gem "omniauth-oauth"
   gem "omniauth-oauth2"
   gem "omniauth-twitter"
-  gem "squeel"
+
 
 # authorization & authentication
   gem "devise"
@@ -41,7 +42,10 @@ gem 'thin'
   gem 'client_side_validations'
   gem 'client_side_validations-simple_form'
   gem 'yaml_db'
+  gem "squeel"
+  gem 'quiet_assets'
 
+gem 'acts-as-taggable-on'
 gem "activeadmin"
 gem "meta_search", ">= 1.1.0.pre"
 gem "capistrano", :require => false

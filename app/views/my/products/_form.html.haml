@@ -1,3 +1,4 @@
+
 %h4 1.- Nombre del Producto
 %h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
 %br
@@ -5,33 +6,35 @@
   = f.input :name, input_html: { class: 'input-xxlarge' }, placeholder: "¿Qué estás haciendo?", label: "&nbsp;"
   = f.input :media do
     #file-dropzone.clearfix
-      = f.fields_for :attachments do |attachments|
-        - if attachments.object.new_record?
-          = attachments.file_field :attachment, multiple: true
-        - else
-          = product_image_tag attachments.object, :medium
-        = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe
-      - unless f.object.attachments.count >= 4
-        = f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
+      .row-fluid
+        = f.fields_for :attachments,  :wrapper => false do |attachments|
+          .span3
+            .attachment-product-drop.fields
+              - if attachments.object.new_record?
+                = attachments.file_field :attachment, multiple: true
+              - else
+                = product_image_tag attachments.object, :small
+              = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe
 
-  = f.input :category_id, collection: Category.product_category, prompt: "Seleccionar", :label_method => :name, :value_method => :id, input_html: { class: 'input-xxlarge'}, label: "¿En cuál de estas categorías entra?"
+        -# unless f.object.attachments.count >= 4
+          =# f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
 
-  .row-fluid
-    .span6
-      %p
-        ¿Cuánto cuesta?
-      .input-prepend.input-append
-        %span.add-on $
-        %input#product_price.text-right.input-small{:name => "product[price]", :type => "text"}
-        %span.add-on .00 MXN
-    .span6 
-      %p
-      = f.input :amount, collection: ["Sobre Pedido", "1", "2", "3", "4","5", "Muchos"], prompt: "Seleccionar", label: "¿Cuántos tienes?", input_html: {:class => "dropdown"}
+  = f.input :category_id, collection: Category.product_category, prompt: "Seleccionar", :label_method => :name, :value_method => :id, input_html: { class: 'span12'}, label: "¿En cuál de estas categorías entra?", wrapper: :control_row
+  - if f.object.on_sale?
+    .row-fluid
+      .span6
+        %p
+          ¿Cuánto cuesta?
+        .input-prepend.input-append
+          %span.add-on $
+          %input#product_price.text-right.input-small{:name => "product[price]", :type => "text"}
+          %span.add-on .00 MXN
+      .span6
+        %p
+        = f.input :amount, collection: ["Sobre Pedido", "1", "2", "3", "4","5", "Muchos"], prompt: "Seleccionar", label: "¿Cuántos tienes?", input_html: {:class => "dropdown"}
 
-  %p
-    ¿Qué propiedades tiene? (Máximo 10)
-    %input#product_materials{:name =>"product[materials]"}
+  = f.input :prop_list, label: '¿Qué propiedades tiene? (Máximo 10)', input_html: { class: 'span12 tag-input' }, wrapper: :control_row
 
-  = f.input :about, input_html: { rows: 3, class: 'input-xxlarge' }, label: "Cuentanos sobre tu producto"
+  = f.input :about, input_html: { rows: 3, class: 'span12' }, label: "Cuentanos sobre tu producto", wrapper: :control_row
 
   = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)

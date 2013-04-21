@@ -6,13 +6,13 @@
 		.lateral-box.want-learn.well{"data-original-title" => "Quiero aprender", "data-toogle" => "tooltip"}
 			%a{:href => "learn/#{product_main_info.id}"}
 				%h1
-					%i.icon-eye-open
+					%i.icon-lightbulb
 		.lateral-box.want-buy.well{"data-original-title" => "Quiero comprar", "data-toogle" => "tooltip"}
 			%a{:href => "buy/#{product_main_info.id}"}
 				%h1
 					%i.icon-shopping-cart
 	.product-picture
-		%img{:src => product_main_info.attachments.first.attachment}
+		%img{:src => product_main_info.attachments.first.try(:attachment)}
 	.product-description
 		.author-title
 			%h4
@@ -27,8 +27,8 @@
 				Proceso de elaboración
 		.thumbnail-box
 			.thumbnail-one.thumbnail-process
-				%img{:src => product_main_info.attachments.first.attachment}
+				%img{:src => product_main_info.attachments.first.try(:attachment)}
 			.thumbnail-two.thumbnail-process
-				%img{:src => product_main_info.attachments.first.attachment}
+				%img{:src => product_main_info.attachments.first.try(:attachment)}
 			.thumbnail-three.thumbnail-process
-				%img{:src => product_main_info.attachments.first.attachment}
+				%img{:src => product_main_info.attachments.first.try(:attachment)}

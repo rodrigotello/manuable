@@ -38,33 +38,35 @@ class My::ProductsController < ApplicationController
   end
 
   def edit
-    @product.attachments.build unless @product.attachments.count >= 4
+    if @product.attachments.length < 4
+      (4 - @product.attachments.length).times { @product.attachments.build }
+    end
   end
 
   def update
-    if !params[:product][:attachments_attributes].nil?
+    @product = current_user.products.find(params[:id])
+
+    if !params[:product][:attachments_attributes].nil? && params[:ajax_upload].present?
       attachments_attributes = {}
       params[:product][:attachments_attributes].each do |k, v|
-        i = attachments_attributes.length + 1
 
-        attachments_attributes[ i ] = {}
-        attachments_attributes[ i ]["_destroy"] = 'false'
+        attachments_attributes[ k ] = {}
+        attachments_attributes[ k ]["_destroy"] = 'false'
 
         if v[:attachment].is_a? Array
-          attachments_attributes[ i ][:attachment] = v[:attachment].first
+          attachments_attributes[ k ][:attachment] = v[:attachment].first
         else
-          attachments_attributes[ i ][:attachment] = v
+          attachments_attributes[ k ][:attachment] = v
         end
       end
       params[:product][:attachments_attributes] = attachments_attributes
 
-      @product = current_user.products.find(params[:id])
       @product.update_attributes(params[:product])
-      redirect_to my_product_path(@product.id)
+
+      redirect_to edit_my_product_path(@product)
     else
-      @product = current_user.products.find(params[:id])
       @product.update_attributes(params[:product])
-      redirect_to my_product_attach_path(@product.id)
+      redirect_to edit_my_product_path(@product)
     end
   end
 

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery.tagsinput.min
 //= require bootstrap-modalmanager
 //= require rails.validations
 //= require rails.validations.simple_form
@@ -89,6 +90,7 @@ $(function(){
   $("[data-toggle=tooltip], abbr").tooltip();
   $("select.go-chosen").chosen();
   $('.datepicker').datepicker({ 'format' : 'yyyy/mm/dd' });
+  $('.tag-input').tagsInput({ defaultText: "Propiedades", width: '98%', height: 'auto' });
 
   $(document).on('click', 'a[rel*=modal]', function(e){
     e.preventDefault();
