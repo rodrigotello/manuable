@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'thin'
+gem 'public_activity'
 
 # DB
   group :production do

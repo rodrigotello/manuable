@@ -34,58 +34,58 @@ $(function(){
   if( "object" === typeof window[page] )
     window[page].init();
 
-  $('input[type=file]').fileupload({
-    dropZone: $('#file-dropzone'),
-    filesContainer: $('#file-dropzone'),
-    sequentialUploads: true,
-    singleFileUploads: true,
-    add: function (e, data) {
-      var $uploader = $(this).data('blueimp-fileupload') ||
-              $(this).data('fileupload'),
-          options = $uploader.options,
-          template = Handlebars.compile( $("#upload-template").html()),
-          files = data.files;
-      for(var i in files){
-        var $upload = $('#file-dropzone').append($( $.trim(template({ "filename" : new Handlebars.SafeString( files[i].name ) })))).children(":last");
-        files[i].context = $upload;
-        $upload.find('.remove-attachment').bind('click.fu', function(e){
-          e.preventDefault();
-          var $this = $(this);
-          if (!data.jqXHR) {
-            console.log('no jqXHR');
-          } else {
-            console.log('aborting');
-            data.jqXHR.abort();
-          }
-          $this.parent().remove();
-        });
+  // $('input[type=file]').fileupload({
+  //   dropZone: $('#file-dropzone'),
+  //   filesContainer: $('#file-dropzone'),
+  //   sequentialUploads: true,
+  //   singleFileUploads: true,
+  //   add: function (e, data) {
+  //     var $uploader = $(this).data('blueimp-fileupload') ||
+  //             $(this).data('fileupload'),
+  //         options = $uploader.options,
+  //         template = Handlebars.compile( $("#upload-template").html()),
+  //         files = data.files;
+  //     for(var i in files){
+  //       var $upload = $('#file-dropzone').append($( $.trim(template({ "filename" : new Handlebars.SafeString( files[i].name ) })))).children(":last");
+  //       files[i].context = $upload;
+  //       $upload.find('.remove-attachment').bind('click.fu', function(e){
+  //         e.preventDefault();
+  //         var $this = $(this);
+  //         if (!data.jqXHR) {
+  //           console.log('no jqXHR');
+  //         } else {
+  //           console.log('aborting');
+  //           data.jqXHR.abort();
+  //         }
+  //         $this.parent().remove();
+  //       });
 
-      }
-      data.submit();
-    },
-    done: function (e, data) {
-      var context = data.files[0].context,
-          result = data.result[data.result.length - 1];
-      context.find(".progress").remove();
-      context.find(".remove-attachment").unbind('click.fu').bind('click.fu', function(e){
-        e.preventDefault();
-        $.post('/my/' + result.delete_url, { '_method' : 'delete' }, function(){
-          context.remove();
-        });
+  //     }
+  //     data.submit();
+  //   },
+  //   done: function (e, data) {
+  //     var context = data.files[0].context,
+  //         result = data.result[data.result.length - 1];
+  //     context.find(".progress").remove();
+  //     context.find(".remove-attachment").unbind('click.fu').bind('click.fu', function(e){
+  //       e.preventDefault();
+  //       $.post('/my/' + result.delete_url, { '_method' : 'delete' }, function(){
+  //         context.remove();
+  //       });
 
-      });
-    },
-    progress: function (e, data) {
-      var context = data.files[0].context;
-      if (context) {
-          var progress = Math.floor(data.loaded / data.total * 100);
-          context.find('.progress')
-              .attr('aria-valuenow', progress)
-              .find('.bar').css( 'width', progress + '%');
-      }
-    }
+  //     });
+  //   },
+  //   progress: function (e, data) {
+  //     var context = data.files[0].context;
+  //     if (context) {
+  //         var progress = Math.floor(data.loaded / data.total * 100);
+  //         context.find('.progress')
+  //             .attr('aria-valuenow', progress)
+  //             .find('.bar').css( 'width', progress + '%');
+  //     }
+  //   }
 
-  });
+  // });
 
   $("[data-toggle=tooltip], abbr").tooltip();
   $("select.go-chosen").chosen();

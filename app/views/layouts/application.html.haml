@@ -20,9 +20,8 @@
   %body{data: { page: [controller_name.capitalize, action_name.capitalize].join }}
     = render partial: '/shared/navigation_bar'
     .container
-      .row
-        = bootstrap_flash
-        = yield
+      = bootstrap_flash
+      = yield
       %footer
         %p &copy; Manuable 2013
     = javascript_include_tag "application"

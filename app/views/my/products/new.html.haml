@@ -1,14 +1,4 @@
 %h3.section-title
   %i{ class: "icon-cloud-upload" }
   Nuevo Producto
-%h4 1.- Nombre del Producto
-%h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
-%br
-= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
-  = f.input :name, input_html: { class: 'input-xlarge'}
-  = f.input :made_by, collection: Category.producers, prompt: "Seleccionar", :label_method => :name, :value_method => :value
-  = f.button :wrapped, "Registrar Producto"
-
-  #only_artisant_error.alert.alert-error
-    Solo artesanos pueden agregar sus productos
-/= render partial: 'step_1'
+= render partial: 'form'

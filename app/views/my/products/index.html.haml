@@ -3,5 +3,5 @@
   Mis Productos
 
 #products.clearfix
-  = render @products
+  = render partial: 'product', collection: @products
 = paginate @products

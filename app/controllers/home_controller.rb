@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-  	@products = Product.all
+  	@activities = PublicActivity::Activity.order("created_at desc")
   end
 
   def product
