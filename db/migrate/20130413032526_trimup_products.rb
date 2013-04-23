@@ -8,7 +8,7 @@ class TrimupProducts < ActiveRecord::Migration
     remove_column :products, :depth
     remove_column :products, :available_items
     remove_column :products, :available_at
-    remove_column :products, :on_demand, default: false
+    remove_column :products, :on_demand
     remove_column :products, :factoring_time
     remove_column :products, :delivery_method
     remove_column :products, :how_is_done
@@ -19,7 +19,7 @@ class TrimupProducts < ActiveRecord::Migration
 
   def down
     remove_column :products, :category_id
-    remove_column :products, :on_sale, :boolean
+    remove_column :products, :on_sale
     add_column :products, :weight, :integer
     add_column :products, :height, :integer
     add_column :products, :width, :integer
