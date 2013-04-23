@@ -7,7 +7,6 @@ gem 'public_activity'
 # DB
   group :production do
     gem "pg"
-    gem 'activerecord-pg-adapter'
     gem 'puma'
     # gem 'newrelic_rpm'
   end
