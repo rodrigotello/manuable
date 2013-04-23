@@ -3,7 +3,7 @@
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
     %h3.text-center Comparte un producto
   .modal-body.text-center
-    = form_for [:my, Product.new] do |f|
+    = form_for [:my, Product.new], url: new_my_product_path, method: :get do |f|
       #product-sources
         %p
           Lo que quiero compartir es&hellip;

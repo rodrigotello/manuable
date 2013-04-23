@@ -7,7 +7,7 @@ Manuable::Application.routes.draw do
 
   get "home/index"
 
-  match 'product/:id' => 'home#product'
+  # match 'product/:id' => 'home#product'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'

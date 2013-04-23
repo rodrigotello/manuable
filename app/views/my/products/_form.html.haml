@@ -1,19 +1,17 @@
-
 %h4 1.- Nombre del Producto
 %h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
 %br
 = simple_nested_form_for [:my, @product], html: { }, validate: true do |f|
-  = f.input :name, input_html: { class: 'input-xxlarge' }, placeholder: "¿Qué estás haciendo?", label: "&nbsp;"
+  = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Qué estás haciendo?", label: "&nbsp;", wrapper: :control_row
   = f.input :media do
     #file-dropzone.clearfix
       .row-fluid
         = f.fields_for :attachments,  :wrapper => false do |attachments|
           .span3
             .attachment-product-drop.fields
+              = product_image_tag attachments.object, :small
               - if attachments.object.new_record?
                 = attachments.file_field :attachment, multiple: true
-              - else
-                = product_image_tag attachments.object, :small
               = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe
 
         -# unless f.object.attachments.count >= 4
