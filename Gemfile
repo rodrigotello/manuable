@@ -7,6 +7,8 @@ gem 'public_activity'
 # DB
   group :production do
     gem "pg"
+    gem 'activerecord-pg-adapter'
+    gem 'puma'
     # gem 'newrelic_rpm'
   end
 
@@ -58,8 +60,6 @@ gem "libv8", "~> 3.11.8"
 gem "therubyracer", :require => false
 gem "foreman", :require => false
 gem "jquery-fileupload-rails"
-gem 'puma'
-gem 'unicorn'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
