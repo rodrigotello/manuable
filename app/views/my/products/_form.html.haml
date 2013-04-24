@@ -11,7 +11,7 @@
             .attachment-product-drop.fields
               = product_image_tag attachments.object, :small
               - if attachments.object.new_record?
-                = attachments.file_field :attachment, multiple: true
+                = attachments.file_field :attachment
               = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe unless attachments.object.new_record?
 
         -# unless f.object.attachments.count >= 4

@@ -6,12 +6,6 @@ class My::ProductsController < ApplicationController
     @my_section = "products"
     @products = current_user.products.page params[:page]
   end
-  #May be security issue
-
-  def get_last_image
-    @product = Product.find(params[:product_id])
-    render  :json => @product.attachments.last
-  end
 
   def new
     @my_section = "new_product"
