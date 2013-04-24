@@ -2,24 +2,32 @@ var ProductsNew = new function(){
   "use strict";
   var self = this;
   self.init = function(){
-    $(".edit_product .attachment-product-drop").click(function(e){
-      var $this = $(this);
+    $(".new_product .attachment-product-drop").click(function(e){
+      var $this = $(this),
+          $img = $('img', $this),
+          $input = $('input', $this);
 
-      if (e.target === $this[0]){
-        console.log($('input', $this))
-        $('input', $this).trigger('click');
+
+      if (e.target === $this[0] || e.target === $img[0]){
+        $input.trigger('click');
       }
     });
+
+    $(".new_product .attachment-product-drop input").change(function(){
+      var $this = $(this);
+      $this.after($this.val().match(/[-_\w]+[.][\w]+$/i)[0].substring(0, 15));
+    });
+
     $(document).on('nested:fieldRemoved', ".edit_product", function(e){
       var $field = e.field;
       $field.find('img').remove();
     });
 
-    $('#product_materials').tagsInput({
-      defaultText: 'Nuevo',
-      height: '80px',
-      width: '600px'
-    });
+    // $('#product_materials').tagsInput({
+    //   defaultText: 'Nuevo',
+    //   height: '80px',
+    //   width: '600px'
+    // });
 
     $("#onsale").click(function(e){
       e.preventDefault();

@@ -12,7 +12,7 @@
               = product_image_tag attachments.object, :small
               - if attachments.object.new_record?
                 = attachments.file_field :attachment, multiple: true
-              = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe
+              = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe unless attachments.object.new_record?
 
         -# unless f.object.attachments.count >= 4
           =# f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
