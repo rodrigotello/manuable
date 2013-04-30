@@ -12,6 +12,7 @@
             = f.radio_button :made_by, 'me'
             = link_to "#", id: "btt_original", class: "product-source" do
               %i{ class: 'icon-ok' }
+              %br
               Hecho por mi
               %br
               o por alguien
@@ -22,6 +23,7 @@
             = f.radio_button :made_by, 'me-restore'
             = link_to "#", id: "btt_repaired", class: "product-source" do
               %i{ class: 'icon-ok' }
+              %br
               Restaurado por
               %br
               mi o por alguien de
@@ -31,6 +33,7 @@
           .span4
             = link_to "#", id: "btt_someone_else", class: "product-source" do
               %i{ class: 'icon-remove' }
+              %br
               Un producto
               %br
               terminado
@@ -46,6 +49,7 @@
           .row-fluid
             .span6
               = link_to "#", id: "bragging", class: "product-build" do
+                %br
                 Estoy
                 %br
                 haciendo
@@ -53,6 +57,7 @@
                 En cualquier momento del desarrollo
             .span6
               = link_to "#", id: "onsale", class: "product-build" do
+                %br
                 Estoy
                 %br
                 vendiendo

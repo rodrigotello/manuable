@@ -13,7 +13,7 @@
       %h1
         %i.icon-shopping-cart
   .product-picture
-    = image_tag product.attachments.first.try(:attachment).url(:xlarge)
+    = image_tag product.attachments.first.try(:attachment)
   .product-description
     .author-title
       %h4
