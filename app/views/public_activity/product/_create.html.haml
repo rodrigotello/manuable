@@ -23,9 +23,9 @@
     .product-tags
       = hashify(product.prop_list).join(", ")
   .product-pictures
-    %h4
-      Proceso de elaboración
-    .thumbnail-box.clearfix
-      - product.attachments[1, 3].each do |attachment|
-        .picture-thumbnail
-          = image_tag attachment.attachment.url(:medium)
+    - if product.on_sale? && product.attachments.length > 1
+      .thumbnail-box.clearfix
+        - product.attachments[1, 3].each do |attachment|
+          .picture-thumbnail
+            = image_tag attachment.attachment.url(:medium)
+  %hr

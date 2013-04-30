@@ -33,7 +33,7 @@ class AttachUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  # process :scale => [140, 300]
   #
   # def scale(width, height)
   #   # do something
@@ -49,7 +49,7 @@ class AttachUploader < CarrierWave::Uploader::Base
   end
 
   version :medium, if: :image? do
-    process resize_to_limit: [200, 200]
+    process resize_to_limit: [140, 140]
   end
 
   version :large, if: :image? do
@@ -57,7 +57,7 @@ class AttachUploader < CarrierWave::Uploader::Base
   end
 
   version :xlarge, if: :image? do
-    process resize_to_limit: [600, 600]
+    process resize_to_limit: [500, 500]
   end
 
 
