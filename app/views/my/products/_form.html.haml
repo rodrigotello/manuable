@@ -1,6 +1,6 @@
-%h4 1.- Nombre del Producto
-%h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
-%br
+/ %h4 1.- Nombre del Producto
+/ %h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
+/ %br
 = simple_nested_form_for [:my, @product], html: { }, validate: true do |f|
   - if f.object.on_sale?
     = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Qué estás haciendo?", label: "&nbsp;", wrapper: :control_row

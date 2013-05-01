@@ -1,4 +1,7 @@
 %h3.section-title
   %i{ class: "icon-cloud-upload" }
-  Nuevo Producto
+  - if @product.on_sale?
+    Estoy vendiendo
+  - else
+    Estoy haciendo
 = render partial: 'form'

@@ -2,6 +2,11 @@ var ProductsNew = new function(){
   "use strict";
   var self = this;
   self.init = function(){
+    $("#product_wizard").on("hidden", function(){
+      $('#product-sources').show().find(".product-source i").hide();
+      $('#product-onsale-select, #maker-error').hide();
+    });
+
     $(".new_product .attachment-product-drop").click(function(e){
       var $this = $(this),
           $img = $('img', $this),
@@ -48,11 +53,12 @@ var ProductsNew = new function(){
         if( $this.prop("id") === 'btt_someone_else' ){
           $('#maker-error').fadeIn(700);
         }else{
+          $('#maker-error').hide();
           $this.siblings('input').prop('checked', true);
           $("#product-sources").fadeOut(700);
           setTimeout(function(){
             $("#product-onsale-select").fadeIn(700);
-          },350);
+          }, 650);
         }
       });
 

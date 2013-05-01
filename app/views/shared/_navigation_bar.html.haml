@@ -18,8 +18,8 @@
             %li
               = link_to 'Comparte', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
         %ul.nav.pull-right
-          %li
-            = link_to "<i class='icon-search'></i>".html_safe, "#"
+          / %li
+          /   = link_to "<i class='icon-search'></i>".html_safe, "#"
           %li.divider-vertical
           - if !user_signed_in?
             %li#login-options
