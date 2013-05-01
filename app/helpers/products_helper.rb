@@ -1,9 +1,9 @@
 module ProductsHelper
   def product_image_tag(attachment, size=:small, html_options={})
     if attachment.new_record?
-      image_tag "", { class: "product-image", data: { src: attachment.attachment.url(size) } }.merge(html_options)
+      image_tag "", { class: "product-image product-image-#{size}", data: { src: attachment.attachment.url(size) } }.merge(html_options)
     else
-      image_tag attachment.attachment.url(size), { class: "product-image", id: "product-image-#{attachment.id}" }.merge(html_options)
+      content_tag :div, '', { style: "background-image: url(#{attachment.attachment.url(size)})", class: "product-image product-image-#{size}", id: "product-image-#{attachment.id}" }.merge(html_options)
     end
   end
 

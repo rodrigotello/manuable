@@ -4,14 +4,14 @@
   .lateral-box.user-avatar
     = link_to user_path(product.user) do
       = image_tag product.user.avatar.url(:small)
-  .lateral-box.want-learn{"data-original-title" => "Quiero aprender", "data-toogle" => "tooltip"}
-    %a{:href => "learn/#{product.id}"}
-      %h1
-        %i.icon-lightbulb
-  .lateral-box.want-buy{"data-original-title" => "Quiero comprar", "data-toogle" => "tooltip"}
-    %a{:href => "buy/#{product.id}"}
-      %h1
-        %i.icon-shopping-cart
+  / .lateral-box.want-learn{"data-original-title" => "Quiero aprender", "data-toogle" => "tooltip"}
+  /   %a{:href => "learn/#{product.id}"}
+  /     %h1
+  /       %i.icon-lightbulb
+  / .lateral-box.want-buy{"data-original-title" => "Quiero comprar", "data-toogle" => "tooltip"}
+  /   %a{:href => "buy/#{product.id}"}
+  /     %h1
+  /       %i.icon-shopping-cart
   .product-picture
     = image_tag product.attachments.first.try(:attachment)
   .product-description

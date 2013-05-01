@@ -20,10 +20,10 @@
   %body{data: { page: [controller_name.capitalize, action_name.capitalize].join }}
     = render partial: '/shared/navigation_bar'
     .container
-      .row
+      .row-fluid
         = bootstrap_flash
 
-        .span8
+        .span4
           .layout-container.user-option-panel
             %dl
               %dt
