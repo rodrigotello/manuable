@@ -17,9 +17,9 @@
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="favicon.ico" rel="shortcut icon")
 
-  %body{data: { page: [controller_name.capitalize, action_name.capitalize].join }}
-    = render partial: '/shared/navigation_bar'
+  %body{ id: "#{params[:controller]}-#{params[:action]}", data: { page: [controller_name.capitalize, action_name.capitalize].join } }
     .container
+      = render partial: '/shared/navigation_bar'
       = bootstrap_flash
       = yield
       %footer
