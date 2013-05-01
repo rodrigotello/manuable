@@ -18,6 +18,8 @@
             %li
               = link_to 'Comparte', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
         %ul.nav.pull-right
+          %li
+            = link_to "<i class='icon-search'></i>".html_safe, "#"
           %li.divider-vertical
           - if !user_signed_in?
             %li#login-options
@@ -27,7 +29,7 @@
                   = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook)
                   = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
                   = link_to "<i class='icon-twitter-sign'></i>".html_safe,  user_omniauth_authorize_path(:twitter)
-                  = link_to "<i class='icon-envelope-alt'></i>".html_safe,  new_user_registration_path
+                  = link_to "<i class='icon-envelope-alt'></i>".html_safe,  new_user_registration_path, rel: "modal"
           - else
             %li#current-user-options
               %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
