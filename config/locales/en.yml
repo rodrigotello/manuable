@@ -1,5 +1,31 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      product: Producto
+    attributes:
+      product:
+        name: Nombre
+        user_id: Artesano
+        category_id: Categoría
+        weight: Peso
+        height: Altura
+        width: Ancho
+        depth: Profundidad
+        price: Precio
+        available_items: Artículos disponibles
+        available_at: Disponibilidad en
+        on_demand: Contra pedido
+        factoring_time: Tiempo de fabricación
+        made_by: Hecho por
+        delivery_method: Método de entrega
+        how_is_done: ¿Cómo lo haces?
+        what_it_is: ¿Qué es?
+        usage: ¿Cómo se usa?
+        about: "Acerca"
+        about_help: "Proceso elaboración, historia, etc"
+        materials: Materiales
+  errors:
+  general:
+    mexicanpeso: Pesos Mexicanos
+    kilograms: Kilogramos
+    centimeters: Centímetros

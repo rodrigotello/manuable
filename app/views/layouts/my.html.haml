@@ -23,7 +23,7 @@
       .row
         = bootstrap_flash
 
-        .span2
+        .span8
           .layout-container.user-option-panel
             %dl
               %dt
@@ -45,12 +45,11 @@
               %dd{ class: @my_section == "products" ? 'active' : "" }
                 = link_to my_products_path do
                   %i{ class: "icon-th-large" }
-                  Mis Producto
+                  Mis Productos
               %dd{ class: @my_section == "new_product" ? 'active' : "" }
                 = link_to new_my_product_path do
                   %i{ class: "icon-cloud-upload" }
-                  Subir Producto
-
+                  Registrar Producto
         .span8
           .layout-container
             = yield

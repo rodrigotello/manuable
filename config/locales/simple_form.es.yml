@@ -1,4 +1,4 @@
-es:
+en:
   helpers:
     submit:
       create: Crear %{model}
