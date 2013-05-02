@@ -42,6 +42,7 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (2.4.0)
       rails (~> 3.0)
+    addressable (2.3.4)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (3.0.2)
@@ -179,11 +180,15 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.2.0)
+      addressable (~> 2.3)
     less (2.3.1)
       commonjs (~> 0.2.6)
     less-rails (2.3.2)
       actionpack (>= 3.1)
       less (~> 2.3.1)
+    letter_opener (1.1.0)
+      launchy (~> 2.2.0)
     libv8 (3.11.8.17)
     listen (0.7.3)
     lumberjack (1.0.3)
@@ -410,6 +415,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   less-rails
+  letter_opener
   libv8 (~> 3.11.8)
   meta_request
   meta_search (>= 1.1.0.pre)
