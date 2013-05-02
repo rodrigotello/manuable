@@ -37,7 +37,8 @@
   .product-picture
     padding: 10px
     text-align: center
-    img
+    position: relative
+    >img
       width: 450px
 
   .product-description
@@ -65,3 +66,48 @@
     height: 0
     border: 1px solid #dfdfdf
     margin: 40px 4px
+
+.heart-overlay
+  position: absolute
+  bottom: 0
+  top: 0
+  right: 0
+  left: 0
+  overflow: hidden
+  .fog
+    padding-top: 1px
+    height: 100%
+    width: 100%
+    background: #333
+    opacity: 0
+    position: absolute
+    z-index: 1
+    -webkit-transition: all 0.4s ease-in-out
+  .like
+    z-index: 2
+    position: absolute
+    display: block
+    visibility: hidden
+    bottom: -100px
+    right: 44%
+    transition: all 0.4s ease-in-out
+    -webkit-transition: all 0.4s ease-in-out
+    img
+      width: 50px
+  &:hover
+    .fog
+      opacity: 0.5
+    .like
+      -webkit-animation: pulsate 1s ease-out
+      -webkit-animation-iteration-count: infinite
+      bottom: 50%
+      visibility: visible
+.heart-overlay.liked
+  .fog
+    display: none
+  .like
+    bottom: 20px
+    right: 20px
+    visibility: visible
+
+

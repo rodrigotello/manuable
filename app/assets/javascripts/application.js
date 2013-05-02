@@ -111,6 +111,11 @@ $(function(){
     });
   });
 
+  $(document).on('ajax:success', 'a.like', function(data, status, xhr){
+    console.log(this)
+    $(this).addClass('disable').parents('.heart-overlay').addClass('liked');
+  });
+
   $(document).bind('dragover', function (e) {
     var $dropZone = $('#file-dropzone');
     $dropZone.addClass('hover');

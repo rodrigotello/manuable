@@ -10,4 +10,13 @@ module ProductsHelper
   def hashify prop_list
     prop_list.map { |t| "##{t}" }
   end
+
+  def heart_overlay product, liked
+    content_tag :div, id: "heart-overlay-#{dom_id product}", class: "heart-overlay#{liked ? ' liked' : ''}" do
+      output = ''
+      output << content_tag(:div, '', class: 'fog')
+      output << link_to( image_tag('like.png'), like_product_path(product, format: 'json'), method: :post, class: "like#{liked ? ' disable' : ''}", remote: true)
+      output.html_safe
+    end
+  end
 end

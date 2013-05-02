@@ -1,7 +1,7 @@
 $default-prefixes: webkit moz ms o;
 @mixin prefixed-prop($property, $value, $prefixes: $default-prefixes) {
-    @each $prefix in $prefixes {
-        -#{$prefix}-#{$property}: #{$value};
-    }
-    #{$property}: #{$value};
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: #{$value};
+  }
+  #{$property}: #{$value};
 }

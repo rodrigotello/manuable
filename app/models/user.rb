@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  after_create :notify_signup
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     authentication = Authentication.where(provider: auth.provider, uuid: auth.uid).first
 
@@ -84,5 +86,11 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  private
+
+  def notify_signup
+    UserMailer.welcome_email(self).deliver
   end
 end

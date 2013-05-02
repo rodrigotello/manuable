@@ -18,6 +18,7 @@ Manuable::Application.routes.draw do
   end
 
   resources :products do
+    post :like, on: :member
     resources :attachments
   end
 
