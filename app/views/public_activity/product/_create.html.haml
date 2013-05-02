@@ -1,4 +1,4 @@
-- liked = activity.respond_to?(:liked) ? activity.liked != 0 : false
+- liked = activity.respond_to?(:liked) ? activity.liked.to_i != 0 : false
 - product = activity.trackable
 .activity
   .lateral-box.user-avatar
