@@ -7,7 +7,7 @@ gem 'public_activity'
 # DB
   group :production do
     gem "pg"
-    gem 'puma'
+    gem 'puma', :github => 'puma/puma'
     # gem 'newrelic_rpm'
   end
 
