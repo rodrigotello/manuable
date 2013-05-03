@@ -24,7 +24,16 @@ en:
         about: "Acerca"
         about_help: "Proceso elaboración, historia, etc"
         materials: Materiales
+      user:
+        name: Name
+        nickname: Username
   errors:
+    models:
+      users:
+        attributes:
+          password:
+            confirmation: doesn't match confirmation
+            blank: must not be blank
   general:
     mexicanpeso: Pesos Mexicanos
     kilograms: Kilogramos
