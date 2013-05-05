@@ -9,7 +9,6 @@
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
-    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"
     = stylesheet_link_tag "application", :media => "all"
     %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
@@ -28,16 +27,16 @@
             %dl
               %dt
                 Cuenta
-              %dd{ class: @my_section == "profile" ? 'active' : "" }
-                = link_to "#" do
-                  %i{ class: "icon-user" }
-                  Perfil
-              %dd{ class: @my_section == "settings" ? 'active' : "" }
-                = link_to "#" do
+              / %dd{ class: @my_section == "profile" ? 'active' : "" }
+              /   = link_to "#" do
+              /     %i{ class: "icon-user" }
+              /     Perfil
+              %dd{ class: @my_section == "name" ? 'active' : "" }
+                = link_to edit_my_profile_path(f: 's') do
                   %i{ class: "icon-cogs" }
                   Preferencias
               %dd{ class: @my_section == "password" ? 'active' : "" }
-                = link_to "#" do
+                = link_to edit_my_profile_path(f: 'p') do
                   %i{ class: "icon-lock" }
                   Contraseña
               %dt
@@ -47,7 +46,7 @@
                   %i{ class: "icon-th-large" }
                   Mis Productos
               %dd{ class: @my_section == "new_product" ? 'active' : "" }
-                = link_to new_my_product_path do
+                = link_to new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button" do
                   %i{ class: "icon-cloud-upload" }
                   Registrar Producto
         .span8
@@ -68,3 +67,4 @@
         \ </div>
 
     = javascript_include_tag "application"
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"

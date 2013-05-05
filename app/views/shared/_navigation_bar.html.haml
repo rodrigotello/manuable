@@ -42,6 +42,6 @@
                   = link_to "<i class='icon-user'></i> Mi perfil".html_safe, my_profile_path
                 %li.divider
                 %li
-                  = link_to "<i class='icon-cogs'></i> Preferencias".html_safe, edit_my_profile_path
+                  = link_to "<i class='icon-cogs'></i> Preferencias".html_safe, edit_my_profile_path(f: 's')
                 %li
                   = link_to "<i class='icon-off'></i> Salir".html_safe, destroy_user_session_path, method: :delete

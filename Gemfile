@@ -7,7 +7,7 @@ gem 'public_activity'
 # DB
   group :production do
     gem "pg"
-    gem 'puma'
+    gem 'puma', :github => 'puma/puma'
     # gem 'newrelic_rpm'
   end
 
@@ -70,6 +70,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request'
+  gem 'letter_opener'
 end
 
 group :development, :test do
