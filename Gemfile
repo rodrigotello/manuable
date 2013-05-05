@@ -8,7 +8,7 @@ gem 'public_activity'
   group :production do
     gem "pg"
     gem 'puma', :github => 'puma/puma'
-    # gem 'newrelic_rpm'
+    gem 'newrelic_rpm'
   end
 
 # attachments
