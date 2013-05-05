@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   has_many :likers, through: :like, source: :user
 
   accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }, limit: 4
-  validates :name, presence: true
+  # validates :name, presence: true
 
   def ready?
     name.present? && attachments.count > 0 && category.present?
