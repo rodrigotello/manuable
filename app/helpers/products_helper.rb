@@ -15,7 +15,11 @@ module ProductsHelper
     content_tag :div, id: "heart-overlay-#{dom_id product}", class: "heart-overlay#{liked ? ' liked' : ''}" do
       output = ''
       output << content_tag(:div, '', class: 'fog')
-      output << link_to( image_tag('like.png'), like_product_path(product, format: 'json'), method: :post, class: "like#{liked ? ' disable' : ''}", remote: true)
+      if user_signed_in?
+        output << link_to( image_tag('like.png'), like_product_path(product, format: 'json'), method: :post, class: "like#{liked ? ' disable' : ''}", remote: true)
+      else
+        output << link_to( image_tag('like.png'), "#sign_popup", "data-toggle" => "modal", class: "like")
+      end
       output.html_safe
     end
   end

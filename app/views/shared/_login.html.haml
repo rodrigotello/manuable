@@ -1,0 +1,14 @@
+#sign_popup.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "modal_title", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3.text-center Registrate
+  .modal-body.text-center
+    = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook), class: 'login-service'
+    = link_to "<i class='icon-twitter-sign'></i>".html_safe,  user_omniauth_authorize_path(:twitter), class: 'login-service'
+    = link_to "<i class='icon-envelope-alt'></i>".html_safe,  new_user_registration_path, rel: "modal", class: 'login-service'
+    %p
+      o
+    = link_to "Entra", new_session_path(:user), rel: "modal"
+  .modal-footer
+%script
+

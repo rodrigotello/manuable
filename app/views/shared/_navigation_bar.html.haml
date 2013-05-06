@@ -23,9 +23,9 @@
               %ul.dropdown-menu
                 %li
                   = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook)
-                  = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
-                  = link_to "<i class='icon-twitter-sign'></i>".html_safe,  user_omniauth_authorize_path(:twitter)
-                  = link_to "<i class='icon-envelope-alt'></i>".html_safe,  new_user_registration_path, rel: "modal"
+                  / = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
+                  = link_to "<i class='icon-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
+                  = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_session_path(:user), rel: "modal"
           - else
             %li#current-user-options
               %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
