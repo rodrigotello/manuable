@@ -1,12 +1,8 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
       = link_to image_tag("logo.svg"), root_path, class: 'brand'
-      .container.nav-collapse
+      .container
         %ul.nav
           %li
             %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Descubre
