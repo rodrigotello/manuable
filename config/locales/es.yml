@@ -27,14 +27,28 @@ es:
       user:
         name: Nombre
         nickname: Alias
-  errors:
-    models:
-      users:
-        attributes:
-          password:
-            confirmation: no coincide con confirmación
-            blank: no debe estar vació
-  general:
-    mexicanpeso: Pesos Mexicanos
-    kilograms: Kilogramos
-    centimeters: Centímetros
+        email: Correo
+        password: Contraseña
+        remember_me: Recordar
+    errors:
+      messages:
+        expired: "ha expirado, por favor pide una nueva"
+        not_found: "no encontrado"
+        already_confirmed: "ya fue confirmada. Intenta ingresar."
+        not_locked: "no ha sido bloqueada"
+        not_saved:
+          one: "Ha habido 1 error:"
+          other: "Han habido %{count} errores:"
+      models:
+        user:
+          attributes:
+            password:
+              confirmation: no coincide con confirmación
+              blank: no debe estar vació
+              too_short: demasiado corto
+            email:
+              blank: no debe estar vació
+              invalid: formato incorrecto
+  actions:
+    sign_up: Regístrate
+    sign_in: Entrar
