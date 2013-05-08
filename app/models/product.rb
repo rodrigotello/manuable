@@ -12,7 +12,9 @@ class Product < ActiveRecord::Base
   has_many :likers, through: :like, source: :user
 
   accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }, limit: 4
-  # validates :name, presence: true
+
+  mount_uploader :attachment, AttachUploader # caching purpose
+
   before_destroy :delete_activities
 
   def ready?

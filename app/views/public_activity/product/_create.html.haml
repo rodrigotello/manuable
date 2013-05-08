@@ -15,7 +15,7 @@
     /       %i.icon-shopping-cart
     .product-picture
       = heart_overlay product, liked
-      = image_tag product.attachments.first.try(:attachment).try(:url, :xlarge)
+      = image_tag product.attachment.url :xlarge
     .product-description
       .author-title
         %h4
