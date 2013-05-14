@@ -1,5 +1,5 @@
 - product = activity.trackable
-- if product
+- if product && product.attachments.length > 1
   - liked = activity.respond_to?(:liked) ? activity.liked.to_i != 0 : false
   .activity
     .lateral-box.user-avatar
@@ -15,7 +15,7 @@
     /       %i.icon-shopping-cart
     .product-picture
       = heart_overlay product, liked
-      = image_tag product.attachment.url :xlarge
+      = image_tag product.attachments.first.attachment.url :xlarge
     .product-description
       .author-title
         %h4
