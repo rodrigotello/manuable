@@ -14,7 +14,7 @@
       = for_logging_user_only do
         .text-center
           - if @user.followed_by? current_user
-            %span.btn.btn-mini.active.disabled
+            %span.btn.btn-mini.btn-success.active.disabled
               %i.icon-ok
               Siguiendo
           - else

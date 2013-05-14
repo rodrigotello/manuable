@@ -12,7 +12,7 @@ var UsersShow = new function(){
   self.init = function(){
     $('#follow').bind('ajax:success', function(){
       var $this = $(this);
-      $this.replaceWith('<span class="btn btn-mini active"><i class="icon-ok"></i> Siguiendo</span>');
+      $this.replaceWith('<span class="btn btn-mini btn-success active disabled"><i class="icon-ok"></i> Siguiendo</span>');
 
       var li = "<li class='media'>";
       li += '<img class="media-object pull-left" src="'+ current_user.avatar.small.url +'" alt="'+current_user.name+'"/>';
