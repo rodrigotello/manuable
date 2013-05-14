@@ -30,7 +30,8 @@
           - @user.followers.each do |u|
             %li.media
               = image_tag u.avatar.url(:small), class: 'media-object'
-              = u.name
+              .media-body
+                = link_to u.name, u
       .module
         %h4 Siguiendo
         %ul#followees.media-list
