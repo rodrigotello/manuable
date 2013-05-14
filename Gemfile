@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails'
 gem 'thin'
 gem 'public_activity'
-
+gem "manuable-entities", :path => "vendor/gems/manuable-entities"
 # DB
   group :production do
     gem "pg"
@@ -82,6 +82,7 @@ group :development, :test do
   gem "guard", :require => false
   gem "guard-rspec", :require => false
   gem "guard-spork", :require => false
+  gem "capybara"
   gem "growl", :require => false
   gem "pry"
   gem "pry-rails"
@@ -90,8 +91,10 @@ group :development, :test do
 end
 
 group :test do
-
+  gem "factory_girl_rails"
   gem "rspec-rails"
   gem "database_cleaner"
-  gem "factory_girl_rails"
+  gem 'capybara-screenshot'
+  gem "selenium-webdriver"
+  gem "database_cleaner"
 end

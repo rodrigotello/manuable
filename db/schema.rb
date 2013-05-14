@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507075008) do
+ActiveRecord::Schema.define(:version => 20130512132202) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -95,6 +95,13 @@ ActiveRecord::Schema.define(:version => 20130507075008) do
     t.integer "product_id"
   end
 
+  create_table "followings", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "likes", :force => true do |t|
     t.integer "user_id"
     t.integer "product_id"
@@ -148,6 +155,13 @@ ActiveRecord::Schema.define(:version => 20130507075008) do
     t.string   "nickname"
     t.string   "name"
     t.string   "avatar"
+    t.text     "about"
+    t.string   "address"
+    t.integer  "zipcode"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
+    t.string   "geolocation"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

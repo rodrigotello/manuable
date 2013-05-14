@@ -112,7 +112,6 @@ $(function(){
   });
 
   $(document).on('ajax:success', 'a.like', function(data, status, xhr){
-    console.log(this)
     $(this).addClass('disable').parents('.heart-overlay').addClass('liked');
   });
 
