@@ -17,7 +17,7 @@ var UsersShow = new function(){
       var li = "<li class='media'>";
       li += '<img class="media-object" src="'+ current_user.avatar.small.url +'" alt="'+current_user.name+'"/>';
       li += '<div class="media-body">';
-      li += '<a href="/users/"'+current_user.id+'">' + current_user.name + '</a>';
+      li += ('<a href="/users/"'+current_user.id+'">' + current_user.name + '</a>');
       li += '</div>';
       $('#followers').prepend(li);
     });
