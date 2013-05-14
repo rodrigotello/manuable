@@ -1,5 +1,5 @@
 - product = activity.trackable
-- if product && product.attachments.length > 1
+- if product && product.attachments.length >= 1
   - liked = activity.respond_to?(:liked) ? activity.liked.to_i != 0 : false
   .activity
     .lateral-box.user-avatar
