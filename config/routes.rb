@@ -9,8 +9,8 @@ Manuable::Application.routes.draw do
 
   # match 'product/:id' => 'home#product'
 
-  devise_for :user
-  get '/users/auth/:provider' => 'omniauth_callbacks#passthru'
+  devise_for :user, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  # get '/users/auth/:provider/' => 'omniauth_callbacks#passthru'
 
   resources :users, only: [:show, :index] do
     resources :followings, only: :create
