@@ -8,8 +8,8 @@
             %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Descubre
             %ul.dropdown-menu{ :role => "menu"}
               - Category.all.each do |category|
-                %li
-                  = link_to category.name, category_path(category)
+                %li{ class: params[:c].to_i == category.id ? 'active' : '' }
+                  = link_to category.name, root_path(c: category.id)
           - if user_signed_in?
             %li
               = link_to 'Comparte', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
@@ -25,7 +25,7 @@
                   = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook)
                   / = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
                   = link_to "<i class='icon-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
-                  = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_session_path(:user), rel: "modal"
+                  = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_registration_path(:user), rel: "modal"
           - else
             %li#current-user-options
               %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }

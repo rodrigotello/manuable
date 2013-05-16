@@ -54,17 +54,7 @@
             = yield
       %footer
         %p &copy; Manuable 2013
-      = render partial: "/shared/product_wizard"
-      %script{ id: "upload-template", type: "text/x-handlebars-template" }
-        \ <div class="image-upload">
-        \   <div class="filename">
-        \     {{filename}}
-        \   </div>
-        \   <div class="progress progress-success progress-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-        \     <div class="bar" style="width:0%;"></div>
-        \   </div>
-        \   <a href="javascript:void(0)" class="remove-attachment"><i class="icon-remove"></i></a>
-        \ </div>
 
     = javascript_include_tag "application"
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"
+    = render partial: "/shared/product_wizard"
