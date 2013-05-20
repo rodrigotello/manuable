@@ -11,18 +11,20 @@
     .sidebar
       = image_tag @user.avatar.url(:small), class: 'user-avatar'
       = for_logging_user_only do
-        .text-center
-          - if @user.followed_by? current_user
-            %span.btn.btn-mini.btn-success.active.disabled
-              %i.icon-ok
-              Siguiendo
-          - else
-            = link_to '<i class="icon-plus"></i> Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow', class: 'btn btn-mini'
+        - if @user != current_user
+          .text-center
+            - if @user.followed_by? current_user
+              %span.btn.btn-mini.btn-success.active.disabled
+                %i.icon-ok
+                Siguiendo
+            - else
+              = link_to '<i class="icon-plus"></i> Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow', class: 'btn btn-mini'
       %blockquote.pull-right
         %p
           = @user.name
-        %small
-          = @user.location
+        - if @user.location.present?
+          %small
+            = @user.location
       %p
         = truncate @user.about, length: 300, omission: '...'
       - if @user.followers.count > 0

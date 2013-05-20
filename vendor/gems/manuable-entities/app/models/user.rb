@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     if city && state
       "#{city.name}, #{state.name}"
     else
-      "#{try(:city).name}#{try(:state).name}"
+      "#{city.try :name}#{state.try :name}"
     end
   end
   private
