@@ -33,7 +33,7 @@
           %ul#followers.media-list
             - @user.followers.limit(5).each do |u|
               %li.media
-                = image_tag u.avatar.url(:small), class: 'media-object pull-left'
+                = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
                 .media-body
                   = link_to u.name, u
       - if @user.followees.count > 0
@@ -43,7 +43,7 @@
             - @user.followees.limit(5).each do |u|
               %li.media
                 = link_to u, class: 'pull-left' do
-                  = image_tag u.avatar.url(:small), class: 'media-object pull-left'
+                  = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
                 .media-body
                   = link_to u.name, u
 
