@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     # redirect_to root_path and return unless session[:beta].present?
-    @products = Product.recently_created
+    @products = Product.recently_created.limit(50)
 
     if user_signed_in?
       if params[:f] == 'l'
