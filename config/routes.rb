@@ -36,6 +36,7 @@ Manuable::Application.routes.draw do
   end
 
   resources :categories, only: [:show, :index]
+  resources :cities, only: [:index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

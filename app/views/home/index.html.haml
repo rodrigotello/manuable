@@ -1,5 +1,4 @@
 %h1 !Bienvenidos a Manuable!
 %h4 Descubre y Comparte productos hechos a mano
 #main-feed.activities
-  - @activities.each do |activity|
-    = render_activity activity
+  = render partial: 'products/create', collection: @products, as: :product

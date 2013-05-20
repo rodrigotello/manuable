@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512132202) do
+ActiveRecord::Schema.define(:version => 20130519212002) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(:version => 20130512132202) do
     t.integer "product_id"
   end
 
+  create_table "cities", :force => true do |t|
+    t.string  "name"
+    t.integer "state_id"
+    t.decimal "longitude"
+    t.decimal "latitude"
+  end
+
+  add_index "cities", ["name"], :name => "index_cities_on_name"
+  add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
+
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followee_id"
@@ -121,6 +131,12 @@ ActiveRecord::Schema.define(:version => 20130512132202) do
     t.string   "materials"
     t.string   "attachment"
   end
+
+  create_table "states", :force => true do |t|
+    t.string "name"
+  end
+
+  add_index "states", ["name"], :name => "index_states_on_name"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

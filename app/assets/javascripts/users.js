@@ -1,8 +1,44 @@
-var UsersEdit = new function(){
+var ProfilesEdit = new function(){
   "use strict";
   var self = this;
   self.init = function(){
-
+    if($("#user_state_id").change(function(){
+      if($(this).val()){
+        $("#city-autocomplete").parents('.user_city_id').show();
+        $("#city-autocomplete").focus();
+      }else{
+        $("#city-autocomplete").parents('.user_city_id').hide();
+      }
+    }).val() || $("#city-autocomplete").val()){
+      $("#city-autocomplete").parents('.user_city_id').show();
+    }else{
+      $("#city-autocomplete").parents('.user_city_id').hide();
+    }
+    $("#city-autocomplete").typeahead({
+      name: 'cities',
+      prefetch: '/cities.json',
+      remote: {
+        url: '/cities.json?q=%QUERY',
+        replace: function(url, query){
+          return url.replace(this.wildcard, query)+'&state_id='+$("#user_state_id").val();
+        },
+        filter: function(cities){
+          var decorated_cities = [];
+          for(var i=0;i<cities.length;i++){
+            decorated_cities.push({
+                          value: cities[i].name + ', ' + cities[i].state.name,
+                          tokens: [cities[i].name, cities[i].state.name],
+                          state: cities[i].state,
+                          city: { id: cities[i].id, name: cities[i].name}
+                        });
+          }
+          return decorated_cities;
+        }
+      },
+      limit: 10
+    }).on('typeahead:selected', function(e, datum){
+      $('#user_city_id').val(datum.city.id);
+    });
   }
 };
 

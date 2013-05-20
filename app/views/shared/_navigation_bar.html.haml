@@ -35,7 +35,7 @@
                   = current_user.name
               %ul.dropdown-menu
                 %li
-                  = link_to "<i class='icon-user'></i> Mi perfil".html_safe, my_profile_path
+                  = link_to "<i class='icon-user'></i> Mi perfil".html_safe, user_path(current_user)
                 %li.divider
                 %li
                   = link_to "<i class='icon-cogs'></i> Preferencias".html_safe, edit_my_profile_path(f: 's')

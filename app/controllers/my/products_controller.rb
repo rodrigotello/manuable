@@ -31,7 +31,7 @@ class My::ProductsController < ApplicationController
       #   @product.attachments.build
       #   redirect_to edit_my_product_path(@product)
       # else
-      @product.create_activity :create, owner: current_user
+      # @product.create_activity :create, owner: current_user
       redirect_to my_products_path
       # end
     else
@@ -72,7 +72,7 @@ class My::ProductsController < ApplicationController
     end
 
 
-    @product.create_activity :update, owner: current_user
+    # @product.create_activity :update, owner: current_user
 
   end
 

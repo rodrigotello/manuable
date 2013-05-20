@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
-
-
+  belongs_to :state
+  belongs_to :city
   has_many :authentications
   has_many :products
 
@@ -32,6 +32,13 @@ class User < ActiveRecord::Base
     Following.exists?( follower_id: user.id, followee_id: self.id )
   end
 
+  def location
+    if city && state
+      "#{city.name}, #{state.name}"
+    else
+      "#{try(:city).name}#{try(:state).name}"
+    end
+  end
   private
 
   def notify_signup

@@ -2,8 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'thin'
-gem 'public_activity'
+# gem 'public_activity'
 gem "manuable-entities", :path => "vendor/gems/manuable-entities"
+gem "draper"
+
 # DB
   group :production do
     gem "pg"

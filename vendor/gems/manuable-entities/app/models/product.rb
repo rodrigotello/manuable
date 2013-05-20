@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-  include PublicActivity::Common
 
   attr_accessible :about, :made_by, :name, :price,
                   :attachments_attributes, :category_id, :on_sale, :amount, :prop_list
@@ -16,6 +15,20 @@ class Product < ActiveRecord::Base
   mount_uploader :attachment, AttachUploader # caching purpose
 
   before_destroy :delete_activities
+
+  scope :with_like, lambda { |u|
+    joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id}")
+    .select("products.*, coalesce(likes.id, 0) AS liked")
+  }
+  scope :recently_created, order('products.created_at DESC')
+  scope :liked_by, lambda { |id_or_ids_or_record|
+    if id_or_ids_or_record.is_a? user
+      where(id: user.id)
+    else
+      where(id: user.id)
+    end
+
+  }
 
   def ready?
     name.present? && attachments.count > 0 && category.present?

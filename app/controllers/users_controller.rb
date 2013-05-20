@@ -3,26 +3,21 @@ class UsersController < ApplicationController
   # before_filter :authenticate_user!, only: :edit
 
   def show
-    redirect_to root_path and return unless session[:beta].present?
+    # redirect_to root_path and return unless session[:beta].present?
+    @products = Product.recently_created
+
     if user_signed_in?
       if params[:f] == 'l'
-        @activities = PublicActivity::Activity.joins("LEFT OUTER JOIN likes ON likes.product_id = activities.trackable_id AND likes.user_id = #{current_user.id}")
-                                              .select("activities.*, coalesce(likes.id, 0) AS liked")
-                                              .where(trackable_type: 'Product', trackable_id: @user.liked_product_ids)
-                                              .order("created_at desc")
+        @products = @products.with_like(current_user)
+                             .where(id: @user.liked_product_ids)
+
       elsif params[:f] == 'p'
-        @activities = PublicActivity::Activity.joins("LEFT OUTER JOIN likes ON likes.product_id = activities.trackable_id AND likes.user_id = #{current_user.id}")
-                                              .select("activities.*, coalesce(likes.id, 0) AS liked")
-                                              .where(owner_type: 'User', owner_id: @user.id)
-                                              .order("created_at desc")
+        @products = @products.with_like(current_user)
+                             .where(user_id: @user.id)
       else
-        @activities = PublicActivity::Activity.joins("LEFT OUTER JOIN likes ON likes.product_id = activities.trackable_id AND likes.user_id = #{current_user.id}")
-                                              .select("activities.*, coalesce(likes.id, 0) AS liked")
-                                              .where(owner_type: 'User', owner_id: @user.followee_ids+[@user.id])
-                                              .order("created_at desc")
+        @products = @products.with_like(current_user)
+                             .where(user_id: @user.followee_ids+[@user.id])
       end
-    else
-      @activities = PublicActivity::Activity.order("created_at desc")
     end
   end
 

@@ -6,8 +6,7 @@
       = link_to 'Compartido', '?f=p', class: "btn#{ params[:f] == 'p' ? ' active' : ''}"
 
     .activities.top-spacer
-      - @activities.each do |activity|
-        = render_activity activity
+      = render partial: 'products/create', collection: @products, as: :product
   .span3
     .sidebar
       = image_tag @user.avatar.url(:small), class: 'user-avatar'
@@ -19,28 +18,32 @@
               Siguiendo
           - else
             = link_to '<i class="icon-plus"></i> Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow', class: 'btn btn-mini'
-      %p.lead
-        = @user.name
+      %blockquote.pull-right
+        %p
+          = @user.name
+        %small
+          = @user.location
       %p
         = truncate @user.about, length: 300, omission: '...'
-
-      .module
-        %h4 Seguidores
-        %ul#followers.media-list
-          - @user.followers.each do |u|
-            %li.media
-              = image_tag u.avatar.url(:small), class: 'media-object pull-left'
-              .media-body
-                = link_to u.name, u
-      .module
-        %h4 Siguiendo
-        %ul#followees.media-list
-          - @user.followees.each do |u|
-            %li.media
-              = link_to u, class: 'pull-left' do
+      - if @user.followers.count > 0
+        .module
+          %h4 Seguidores
+          %ul#followers.media-list
+            - @user.followers.limit(5).each do |u|
+              %li.media
                 = image_tag u.avatar.url(:small), class: 'media-object pull-left'
-              .media-body
-                = link_to u.name, u
+                .media-body
+                  = link_to u.name, u
+      - if @user.followees.count > 0
+        .module
+          %h4 Siguiendo
+          %ul#followees.media-list
+            - @user.followees.limit(5).each do |u|
+              %li.media
+                = link_to u, class: 'pull-left' do
+                  = image_tag u.avatar.url(:small), class: 'media-object pull-left'
+                .media-body
+                  = link_to u.name, u
 
 
 
