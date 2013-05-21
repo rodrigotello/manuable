@@ -6,7 +6,7 @@ class Attachment < ActiveRecord::Base
   mount_uploader :attachment, AttachUploader
   include Rails.application.routes.url_helpers
   # validate :attachment_count
-  after_save :cache_if_avail
+  # after_save :cache_if_avail
 
   def as_json options={}
     {
@@ -21,11 +21,5 @@ class Attachment < ActiveRecord::Base
     }
   end
 
-  private
 
-  def cache_if_avail
-    if attachable.respond_to? :attachment
-      attachable.update_attribute :attachment, self.attachment
-    end
-  end
 end
