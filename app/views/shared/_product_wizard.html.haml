@@ -70,4 +70,4 @@
       Manuable es un sitio para compartir productos hechos por ti.
 
 %script
-  \ if(typeof ProductsNew !== "undefined") {ProductsNew.init();}
+  \ if(typeof ProductsNew !== "undefined" && !window['ProductsNew'].initialized) {ProductsNew.init();}

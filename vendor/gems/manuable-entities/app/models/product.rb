@@ -14,8 +14,6 @@ class Product < ActiveRecord::Base
 
   mount_uploader :attachment, AttachUploader # caching purpose
 
-  before_destroy :delete_activities
-
   scope :with_like, lambda { |u|
     joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id}")
     .select("products.*, coalesce(likes.id, 0) AS liked")
@@ -38,9 +36,4 @@ class Product < ActiveRecord::Base
     likes.where(user_id: current_user.id).first_or_create
   end
 
-  private
-
-  def delete_activities
-    activities.destroy_all
-  end
 end

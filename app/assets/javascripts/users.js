@@ -2,6 +2,7 @@ var ProfilesEdit = new function(){
   "use strict";
   var self = this;
   self.init = function(){
+    window["ProfilesEdit"].initialized = true;
     if($("#user_state_id").change(function(){
       if($(this).val()){
         $("#city-autocomplete").parents('.user_city_id').show();
@@ -46,6 +47,7 @@ var UsersShow = new function(){
   "use strict";
   var self = this;
   self.init = function(){
+    window["UsersShow"].initialized = true;
     $('#follow').bind('ajax:success', function(){
       var $this = $(this);
       $this.replaceWith('<span class="btn btn-mini btn-success active disabled"><i class="icon-ok"></i> Siguiendo</span>');

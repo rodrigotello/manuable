@@ -2,23 +2,21 @@ var ProductsNew = new function(){
   "use strict";
   var self = this;
   self.init = function(){
+    window["ProductsNew"].initialized = true;
+    window["ProductsEdit"].initialized = true;
     $("#product_wizard").on("hidden", function(){
       $('#product-sources').show().find(".product-source i").hide();
       $('#product-onsale-select, #maker-error').hide();
     });
 
-    $(".new_product .attachment-product-drop").click(function(e){
+    $(".new_product .attachment-product-drop img").click(function(e){
       var $this = $(this),
           $img = $('img', $this),
-          $input = $('input', $this);
-
-
-      if (e.target === $this[0] || e.target === $img[0]){
-        $input.trigger('click');
-      }
+          $input = $this.siblings('input');
+        $input.click();
     });
 
-    $(".new_product .attachment-product-drop input").change(function(){
+    $(".new_product .attachment-product-drop input").change(function(e){
       var $this = $(this);
       $this.after($this.val().match(/[-_\w]+[.][\w]+$/i)[0].substring(0, 15));
     });

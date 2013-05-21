@@ -38,8 +38,9 @@ $(function(){
   "use strict";
 
   var page = $("body").data("page");
-  if( "object" === typeof window[page] )
+  if( "object" === typeof window[page] && !window[page].initialized){
     window[page].init();
+  }
 
   // $('input[type=file]').fileupload({
   //   dropZone: $('#file-dropzone'),
