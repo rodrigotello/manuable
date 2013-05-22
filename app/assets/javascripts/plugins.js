@@ -6,10 +6,8 @@ var feedPagination = function(feedid, total_pages, page, url){
             var next_page = $feed.data('page') + 1;
             $feed.data('page', next_page);
             $feed.data('loading', true);
-            console.log('loading '+next_page);
             $.getJSON(url, { page: next_page }, function(data){
               $feed.append(data.html);
-              console.log(data.total_entries)
               $feed.data('loading', false);
             });
           }
