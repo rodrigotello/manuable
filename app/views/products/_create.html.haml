@@ -1,5 +1,5 @@
 - if product.attachments.length >= 1
-  - liked = product.respond_to?(:liked) ? product.liked.to_i != 0 : (raise 'x')
+  - liked = product.respond_to?(:liked) ? product.liked.to_i != 0 : false
   .activity
     .lateral-box.user-avatar
       = link_to user_path(product.user) do
