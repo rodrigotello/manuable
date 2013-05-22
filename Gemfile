@@ -5,7 +5,7 @@ gem 'thin'
 # gem 'public_activity'
 gem "manuable-entities", :path => "vendor/gems/manuable-entities"
 gem "draper"
-
+gem 'newrelic_rpm'
 # DB
   group :production do
     gem "pg"
