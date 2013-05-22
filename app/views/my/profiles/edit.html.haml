@@ -9,14 +9,9 @@
   - if params[:f] == 'p'
     .form-inputs
       = f.input :email, :required => true, :autofocus => true
-      = f.input :password, :autocomplete => "oft", :hint => "leave it blank if you don't want to change it", :required => false
+      = f.input :password, :autocomplete => "oft", :hint => "dejalo en blanco si no quieres cambiarlo", :required => false
       = f.input :password_confirmation, :required => false
-      = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+      = f.input :current_password, :required => true
 
   .form-actions
-    = f.button :submit, "Update"
-
-/ %h3 Cancel my account
-/ %p
-/   Unhappy? #{link_to "Cancel my account", registration_path(:user), :data => { :confirm => "Are you sure?" }, :method => :delete}.
-/ = link_to "Back", :back
+    = f.button :submit, "Guardar"

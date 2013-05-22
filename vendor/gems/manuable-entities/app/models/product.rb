@@ -14,11 +14,16 @@ class Product < ActiveRecord::Base
 
   mount_uploader :attachment, AttachUploader # caching purpose
 
-  scope :with_like, lambda { |u|
-    joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id}")
-    .select("products.*, coalesce(likes.id, 0) AS liked")
+  scope :feed, lambda { |u|
+    if u.present?
+      joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id}")
+      .select("products.*, coalesce(likes.id, 0) AS liked")
+      .includes([{user: [:city, :state]}, :category, :prop, :attachments])
+    else
+      includes([{user: [:city, :state]}, :category, :prop, :attachments])
+    end
   }
-  scope :recently_created, order('products.created_at DESC')
+  scope :recently_created, order('products.updated_at DESC')
   scope :liked_by, lambda { |id_or_ids_or_record|
     if id_or_ids_or_record.is_a? user
       where(id: user.id)

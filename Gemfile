@@ -73,6 +73,7 @@ group :development do
   gem "binding_of_caller"
   gem 'meta_request'
   gem 'letter_opener'
+  gem 'rails-footnotes', '>= 3.7.9'
 end
 
 group :development, :test do

@@ -4,19 +4,17 @@ class UsersController < ApplicationController
 
   def show
     # redirect_to root_path and return unless session[:beta].present?
-    @products = Product.recently_created.limit(50)
+    # @products = Product.recently_created.limit(50)
+
+    @products = Product.feed(current_user).page( params[:page] ).per( params[:per_page] || 10 )
 
     if user_signed_in?
       if params[:f] == 'l'
-        @products = @products.with_like(current_user)
-                             .where(id: @user.liked_product_ids)
-
+        @products = @products.where(id: @user.liked_product_ids)
       elsif params[:f] == 'p'
-        @products = @products.with_like(current_user)
-                             .where(user_id: @user.id)
+        @products = @products.where(user_id: @user.id)
       else
-        @products = @products.with_like(current_user)
-                             .where(user_id: @user.followee_ids+[@user.id])
+        @products = @products.where(user_id: @user.followee_ids+[@user.id])
       end
     end
   end

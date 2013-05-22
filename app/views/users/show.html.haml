@@ -8,7 +8,7 @@
     .activities.top-spacer
       = render partial: 'products/create', collection: @products, as: :product
   .span3
-    .sidebar
+    .sidebar.text-center
       = image_tag @user.avatar.url(:small), class: 'user-avatar'
       = for_logging_user_only do
         - if @user != current_user

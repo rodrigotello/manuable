@@ -29,7 +29,9 @@
 //= require jquery.chosen.min
 //= require bootstrap-datepicker
 //= require holder
+//= require jquery.ba-throttle-debounce.min
 //= require jquery-fileupload/basic
+//= require plugins
 //= require_tree .
 
 ClientSideValidations.formBuilders['NestedForm::SimpleBuilder'] = ClientSideValidations.formBuilders['SimpleForm::FormBuilder'];
@@ -121,6 +123,9 @@ $(function(){
 
   $(document).on('ajax:success', 'a.like', function(data, status, xhr){
     $(this).addClass('disable').parents('.heart-overlay').addClass('liked');
+    var $counter = $(this).find(".likes-count");
+    $counter.html(parseInt($counter.html(), 10)+1);
+
   });
 
   $(document).bind('dragover', function (e) {

@@ -1,4 +1,4 @@
 %h1 !Bienvenidos a Manuable!
 %h4 Descubre y Comparte productos hechos a mano
-#main-feed.activities
-  = render partial: 'products/create', collection: @products, as: :product
+#main-feed
+  = render partial: '/products/feed', locals: { products: @products }

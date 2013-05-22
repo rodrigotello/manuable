@@ -25,15 +25,18 @@ es:
         about: "Acerca"
         about_help: "Proceso elaboración, historia, etc"
         materials: Materiales
+        media: Fotos
       user:
         name: Nombre
         nickname: Alias
         email: Correo
         password: Contraseña
+        password_confirmation: Confirmación
+        current_password: Contraseña actual
         remember_me: Recordar
         city_id: Ciudad
         state_id: Estado
-
+        avatar: Mi foto
     errors:
       messages:
         expired: "ha expirado, por favor pide una nueva"

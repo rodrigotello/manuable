@@ -48,19 +48,25 @@ class User < ActiveRecord::Base
   # CLASS
     class << self
       def find_for_facebook_oauth(auth, signed_in_resource=nil)
-        authentication = Authentication.where(provider: auth.provider, uuid: auth.uid).first
+        transaction do
+          authentication = Authentication.where(provider: auth.provider, uuid: auth.uid).first
 
-        if authentication && authentication.user
-          user = authentication.user
-        else
-          user = User.create( name: auth.extra.raw_info.name,
-                              email: auth.info.email,
-                              password: Devise.friendly_token[0,20]
-                            )
-          user.authentications.create(provider: auth.provider, uid: auth.uid)
-
+          if authentication && authentication.user
+            authentication.user
+          else
+            if user = User.where(email: auth.info.email).first
+              user.authentications.create!(provider: auth.provider, uuid: auth.uid)
+            else
+              user = User.create( name: auth.extra.raw_info.name,
+                                email: auth.info.email,
+                                password: Devise.friendly_token[0,20],
+                                remote_avatar_url: "http://graph.facebook.com/#{auth.uid}/picture?type=large"
+                              )
+              user.authentications.create!(provider: auth.provider, uuid: auth.uid)
+            end
+            user
+          end
         end
-        user
       end
 
       def find_for_google_oauth2(access_token, signed_in_resource=nil)

@@ -1,5 +1,5 @@
 - if product.attachments.length >= 1
-  - liked = product.respond_to?(:liked) ? product.liked.to_i != 0 : false
+  - liked = product.respond_to?(:liked) ? product.liked.to_i != 0 : (raise 'x')
   .activity
     .lateral-box.user-avatar
       = link_to user_path(product.user) do
@@ -22,7 +22,7 @@
       .author-message
         = product.about
       .product-tags
-        = hashify(product.prop_list).join(", ")
+        = hashify(product.prop.collect(&:name)).join(", ")
     .product-pictures
       - if product.on_sale? && product.attachments.length > 1
         .thumbnail-box.clearfix

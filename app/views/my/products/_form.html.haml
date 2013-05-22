@@ -3,7 +3,7 @@
 / %br
 = simple_nested_form_for [:my, @product], html: { }, validate: true do |f|
   - if f.object.on_sale?
-    = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Qué estás haciendo?", label: "&nbsp;", wrapper: :control_row
+    = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Cómo se llama tu producto?", label: "&nbsp;", wrapper: :control_row
   = f.input :media do
     #file-dropzone.clearfix
       .row-fluid

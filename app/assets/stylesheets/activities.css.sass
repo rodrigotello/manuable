@@ -32,6 +32,7 @@
       color: #000
   .user-avatar
     left: -85px
+    overflow: hidden
   .want-learn, .want-buy
     right: -85px
     display: none
@@ -77,6 +78,8 @@
   right: 0
   left: 0
   overflow: hidden
+  .likes-count
+    display: none
   .fog
     padding-top: 1px
     height: 100%
@@ -87,16 +90,24 @@
     z-index: 1
     -webkit-transition: all 0.4s ease-in-out
   .like
+    background-image: url('/assets/like.png')
+    background-repeat: no-repeat
+    background-size: 35px
     z-index: 2
     position: absolute
     display: block
     visibility: hidden
     bottom: -100px
-    right: 44%
+    right: 45%
     transition: all 0.4s ease-in-out
     -webkit-transition: all 0.4s ease-in-out
-    img
-      width: 50px
+    width: 35px
+    height: 35px
+    font-size: 13px
+    font-weight: bold
+    color: #fff
+    line-height: 27px
+    text-decoration: none
   &:hover
     .fog
       opacity: 0.5
@@ -105,6 +116,7 @@
       -webkit-animation-iteration-count: infinite
       bottom: 50%
       visibility: visible
+
 .heart-overlay.liked
   .fog
     display: none
@@ -112,7 +124,7 @@
     bottom: 20px
     right: 20px
     visibility: visible
-    img
-      width: 35px
-
-
+  .like-plus-one
+    display: none
+  .likes-count
+    display: inline

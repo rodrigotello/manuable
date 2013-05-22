@@ -16,9 +16,9 @@ module ProductsHelper
       output = ''
       output << content_tag(:div, '', class: 'fog')
       if user_signed_in?
-        output << link_to( image_tag('like.png'), like_product_path(product, format: 'json'), method: :post, class: "like#{liked ? ' disable' : ''}", remote: true)
+        output << link_to( "<span class='like-plus-one'>1</span><span class='likes-count'>#{product.likes_count}</span>".html_safe, like_product_path(product, format: 'json'), method: :post, class: "like#{liked ? ' disable' : ''}", remote: true)
       else
-        output << link_to( image_tag('like.png'), "#sign_popup", "data-toggle" => "modal", class: "like")
+        output << link_to( "<span class='like-plus-one'>1</span><span class='likes-count'>#{product.likes_count}</span>".html_safe, "#sign_popup", "data-toggle" => "modal", class: "like")
       end
       output.html_safe
     end
