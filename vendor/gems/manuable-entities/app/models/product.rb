@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
       includes([{user: [:city, :state]}, :category, :prop, :attachments])
     end
   }
-  scope :recently_created, order('products.updated_at DESC')
+  scope :recently_created, order('products.created_at DESC')
   scope :liked_by, lambda { |id_or_ids_or_record|
     if id_or_ids_or_record.is_a? user
       where(id: user.id)
