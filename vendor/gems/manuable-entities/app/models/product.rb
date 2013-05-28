@@ -19,8 +19,10 @@ class Product < ActiveRecord::Base
       joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id}")
       .select("products.*, coalesce(likes.id, 0) AS liked")
       .includes([{user: [:city, :state]}, :category, :prop, :attachments])
+      .recently_created
     else
       includes([{user: [:city, :state]}, :category, :prop, :attachments])
+      .recently_created
     end
   }
   scope :recently_created, order('products.created_at DESC')
