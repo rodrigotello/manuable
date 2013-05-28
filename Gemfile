@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails'
-gem 'thin'
+gem 'rails', "~>3.2"
+
 # gem 'public_activity'
 gem "manuable-entities", :path => "vendor/gems/manuable-entities"
 gem "draper"
@@ -91,6 +91,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-nav"
   gem "debugger"
+  gem 'thin'
 end
 
 group :test do
