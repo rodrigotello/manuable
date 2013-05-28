@@ -52,6 +52,7 @@ es:
         about: Acerca de ti
         address: Dirección
         zipcode: C.P.
+        birthday: Fecha nacimiento
     errors:
       messages:
         expired: "ha expirado, por favor pide una nueva"

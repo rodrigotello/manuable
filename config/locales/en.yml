@@ -50,6 +50,7 @@ en:
         about: About you
         address: Address
         zipcode: Zip
+        birthday: Birthday
   errors:
     models:
       users:
