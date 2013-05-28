@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   after_create :notify_signup
+  before_create :grab_avatar
 
   def follow_to! user
     Following.where( followee_id: user.id, follower_id: self.id ).first_or_create
@@ -42,6 +43,11 @@ class User < ActiveRecord::Base
     end
   end
   private
+  def grab_avatar
+    if avatar.blank?
+      self.remote_avatar_url = "http://avatar.3sd.me/100"
+    end
+  end
 
   def notify_signup
     UserMailer.welcome_email(self).deliver
