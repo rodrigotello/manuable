@@ -35,7 +35,7 @@
                     = image_tag current_user.avatar.url(:small).to_s
                     %span
                       &nbsp;&nbsp;
-                      = current_user.name.split(' ')[0]
+                      = (current_user.name||current_user.email).split(/@|\s/)[0]
                   %ul.dropdown-menu
                     %li
                       = link_to "<i class='icon-user'></i> Mi perfil".html_safe, user_path(current_user)
