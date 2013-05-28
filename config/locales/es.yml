@@ -1,4 +1,15 @@
 es:
+  date:
+    formats:
+      default: "%b %d, %Y %H:%M"
+      birthday: "%d de %B del %y"
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+  time:
+    formats:
+      default: "%b %d, %Y %H:%M"
   activerecord:
     models:
       product: Producto
@@ -37,6 +48,10 @@ es:
         city_id: Ciudad
         state_id: Estado
         avatar: Mi foto
+        occupation: Ocupación
+        about: Acerca de ti
+        address: Dirección
+        zipcode: C.P.
     errors:
       messages:
         expired: "ha expirado, por favor pide una nueva"
@@ -56,6 +71,7 @@ es:
             email:
               blank: no debe estar vació
               invalid: formato incorrecto
+              taken: ya registrado
   actions:
     sign_up: Regístrate
     sign_in: Entrar

@@ -1,4 +1,15 @@
 en:
+  date:
+    formats:
+      default: "%b %d, %Y %H:%M"
+      birthday: "%d de %B de %y"
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+  time:
+    formats:
+      default: "%b %d, %Y %H:%M"
   activerecord:
     models:
       product: Producto
@@ -27,6 +38,18 @@ en:
       user:
         name: Name
         nickname: Username
+        email: Email
+        password: Password
+        password_confirmation: Confirmation
+        current_password: Current password
+        remember_me: Rememberme
+        city_id: City
+        state_id: State
+        avatar: My picture
+        occupation: Occupation
+        about: About you
+        address: Address
+        zipcode: Zip
   errors:
     models:
       users:

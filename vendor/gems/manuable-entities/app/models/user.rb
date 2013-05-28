@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id,
+                  :address, :zipcode, :occupation, :about, :birthday
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,

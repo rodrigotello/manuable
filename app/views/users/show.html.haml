@@ -1,15 +1,7 @@
 .row-fluid
-  .span9.text-center
-    .btn-group{ 'data-toggle' => "buttons-radio" }
-      = link_to 'Todo', '?', class: "btn #{ params[:f].blank? ? ' active' : ''}"
-      = link_to 'Gustos', '?f=l', class: "btn#{ params[:f] == 'l' ? ' active' : ''}"
-      = link_to 'Compartido', '?f=p', class: "btn#{ params[:f] == 'p' ? ' active' : ''}"
-
-    .activities.top-spacer
-      = render partial: 'products/create', collection: @products, as: :product
   .span3
     .sidebar.text-center
-      = image_tag @user.avatar.url(:small), class: 'user-avatar'
+      = image_tag @user.avatar.url(:medium), class: 'user-avatar'
       = for_logging_user_only do
         - if @user != current_user
           .text-center
@@ -19,33 +11,43 @@
                 Siguiendo
             - else
               = link_to '<i class="icon-plus"></i> Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow', class: 'btn btn-mini'
-      %blockquote.pull-right
-        %p
+        %h3.user-name
           = @user.name
-        - if @user.location.present?
-          %small
-            = @user.location
+        .occupation
+          = @user.occupation
+        .birthday
+          - if @user.birthday.present?
+            = "Nacido el #{l @user.birthday, format: :birthday}"
+        .about
+          - if @user.location.present?
+            %small
+              = @user.location
       %p
-        = truncate @user.about, length: 300, omission: '...'
+        = truncate @user.about, length: 100, omission: '...'
       - if @user.followers.count > 0
         .module
-          %h4 Seguidores
+          %h6 Seguidores
           %ul#followers.media-list
             - @user.followers.limit(5).each do |u|
-              %li.media
+              %li.media{ id: "follower-#{u.id}"}
                 = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
                 .media-body
                   = link_to u.name, u
       - if @user.followees.count > 0
         .module
-          %h4 Siguiendo
+          %h6 Siguiendo
           %ul#followees.media-list
             - @user.followees.limit(5).each do |u|
-              %li.media
+              %li.media{ id: "followee-#{u.id}" }
                 = link_to u, class: 'pull-left' do
                   = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
                 .media-body
                   = link_to u.name, u
+  .span9.text-center
+    .btn-group{ 'data-toggle' => "buttons-radio" }
+      = link_to 'Todo', '?', class: "btn #{ params[:f].blank? ? ' active' : ''}"
+      = link_to 'Gustos', '?f=l', class: "btn#{ params[:f] == 'l' ? ' active' : ''}"
+      = link_to 'Compartido', '?f=p', class: "btn#{ params[:f] == 'p' ? ' active' : ''}"
 
-
-
+    .activities.top-spacer
+      = render partial: 'products/create', collection: @products, as: :product, locals: { include_avatar: false }

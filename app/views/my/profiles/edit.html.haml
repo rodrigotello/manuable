@@ -1,17 +1,27 @@
-= simple_form_for(current_user, :url => my_profile_path, :html => { :method => :put }) do |f|
+= simple_form_for(current_user, url: my_profile_path, html: { method: :put }) do |f|
   = f.error_notification
   - if params[:f] == 's'
-    = f.input :name
+    = f.input :name, input_html: { class: 'input-xlarge' }
     = f.input :avatar, as: :file
-    = f.association :state
-    = f.input :city_id, as: :string, :autocomplete => "off", input_html: { name: 'city-autocomplete', id: 'city-autocomplete', value: f.object.city ? "#{f.object.city.name}, #{f.object.city.state.name}" : '' }
+    = f.input :nickname, wrapper: :prepend do
+      %span.add-on
+        @
+      = f.input_field :nickname, class: 'input-xlarge'
+    = f.input :birthday, input_html: { class: 'input-small datepicker' }, as: :string
+    = f.input :address, input_html: { class: 'input-xlarge' }
+    = f.input :zipcode, as: :string, input_html: { class: 'input-small' }
+    = f.association :state, input_html: { class: 'input-xlarge' }
+    = f.input :city_id, as: :string, autocomplete: "off", input_html: { name: 'city-autocomplete', id: 'city-autocomplete', value: f.object.city ? "#{f.object.city.name}, #{f.object.city.state.name}" : '' }
     = f.input :city_id, as: :hidden
+    = f.input :occupation, input_html: { class: 'input-xlarge' }
+    = f.input :about, as: :text, input_html: { rows: 3, class: 'input-xlarge' }
+
   - if params[:f] == 'p'
     .form-inputs
-      = f.input :email, :required => true, :autofocus => true
-      = f.input :password, :autocomplete => "oft", :hint => "dejalo en blanco si no quieres cambiarlo", :required => false
-      = f.input :password_confirmation, :required => false
-      = f.input :current_password, :required => true
+      = f.input :email, required: true, autofocus: true, input_html: { class: 'input-xlarge' }
+      = f.input :password, autocomplete: "oft", hint: "dejar en blanco si no quieres cambiarlo", required: false, input_html: { class: 'input-xlarge' }
+      = f.input :password_confirmation, required: false, input_html: { class: 'input-xlarge' }
+      = f.input :current_password, required: true, input_html: { class: 'input-xlarge' }
 
   .form-actions
     = f.button :submit, "Guardar"

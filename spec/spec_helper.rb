@@ -28,6 +28,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rspec'
+  require 'capybara/poltergeist'
   require 'capybara-screenshot/rspec'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -39,7 +40,7 @@ Spork.prefork do
     config.include FactoryGirl::Syntax::Methods
     config.include Capybara::DSL
     config.include RequestMacros, type: :request
-    Capybara.javascript_driver = :selenium
+    Capybara.javascript_driver = :poltergeist
     # == Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

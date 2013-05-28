@@ -98,6 +98,6 @@ group :test do
   gem "rspec-rails"
   gem "database_cleaner"
   gem 'capybara-screenshot'
-  gem "selenium-webdriver"
+  gem "poltergeist"
   gem "database_cleaner"
 end

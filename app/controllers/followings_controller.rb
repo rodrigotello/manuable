@@ -3,7 +3,11 @@ class FollowingsController < ApplicationController
 
   def create
     @user = User.find params[:user_id]
-    render json: current_user.follow_to!(@user) and return
-    head :ok
+    @following = current_user.follow_to!(@user)
+
+    respond_to do |format|
+      format.json { render json: @following }
+      format.html { redirect_to @user }
+    end
   end
 end
