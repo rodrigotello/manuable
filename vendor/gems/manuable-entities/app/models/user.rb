@@ -8,16 +8,16 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
   belongs_to :state
   belongs_to :city
-  has_many :authentications
-  has_many :products
+  has_many :authentications, dependent: :destroy
+  has_many :products, dependent: :destroy
 
-  has_many :my_followings, foreign_key: 'follower_id', class_name: "Following"
-  has_many :followees, through: :my_followings, source: :followee
+  has_many :my_followings, foreign_key: 'follower_id', class_name: "Following", dependent: :destroy
+  has_many :followees, through: :my_followings, source: :followee, dependent: :destroy
 
-  has_many :followings, foreign_key: 'followee_id'
-  has_many :followers, through: :followings, source: :follower
+  has_many :followings, foreign_key: 'followee_id', dependent: :destroy
+  has_many :followers, through: :followings, source: :follower, dependent: :destroy
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_products, through: :likes, source: :product
 
   validates :nickname, :email, uniqueness: true, allow_nil: true
