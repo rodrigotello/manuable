@@ -41,7 +41,7 @@ es:
         name: Nombre
         nickname: Alias
         email: Correo
-        password: Contraseña
+        password: "Contraseña"
         password_confirmation: Confirmación
         current_password: Contraseña actual
         remember_me: Recordar

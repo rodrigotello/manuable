@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     Following.exists?( follower_id: user.id, followee_id: self.id )
   end
 
+  def first_name
+    (name||'').split(/\s/)[0]
+  end
+
   def location
     if city && state
       "#{city.name}, #{state.name}"
@@ -42,6 +46,7 @@ class User < ActiveRecord::Base
       "#{city.try :name}#{state.try :name}"
     end
   end
+
   private
   def grab_avatar
     if avatar.blank?

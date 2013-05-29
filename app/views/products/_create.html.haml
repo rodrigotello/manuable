@@ -1,35 +1,39 @@
 - include_avatar = true if local_assigns[:include_avatar].nil?
 - if product.attachments.length >= 1
-  = div_for product do
+  = div_for product, class: 'activity' do
     - liked = product.respond_to?(:liked) ? product.liked.to_i != 0 : false
-    .activity
-      - if include_avatar
-        .lateral-box.user-avatar
-          = link_to user_path(product.user) do
-            = image_tag product.user.avatar.url(:small)
-      / .lateral-box.want-learn{"data-original-title" => "Quiero aprender", "data-toogle" => "tooltip"}
-      /   %a{:href => "learn/#{product.id}"}
-      /     %h1
-      /       %i.icon-lightbulb
-      / .lateral-box.want-buy{"data-original-title" => "Quiero comprar", "data-toogle" => "tooltip"}
-      /   %a{:href => "buy/#{product.id}"}
-      /     %h1
-      /       %i.icon-shopping-cart
-      .product-picture
-        = heart_overlay product, liked
-        = image_tag product.attachments.first.attachment.url :xlarge
-      .product-description
-        .product-name
-          %h4
-            = product.name
-        .product-about
-          = product.about
-        .product-tags
-          = hashify(product.prop.collect(&:name)).join(", ")
-      .product-pictures
-        - if product.on_sale? && product.attachments.length > 1
-          .thumbnail-box.clearfix
-            - product.attachments[1, 3].each do |attachment|
-              .picture-thumbnail
-                = image_tag attachment.attachment.url(:medium)
-      %hr
+    - if include_avatar
+      .lateral-box
+        = link_to user_path(product.user), class: 'user-avatar' do
+          = image_tag product.user.avatar.url(:small)
+        = link_to user_path(product.user) do
+          %span.user-name= product.user.first_name
+          - if product.user.state.present?
+            %br
+            %span.user-location= product.user.state.name
+    / .lateral-box.want-learn{"data-original-title" => "Quiero aprender", "data-toogle" => "tooltip"}
+    /   %a{:href => "learn/#{product.id}"}
+    /     %h1
+    /       %i.icon-lightbulb
+    / .lateral-box.want-buy{"data-original-title" => "Quiero comprar", "data-toogle" => "tooltip"}
+    /   %a{:href => "buy/#{product.id}"}
+    /     %h1
+    /       %i.icon-shopping-cart
+    .product-picture
+      = heart_overlay product, liked
+      = image_tag product.attachments.first.attachment.url :xlarge
+    .product-description
+      .product-name
+        %h4
+          = product.name
+      .product-about
+        = product.about
+      .product-tags
+        = hashify(product.prop.collect(&:name)).join(", ")
+    .product-pictures
+      - if product.on_sale? && product.attachments.length > 1
+        .thumbnail-box.clearfix
+          - product.attachments[1, 3].each do |attachment|
+            .picture-thumbnail
+              = image_tag attachment.attachment.url(:medium)
+    %hr
