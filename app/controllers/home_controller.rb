@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       format.json {
         self.formats = [:html]
         render( json: {
-                  html: render_to_string(partial: '/products/feed', locals: { products: @products }),
+                  html: render_to_string(partial: '/products/feed', locals: { products: @products, no_wrapper: true }, spacer_template: '/products/divider'),
                   total_entries: @products.total_count,
                   total_pages: @products.total_pages
                 })

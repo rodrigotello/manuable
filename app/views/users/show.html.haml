@@ -48,6 +48,5 @@
       = link_to 'Todo', '?', class: "btn #{ params[:f].blank? ? ' active' : ''}"
       = link_to 'Gustos', '?f=l', class: "btn#{ params[:f] == 'l' ? ' active' : ''}"
       = link_to 'Compartido', '?f=p', class: "btn#{ params[:f] == 'p' ? ' active' : ''}"
+    = render partial: '/products/feed', locals: { products: @products, include_avatar: false }
 
-    .activities.top-spacer
-      = render partial: 'products/create', collection: @products, as: :product, locals: { include_avatar: false }, spacer_template: '/products/divider'
