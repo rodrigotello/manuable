@@ -1,5 +1,5 @@
 .activities{id: "#{params[:controller]}-#{params[:action]}-feed"}
-  = render partial: '/products/create', collection: products, as: :product
+  = render partial: '/products/create', collection: products, as: :product, spacer_template: '/products/divider'
   - if params[:format] != 'json'
     - content_for :script do
       feedPagination('##{params[:controller]}-#{params[:action]}-feed', #{products.total_pages}, #{params[:page]||1}, '#{request.path}' );
