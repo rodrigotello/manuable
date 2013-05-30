@@ -50,4 +50,4 @@
       = link_to 'Compartido', '?f=p', class: "btn#{ params[:f] == 'p' ? ' active' : ''}"
 
     .activities.top-spacer
-      = render partial: 'products/create', collection: @products, as: :product, locals: { include_avatar: false }
+      = render partial: 'products/create', collection: @products, as: :product, locals: { include_avatar: false }, spacer_template: '/products/divider'
