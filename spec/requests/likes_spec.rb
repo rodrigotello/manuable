@@ -4,7 +4,7 @@ describe 'like product' do
 
   it 'unlike product check' do
     sign_in_as_a_user
-    user = FactoryGirl.create(:user_with_products, products_count: 6)
+    user = FactoryGirl.create(:user_with_products, products_count: 5)
     product = user.products.first
 
     visit root_path
@@ -17,10 +17,10 @@ describe 'like product' do
   it 'liked product counter' do
     # js driver not working well
     sign_in_as_a_user
-    user = FactoryGirl.create(:user_with_products, products_count: 6)
+    user = FactoryGirl.create(:user_with_products, products_count: 5)
     product = user.products.first
-    product.like! @current_user
-    product.like! user
+    @current_user.like! product
+    user.like! product
     visit root_path
 
     page.should have_css("#heart-overlay-product_#{product.id}.liked")

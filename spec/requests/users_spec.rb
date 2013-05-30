@@ -58,4 +58,146 @@ describe 'user profile' do
     page.find("#followee-#{followee3.id}").should have_xpath("//img[@src=\"#{followee3.avatar.url(:thumb)}\"]")
   end
 
+  it 'shows user feed(nofilter)' do
+    sign_in_as_a_user
+    viewed_user = FactoryGirl.create(:user)
+    follewee1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee2 = FactoryGirl.create(:user_with_products, products_count: 3)
+    follewee3 = FactoryGirl.create(:user_with_products, products_count: 1)
+    member1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    member2 = FactoryGirl.create(:user_with_products, products_count: 2)
+
+    viewed_user.follow_to! follewee1
+    viewed_user.follow_to! follewee2
+    viewed_user.follow_to! follewee3
+    liked_products = [member2.products.first, member1.products.first].each do |p|
+      viewed_user.like! p
+    end
+
+    visit user_path(viewed_user, per_page: 10)
+
+    page.should have_css('.activities .activity', count: 8)
+    (follewee1.products + follewee2.products + follewee3.products + liked_products).each do |product|
+      page.should have_css("#product_#{product.id}.activity")
+    end
+  end
+
+  it 'shows user feed( liked filter)' do
+    sign_in_as_a_user
+    viewed_user = FactoryGirl.create(:user)
+    follewee1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee2 = FactoryGirl.create(:user_with_products, products_count: 3)
+    follewee3 = FactoryGirl.create(:user_with_products, products_count: 1)
+    member1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    member2 = FactoryGirl.create(:user_with_products, products_count: 2)
+
+    viewed_user.follow_to! follewee1
+    viewed_user.follow_to! follewee2
+    viewed_user.follow_to! follewee3
+    liked_products = [member2.products.first, member1.products.first].each do |p|
+      viewed_user.like! p
+    end
+
+    visit user_path(viewed_user, per_page: 10, f: 'l')
+
+    page.should have_css('.activities .activity', count: 2)
+    liked_products.each do |product|
+      page.should have_css("#product_#{product.id}.activity")
+    end
+  end
+
+  it 'shows user feed( shared filter )' do
+    sign_in_as_a_user
+    viewed_user = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee2 = FactoryGirl.create(:user_with_products, products_count: 3)
+    follewee3 = FactoryGirl.create(:user_with_products, products_count: 1)
+    member1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    member2 = FactoryGirl.create(:user_with_products, products_count: 2)
+
+    viewed_user.follow_to! follewee1
+    viewed_user.follow_to! follewee2
+    viewed_user.follow_to! follewee3
+    liked_products = [member2.products.first, member1.products.first].each do |p|
+      viewed_user.like! p
+    end
+
+    visit user_path(viewed_user, per_page: 12, f: 'p')
+
+    page.should have_css('.activities .activity', count: 2)
+    viewed_user.products.each do |product|
+      page.should have_css("#product_#{product.id}.activity")
+    end
+  end
+
+  it 'guest: shows user feed(nofilter)' do
+    viewed_user = FactoryGirl.create(:user)
+    follewee1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee2 = FactoryGirl.create(:user_with_products, products_count: 3)
+    follewee3 = FactoryGirl.create(:user_with_products, products_count: 1)
+    member1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    member2 = FactoryGirl.create(:user_with_products, products_count: 2)
+
+    viewed_user.follow_to! follewee1
+    viewed_user.follow_to! follewee2
+    viewed_user.follow_to! follewee3
+    liked_products = [member2.products.first, member1.products.first].each do |p|
+      viewed_user.like! p
+    end
+
+    visit user_path(viewed_user, per_page: 10)
+
+    page.should have_css('.activities .activity', count: 8)
+    (follewee1.products + follewee2.products + follewee3.products + liked_products).each do |product|
+      page.should have_css("#product_#{product.id}.activity")
+    end
+  end
+
+  it 'guest: shows user feed( liked filter)' do
+    viewed_user = FactoryGirl.create(:user)
+    follewee1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee2 = FactoryGirl.create(:user_with_products, products_count: 3)
+    follewee3 = FactoryGirl.create(:user_with_products, products_count: 1)
+    member1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    member2 = FactoryGirl.create(:user_with_products, products_count: 2)
+
+    viewed_user.follow_to! follewee1
+    viewed_user.follow_to! follewee2
+    viewed_user.follow_to! follewee3
+    liked_products = [member2.products.first, member1.products.first].each do |p|
+      viewed_user.like! p
+    end
+
+    visit user_path(viewed_user, per_page: 10, f: 'l')
+
+    page.should have_css('.activities .activity', count: 2)
+    liked_products.each do |product|
+      page.should have_css("#product_#{product.id}.activity")
+    end
+  end
+
+  it 'guest: shows user feed( shared filter )' do
+    viewed_user = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    follewee2 = FactoryGirl.create(:user_with_products, products_count: 3)
+    follewee3 = FactoryGirl.create(:user_with_products, products_count: 1)
+    member1 = FactoryGirl.create(:user_with_products, products_count: 2)
+    member2 = FactoryGirl.create(:user_with_products, products_count: 2)
+
+    viewed_user.follow_to! follewee1
+    viewed_user.follow_to! follewee2
+    viewed_user.follow_to! follewee3
+    liked_products = [member2.products.first, member1.products.first].each do |p|
+      viewed_user.like! p
+    end
+
+    visit user_path(viewed_user, per_page: 12, f: 'p')
+
+    page.should have_css('.activities .activity', count: 2)
+    viewed_user.products.each do |product|
+      page.should have_css("#product_#{product.id}.activity")
+    end
+  end
 end
+
+

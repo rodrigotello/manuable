@@ -39,7 +39,7 @@ class Product < ActiveRecord::Base
     name.present? && attachments.count > 0 && category.present?
   end
 
-  def like! current_user
+  def belike! current_user
     likes.where(user_id: current_user.id).first_or_create
   end
 

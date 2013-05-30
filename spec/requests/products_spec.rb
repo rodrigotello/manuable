@@ -11,14 +11,14 @@ describe 'products' do
     visit root_path()
     # take_screenshot
 
-    user.products.take(5).each do |p|
+    user.products.order('products.created_at DESC').take(5).each do |p|
       product_node = find("#product_#{p.id}")
       product_node.find('.product-name').should have_content(p.name)
       product_node.find('.product-about').should have_content(p.about)
       product_node.find('.product-tags').should have_content(p.prop_list.map{|t|"##{t}"}.join(', '))
       # product_node.find('.product-picture').should have_css('img', text: p.attachments.first.attachment.url(:xlarge))
       product_node.find('.product-picture').should have_xpath("//img[@src=\"#{p.attachments.first.attachment.url(:xlarge)}\"]")
-      product_node.find('.user-avatar a').should  have_xpath("//img[@src=\"#{p.user.avatar.url(:small)}\"]")
+      product_node.find('.user-avatar').should  have_xpath("//img[@src=\"#{p.user.avatar.url(:small)}\"]")
     end
   end
 

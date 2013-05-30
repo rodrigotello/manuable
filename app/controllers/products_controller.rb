@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   def like
     @product = Product.find(params[:id])
-    @like = @product.like! current_user
+    @like = current_user.like! @product
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { render json: @like }

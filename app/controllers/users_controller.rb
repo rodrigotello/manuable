@@ -6,16 +6,16 @@ class UsersController < ApplicationController
     # redirect_to root_path and return unless session[:beta].present?
     # @products = Product.recently_created.limit(50)
 
-    @products = Product.feed(current_user).page( params[:page] ).per( params[:per_page] || 3 )
+    @products = Product.feed(current_user).page( params[:page] ).per( params[:per_page] || 5 )
 
-    if user_signed_in?
-      if params[:f] == 'l'
-        @products = @products.where(id: @user.liked_product_ids)
-      elsif params[:f] == 'p'
-        @products = @products.where(user_id: @user.id)
-      else
-        @products = @products.where(user_id: @user.followee_ids+[@user.id])
-      end
+    if params[:f] == 'l'
+      @products = @products.where(id: @user.liked_product_ids)
+    elsif params[:f] == 'p'
+      @products = @products.where(user_id: @user.id)
+    else
+      user_ids = @user.followee_ids+[@user.id]
+      liked_product_ids = @user.liked_product_ids
+      @products = @products.where{ (user_id >> user_ids) | (id >> liked_product_ids)}
     end
 
     respond_to do |format|
@@ -31,6 +31,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
-  end
 end

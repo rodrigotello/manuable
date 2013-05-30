@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
   after_create :notify_signup
   before_create :grab_avatar
 
+  def like! product
+    likes.where(product_id: product.id).first_or_create
+  end
+
   def follow_to! user
     Following.where( followee_id: user.id, follower_id: self.id ).first_or_create
   end

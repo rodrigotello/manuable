@@ -66,6 +66,6 @@ FactoryGirl.define do
 
   factory :attachment do
     association :attachable
-    sequence(:attachment) { |n| Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'images', "IMG_#{n}.png")) }
+    sequence(:attachment) { |n| Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'images', "IMG_1.png")) }
   end
 end
