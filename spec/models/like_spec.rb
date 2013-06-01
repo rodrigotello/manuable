@@ -6,7 +6,7 @@ describe Like do
     product = user.products.first
     current_user.like! product
 
-    user.notifications.should have(1).record
+    user.notifications.unread.should have(1).record
     notification = user.notifications.first
 
     notification.product_id.should == product.id

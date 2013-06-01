@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
   has_many :liked_products, through: :likes, source: :product
+  has_many :notifications, foreign_key: :to_id
 
   validates :nickname, :email, uniqueness: true, allow_nil: true
 
