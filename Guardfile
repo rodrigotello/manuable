@@ -13,7 +13,7 @@ guard 'spork', :cucumber => false, :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch(%r{^vendor/gems/manuable-entities/app/models/.+\.rb$})
 end
 
-guard 'rspec', :cli => "--drb", :version => 2 do
+guard 'rspec', :cli => "--drb", :version => 2, :spec_paths => ["spec", "vendor/engines/manuable-entities/spec"] do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }

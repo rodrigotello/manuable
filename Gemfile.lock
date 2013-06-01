@@ -6,7 +6,7 @@ GIT
       rack (>= 1.1, < 2.0)
 
 PATH
-  remote: vendor/gems/manuable-entities
+  remote: vendor/engines/manuable-entities
   specs:
     manuable-entities (0.0.1)
       rails (~> 3.2.13)

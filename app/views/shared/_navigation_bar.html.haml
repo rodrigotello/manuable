@@ -32,6 +32,17 @@
                     = link_to "<i class='icon-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
                     = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_session_path(:user), rel: "modal"
             - else
+              %li#notifications
+                %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
+                  .badge.badge-important#notifications_count
+                    = current_user.notifications.unread.count
+                %ul.dropdown-menu
+                  - current_user.notifications.each do |notification|
+                    %li
+                      = link_to product_path(notification.product), id: dom_id(notification) do
+                        = image_tag notification.author.avatar.url(:small)
+                        %span.user-name
+                          = notification.author.first_name
               %li#current-user-options
                 %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
                   = image_tag current_user.avatar.url(:small).to_s

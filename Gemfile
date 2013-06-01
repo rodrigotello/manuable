@@ -2,10 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', "~>3.2"
 
-# gem 'public_activity'
-gem "manuable-entities", :path => "vendor/gems/manuable-entities"
+gem "manuable-entities", :path => "vendor/engines/manuable-entities"
 gem "draper"
-gem 'newrelic_rpm'
 # DB
   group :production do
     gem "pg"
