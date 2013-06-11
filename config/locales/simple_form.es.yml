@@ -17,7 +17,7 @@ es:
       default_message: "Revisar problemas debajo:"
     labels:
       defaults:
-        password: 'Password'
+        password: 'Contraseña'
       user:
         edit:
           state: 'Estado'

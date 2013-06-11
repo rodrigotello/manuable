@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
   # before_filter :authenticate_user!, only: :edit
 
   def show
+
     # redirect_to root_path and return unless session[:beta].present?
     # @products = Product.recently_created.limit(50)
+    uid = params[:id]
+    @user = User.where{ ( id == uid) | (nickname == uid.to_s) }.first
+
+    raise ActiveRecord::RecordNotFound unless @user.present?
 
     @products = Product.feed(current_user).page( params[:page] ).per( params[:per_page] || 5 )
 

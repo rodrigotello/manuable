@@ -5,7 +5,7 @@
     = f.input :avatar, as: :file
     = f.input :nickname, wrapper: :prepend do
       %span.add-on
-        @
+        http://manuable.com/
       = f.input_field :nickname, class: 'input-xlarge'
     = f.input :birthday, input_html: { class: 'input-small datepicker' }, as: :string
     = f.input :address, input_html: { class: 'input-xlarge' }
@@ -19,7 +19,7 @@
   - if params[:f] == 'p'
     .form-inputs
       = f.input :email, required: true, autofocus: true, input_html: { class: 'input-xlarge' }
-      = f.input :password, autocomplete: "oft", hint: "dejar en blanco si no quieres cambiarlo", required: false, input_html: { class: 'input-xlarge' }
+      = f.input :password, autocomplete: "off", hint: "dejar en blanco si no quieres cambiarlo", required: false, input_html: { class: 'input-xlarge' }
       = f.input :password_confirmation, required: false, input_html: { class: 'input-xlarge' }
       = f.input :current_password, required: true, input_html: { class: 'input-xlarge' }
 

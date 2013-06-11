@@ -1,0 +1,165 @@
+%ul#abouttabs.nav.nav-tabs
+  %li{ class: params[:s] == 'about' || params[:s].nil? ? 'active' : nil }
+    = link_to 'Acerca de Manuable', '#about', data: { :toggle => "tab" }
+  %li{ class: params[:s] == 'terms' ? 'active' : nil }
+    = link_to 'Privacidad y confidencialidad', '#terms', data: { :toggle => "tab" }
+.row
+  .span6.tab-content
+    #about.tab-pane{ class: params[:s] == 'about' || params[:s].nil? ? 'active' : nil }
+      %h3.text-center Manuable
+      %p.lead.text-center “Descubre productos hechos a mano”
+
+      %p
+        Queremos ser la comunidad de artesanos, artistas y consumidores conscientes que buscan vender y comprar sus productos directo de quien los hace.
+        Manuable es desarrollado por:
+
+      Claudio Tello.- Fundador y director creativo. Ah!, y me gusta la fotografía.
+      %br
+      Rodrigo Tello.- Cofundador, artista, arquitecto y diseñador.
+      %br
+      Mauricio Argüello.- Cofundador, diseño y sentido común.
+      %br
+      César Cejudo.- Cofundador, software guru
+      %br
+
+      %h4.text-center Nuestros valores
+      %h4 Sencillez
+      %p
+        Manuable quiere apreciar todos aquellos productos que se hacen con amor.
+      %h4 Personales
+      %p
+        Manuable quiere tratar con personas y no con compañías.
+      %h4 Honestos
+      %p
+        Manuable quiere hablar de quien hace y como se hace.
+      %h4 Alegres
+      %p
+        Manuable quiere hacerte sentir bien, por medio de nuestro espíritu de servicio.
+      %h4 Mejorables
+      %p
+        Manuable quiere aprender de nuestra comunidad creativa.
+      %h4 Multiculturales
+      %p
+        Manuable quiere incluir la riqueza de contrastes de quienes vivimos en México.
+
+
+      %h4.text-center Nuestro servicio
+      %h4 Accesible
+      %p
+        Es fácil de encontrar y sencillo de usar. Cualquiera puede comprar y vender.
+      %h4 Personalizado
+      %p
+        Puedes hacer tu perfil y hablar de tus productos como tú lo prefieras.
+      %h4 Confiable
+      %p
+        Protegemos al comprador así como al vendedor, porque nos respaldamos con instituciones sólidas.
+      %h4 Amigable
+      %p
+        Te permite tener una experiencia divertida, donde no solo compras sino además descubres.
+      %h4 Útil
+      %p
+        Es una herramienta de venta en línea,  que te conecta con personas creativas y artesanales.
+
+    #terms.tab-pane{ class: params[:s] == 'terms' ? 'active' : nil }
+      %h3.text-center Términos y condiciones de uso
+
+      %p Gracias por acceder a la página web www.manuable.com, operada por Manuable México. Somos los Responsables de proteger tus datos personales. Nosotros respetamos tu privacidad y deseamos proteger tu información personal. Para obtener más información, por favor lee nuestra Política de Privacidad.
+
+      %p Nuestra Política de Privacidad explica cómo recolectamos, utilizamos y -bajo ciertas condiciones- divulgamos tu información personal. Además, aclara las medidas que hemos tomado para asegurar tu información personal. Por último, esta política de privacidad explica las opciones respecto a la recopilación, uso y divulgación de tu información personal. Al visitar el sitio directamente o a través de otro sitio, estás aceptando las prácticas descritas en esta Política.
+
+      %p La protección de datos es una cuestión de confianza y tu privacidad, es importante para nosotros. Por lo tanto, utilizaremos solamente tu nombre y otra información referente a ti bajo los términos previstos en nuestra Política de Privacidad.
+
+      %p Sólo mantendremos tu información durante el tiempo que nos sea requerido por la ley o debido a la relevancia de los propios fines para los que fueron recopilados.
+
+      %p Tú puedes visitar manuable.com y navegar sin tener que proporcionar datos personales. Durante tu visita al sitio, permanecerás anónimo y en ningún momento podremos identificarte, a menos que tengas una cuenta en el sitio e inicies sesión con tu nombre de usuario y contraseña.
+
+
+      %p.lead 1. Los datos que recopilamos
+
+      %p Podemos recopilar diversos fragmentos de información si se tratará de realizar un pedido de uno o varios productos con nosotros.
+
+      %p Manuable.com recopila, almacena y procesa los datos para el proceso de compra, por sí llegase a existir algún problema y para ofrecerle un mejor servicio. Recopilamos la siguiente información personal: título, nombre, sexo, fecha de nacimiento, dirección de correo electrónico, código postal, dirección de entrega (si es diferente), número de teléfono, número de teléfono celular, número de fax, datos de pago, tarjeta de Crédito.
+
+      %p Usaremos la información que proporcionas para que podamos procesar tus pedidos y para darte los servicios e información ofrecidos a través de nuestra sitio y que tú solicites. Además, usaremos la información que proporcionas para administrar tu cuenta con nosotros, verificar y llevar a cabo transacciones financieras en relación con los pagos que realices en línea, la auditoría de la descarga de datos desde nuestro página, mejorar el diseño o el contenido de las páginas de manuable.com y personalizar a los usuarios, identificar a los visitantes en nuestro sitio, llevar a cabo investigaciones sobre la demografía de nuestros usuarios, te enviaremos la información que pensamos que puede ser útil o que has solicitado de nosotros, incluida la información sobre nuestros productos y servicios,. Sujeto a la obtención de tu consentimiento podemos comunicarnos contigo por correo electrónico con los detalles de otros productos y servicios, o si prefieres no recibir publicidad, se puede optar por ello en cualquier momento.
+
+      %p Si lo deseas, nos puedes pasar el nombre y dirección de un tercero para hacer la entrega de tu producto (por ejemplo, a nuestro servicio de mensajería o proveedor).
+
+      %p Los pagos que se realicen a través del Sitio serán procesados por nuestros proveedores de pago, los cuales cuentan con sus políticas de uso propias. Sólo se debe presentar a nosotros o nuestro Agente o la información del sitio que es precisa y no engañosa, y debe mantenerse al día y nos informan de los cambios.
+
+
+      %p.lead 2. Otros usos de tu información personal
+
+      %p Podemos utilizar tu información personal para la opinión y estudios de mercado. Tus datos son anónimos y sólo se utilizarán con fines estadísticos. Puedes optar por no participar de este en cualquier momento. En cuanto a las respuestas a las encuestas o sondeos de opinión es posible que se te pida que las completes y no las transmitas a terceros. Revelarnos tu dirección de correo electrónico sólo será necesario si deseas participar en las competiciones. Nos ahorramos las respuestas a las encuestas por separado de tu dirección de correo electrónico.
+
+      %p Limitación de uso y divulgación
+
+      %p También podemos enviarte otra información acerca de nosotros, de nuestros otros sitios web, nuestros productos, promociones de ventas, nuestros boletines de noticias, todo lo relacionado con otras empresas de nuestro grupo o de nuestros socios de negocios.
+
+      %p.lead 3. Concursos y Promociones
+
+      %p Para cualquier concurso o promoción que utilice los datos para notificar a los ganadores y anunciar nuestras ofertas. Tú puedes encontrar más detalles en su caso, en nuestras condiciones de participación para el concurso respectivo. Terceros y Enlaces
+
+      %p Podemos transmitir tus datos a otras empresas de nuestro grupo. También podemos proporcionar tu información a nuestros agentes y subcontratistas para que nos ayuden con cualquier uso de tus datos que figuran en nuestra Política de Privacidad. Por ejemplo, podemos utilizar a terceros para que nos ayuden con la entrega de tu pedido, que nos ayude a recaudar tus pagos, para analizar los datos y que nos proporciones con la comercialización o asistencia de servicio al cliente. Podemos intercambiar información con terceros a efectos de protección contra el fraude y la reducción de riesgo de crédito. Nosotros podemos transferir nuestras bases de datos que contienen tu información personal si vendemos nuestro negocio o parte de él. Al margen de lo establecido en la presente Política de Privacidad, no podremos vender o divulgar tus datos personales a terceros sin obtener tu consentimiento previo, a menos que sea necesario para los fines establecidos en esta Política de Privacidad o a menos que estemos obligados a hacerlo por ley. manuable.com puede contener publicidad de terceros y enlaces a otros sitios o marcos de otros sitios. Ten en cuenta que no somos responsables de las prácticas de privacidad o contenido de dichos terceros u otros sitios, ni por cualquier tercero a quien se transfiera tus datos de acuerdo con nuestra política de privacidad.
+
+      %p.lead 4. Cookies
+
+      %p La aceptación de las cookies no es un requisito para visitar nuestra página. Sin embargo, nos gustaría señalar que el uso del "carrito" funcionalidad y orden sólo es posible con la activación de las cookies. Las cookies son pequeños archivos de texto que identifican a tu computadora con nuestro servidor como un usuario único cuando tú visitas ciertas páginas en nuestro sitio y que son guardados por tu navegador de Internet en el disco duro de tu computadora. Las cookies se pueden utilizar para reconocer tu dirección de protocolo de Internet, que te ahorra tiempo mientras quieres entrar a nuestro sitio. Sólo utilizamos cookies para tu comodidad en el uso de Manuable (por ejemplo, para recordar quién eres cuando deseas modificar tu carrito de compra sin tener que volver a introducir tu dirección de correo electrónico) y no para obtener o usar cualquier otra información sobre ti (por ejemplo de publicidad segmentada). Tu navegador puede ser configurado para no aceptar cookies, pero esto sería restringir el uso de nuestra página. Por favor, acepta nuestra garantía de que el uso de cookies no contiene datos de carácter personal o privado, y están libres de virus. Si deseas obtener más información acerca de las cookies, ve a http://www.allaboutcookies.org, y para obtener información sobre la eliminación de ellos desde el navegador, ve a http://www.allaboutcookies.org/manage-cookies/index.html.
+
+      %p Esta página web utiliza Google Analytics, un servicio analítico de web prestado por Google, Inc. Google Analytics utiliza cookies, que son archivos de texto ubicados en tu ordenador, para ayudar al webzine a analizar cómo los usuarios utilizan nuestro sitio. La información que genera la cookie acerca de su uso del webzine (incluyendo tu dirección IP) será directamente transmitida y archivada por Google en los servidores de Estados Unidos. Google usará esta información con el propósito de evaluar tu uso del webzine, recopilando informes de la actividad del webzine y prestando otros servicios relacionados con la actividad del webzine y el uso de Internet. Google podrá transmitir dicha información a terceros cuando así lo requiera la ley, o cuando dichos terceros procesen la información por cuenta de Google. Google no asociará su dirección IP con ningún otro dato del que disponga Google. Tú puedes rechazar el uso de cookies, seleccionando la configuración apropiada de tu navegador, sin embargo ten en cuenta que si haces esto no puedes ser capaz de utilizar toda la funcionalidad de este sitio web. Mediante el uso de este sitio web, das el consentimiento al tratamiento de tus datos por Google en la forma y para las finalidades anteriormente indicadas.
+
+      %p.lead 5. Seguridad y Protección de Datos
+
+      %p Tenemos en marcha las medidas técnicas y de seguridad para evitar el acceso no autorizado o ilegal o pérdida accidental de destrucción o daños a tu información. Cuando se recogen datos a través de nuestro sitio recogemos tus datos personales en un servidor confiable y seguro. En Manuable utilizamos cortafuegos en nuestros servidores. Cuando recopilamos información de tarjetas de pago electrónico, se usa el cifrado Secare Socket Layar (SSL) que codifica. Si bien no podemos garantizar al 100% de seguridad, esto hace que sea muy difícil para un hacker descifrar tus datos. Se recomienda encarecidamente no enviar todos los detalles de tarjetas de crédito sin valorar las comunicaciones electrónicas con nosotros. Mantenemos las salvaguardias físicas, electrónicas y de procedimiento en relación con la recolección, almacenamiento y divulgación de tu información. Esto significa que en ocasiones puedes solicitar una prueba de identidad antes de revelar tu información personal. Cabe mencionar que tú eres el responsable de la protección contra el acceso no autorizado a tu contraseña y a tu computadora.
+      %p En cumplimiento con la ley federal de protección de datos del consumidor, Manuable le asegura que sus datos no serán compartidos con terceros sin su consentimiento. Los datos que usted deja en el sitio se utilizan únicamente para permitirle acceso a nuestras promociones y si así lo desea e indica, mandarle información de nuestras novedades y promociones.
+
+      %p Los datos personales que Manuable solicitará o tendrá acceso bajo su consentimiento, serán enunciativamente: nombre, e-mail, edad, género y clave de acceso a su cuenta. Manuable por ningún motivo solicitará datos sensibles, tales como: origen racial o étnico, estado de salud, información genética, creencias religiosas, filosóficas o morales, opiniones políticas, preferencia sexual o aquellos que afecten la esfera íntima de los titulares y resulten innecesarios para los fines aquí determinados.
+
+      %p Si usted está suscrito a manuable.com, en cualquier momento podrá solicitar los cambios pertinentes en su cuenta por medio de su acceso al sistema, chat y email para cualquiera de los fines explicados a continuación:
+
+      %ul
+        %li
+          Acceso a la información contenida en su cuenta dentro de manuable.com.
+        %li
+          Rectificación y modificación de la información contenida en su cuenta dentro de manuable.com.
+        %li
+          Cancelar su cuenta y solicitar que sus datos sean eliminados de la base de datos de manuable.com.
+        %li
+          Oponerse a recibir información de manuable.com.
+
+      (Derechos ARCO).
+
+      %p En caso de que usted requiera comunicarse personalmente con el encargado de manejar los datos personales contenidos en manuable.com, comuníquese directamente a servicio al correo info@manuable.com. Manuable necesitará acreditar su personalidad antes de hacer cambios en su cuenta.
+
+      %p No cubriremos los gastos de transportación, hospedaje o viáticos ni ningún otro gasto que pudiera generarse de la modificación de datos o cancelación de cuenta de los consumidores que deseen llevar a cabo el trámite personalmente. Así mismo, Manuable no cubrirá ningún gasto que se genere proveniente de la modificación de datos del consumidor.
+
+      %p Manuable ha adoptado las medidas de seguridad, administrativas, técnicas y físicas, necesarias para proteger sus datos personales contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado. Sin embargo, Manuable no puede y por ende no garantiza que no existirá un acceso no autorizado a sus datos personales o que las comunicaciones estén libres de toda interrupción, error o intercepción por terceros no autorizados.
+
+      %p El acceso a sus datos personales, en poder de Manuable, se limitará a las personas que necesiten tener acceso a dicha información, con el propósito de llevar a cabo las finalidades identificadas.
+
+      %p Si usted no está de acuerdo con estos términos, le sugerimos no utilizar este sitio.
+
+      %p.lead 6. Sus derechos
+
+      %p Si estás preocupado por tus datos personales, tú tienes el derecho, en cualquier momento, de obligarnos a corregir cualquier equivocación o pedirnos que dejemos de utilizar tus datos personales para fines de marketing directo.
+
+      %p.lead 7. Limitación del uso y divulgación de información
+
+      %p Los datos personales del titular serán mantenidos en estricta confidencialidad, de conformidad con las medidas de seguridad, administrativas, técnicas y físicas que al efecto Manuable implemente en sus políticas y procedimientos de seguridad, quedando prohibido su divulgación ilícita y limitando su uso a terceros, de conformidad con lo previsto en el presente Aviso de Privacidad.
+
+      %p.lead 8. Aceptación de los términos
+
+      %p Esta declaración de confidencialidad / privacidad, que describe los términos y condiciones de Manuable, constituye un acuerdo válido y por tanto con vida jurídica entre el usuario y Manuable; por tanto, si el usuario utiliza los servicios de Manuable, significa que ha leído, entendido, aceptado y consecuentemente, acordado con Manuable los términos antes expuestos. En caso de no está de acuerdo con ellos (los términos), el usuario no deberá proporcionar ninguna información personal, ni utilizar este servicio.
+
+      %p.lead 9. Contacto con Manuable
+
+      %p Si prefiere ponerse en contacto con Manuable por escrito, para realizar una solicitud relacionada con nuestras políticas de privacidad, puede hacerlo a info@manuable.com
+
+      %p Al visitar nuestro catálogo electrónico, usted acepta las condiciones descritas en ente aviso de privacidad. Salvo que se mencione lo contrario, este aviso se aplica a toda la información personal y de facturación de nuestros clientes. Para cualquier duda o aclaración puede dirigirse a los responsables, consultando la sección de contacto.
+
+      %p Tiene derecho a consultar su información personal y en algunos casos editarla. Usted es responsable de proteger su nombre de usuario y contraseña para evitar el acceso no autorizado a su cuenta. La información de nuestros clientes es privada y no será utilizada con fines comerciales. Sin embargo, existe cierta información que es compartida con terceros tal y como se menciona en los siguientes casos:
+
+      %p Tareas externas: Ya sea llevadas a cabo por nuestro personal o por compañías afiliadas, funciones como envío de productos, envío de correspondencia, e-mail, análisis de datos, asesoría de mercado, procesamiento de pagos, servicio al cliente, etc.; requieren del intercambio de información personal.
+
+      %p Protección contra fraude: Se entregará información personal o de facturación a las autoridades correspondientes bajo sospecha de fraude, en caso de violar alguna de nuestras Condiciones de uso, o para proteger los derechos del sitio, de los usuarios, o de terceros.
+
+      %p Si usted consiente compartir su información. En cualquier otro caso de los mencionados anteriormente, usted recibirá una notificación si su información personal pudiese ser intercambiada con algún tercero. Asimismo usted podrá decidir si desea o no compartirla. Nuestra tienda evoluciona constantemente por lo que estas políticas de privacidad pueden cambiar sin previo aviso. Es responsabilidad de los usuarios consultar periódicamente cualquier cambio.

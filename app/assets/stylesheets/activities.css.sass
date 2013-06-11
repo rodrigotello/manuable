@@ -1,4 +1,14 @@
 @import "prefixed-props.scss"
++keyframes(heartbeat)
+  0%
+    background-size: 35px
+  30%
+    background-size: 30px
+    right: 45.15%
+  60%
+    background-size: 35px
+  100%
+    background-size: 35px
 #main-feed
   margin-top: 80px
 .activities
@@ -46,7 +56,6 @@
         color: #000
         text-decoration: none
     .user-avatar
-      padding: 5px
       border: 2px solid #dfdfdf
       width: 63px
       height: 63px
@@ -57,7 +66,7 @@
         max-width: 63px
         max-height: 63px
     .user-name,.user-location
-      font-size: 10px
+      font-size: 14px
       color: #999
     .want-learn, .want-buy
       right: -85px
@@ -135,11 +144,16 @@
     line-height: 27px
     text-decoration: none
   &:hover
+    &:not(.liked)
+      .like
+        -webkit-animation: heartbeat 1s infinite alternate
+        -moz-animation: heartbeat 1s infinite alternate
+        -ms-animation: heartbeat 1s infinite alternate
+        -o-animation: heartbeat 1s infinite alternate
+        animation: heartbeat 1s infinite alternate
     .fog
       opacity: 0.5
     .like
-      -webkit-animation: pulsate 1s ease-out
-      -webkit-animation-iteration-count: infinite
       bottom: 50%
       visibility: visible
 

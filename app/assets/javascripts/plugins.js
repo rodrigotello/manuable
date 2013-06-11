@@ -1,4 +1,9 @@
-var feedPagination = function(feedid, total_pages, page, url){
+var feedPagination = function(feedid, total_pages, page, url, params){
+  "use strict";
+  if ( typeof(params) !== 'object' ){
+    params = {};
+  }
+
   var $feed = $(feedid),
       scrollCallback = function(e){
         if( $(window).scrollTop() >= $(document).height() / 2 - $(window).height() ){ // half page
@@ -6,7 +11,8 @@ var feedPagination = function(feedid, total_pages, page, url){
             var next_page = $feed.data('page') + 1;
             $feed.data('page', next_page);
             $feed.data('loading', true);
-            $.getJSON(url, { page: next_page }, function(data){
+            params.page = next_page
+            $.getJSON(url, params, function(data){
               $feed.append(data.html);
               $feed.data('loading', false);
             });

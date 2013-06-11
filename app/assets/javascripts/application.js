@@ -1,27 +1,16 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
-// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
-// GO AFTER THE REQUIRES BELOW.
-//
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-alert
-//= require twitter/bootstrap/bootstrap-modal
+//= require bootstrap-modalmanager
+//= require bootstrap-modal
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-dropdown
 //= require twitter/bootstrap/bootstrap-tooltip
+//= require twitter/bootstrap/bootstrap-tab
 //= require twitter/bootstrap/bootstrap-popover
 //= require bootstrap-typeahead
 //= require jquery.tagsinput.min
-//= require bootstrap-modalmanager
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require handlebars
@@ -106,7 +95,7 @@ $(function(){
     e.preventDefault();
     var $this = $(this);
 
-    $.get($this.attr('href'), { "no_layout" : 1, "modal" : 1 }, function(data){
+    $.get($this.attr('href'), { "modal" : 1 }, function(data){
       var template = Handlebars.compile( $("#plain-modal-template").html()),
           $modal = $( $.trim(template({ "title" : new Handlebars.SafeString(($this.attr("title")||$this.attr("data-original-title")||$this.html())), "body" : new Handlebars.SafeString(data) }) ));
 
@@ -122,8 +111,12 @@ $(function(){
   });
 
   $(document).on('ajax:success', 'a.like', function(data, status, xhr){
-    $(this).addClass('disable').parents('.heart-overlay').addClass('liked');
-    var $counter = $(this).find(".likes-count");
+    var $this = $(this);
+    $this.addClass('disable').parents('.heart-overlay').addClass('liked');
+    var $counter = $this.find(".likes-count");
+    $this.removeAttr('data-method');
+    $this.removeAttr('data-remote');
+    $this.attr('href', 'javascript:void(1)');
     $counter.html(parseInt($counter.html(), 10)+1);
 
   });

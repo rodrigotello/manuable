@@ -2,10 +2,6 @@ class HomeController < ApplicationController
   def index
     @products = Product.feed(current_user).page( params[:page] ).per( params[:per_page] || 5 )
 
-    # if user_signed_in?
-    #   @products = @products.with_like(current_user).limit(50)
-    # end
-
     if params[:c].present?
       @products = @products.where(category_id: params[:c])
     end
@@ -20,5 +16,9 @@ class HomeController < ApplicationController
                 })
       }
     end
+  end
+
+  def about
+
   end
 end

@@ -11,6 +11,9 @@
                 Siguiendo
             - else
               = link_to '<i class="icon-plus"></i> Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow', class: 'btn btn-mini'
+      - unless user_signed_in?
+        = link_to '<i class="icon-plus"></i> Seguir'.html_safe, "#sign_popup", "data-toggle" => "modal", id: 'follow', class: 'btn btn-mini'
+
         %h3.user-name
           = @user.name
         .occupation

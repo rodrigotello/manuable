@@ -6,54 +6,64 @@
           = link_to image_tag("logo.svg"), root_path, class: 'brand'
         .span9
           %ul.nav
+            %li.divider-vertical
             %li
-              %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Descubre
-              %ul.dropdown-menu{ :role => "menu"}
-                - Category.all.each do |category|
-                  %li{ class: params[:c].to_i == category.id ? 'active' : '' }
-                    = link_to category.name, root_path(c: category.id)
+              .dropdown
+                %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Descubre
+                %ul.dropdown-menu{ :role => "menu"}
+                  - Category.all.each do |category|
+                    %li{ class: params[:c].to_i == category.id ? 'active' : '' }
+                      = link_to category.name, root_path(c: category.id)
+            %li.divider-vertical
             - if user_signed_in?
               %li
                 = link_to 'Comparte', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
             - else
               %li
                 = link_to 'Regístrate', "#sign_popup", "data-toggle" => "modal", :role => "button"
+            %li.divider-vertical
           %ul.nav.pull-right
             / %li
             /   = link_to "<i class='icon-search'></i>".html_safe, "#"
-            %li.divider-vertical
+            / %li.divider-vertical
             - if !user_signed_in?
               %li#login-options
-                %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Entrar
-                %ul.dropdown-menu
-                  %li
-                    = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook)
-                    / = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
-                    = link_to "<i class='icon-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
-                    = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_session_path(:user), rel: "modal"
-            - else
-              %li#notifications
-                %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
-                  .badge.badge-important#notifications_count
-                    = current_user.notifications.unread.count
-                %ul.dropdown-menu
-                  - current_user.notifications.each do |notification|
+                .dropdown
+                  %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Entrar
+                  %ul.dropdown-menu
                     %li
-                      = link_to product_path(notification.product), id: dom_id(notification) do
-                        = image_tag notification.author.avatar.url(:small)
-                        %span.user-name
-                          = notification.author.first_name
+                      = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook)
+                      / = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
+                      = link_to "<i class='icon-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
+                      = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_session_path(:user), rel: "modal"
+            - else
+              / %li#notifications
+              /   .dropdown
+              /     %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
+              /       #notifications_count{ class: current_user.notifications.unread.count > 0 ? 'active' : '' }
+              /         %i.icon-bell-alt
+              /     %ul.dropdown-menu
+              /       - current_user.notifications.each do |notification|
+              /         %li
+              /           = link_to product_path(notification.product), id: dom_id(notification) do
+              /             = image_tag notification.sender.avatar.url(:thumb)
+              /             %span.user-name
+              /               = notification.sender.first_name
               %li#current-user-options
-                %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
-                  = image_tag current_user.avatar.url(:small).to_s
-                  %span
-                    &nbsp;&nbsp;
-                    = current_user.first_name
-                %ul.dropdown-menu
-                  %li
-                    = link_to "<i class='icon-user'></i> Mi perfil".html_safe, user_path(current_user)
-                  %li.divider
-                  %li
-                    = link_to "<i class='icon-cogs'></i> Preferencias".html_safe, edit_my_profile_path(f: 's')
-                  %li
-                    = link_to "<i class='icon-off'></i> Salir".html_safe, destroy_user_session_path, method: :delete
+                .dropdown
+                  %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
+                    = image_tag current_user.avatar.url(:small).to_s
+                    %span
+                      &nbsp;&nbsp;
+                      = current_user.first_name
+                  %ul.dropdown-menu
+                    %li
+                      = link_to "<i class='icon-user'></i> Mi perfil".html_safe, user_path(current_user)
+                    %li.divider
+                    %li
+                      = link_to "<i class='icon-cogs'></i> Preferencias".html_safe, edit_my_profile_path(f: 's')
+                    %li
+                      = link_to "<i class='icon-question'></i> Ayuda".html_safe, '/about'
+                    %li.divider
+                    %li
+                      = link_to "<i class='icon-off'></i> Salir".html_safe, destroy_user_session_path, method: :delete

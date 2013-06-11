@@ -2,7 +2,7 @@
   .activities{id: "#{params[:controller]}-#{params[:action]}-feed"}
     = render partial: '/products/create', collection: products, as: :product, locals: local_assigns, spacer_template: '/products/divider'
     - content_for :script do
-      feedPagination('##{params[:controller]}-#{params[:action]}-feed', #{products.total_pages}, #{params[:page]||1}, '#{request.path}' );
+      feedPagination('##{params[:controller]}-#{params[:action]}-feed', #{products.total_pages}, #{params[:page]||1}, '#{request.path}', #{raw request.query_parameters.except(['controller', 'action', 'page']).to_json} );
 - else
   = render partial: '/products/divider'
   = render partial: '/products/create', collection: products, as: :product, locals: local_assigns, spacer_template: '/products/divider'

@@ -11,6 +11,8 @@
  *= require bootstrap_and_overrides
  *= require prefixed-props
  *= require datepicker
+ *= require font-awesome.min
+ *= require bootstrap-modal
  *= require_self
  *= require_tree .
  */
@@ -22,7 +24,7 @@ body
   /* For footer */
   padding-bottom: 30px
   background: #FFF
-
+  font-family: 'Open Sans', sans-serif
 
 #footer
   background: #ffffff
@@ -50,3 +52,5 @@ body
     text-decoration: none
 .top-spacer
   margin-top: 35px
+#notifications_count.active
+  color: #c00

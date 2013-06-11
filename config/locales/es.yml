@@ -39,10 +39,10 @@ es:
         media: Fotos
       user:
         name: Nombre
-        nickname: Alias
+        nickname: Haz página en manuable
         email: Correo
         password: "Contraseña"
-        password_confirmation: Confirmación
+        password_confirmation: Confirmar contraseña
         current_password: Contraseña actual
         remember_me: Recordar
         city_id: Ciudad

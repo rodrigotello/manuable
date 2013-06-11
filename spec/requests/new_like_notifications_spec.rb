@@ -14,11 +14,12 @@ describe "LikeNotifications" do
 
     visit root_path
 
-    page.find('#notifications_count').should have_content('2')
+    page.should have_css('#notifications_count.active')
+
     user_to_notificate.notifications.each do |notification|
       element = page.find('#notifications').find("#notification_#{notification.id}")
-      element.should have_xpath("//img[@src=\"#{notification.author.avatar.url(:small)}\"]")
-      element.find('.user-name').should have_content(notification.author.first_name)
+      element.should have_xpath("//img[@src=\"#{notification.sender.avatar.url(:small)}\"]")
+      element.find('.user-name').should have_content(notification.sender.first_name)
       element.should have_xpath("//a[@href=\"#{product_path(notification.product)}\"]")
     end
   end
