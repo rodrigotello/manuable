@@ -8,7 +8,11 @@ class Product < ActiveRecord::Base
   belongs_to :category
   has_many :attachments, as: :attachable, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :likers, through: :like, source: :user
+  has_many :likers, through: :likes, source: :user do
+    def recent_first
+      order('likes.created_at DESC')
+    end
+  end
 
   accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }, limit: 4
 

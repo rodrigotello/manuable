@@ -21,7 +21,7 @@
     /       %i.icon-shopping-cart
     .product-picture
       %div{ id: "heart-overlay-#{dom_id product}", class: "heart-overlay#{liked ? ' liked' : ''}" }
-        .fog
+        = link_to '', product_path(product), class: 'fog'
         - if user_signed_in?
           - if !liked
             = link_to( "<span class='likes-count'>#{product.likes_count||0}</span>".html_safe, like_product_path(product, format: 'json'), method: :post, class: "like", remote: true)
