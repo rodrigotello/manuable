@@ -1,10 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @products = Product.feed(current_user).page( params[:page] ).per( params[:per_page] || 5 )
+    @products = Product.filter(params).feed(current_user).page( params[:page] ).per( params[:per_page] || 5 )
 
-    if params[:c].present?
-      @products = @products.where(category_id: params[:c])
-    end
     respond_to do |format|
       format.html {}
       format.json {

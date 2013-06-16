@@ -5,4 +5,10 @@ class Notification < ActiveRecord::Base
   belongs_to :product
 
   scope :unread, where(read: false)
+  scope :recent_first, order('notifications.created_at DESC')
+
+  def read!
+    update_attribute :read, true
+
+  end
 end

@@ -124,6 +124,18 @@
     position: absolute
     z-index: 1
     -webkit-transition: all 0.4s ease-in-out
+  .fbshare
+    position: absolute
+    display: block
+    top: 20px
+    right: 20px
+    visibility: hidden
+    z-index: 2
+    font-size: 30px
+    text-decoration: none
+    color: #006E8B
+    &:hover
+      color: #44BAD9
   .like
     background-image: url('/assets/like.png')
     background-repeat: no-repeat
@@ -156,10 +168,12 @@
     .like
       bottom: 50%
       visibility: visible
+    .fbshare
+      visibility: visible
 
 .heart-overlay.liked
-  .fog
-    display: none
+  // .fog
+  //   display: none
   .like
     bottom: 20px
     right: 20px

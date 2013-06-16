@@ -1,4 +1,16 @@
 module ProductsHelper
+
+  def product_metadata product
+    metas = ""
+    metas << content_tag( "meta", nil, property: 'og:title', content: "#{sanitize(product.user.name)}#{ product.name.present? ? " - " + sanitize(product.name) : '' }")
+    metas << content_tag( "meta", nil, property: 'og:site_name', content: "Manuable")
+    metas << content_tag( "meta", nil, property: 'og:type', content: "website")
+    metas << content_tag( "meta", nil, property: 'og:url', content: product_url(product))
+    metas << content_tag( "meta", nil, property: 'og:description', content: sanitize(product.about))
+    metas << content_tag( "meta", nil, property: 'og:image', content: product.attachments.first.attachment.url(:xlarge)) if product.attachments.first.present?
+    metas.html_safe
+  end
+
   def product_image_tag(attachment, size=:small, html_options={})
     if attachment.new_record?
       image_tag "", { class: "product-image product-image-#{size}", data: { src: attachment.attachment.url(size) } }.merge(html_options)
@@ -8,7 +20,7 @@ module ProductsHelper
   end
 
   def hashify prop_list
-    prop_list.map { |t| "##{t}" }
+    prop_list.map { |t| link_to("##{t}", root_path(tags: t)) }.join(" ").html_safe
   end
 
   def heart_overlay product, liked

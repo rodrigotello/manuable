@@ -52,5 +52,32 @@ body
     text-decoration: none
 .top-spacer
   margin-top: 35px
-#notifications_count.active
-  color: #c00
+
+#notifications
+  a.dropdown-toggle
+    // padding: 10px
+    i.icon-bell-alt
+      color: #90E4FF
+      text-shadow: -1px 0px 0px #0087B3
+    &:hover
+      i.icon-bell-alt
+        color: #fff
+  .dropdown-menu
+
+  .notification
+    img
+      width: 30px
+  .notification.read
+    background: #f5f5f5
+    color: #888
+    &:hover
+      color: #333
+#notifications.active
+  a.dropdown-toggle
+    i.icon-bell-alt
+      color: #b94a48
+      text-shadow: -1px 0px 0px #550200
+    &:hover
+      i.icon-bell-alt
+        color: #b94a48
+

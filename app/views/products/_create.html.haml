@@ -20,8 +20,18 @@
     /     %h1
     /       %i.icon-shopping-cart
     .product-picture
-      = heart_overlay product, liked
+      %div{ id: "heart-overlay-#{dom_id product}", class: "heart-overlay#{liked ? ' liked' : ''}" }
+        .fog
+        - if user_signed_in?
+          - if !liked
+            = link_to( "<span class='likes-count'>#{product.likes_count||0}</span>".html_safe, like_product_path(product, format: 'json'), method: :post, class: "like", remote: true)
+          - else
+            = link_to( "<span class='likes-count'>#{product.likes_count||0}</span>".html_safe, "javascript:void(1)", class: "like")
+        - else
+          = link_to( "<span class='likes-count'>#{product.likes_count||0}</span>".html_safe, "#sign_popup", "data-toggle" => "modal", class: "like")
+        = link_to "<i class='icon-share-sign'></i>".html_safe, "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(product)}", target: "_blank", class: 'fbshare'
       = image_tag product.attachments.first.attachment.url :xlarge
+
     .product-description
       .product-name
         %h4
@@ -29,7 +39,7 @@
       .product-about
         = product.about
       .product-tags
-        = hashify(product.prop.collect(&:name)).join(", ")
+        = hashify(product.prop_list)
     .product-pictures
       - if product.on_sale? && product.attachments.length > 1
         .thumbnail-box.clearfix

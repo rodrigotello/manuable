@@ -35,6 +35,18 @@ class Product < ActiveRecord::Base
 
   }
 
+  def self.filter params={}
+    query = scoped
+    if params[:c].present?
+      query = query.where(category_id: params[:c])
+    end
+
+    if params[:tags].present?
+      query = query.tagged_with(params[:tags])
+    end
+    query
+  end
+
   def ready?
     name.present? && attachments.count > 0 && category.present?
   end

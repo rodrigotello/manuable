@@ -34,6 +34,7 @@ Manuable::Application.routes.draw do
     resources :products do
       resources :attachments
     end
+    resources :notifications, only: [:show, :update]
   end
 
   resources :categories, only: [:show, :index]

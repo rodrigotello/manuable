@@ -91,6 +91,10 @@ $(function(){
   $('.datepicker').datepicker({ 'format' : 'yyyy/mm/dd' });
   $('.tag-input').tagsInput({ defaultText: "Propiedades", width: '98%', height: 'auto' });
 
+  $(document).on('click', 'a.fbshare', function(e){
+
+    window.open($(this).attr('href'), 'sharer', 'width=626,height=436');
+  });
   $(document).on('click', 'a[rel*=modal]', function(e){
     e.preventDefault();
     var $this = $(this);
