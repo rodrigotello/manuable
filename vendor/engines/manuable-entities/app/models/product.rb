@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :category
+  belongs_to :notification, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :likers, through: :likes, source: :user do

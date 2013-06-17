@@ -19,6 +19,7 @@ module ApplicationHelper
     metas << content_tag( "meta", nil, property: 'og:url', content: 'http://manuable.com')
     metas << content_tag( "meta", nil, property: 'og:description', content: 'Descubre y Comparte productos hechos a mano')
     metas << content_tag( "meta", nil, property: 'og:image', content: 'http://manuable.com/assets/logo.png')
+
     metas.html_safe
   end
 end
