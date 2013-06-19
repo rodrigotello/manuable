@@ -7,7 +7,7 @@ module ProductsHelper
     metas << content_tag( "meta", nil, property: 'og:type', content: "website")
     metas << content_tag( "meta", nil, property: 'og:url', content: product_url(product))
     metas << content_tag( "meta", nil, property: 'og:description', content: sanitize(product.about))
-    metas << content_tag( "meta", nil, property: 'og:image', content: product.attachments.first.attachment.url) if product.attachments.first.present?
+    metas << content_tag( "meta", nil, property: 'og:image', content: product.attachments.first.attachment.url(:xxlarge)) if product.attachments.first.present?
     metas.html_safe
   end
 
