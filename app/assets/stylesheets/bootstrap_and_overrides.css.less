@@ -24,7 +24,18 @@
 #login-options .dropdown-menu > li > a:hover { background-image: none; background-color: transparent; color: #555; }
 #current-user-options .dropdown-toggle { padding: 5px; }
 #current-user-options img { margin-left: 7px; height: 30px;max-width: 30px; vertical-align: bottom; }
+body { padding-top: 60px; }
+#social-plugins{
+  position: fixed;
+  right: 100px;
+}
 
+@media (max-width: 979px) and (min-width: 768px){
+  body {
+    padding-top: 0;
+  }
+  #social-plugins{ top: 60px; right:10px; position: absolute; }
+}
 body > .container { width: 800px; }
 .navbar-inner {
   color: #ffffff;
@@ -96,3 +107,7 @@ body > .container { width: 800px; }
 .help-line {
   font-size: 12px;
 }
+
+footer { position: fixed; bottom: 20px; right: 100px;}
+footer a { font-size: 12px; background: #8DDDF0; opacity: 0.8; display: block; padding: 2px 5px; border-radius: 5px;color:#fff; font-weight: bold; }
+footer a:hover { text-decoration: none; }

@@ -27,6 +27,7 @@
       = bootstrap_flash
       = yield
       %footer
+        = link_to 'Acerca de Manuable', '/about', rel: 'modal'
     = javascript_include_tag "application"
 
     - if user_signed_in?
