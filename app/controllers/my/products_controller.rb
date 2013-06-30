@@ -10,13 +10,10 @@ class My::ProductsController < ApplicationController
   def new
     @my_section = "new_product"
     @product = current_user.products.new(params[:product])
-    if @product.on_sale?
-      if @product.attachments.length < 4
-        (4 - @product.attachments.length).times { @product.attachments.build }
-      end
-    else
-      @product.attachments.build if @product.attachments.length == 0
+    if @product.attachments.length < 4
+      (4 - @product.attachments.length).times { @product.attachments.build }
     end
+
   end
 
   def show

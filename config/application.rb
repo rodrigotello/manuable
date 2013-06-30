@@ -65,5 +65,11 @@ module Manuable
       g.test_framework :rspec, :views => false
       g.template_engine :haml
     end
+
+    config.before_configuration do
+      I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+      I18n.locale = :es
+      I18n.default_locale = :es
+    end
   end
 end

@@ -42,7 +42,7 @@
       .product-tags
         = hashify(product.prop_list)
     .product-pictures
-      - if product.on_sale? && product.attachments.length > 1
+      - if product.attachments.length > 1
         .thumbnail-box.clearfix
           - product.attachments[1, 3].each do |attachment|
             .picture-thumbnail

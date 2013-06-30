@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
 
   attr_accessible :about, :made_by, :name, :price,
                   :attachments_attributes, :category_id, :on_sale, :amount, :prop_list
+  attr_accessor :made_by
   acts_as_taggable_on :prop
 
   belongs_to :user
