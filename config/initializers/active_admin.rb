@@ -79,7 +79,7 @@ ActiveAdmin.setup do |config|
   #
   # Default:
   config.logout_link_path = :destroy_admin_user_session_path
-
+  config.before_filter :set_admin_locale
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
   #
@@ -119,7 +119,7 @@ ActiveAdmin.setup do |config|
 
 
   # == Controller Filters
-config.skip_before_filter :authenticate_user!  #
+  config.skip_before_filter :authenticate_user!  #
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #

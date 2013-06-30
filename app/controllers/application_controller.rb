@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def set_admin_locale
+    I18n.locale = :en
+  end
+
   def beta
     session[:beta] ||= params[:beta]
   end
