@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id,
                   :address, :zipcode, :occupation, :about, :birthday
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -27,6 +28,7 @@ class User < ActiveRecord::Base
 
   after_create :notify_signup
   before_create :grab_avatar
+  after_update :crop_avatar
 
   def like! product
     likes.where(product_id: product.id).first_or_create
@@ -53,6 +55,11 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def crop_avatar
+    avatar.recreate_versions! if crop_x.present?
+  end
+
   def grab_avatar
     if avatar.blank?
       self.remote_avatar_url = "http://avatar.3sd.me/100"

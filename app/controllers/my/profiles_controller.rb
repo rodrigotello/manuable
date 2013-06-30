@@ -9,7 +9,14 @@ module My
     end
 
     def edit
-      @my_section = params[:f] == 's' ? "name" : 'password'
+      case params[:f]
+      when 's'
+        @my_section = "name"
+      when 'p'
+        @my_section = 'password'
+      when 'a'
+        @my_section = 'picture'
+      end
     end
 
     def update

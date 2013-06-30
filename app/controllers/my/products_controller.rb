@@ -32,10 +32,10 @@ class My::ProductsController < ApplicationController
       #   redirect_to edit_my_product_path(@product)
       # else
       # @product.create_activity :create, owner: current_user
-      redirect_to my_products_path
+      redirect_to @product
       # end
     else
-      redirect_to :back
+      render action: :new
     end
   end
 

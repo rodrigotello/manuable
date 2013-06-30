@@ -15,7 +15,7 @@ var ProductsNew = new function(){
           $input = $this.siblings('input');
         $input.click();
     });
-
+    $('.tag-input').tagsInput({ defaultText: "algodón, madera, rojo, acrílico, medidas", width: '98%', height: 'auto' });
     $(".new_product .attachment-product-drop input").change(function(e){
       var $this = $(this);
       $this.after($this.val().match(/[-_\w]+[.][\w]+$/i)[0].substring(0, 15));
@@ -52,11 +52,12 @@ var ProductsNew = new function(){
           $('#maker-error').fadeIn(700);
         }else{
           $('#maker-error').hide();
-          $this.siblings('input').prop('checked', true);
-          $("#product-sources").fadeOut(700);
-          setTimeout(function(){
-            $("#product-onsale-select").fadeIn(700);
-          }, 650);
+          window.location = $this.attr('href');
+          // $this.siblings('input').prop('checked', true);
+          // $("#product-sources").fadeOut(700);
+          // setTimeout(function(){
+          //   $("#product-onsale-select").fadeIn(700);
+          // }, 650);
         }
       });
 

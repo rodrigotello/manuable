@@ -40,6 +40,26 @@ var ProfilesEdit = new function(){
     }).on('typeahead:selected', function(e, datum){
       $('#user_city_id').val(datum.city.id);
     });
+
+    $('#croppable').Jcrop({
+      aspectRatio: 1,
+      setSelect: [0, 0, 300, 300],
+      onSelect: function(c){
+                  $('#user_crop_x').val(c.x);
+                  $('#user_crop_y').val(c.y);
+                  $('#user_crop_w').val(c.w);
+                  $('#user_crop_h').val(c.h);
+                },
+      onChange: function(coords){
+                  $('#crop-preview-wrapper').css({
+                    width: Math.round(100/coords.w * $('#croppable').width()) + 'px',
+                    height: Math.round(100/coords.h * $('#croppable').height()) + 'px',
+                    marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px',
+                    marginTop: '-' + Math.round(100/coords.h * coords.y) + 'px'
+                  });
+                }
+    });
+
   }
 };
 

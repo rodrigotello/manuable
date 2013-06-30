@@ -18,6 +18,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }, limit: 4
 
   # mount_uploader :attachment, AttachUploader # caching purpose
+  validates :name, :price, :amount, :about, presence: true
 
   scope :feed, lambda { |u|
     if u.present?

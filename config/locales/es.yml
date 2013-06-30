@@ -24,7 +24,7 @@ es:
         height: Altura
         width: Ancho
         depth: Profundidad
-        price: Precio
+        price: ¿Cuánto cuesta?
         available_items: Artículos disponibles
         available_at: Disponibilidad en
         on_demand: Contra pedido
@@ -40,7 +40,7 @@ es:
         media: Fotos
       user:
         name: Nombre
-        nickname: Haz página en manuable
+        nickname: Crea una página en Manuable
         email: Correo
         password: "Contraseña"
         password_confirmation: Confirmar contraseña
@@ -74,6 +74,14 @@ es:
               blank: no debe estar vació
               invalid: formato incorrecto
               taken: ya registrado
+        product:
+          attributes:
+            amount:
+              blank: al menos uno
+            about:
+              blank: Cuéntanos acerca de tu producto
+            name:
+              blank: Tu producto requiere un nombre en Manuable
   actions:
     sign_up: Regístrate
     sign_in: Entrar

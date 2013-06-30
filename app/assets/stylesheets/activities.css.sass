@@ -4,7 +4,6 @@
     background-size: 35px
   30%
     background-size: 30px
-    right: 45.15%
   60%
     background-size: 35px
   100%
@@ -50,7 +49,7 @@
       text-align: center
       position: absolute
       left: -85px
-      top: 20px
+      top: 0px
       line-height: 13px
       a
         color: #000
@@ -137,6 +136,23 @@
     color: #006E8B
     &:hover
       color: #44BAD9
+  .price
+    position: absolute
+    display: block
+    top: 20px
+    left: 20px
+    visibility: hidden
+    z-index: 2
+    font-size: 20px
+    text-decoration: none
+    font-weight: bold
+    color: #aaa
+    border-radius: 5px
+    padding: 3px
+    background: #006E8B
+    &:hover
+      color: #fff
+      background: #44BAD9
   .like
     background-image: url('/assets/like.png')
     background-repeat: no-repeat
@@ -170,6 +186,8 @@
       bottom: 50%
       visibility: visible
     .fbshare
+      visibility: visible
+    .price
       visibility: visible
 
 .heart-overlay.liked

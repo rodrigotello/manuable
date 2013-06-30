@@ -35,6 +35,10 @@
                 = link_to edit_my_profile_path(f: 's') do
                   %i{ class: "icon-cogs" }
                   Preferencias
+              %dd{ class: @my_section == "picture" ? 'active' : "" }
+                = link_to edit_my_profile_path(f: 'a') do
+                  %i{ class: "icon-picture" }
+                  Foto
               %dd{ class: @my_section == "password" ? 'active' : "" }
                 = link_to edit_my_profile_path(f: 'p') do
                   %i{ class: "icon-lock" }

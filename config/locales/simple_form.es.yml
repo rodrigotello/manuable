@@ -2,9 +2,13 @@ es:
   helpers:
     submit:
       create: Crear %{model}
+      product:
+        create: Empezar a vender
+        update: Guardar cambios
   simple_form:
-    creating: Creando
-    create: Crear
+    defaults:
+      creating: Creando
+      create: Crear
     buttons:
       cancel: Cancelar
       or: o
@@ -21,4 +25,6 @@ es:
       user:
         edit:
           state: 'Estado'
-
+      product:
+        new:
+          create: Empezar a vender

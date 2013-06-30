@@ -20,6 +20,8 @@
 //= require holder
 //= require jquery.ba-throttle-debounce.min
 //= require jquery-fileupload/basic
+//= require jquery.jcrop.min
+//= require jquery.inputmask.min
 //= require plugins
 //= require_tree .
 
@@ -32,6 +34,7 @@ $(function(){
   if( "object" === typeof window[page] && !window[page].initialized){
     window[page].init();
   }
+  $(":input").inputmask();
 
   // $('input[type=file]').fileupload({
   //   dropZone: $('#file-dropzone'),
@@ -89,7 +92,6 @@ $(function(){
   $("[data-toggle=tooltip], abbr").tooltip();
   $("select.go-chosen").chosen();
   $('.datepicker').datepicker({ 'format' : 'yyyy/mm/dd' });
-  $('.tag-input').tagsInput({ defaultText: "Propiedades", width: '98%', height: 'auto' });
 
   $(document).on('click', 'a.fbshare', function(e){
 

@@ -1,9 +1,5 @@
-/ %h4 1.- Nombre del Producto
-/ %h6 Para agregar un nuevo producto complete la información siguiente y guarde sus cambios.
-/ %br
 = simple_nested_form_for [:my, @product], html: { }, validate: true do |f|
-  - if f.object.on_sale?
-    = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Cómo se llama tu producto?", label: "&nbsp;", wrapper: :control_row
+  = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Cómo se llama tu producto?", wrapper: :control_row
   = f.input :media do
     #file-dropzone.clearfix
       .row-fluid
@@ -18,22 +14,17 @@
         -# unless f.object.attachments.count >= 4
           =# f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
 
-  = f.input :category_id, collection: Category.all, prompt: "Seleccionar", :label_method => :name, :value_method => :id, input_html: { class: 'span12', multiple: 'true', size: 1 }, label: "¿En cuál de estas categorías entra?", wrapper: :control_row
-  - if f.object.on_sale?
-    .row-fluid
-      .span6
-        %p
-          ¿Cuánto cuesta?
-        .input-prepend.input-append
-          %span.add-on $
-          %input#product_price.text-right.input-small{:name => "product[price]", :type => "text"}
-          %span.add-on .00 MXN
-      .span6
-        %p
-        = f.input :amount, collection: ["Sobre Pedido", "1", "2", "3", "4","5", "Muchos"], prompt: "Seleccionar", label: "¿Cuántos tienes?", input_html: {:class => "dropdown"}
+  = f.input :category_id, collection: Category.all, :label_method => :name, :value_method => :id, input_html: { class: 'span12', multiple: 'true', size: 1 }, label: "¿En cuál de estas categorías entra?", wrapper: :control_row
+  .row-fluid
+    .span6
+      = f.input :price, :wrapper => :prepend do
+        %span.add-on $
+        = f.input_field :price, class: 'input-small'
+    .span6
+      = f.input :amount, prompt: "Seleccionar", label: "¿Cuántos tienes?", input_html: {:class => "dropdown"}
 
   = f.input :prop_list, label: '¿Qué propiedades tiene? (Máximo 10)', input_html: { class: 'span12 tag-input' }, wrapper: :control_row
 
-  = f.input :about, input_html: { rows: 3, class: 'span12' }, label: "Cuentanos sobre tu producto", wrapper: :control_row
+  = f.input :about, input_html: { rows: 3, class: 'span12' }, label: "Está hecho con:", wrapper: :control_row
 
   = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)

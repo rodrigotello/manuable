@@ -6,11 +6,11 @@
     = form_for [:my, Product.new], url: new_my_product_path, method: :get do |f|
       #product-sources
         %p
-          Lo que quiero compartir es&hellip;
+          Lo que quiero vender es&hellip;
         .row-fluid
           .span4
             = f.radio_button :made_by, 'me'
-            = link_to "#", id: "btt_original", class: "product-source" do
+            = link_to new_my_product_path, id: "btt_original", class: "product-source" do
               %i{ class: 'icon-ok' }
               %br
               Hecho por mi
@@ -21,7 +21,7 @@
               %br
           .span4
             = f.radio_button :made_by, 'me-restore'
-            = link_to "#", id: "btt_repaired", class: "product-source" do
+            = link_to new_my_product_path, id: "btt_repaired", class: "product-source" do
               %i{ class: 'icon-ok' }
               %br
               Restaurado por
@@ -41,33 +41,33 @@
               hecho por otra
               %br
               compañía
-      #product-onsale-select
-        %p
-          Comparte fotos de tus productos
-          = f.check_box :on_sale
-          = hidden_field_tag :editing, '1'
-          .row-fluid
-            .span6
-              = link_to "#", id: "bragging", class: "product-build" do
-                %br
-                Estoy
-                %br
-                haciendo
-              %span.expl
-                En cualquier momento del desarrollo
-            .span6
-              = link_to "#", id: "onsale", class: "product-build" do
-                %br
-                Estoy
-                %br
-                vendiendo
-              %span.expl
-                Producto terminado
+      / #product-onsale-select
+      /   %p
+      /     Comparte fotos de tus productos
+      /     = f.check_box :on_sale
+      /     = hidden_field_tag :editing, '1'
+      /     .row-fluid
+      /       .span6
+      /         = link_to "#", id: "bragging", class: "product-build" do
+      /           %br
+      /           Estoy
+      /           %br
+      /           haciendo
+      /         %span.expl
+      /           En cualquier momento del desarrollo
+      /       .span6
+      /         = link_to "#", id: "onsale", class: "product-build" do
+      /           %br
+      /           Estoy
+      /           %br
+      /           vendiendo
+      /         %span.expl
+      /           Producto terminado
   .modal-footer
     #maker-error
       Lo sentimos!
       %br
-      Manuable es un sitio para compartir productos hechos por ti.
+      Manuable es un sitio para vender productos hechos por ti.
 
 %script
   \ if(typeof ProductsNew !== "undefined" && !window['ProductsNew'].initialized) {ProductsNew.init();}

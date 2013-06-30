@@ -17,7 +17,7 @@
             %li.divider-vertical
             - if user_signed_in?
               %li
-                = link_to 'Comparte', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
+                = link_to 'Vende', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
             - else
               %li
                 = link_to 'Regístrate', "#sign_popup", "data-toggle" => "modal", :role => "button"
@@ -62,7 +62,7 @@
                       = link_to "<i class='icon-user'></i> Mi perfil".html_safe, user_path(current_user)
                     %li.divider
                     %li
-                      = link_to "<i class='icon-cogs'></i> Preferencias".html_safe, edit_my_profile_path(f: 's')
+                      = link_to "<i class='icon-cogs'></i> Mi información".html_safe, edit_my_profile_path(f: 's')
                     %li
                       = link_to "<i class='icon-question'></i> Ayuda".html_safe, '/about'
                     %li.divider
