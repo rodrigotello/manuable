@@ -79,7 +79,9 @@ ActiveAdmin.setup do |config|
   #
   # Default:
   config.logout_link_path = :destroy_admin_user_session_path
-  config.before_filter :set_admin_locale
+  config.before_filter do
+    I18n.locale = 'en'
+  end
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
   #
