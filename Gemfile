@@ -9,7 +9,7 @@ gem "draper"
     gem 'puma', :github => 'puma/puma'
     gem 'newrelic_rpm'
   end
-
+  gem "jquery-rails", "2.3.0"
 # attachments
   gem 'carrierwave'
   gem "fog", "~> 1.3.1"
@@ -33,7 +33,6 @@ gem "draper"
   gem "cancan"
 
 # dev tools
-  gem 'jquery-rails'
   gem "haml"
   gem "haml-rails"
   gem "twitter-bootstrap-rails"

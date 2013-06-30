@@ -1,4 +1,5 @@
 ActiveAdmin.register Category do
+  menu priority: 3
   # scope :masters, :default => true do |categories|
   #   categories.masters
   # end
