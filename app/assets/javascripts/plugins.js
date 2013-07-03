@@ -6,7 +6,8 @@ var feedPagination = function(feedid, total_pages, page, url, params){
 
   var $feed = $(feedid),
       scrollCallback = function(e){
-        if( $(window).scrollTop() >= $(document).height() / 2 - $(window).height() ){ // half page
+        console.log($(window).scrollTop(), $(document).height() - 1000 )
+        if( $(window).scrollTop() >= $(document).height() - 1000){ // half page
           if ( !$feed.data('loading') && $feed.data('page') < total_pages ){
             var next_page = $feed.data('page') + 1;
             $feed.data('page', next_page);

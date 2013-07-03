@@ -46,4 +46,4 @@
         .thumbnail-box.clearfix
           - product.attachments[1, 3].each do |attachment|
             .picture-thumbnail
-              = image_tag attachment.attachment.url(:medium)
+              = div_image attachment.attachment.url(:medium), class: 'product-image-medium'

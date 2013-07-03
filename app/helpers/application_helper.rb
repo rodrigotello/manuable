@@ -22,4 +22,11 @@ module ApplicationHelper
 
     metas.html_safe
   end
+
+  def div_image *args
+    options = args.extract_options!
+    options['class'] = "div-image #{options['class']||options[:class]}"
+    options['style'] = "background-image: url(#{args.shift});#{options['style']||options[:style]}"
+    content_tag :div, nil, options
+  end
 end
