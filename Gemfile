@@ -9,6 +9,7 @@ gem "draper"
     gem 'puma', :github => 'puma/puma'
     gem 'newrelic_rpm'
   end
+  gem 'activemerchant'
   gem "jquery-rails", "2.3.0"
 # attachments
   gem 'carrierwave'
@@ -46,6 +47,7 @@ gem "draper"
   gem 'quiet_assets'
 
 gem 'acts-as-taggable-on'
+gem 'daemons'
 gem "activeadmin"
 gem "meta_search", ">= 1.1.0.pre"
 gem "capistrano", :require => false
