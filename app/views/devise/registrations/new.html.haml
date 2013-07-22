@@ -1,7 +1,8 @@
 = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), validate: true) do |f|
   = f.error_notification
   .form-inputs
-    = f.input :email, :autofocus => true, :validate => { presence: true, uniqueness: false }
+    = f.input :name, :autofocus => true
+    = f.input :email, :validate => { presence: true, uniqueness: false }
     = f.input :password, :validate => true
     = f.input :password_confirmation, :validate => true
   .form-actions

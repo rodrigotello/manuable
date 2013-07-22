@@ -1,11 +1,11 @@
 class CreateConversations < ActiveRecord::Migration
   def change
     create_table :conversations do |t|
-      t.string :body, length: 1000
+      t.text :body
       t.integer :from_id
       t.integer :to_id
       t.integer :unread_by_id
-      t.string :last_message, length: 1000
+      t.text :last_message
 
       t.timestamps
     end

@@ -7,6 +7,7 @@ class Conversation < ActiveRecord::Base
   scope :for, lambda { |uid| where{ (from_id == uid) | (to_id == uid) } }
   validates :from_id, :to_id, :body, presence: true
   before_validation :setups
+  after_create :deliver_notification
 
   def read! user
     update_attribute :unread_by_id, nil if unread_by_id == user.id
@@ -31,5 +32,9 @@ class Conversation < ActiveRecord::Base
       write_attribute :unread_by_id, to_id
       write_attribute :last_message, body
     end
+  end
+
+  def deliver_notification
+    ConversationMailer.new_conversation(self).deliver
   end
 end

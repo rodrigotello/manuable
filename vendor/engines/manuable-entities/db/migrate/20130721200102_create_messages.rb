@@ -2,7 +2,7 @@ class CreateMessages < ActiveRecord::Migration
   def change
     create_table :messages do |t|
       t.integer :from_id
-      t.string :body, length: 1000
+      t.text :body
       t.integer :conversation_id
 
       t.timestamps

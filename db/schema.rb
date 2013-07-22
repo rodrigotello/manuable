@@ -106,11 +106,11 @@ ActiveRecord::Schema.define(:version => 20130721200102) do
   add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
 
   create_table "conversations", :force => true do |t|
-    t.string   "body"
+    t.text     "body"
     t.integer  "from_id"
     t.integer  "to_id"
     t.integer  "unread_by_id"
-    t.string   "last_message"
+    t.text     "last_message"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(:version => 20130721200102) do
 
   create_table "messages", :force => true do |t|
     t.integer  "from_id"
-    t.string   "body"
+    t.text     "body"
     t.integer  "conversation_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
