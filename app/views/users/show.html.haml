@@ -46,7 +46,7 @@
                   = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
                 .media-body
                   = link_to u.name, u
-  .span9.text-center
+  .span7.text-center
     .btn-group{ 'data-toggle' => "buttons-radio" }
       = link_to 'Todo', '?', class: "btn #{ params[:f].blank? ? ' active' : ''}"
       = link_to 'Gustos', '?f=l', class: "btn#{ params[:f] == 'l' ? ' active' : ''}"
