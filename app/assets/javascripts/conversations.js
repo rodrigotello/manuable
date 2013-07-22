@@ -17,7 +17,7 @@ var ConversationsNew = new function(){
         prefetch: '/users.json',
         remote: '/users.json?q=%QUERY',
         template: [
-          '<img src="{{avatar}}" class="pull-left">',
+          '<img src="{{avatar}}" style="width: 25px" class="pull-left">',
           '<p class="repo-name">{{name}}</p>'
         ].join(''),
         engine: Hogan
