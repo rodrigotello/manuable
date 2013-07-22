@@ -30,6 +30,26 @@ class User < ActiveRecord::Base
   before_create :grab_avatar
   after_update :crop_avatar
 
+  def as_json options={}
+    {
+      id: id,
+      name: name,
+      nickname: nickname,
+      avatar: avatar.url(:small)
+    }
+  end
+
+  def as_typeahead_json options={}
+    {
+      id: id,
+      name: name,
+      value: name,
+      nickname: nickname,
+      avatar: avatar.url(:small),
+      profileImageUrl: avatar.url(:small)
+    }
+  end
+
   def like! product
     likes.where(product_id: product.id).first_or_create
   end
@@ -54,6 +74,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def conversations
+    userid = id
+    Conversation.where { (from_id == userid) | (to_id == userid) }
+  end
   private
 
   def crop_avatar

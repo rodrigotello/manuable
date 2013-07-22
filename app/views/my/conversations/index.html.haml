@@ -1,0 +1,6 @@
+.row-fluid
+  .span3
+    = render partial: 'conversation_list', locals: { current_conversation: @last_conversation }
+  .span7
+    -if @last_conversation
+      = render partial: 'conversation', locals: { conversation: @last_conversation }

@@ -31,6 +31,9 @@ Manuable::Application.routes.draw do
 
   namespace :my do
     resource :profile, except: :create
+    resources :conversations do
+      resources :messages
+    end
     resources :products do
       resources :attachments
     end

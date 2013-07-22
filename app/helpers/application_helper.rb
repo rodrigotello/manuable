@@ -1,4 +1,21 @@
 module ApplicationHelper
+  def aware_date date, &block
+    if date.year == DateTime.now.year
+      if date.day == DateTime.now.day && date.month == DateTime.now.month
+        date_output = I18n.l(date, :format => :time)
+      else
+        date_output = I18n.l(date, :format => :day_month)
+      end
+    else
+      date_output = I18n.l(date, :format => :month_year)
+    end
+    if block_given?
+      capture(date_output, &block)
+    else
+      date_output
+    end
+  end
+
   def for_logging_user_only &block
     if user_signed_in?
       capture(&block)

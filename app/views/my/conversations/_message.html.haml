@@ -1,0 +1,9 @@
+%li.message
+  .media
+    = image_tag message.from.avatar.url(:thumb), class: 'pull-left media-object'
+    .media-body
+      .time= aware_date(message.created_at)
+      %h4.media-body
+        = message.from.name
+      .media
+        = message.body

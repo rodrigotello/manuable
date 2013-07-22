@@ -26,9 +26,18 @@ Manuable::Application.configure do
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => "www.manuable.com" }
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "cesar@letwrong.com",
+    :password  => "bSskXYRHVB577XkXjkpPoA", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'letwrong.com', # your domain to identify your server when connecting
+  }
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 

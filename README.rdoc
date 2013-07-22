@@ -5,8 +5,8 @@ cc = ActiveMerchant::Billing::CreditCard.new number: '5204164299999999', first_n
 gateway.purchase(1000, cc, { order_id: '123456', description: 'cosas', billing_address: {address1: 'horacio', zip: '11560', phone:'15799155'} , email: 'cesar@letwrong.com'})
 
 
-Quitar validación en javascript
-Checar filtro de categoría
+DONE Quitar validación en javascript
+DONE Checar filtro de categoría
 
 Evento
   Crear perfil.
@@ -23,6 +23,6 @@ Mensajes
   1 <-> 1
 
 categorias
-  Mover categorias al lado izquierdo(listo)
-  debajo 'La comunidad'
-Cambiar like a fanpage
+  DONE Mover categorias al lado izquierdo(listo)
+  MISSINFO debajo 'La comunidad'
+DONE Cambiar like a fanpage

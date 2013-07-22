@@ -1,4 +1,5 @@
 class My::NotificationsController < ApplicationController
+  before_filter :authenticate_user!
   def update
   end
 

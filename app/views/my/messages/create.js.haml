@@ -1,0 +1,7 @@
+:plain
+  var $ul = $('##{dom_id @conversation} ul');
+  $ul.append('#{escape_javascript(render partial: '/my/conversations/message', locals: { message: @message }) }');
+  setTimeout(function(){
+    $ul.scrollTop($ul.height());
+  }, 100);
+  $('#message_body').val('');

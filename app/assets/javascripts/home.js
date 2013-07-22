@@ -4,6 +4,7 @@ var HomeIndex = new function(){
   self.init = function(){
     $('.want-learn').tooltip({placement: 'right'});
     $('.want-buy').tooltip({placement: 'right'});
+
   }
 };
 

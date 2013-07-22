@@ -20,7 +20,6 @@
 
 body
   /* For footer */
-  padding-bottom: 30px
   background: #FFF
   font-family: 'Open Sans', sans-serif
 
@@ -32,7 +31,13 @@ body
   position: fixed
   width: 100%
   bottom: 0
-
+#discover
+  width: 270px
+  margin-top: 30px
+  border: 1px solid #ddd
+  padding: 10px
+#discover.affix
+  top: 40px
 
 #footer .p
   font-size: 12px
@@ -42,6 +47,7 @@ body
   h1,h4
     text-align: center
     color: #808285
+
 #sign_popup
   a.login-service
     font-size: 100px
@@ -51,17 +57,16 @@ body
 .top-spacer
   margin-top: 35px
 
-#notifications
-  a.dropdown-toggle
-    // padding: 10px
-    i.icon-bell-alt
-      color: #90E4FF
-      text-shadow: -1px 0px 0px #0087B3
-    &:hover
-      i.icon-bell-alt
-        color: #fff
-  .dropdown-menu
-
+#notifications,#inbox
+  >a
+    box-shadow: none
+    background-color: transparent
+  i.icon-bell-alt, .icon-envelope-alt
+    color: #90E4FF
+    text-shadow: -1px 0px 0px #0087B3
+  &:hover
+    i.icon-bell-alt, .icon-envelope-alt
+      color: #fff
   .notification
     img
       width: 30px
@@ -70,13 +75,16 @@ body
     color: #888
     &:hover
       color: #333
-#notifications.active
-  a.dropdown-toggle
-    i.icon-bell-alt
+#notifications.active,#inbox.active
+  i.icon-bell-alt, .icon-envelope-alt
+    color: #b94a48
+    text-shadow: -1px 0px 0px #550200
+  &:hover
+    i.icon-bell-alt, .icon-envelope-alt
       color: #b94a48
-      text-shadow: -1px 0px 0px #550200
-    &:hover
-      i.icon-bell-alt
-        color: #b94a48
 .div-image
   background-repeat: no-repeat
+.box
+  padding: 20px
+.box.centered
+  text-align: center

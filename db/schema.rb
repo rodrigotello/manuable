@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130630074117) do
+ActiveRecord::Schema.define(:version => 20130721200102) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -105,6 +105,18 @@ ActiveRecord::Schema.define(:version => 20130630074117) do
   add_index "cities", ["name"], :name => "index_cities_on_name"
   add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
 
+  create_table "conversations", :force => true do |t|
+    t.string   "body"
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.integer  "unread_by_id"
+    t.string   "last_message"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "conversations", ["from_id", "to_id"], :name => "index_conversations_on_from_id_and_to_id"
+
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followee_id"
@@ -118,6 +130,16 @@ ActiveRecord::Schema.define(:version => 20130630074117) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "from_id"
+    t.string   "body"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "messages", ["conversation_id"], :name => "index_messages_on_conversation_id"
 
   create_table "notifications", :force => true do |t|
     t.integer  "from_id"

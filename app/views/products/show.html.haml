@@ -49,7 +49,7 @@
                   = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
                 .media-body
                   = link_to u.name, u
-  .span9.text-center
+  .span9
     - link_to "<i class='icon-share-sign'></i>".html_safe, "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(@product)}", target: "_blank", class: 'fbshare'
     = div_image @product.attachments.first.attachment.url(:xlarge), class: 'product-image-xlarge', 'data-medium' => @product.attachments.first.attachment.url(:medium)
     =# image_tag , class: 'product-image', 'data-medium' => @product.attachments.first.attachment.url(:medium)

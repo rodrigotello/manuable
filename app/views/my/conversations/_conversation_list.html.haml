@@ -1,0 +1,12 @@
+- current_conversation = nil unless local_assigns[:current_conversation]
+%ul#conversations.nav.nav-list
+  - @conversations.each do |conversation|
+    - css_class = []
+    - css_class << 'unread' if conversation.unread_by?(current_user)
+    - css_class << 'active' if current_conversation && current_conversation.id == conversation.id
+    %li{ class: css_class.join( ' ' ) }
+      = link_to my_conversation_path(conversation) do
+        = image_tag conversation.sender(current_user).avatar.url(:thumb), class: 'pull-left'
+        = conversation.name(current_user)
+.box.centered
+  = link_to "Nuevo mensaje", new_my_conversation_path, class: 'btn'

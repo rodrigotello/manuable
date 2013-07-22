@@ -1,0 +1,7 @@
+= div_for conversation do
+  %ul
+    = render partial: 'message', locals: { message: conversation }
+    = render partial: 'message', collection: conversation.messages
+  = simple_nested_form_for [:my, conversation, Message.new], html: { }, remote: true, validate: false do |f|
+    = f.input :body, input_html: { class: 'span12' }, required: false, as: :text, placeholder: "Escribe tu mensaje", wrapper: :control_row
+    = button_tag 'Enviar', type: 'submit', class: 'btn btn-primary pull-right'

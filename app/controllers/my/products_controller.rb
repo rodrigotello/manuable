@@ -1,4 +1,5 @@
 class My::ProductsController < ApplicationController
+  before_filter :authenticate_user!
   layout 'my'
   load_and_authorize_resource
 
@@ -23,14 +24,11 @@ class My::ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     @product.user_id = current_user.id
+    if @product.attachments.length < 4
+      (4 - @product.attachments.length).times { @product.attachments.build }
+    end
     if @product.save
-      # if params[:editing] == "1"
-      #   @product.attachments.build
-      #   redirect_to edit_my_product_path(@product)
-      # else
-      # @product.create_activity :create, owner: current_user
       redirect_to @product
-      # end
     else
       render action: :new
     end

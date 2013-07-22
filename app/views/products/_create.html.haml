@@ -30,7 +30,7 @@
         - else
           = link_to( "<span class='likes-count'>#{product.likes_count||0}</span>".html_safe, "#sign_popup", "data-toggle" => "modal", class: "like")
         = link_to "<i class='icon-share-sign'></i>".html_safe, "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(product)}", target: "_blank", class: 'fbshare'
-        = link_to number_to_currency(product.price), "javascript:void(1)", onclick: 'alert("Espéralo pronto")', class: 'price' if product.price.present?
+        = link_to number_to_currency(product.price), new_my_conversation_path(to: product.user_id),  class: 'price' if product.price.present?
       = image_tag product.attachments.first.attachment.url :xlarge
 
     .product-description

@@ -85,6 +85,7 @@ class AttachUploader < CarrierWave::Uploader::Base
 
   protected
     def image?(new_file)
+      return false unless new_file.content_type
       new_file.content_type.include? 'image'
     end
 end

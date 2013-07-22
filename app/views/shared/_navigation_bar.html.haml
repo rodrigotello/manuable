@@ -7,14 +7,6 @@
         .span9
           %ul.nav
             %li.divider-vertical
-            %li
-              .dropdown
-                %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Descubre
-                %ul.dropdown-menu{ :role => "menu"}
-                  - Category.all.each do |category|
-                    %li{ class: params[:c].to_i == category.id ? 'active' : '' }
-                      = link_to category.name, root_path(c: category.id)
-            %li.divider-vertical
             - if user_signed_in?
               %li
                 = link_to 'Vende', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
@@ -37,6 +29,9 @@
                       = link_to "<i class='icon-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
                       = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_session_path(:user), rel: "modal"
             - else
+              %li#inbox{ class: current_user.conversations.where(unread_by_id: current_user.id).count > 0 ? 'active' : '' }
+                %a{ href: my_conversations_path }
+                  %i.icon-envelope-alt
               %li#notifications{ class: current_user.notifications.unread.count > 0 ? 'active' : '' }
                 .dropdown
                   %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }

@@ -11,11 +11,21 @@ es:
     formats:
       default: "%b %d, %Y %H:%M"
       long: "%b %d, %Y %H:%M"
+      time: "%I:%M %p"
+      day_month: "%e %b"
+      month_year: "%B %Y"
+    am: "am"
+    pm: "pm"
   activerecord:
     models:
       product: Producto
       state: Estado
     attributes:
+      conversation:
+        to_id: Para
+        body: ''
+      message:
+        body: ''
       product:
         name: Nombre
         user_id: Artesano
@@ -64,6 +74,10 @@ es:
           one: "Ha habido 1 error:"
           other: "Han habido %{count} errores:"
       models:
+        conversation:
+          attributes:
+            body:
+              blank: no debe estar vació
         user:
           attributes:
             password:
@@ -78,6 +92,8 @@ es:
           attributes:
             amount:
               blank: al menos uno
+            price:
+              blank: no debe estar vació
             about:
               blank: Cuéntanos acerca de tu producto
             name:
