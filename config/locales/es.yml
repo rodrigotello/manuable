@@ -1,5 +1,9 @@
 es:
   date:
+    order:
+      - :day
+      - :month
+      - :year
     formats:
       default: "%b %d, %Y %H:%M"
       birthday: "%d de %B del %y"
@@ -19,8 +23,24 @@ es:
   activerecord:
     models:
       product: Producto
+      event: Evento
       state: Estado
     attributes:
+      card:
+        card_num: Número de tarjeta
+      event_product:
+        price: Precio
+        name: Nombre
+      event:
+        name: Nombre
+        duration: Duración
+        price: Costo admisión (Artesano)
+        description: Descripción
+        address: Dirección
+        spaces: Espacios
+        cover: Imagen
+        starts_at: Empieza
+        ends_at: Termina
       conversation:
         to_id: Para
         body: ''
@@ -74,6 +94,17 @@ es:
           one: "Ha habido 1 error:"
           other: "Han habido %{count} errores:"
       models:
+        event:
+          attributes:
+            name:
+              blank: no debe estar vació
+            price:
+              blank: no debe estar vació
+            address:
+              blank: no debe estar vació
+            spaces:
+              blank: no debe estar vació
+              not_a_number: al menos 1
         conversation:
           attributes:
             body:

@@ -1,0 +1,46 @@
+= form_tag checkout_event_path, method: :post, class: 'form-horizontal' do
+  %h1= @event.name
+  %p.lead
+    = @event.description
+  %table#event-checkout.table
+    %thead
+      %tr
+        %th
+          Cantidad
+        %th
+          Concepto
+        %th
+          Unitario
+        %th
+          Total
+    %tbody
+      %tr
+        %td
+          1
+        %td
+          Admisión
+        %td
+          %span
+            = number_to_currency @payment.event_price
+        %td
+          %span
+            = number_to_currency @payment.event_price
+      - @payment.event_product_payments.each do |payment|
+        %tr
+          %td
+            = payment.units
+          %td
+            = payment.event_product.name
+          %td
+            = number_to_currency payment.unit_price
+          %td
+            = number_to_currency payment.total
+      %tr
+        %td
+        %td
+        %td
+        %td
+          #total.strong
+            %strong= number_to_currency @event.price
+  %button.btn.btn-primary.pull-right{ type: 'submit' }
+    Siguiente &raquo;

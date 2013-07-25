@@ -25,6 +25,12 @@ Manuable::Application.routes.draw do
     resources :attachments
   end
 
+  resources :event_payments
+
+  resources :events do
+    get :checkout, on: :member
+    post :checkout, on: :member
+  end
 #  resources :categories do
 #    resources :categories
 #  end

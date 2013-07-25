@@ -1,0 +1,84 @@
+= form_for @payment, html: { } do |f|
+  %h1= @payment.event.name
+  %p.lead
+    = @payment.event.description
+  %table#event-checkout.table
+    %thead
+      %tr
+        %th
+          Cantidad
+        %th
+          Concepto
+        %th
+          Unitario
+        %th
+          Total
+    %tbody
+      %tr
+        %td
+          1
+        %td
+          Admisión
+        %td
+          %span
+            = number_to_currency @payment.event_price
+        %td
+          %span
+            = number_to_currency @payment.event_price
+      - @payment.event_product_payments.each do |payment|
+        %tr
+          %td
+            = payment.units
+          %td
+            = payment.event_product.name
+          %td
+            = number_to_currency payment.unit_price
+          %td
+            = number_to_currency payment.total
+      %tr
+        %td
+        %td
+        %td
+        %td
+          #total.strong
+            %strong= number_to_currency @payment.grand_total
+
+  = f.fields_for :card do |f|
+    .row
+      .span3
+        = f.label :card_name, 'Nombre'
+        = f.text_field :card_name, class: 'span3'
+      .span3
+        = f.label :card_lastname, 'Apellido(s)'
+        = f.text_field :card_lastname, class: 'span3'
+    .row
+      .span4
+        = f.label :card_num, 'Número de tarjeta'
+        = f.text_field :card_num, class: 'span4'
+      .span2
+        = f.label :card_exp, 'Expiración'
+        = f.text_field :card_exp_month, style: 'width: 67px; float: left;', placeholder: 'mes'
+        = f.text_field :card_exp_year, style: 'width: 70px; float: left;margin-left:5px;', placeholder: 'año'
+
+    .row
+      .span2
+        = f.label :card_ccv2, 'Código de seguridad'
+        = f.text_field :card_ccv2, class: 'span2'
+      .span2
+        = f.label :card_brand, 'Tipo'
+        = f.select :brand, [ ['Visa', 'visa'], ['American Express'], ['Mastercard', 'mastercard']], {}, class: 'span2'
+      .span2
+        = f.label :phone, 'Teléfono'
+        = f.text_field :phone, class: 'span2'
+    .row
+      .span3
+        = f.label :address, 'Dirección'
+        = f.text_field :address, class: 'span3'
+      .span3
+        = f.label :post_code, 'Código postal'
+        = f.text_field :post_code, class: 'span3'
+    %br
+    .row
+      .span6
+        %button.btn.btn-primary.pull-right{ type: 'submit' }
+          Pagar &raquo;

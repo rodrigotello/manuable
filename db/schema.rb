@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130721200102) do
+ActiveRecord::Schema.define(:version => 20130725025634) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -116,6 +116,48 @@ ActiveRecord::Schema.define(:version => 20130721200102) do
   end
 
   add_index "conversations", ["from_id", "to_id"], :name => "index_conversations_on_from_id_and_to_id"
+
+  create_table "event_payments", :force => true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+    t.integer "event_price"
+    t.integer "grand_total"
+    t.boolean "paid",        :default => false
+  end
+
+  create_table "event_product_payments", :force => true do |t|
+    t.integer "event_product_id"
+    t.integer "event_payment_id"
+    t.integer "event_id"
+    t.integer "user_id"
+    t.integer "units"
+    t.integer "unit_price"
+    t.integer "total"
+  end
+
+  create_table "event_products", :force => true do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "event_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "event_products", ["event_id"], :name => "index_event_products_on_event_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "address"
+    t.integer  "spaces"
+    t.string   "cover"
+    t.integer  "user_id"
+    t.integer  "price"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"

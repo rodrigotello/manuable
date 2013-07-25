@@ -1,0 +1,50 @@
+.row
+  .span5
+    = simple_nested_form_for @event, html: { }, validate: false do |f|
+      = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?", wrapper: :control_row
+      = f.input :price, :wrapper => :prepend do
+        %span.add-on $
+        = f.input_field :price, class: 'input-small'
+      = f.input :description, input_html: { class: 'span12', rows: 5 }, hint: "¿De que se trata?", as: :text, wrapper: :control_row
+      = f.input :address, input_html: { class: 'span12' }, hint: "¿Dónde ocurrirá?", wrapper: :control_row
+      = f.input :spaces, input_html: { class: 'span2' }, hint: "¿Cuántos artesamos puede alojar?", wrapper: :control_row
+
+      = f.input :starts_at, :wrapper => :append do
+        .row
+          .span2
+            = f.input_field :starts_at_date, class: 'input-small datepicker', as: :string
+            %span.add-on
+              %i.icon-calendar
+          .span2.bootstrap-timepicker
+            = f.input_field :starts_at_time, class: 'input-small datetime', as: :string
+            %span.add-on
+              %i.icon-time
+
+      = f.input :ends_at, :wrapper => :append do
+        .row
+          .span2
+            = f.input_field :ends_at_date, class: 'input-small datepicker', as: :string
+            %span.add-on
+              %i.icon-calendar
+          .span2.bootstrap-timepicker
+            = f.input_field :ends_at_time, class: 'input-small datetime', as: :string
+            %span.add-on
+              %i.icon-time
+
+      %fieldset
+        %legend Adicionales
+        = f.fields_for :event_products do |product_form|
+
+          .row
+            .span2
+              = product_form.input :name, input_html: { value: product_form.object.name, class: 'input-medium' }
+            .span2
+              = product_form.input :price, :wrapper => :prepend do
+                %span.add-on $
+                = product_form.input_field :price, class: 'input-small'
+            .span1
+              = product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
+
+        = f.link_to_add "<i class='icon-plus'></i>".html_safe, :event_products
+
+      = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)

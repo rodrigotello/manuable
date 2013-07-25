@@ -13,13 +13,14 @@
 //= require twitter/bootstrap/bootstrap-scrollspy
 //= require twitter/bootstrap/bootstrap-affix
 //= require bootstrap-typeahead
+//= require bootstrap-timepicker
+//= require bootstrap-datepicker
 //= require jquery.tagsinput.min
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require handlebars
 //= require jquery_nested_form
 //= require jquery.chosen.min
-//= require bootstrap-datepicker
 //= require holder
 //= require jquery.ba-throttle-debounce.min
 //= require jquery-fileupload/basic
@@ -94,7 +95,6 @@ $(function(){
 
   $("[data-toggle=tooltip], abbr").tooltip();
   $("select.go-chosen").chosen();
-  $('.datepicker').datepicker({ 'format' : 'yyyy/mm/dd' });
 
   $(document).on('click', 'a.fbshare', function(e){
 
@@ -146,3 +146,26 @@ $(function(){
   });
 
 });
+function toCurrency(num) {
+  var sign;
+  var cents;
+  var i;
+
+  num = num.toString().replace(/\$|\,/g, '');
+  if (isNaN(num)) {
+    num = "0";
+  }
+  sign = (num == (num = Math.abs(num)));
+  num = Math.floor(num * 100 + 0.50000000001);
+  cents = num % 100;
+  num = Math.floor(num / 100).toString();
+  if (cents < 10) {
+    cents = '0' + cents;
+  }
+
+  for (i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) {
+    num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+  }
+
+  return (((sign) ? '' : '-') + '$' + num + '.' + cents);
+}

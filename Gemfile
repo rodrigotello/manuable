@@ -59,7 +59,7 @@ gem "libv8", "~> 3.11.8"
 gem "therubyracer", :require => false
 gem "foreman", :require => false
 gem "jquery-fileupload-rails"
-
+gem 'bootstrap-datetimepicker-rails'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

@@ -1,0 +1,46 @@
+= form_tag checkout_event_path, method: :post, class: 'form-horizontal' do
+  %h1= @event.name
+  %p.lead
+    = @event.description
+  %table#event-checkout.table
+    %thead
+      %tr
+        %th
+          Cantidad
+        %th
+          Concepto
+        %th
+          Unitario
+        %th
+          Total
+    %tbody
+      %tr
+        %td
+          %input{ disabled: 'disabled', value: 1, class: 'input-small' }
+        %td
+          Admisión
+        %td
+          %span#event-price{ data: { price: @event.price }}
+            = number_to_currency @event.price
+        %td
+          %span
+            = number_to_currency @event.price
+      - @event.event_products.each do |product|
+        %tr
+          %td.event-product-input
+            %input{ value: 0, class: 'input-small', name: "event_products[#{product.id}]", data: { price: product.price }}
+          %td.event-product-name
+            = product.name
+          %td.event-product-unit-price
+            = number_to_currency product.price
+          %td.event-product-price{ data: { total: 0 }}
+            = number_to_currency 0
+      %tr
+        %td
+        %td
+        %td
+        %td
+          #total.strong
+            %strong= number_to_currency @event.price
+  %button.btn.btn-primary.pull-right{ type: 'submit' }
+    Siguiente &raquo;
