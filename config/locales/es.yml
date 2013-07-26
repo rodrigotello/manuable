@@ -31,6 +31,9 @@ es:
       event_product:
         price: Precio
         name: Nombre
+      event_sale_category:
+        price: Precio
+        name: Nombre
       event:
         name: Nombre
         duration: Duración

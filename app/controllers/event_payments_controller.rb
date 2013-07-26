@@ -26,9 +26,12 @@ class EventPaymentsController < ApplicationController
 
       if res.success?
         @payment.update_attribute :paid, true
-        render text: 'ok'
+        flash[:notice] = 'Gracias por ser parte de este evento. Nos estaremos comunicando a la brevedad posible.'
+        redirect_to root_path
       else
-        render text: res.message
+        logger.info(res.inspect)
+        flash[:error] = 'No pudimos procesar tu pago'
+        redirect_to :back
       end
     else
     end

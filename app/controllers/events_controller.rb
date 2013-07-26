@@ -23,6 +23,8 @@ class EventsController < ApplicationController
   def new
     @event = Event.new spaces: 1
     @event.event_products.build name: 'Mesa adicional', price: 50
+    @event.event_sale_categories.build name: 'Comida', price: 500
+    @event.event_sale_categories.build name: 'Otro', price: 200
   end
 
   def create

@@ -15,16 +15,17 @@
           Total
     %tbody
       %tr
+
         %td
-          %input{ disabled: 'disabled', value: 1, class: 'input-small' }
+          = select_tag 'event_sale_category', options_for_select(@event.event_sale_categories.collect{|c| [ c.name, c.id] })
         %td
-          Admisión
+          Tipo de producto
         %td
-          %span#event-price{ data: { price: @event.price }}
-            = number_to_currency @event.price
+          %span#event-price
+            = number_to_currency @event.event_sale_categories.first.try(:price)||0
         %td
           %span
-            = number_to_currency @event.price
+            = number_to_currency @event.event_sale_categories.first.try(:price)||0
       - @event.event_products.each do |product|
         %tr
           %td.event-product-input
@@ -41,6 +42,9 @@
         %td
         %td
           #total.strong
-            %strong= number_to_currency @event.price
+            %strong= number_to_currency @event.event_sale_categories.first.try(:price)||0
   %button.btn.btn-primary.pull-right{ type: 'submit' }
     Siguiente &raquo;
+- content_for :script do
+  :plain
+    event_sale_products = #{ Hash[@event.event_sale_categories.map {|v| [v.id,v]}].to_json  }

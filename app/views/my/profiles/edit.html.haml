@@ -14,12 +14,12 @@
 
   - if params[:f] == 'a'
     = f.input :avatar, as: :file
-    - if f.object.avatar.file.exists?
-      = image_tag f.object.avatar.url(:large), id: 'croppable'
-      #crop-preview-wrapper
-        = image_tag f.object.avatar.url(:large), id: 'crop-preview'
-      - %w[x y w h].each do |attribute|
-        = f.hidden_field "crop_#{attribute}"
+    / - if f.object.avatar.file && f.object.avatar.file.exists?
+    /   = image_tag f.object.avatar.url(:large), id: 'croppable'
+    /   #crop-preview-wrapper
+    /     = image_tag f.object.avatar.url(:large), id: 'crop-preview'
+    /   - %w[x y w h].each do |attribute|
+    /     = f.hidden_field "crop_#{attribute}"
 
   - if params[:f] == 'p'
     .form-inputs

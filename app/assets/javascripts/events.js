@@ -38,10 +38,11 @@ var EventsCheckout = new function(){
         xtotal();
       }
     });
+    $('#event_sale_category').change(function(){xtotal();})
     function xtotal(){
       var $items = $('#event-checkout .event-product-price'),
-          grandTotal = parseInt($('#event-price').data('price'));
-      console.log(grandTotal);
+          grandTotal = event_sale_products[$('#event_sale_category').val()].price;
+
       for( var i=0; i < $items.length; i++ ){
         var st = parseInt( $($items[i]).data('total'), 10);
         if( !isNaN(st) ){

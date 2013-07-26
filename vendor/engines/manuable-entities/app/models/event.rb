@@ -1,12 +1,14 @@
 class Event < ActiveRecord::Base
-  attr_accessible :address, :cover, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+  attr_accessible :address, :cover, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes
 
   has_many :event_products
+  has_many :event_sale_categories
 
   validates :spaces, numericality: { greater_than: 0 }, presence: true
-  validates :name, :price, :address, presence: true
+  validates :name, :address, presence: true
 
-  accepts_nested_attributes_for :event_products, reject_if: proc {|attrs| attrs['name'].blank? }
+  accepts_nested_attributes_for :event_products, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
+  accepts_nested_attributes_for :event_sale_categories, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
 
   before_validation :build_times
 
@@ -14,8 +16,9 @@ class Event < ActiveRecord::Base
     ep = EventPayment.new
     ep.event_price = price
     ep.event_id = id
+    ep.event_sale_category_id = params[:event_sale_category]
     ep.user_id = current_user.id
-    gt = price
+    gt = ep.event_sale_category.price
     params[:event_products].each do |item_id, amount|
       item_id = item_id.to_i
       amount = amount.to_i

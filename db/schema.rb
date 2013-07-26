@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725025634) do
+ActiveRecord::Schema.define(:version => 20130726060705) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -122,7 +122,8 @@ ActiveRecord::Schema.define(:version => 20130725025634) do
     t.integer "user_id"
     t.integer "event_price"
     t.integer "grand_total"
-    t.boolean "paid",        :default => false
+    t.boolean "paid",                   :default => false
+    t.integer "event_sale_category_id"
   end
 
   create_table "event_product_payments", :force => true do |t|
@@ -144,6 +145,12 @@ ActiveRecord::Schema.define(:version => 20130725025634) do
   end
 
   add_index "event_products", ["event_id"], :name => "index_event_products_on_event_id"
+
+  create_table "event_sale_categories", :force => true do |t|
+    t.integer "event_id"
+    t.string  "name"
+    t.integer "price"
+  end
 
   create_table "events", :force => true do |t|
     t.string   "name"
