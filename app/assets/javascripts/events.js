@@ -62,7 +62,7 @@ var EventsNew = new function(){
         })
       ._renderItem = function( ul, item ) {
         return $( "<li>" )
-          .append( "<a><img src='" + item.avatar + "'>&nbsp;" + item.name + "</a>" )
+          .append( "<a><img src='" + item.avatar + "' class='user-avatar'>&nbsp;" + item.name + "</a>" )
           .appendTo( ul );
       };
 
