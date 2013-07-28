@@ -1,16 +1,29 @@
 class Event < ActiveRecord::Base
-  attr_accessible :address, :cover, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes
+  attr_accessible :address, :cover, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes, :lat, :lng, :city_id, :location, :phone, :zip, :user_ids
 
   has_many :event_products
   has_many :event_sale_categories
+  has_many :event_payments
+  has_many :event_requests
+  has_and_belongs_to_many :users
+  belongs_to :city
 
   validates :spaces, numericality: { greater_than: 0 }, presence: true
-  validates :name, :address, presence: true
+  validates :name, :address, :location, :zip, :city, presence: true
+  mount_uploader :cover, EventUploader
 
   accepts_nested_attributes_for :event_products, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
   accepts_nested_attributes_for :event_sale_categories, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
 
   before_validation :build_times
+
+  def seats_left?
+    seats_left > 0
+  end
+
+  def seats_left
+    spaces - event_payments.where(paid: true).count
+  end
 
   def generate_payments params, current_user
     ep = EventPayment.new

@@ -29,7 +29,7 @@
                       = link_to "<i class='icon-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
                       = link_to "<i class='icon-envelope-alt'></i>".html_safe, new_session_path(:user), rel: "modal"
             - else
-              %li#inbox{ class: current_user.conversations.where(unread_by_id: current_user.id).count > 0 ? 'active' : '' }
+              %li#inbox{ class: current_user.has_notifications? ? 'active' : '' }
                 %a{ href: my_conversations_path }
                   %i.icon-envelope-alt
               %li#notifications{ class: current_user.notifications.unread.count > 0 ? 'active' : '' }

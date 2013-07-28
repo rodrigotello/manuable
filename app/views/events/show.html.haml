@@ -1,1 +1,47 @@
-= @event.inspect
+%div{ style: "background-image: url(#{@event.cover.url}); width: 1200px; height: 250px;" }
+%h1= @event.name
+%p.lead
+  = @event.description
+.row-fluid
+  .span5
+    %h4 Te esperamos el
+    %strong= l @event.starts_at, format: :long
+    en
+    %br
+    %address
+      = @event.address
+      %br
+      = "#{@event.city.name}, Nuevo León, #{@event.zip}"
+      - if @event.phone
+        %abbr{ title: 'Teléfono' }
+          T:
+          = @event.phone
+  .span3
+    %h4
+      Organizadores
+    - @event.users.each do |u|
+      .media
+        = link_to u, class: 'pull-left' do
+          = image_tag u.avatar.url(:thumb), class: 'user-avatar organizer'
+        .media-body
+          = link_to u do
+            = u.name
+
+  .span4
+    %h4 ¿Eres artesano? ¿Quieres vender tus productos en este evento?
+    - if event_request = @event.event_requests.where(user_id: current_user.id).first
+      - if event_request.accepted.nil?
+        .btn.btn-warning.disabled
+          Esperando respuesta
+      - elsif event_request.accepted
+        = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'btn btn-success'
+      - else
+        .btn.btn-danger.disabled
+          Rechazada
+    - else
+      - if @event.seats_left?
+
+        = link_to 'Solicitar acceso', request_access_event_path, class: 'btn btn-info', rel: 'modal'
+
+- if @event.lat && @event.lng
+  #event-map{ data: { lat: @event.lat, lng: @event.lng }}

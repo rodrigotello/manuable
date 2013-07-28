@@ -11,6 +11,7 @@ gem "draper"
   end
   gem 'activemerchant'
   gem "jquery-rails", "2.3.0"
+  gem "jquery-ui-rails"
 # attachments
   gem 'carrierwave'
   gem "fog", "~> 1.3.1"

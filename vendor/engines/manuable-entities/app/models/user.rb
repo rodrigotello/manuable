@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liked_products, through: :likes, source: :product
   has_many :notifications, foreign_key: :to_id
+  has_and_belongs_to_many :events
+  has_many :event_requests, through: :events
 
   validates :nickname, :email, uniqueness: true, allow_nil: true
 
@@ -34,20 +36,30 @@ class User < ActiveRecord::Base
     {
       id: id,
       name: name,
-      nickname: nickname,
-      avatar: avatar.url(:small)
-    }
-  end
-
-  def as_typeahead_json options={}
-    {
-      id: id,
-      name: name,
       value: name,
+      label: name,
       nickname: nickname,
       avatar: avatar.url(:small),
       profileImageUrl: avatar.url(:small)
     }
+  end
+
+  def seller_ready?
+    email.present? && name.present? && avatar.present? && about.present? && products.count > 0
+  end
+
+  def has_notifications?
+    conversations.where(unread_by_id: self.id).count > 0 || event_requests.where(accepted: nil).count > 0
+  end
+
+  def missing_seller_info
+    arr = []
+    arr << 'Correo' if email.blank?
+    arr << 'Nombre'  if name.blank?
+    arr << 'Tu foto' if avatar.blank?
+    arr << 'Acerca de ti' if about.blank?
+    arr << 'Tus productos' if products.count == 0
+    arr
   end
 
   def like! product

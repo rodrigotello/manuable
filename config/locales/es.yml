@@ -1,4 +1,9 @@
 es:
+  support:
+    array:
+      last_word_connector: ' y '
+      words_connector: ', '
+      two_words_connector: ' y '
   date:
     order:
       - :day
@@ -14,7 +19,7 @@ es:
   time:
     formats:
       default: "%b %d, %Y %H:%M"
-      long: "%b %d, %Y %H:%M"
+      long: "%d %B, %Y %H:%M"
       time: "%I:%M %p"
       day_month: "%e %b"
       month_year: "%B %Y"
@@ -35,15 +40,21 @@ es:
         price: Precio
         name: Nombre
       event:
+        user_ids: Organizadores
         name: Nombre
         duration: Duración
         price: Costo admisión (Artesano)
         description: Descripción
         address: Dirección
+        location: Colonia
+        zip: Código Postal
         spaces: Espacios
         cover: Imagen
         starts_at: Empieza
         ends_at: Termina
+        phone: Teléfono
+        municipality: Municipio
+        city_id: Ciudad
       conversation:
         to_id: Para
         body: ''

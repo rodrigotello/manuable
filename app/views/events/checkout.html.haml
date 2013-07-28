@@ -24,7 +24,7 @@
           %span#event-price
             = number_to_currency @event.event_sale_categories.first.try(:price)||0
         %td
-          %span
+          %span#event-price-total
             = number_to_currency @event.event_sale_categories.first.try(:price)||0
       - @event.event_products.each do |product|
         %tr

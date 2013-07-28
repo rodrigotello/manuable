@@ -2,5 +2,24 @@
   .span3
     = render partial: 'conversation_list', locals: { current_conversation: @last_conversation }
   .span7
-    -if @last_conversation
+    - if @event_requests.present?
+      #event-requests
+        %h4
+          Peticiones
+        - @event_requests.each do |er|
+          .media
+            = link_to er.user, class: 'pull-left' do
+              = image_tag er.user.avatar.url(:thumb), class: 'user-avatar organizer'
+            .media-body
+              = link_to er.user do
+                = er.user.name
+              quiere vender en
+              = er.event.name
+              %br
+              %br
+              .clearfix
+                = link_to '<i class="icon-ok"></i> Acceptar'.html_safe, er, method: :put, class: 'btn btn-mini btn-success pull-left'
+                = link_to '<i class="icon-remove"></i> Rechazar'.html_safe, er, method: :delete, class: 'btn btn-mini btn-danger pull-left', style: 'margin-left: 200px'
+
+    - if @last_conversation
       = render partial: 'conversation', locals: { conversation: @last_conversation }

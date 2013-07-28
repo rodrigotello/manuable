@@ -26,10 +26,13 @@ Manuable::Application.routes.draw do
   end
 
   resources :event_payments
+  resources :event_requests, only: [:update, :destroy]
 
   resources :events do
     get :checkout, on: :member
     post :checkout, on: :member
+    get :request_access, on: :member
+    post :request_access, on: :member
   end
 #  resources :categories do
 #    resources :categories

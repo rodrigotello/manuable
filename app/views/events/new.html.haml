@@ -2,11 +2,33 @@
   .span5
     = simple_nested_form_for @event, html: { }, validate: false do |f|
       = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?", wrapper: :control_row
-      / = f.input :price, :wrapper => :prepend do
-      /   %span.add-on $
-      /   = f.input_field :price, class: 'input-small'
+      = f.input :cover, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
       = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text, wrapper: :control_row
-      = f.input :address, input_html: { class: 'span12', rows: 3 }, hint: "¿Dónde ocurrirá?", wrapper: :control_row
+      = f.input :user_ids, input_html: { id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Organizadores", wrapper: :control_row
+      = f.input :user_ids, input_html: { class: 'span12', value: '' }, as: :hidden
+
+      .row-fluid
+        .span9
+          = f.input :address, :wrapper => :control_row do
+            = f.input_field :address, class: 'form-control', as: :string
+        .span3
+          = f.input :zip, :wrapper => :control_row do
+            = f.input_field :zip, class: 'form-control', as: :string
+      .row-fluid
+        .span6
+          = f.input :location, :wrapper => :control_row do
+            = f.input_field :location, class: 'form-control', as: :string
+        .span6
+          = f.input :city_id, :wrapper => :control_row do
+            = f.input_field :city_id, class: 'form-control', id: 'event_city_input'
+            = f.input_field :city_id, as: :hidden
+
+      = f.input :lat, as: :hidden
+      = f.input :lng, as: :hidden
+
+      #new-event-map
+
+      %p.text-danger#maps-error
       = f.input :spaces, input_html: { class: 'span2' }, hint: "¿Cuántos artesamos puede alojar?", wrapper: :control_row
 
       = f.input :starts_at, :wrapper => :append do

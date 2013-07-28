@@ -2,14 +2,14 @@ class UsersController < ApplicationController
   # before_filter :authenticate_user!, only: :edit
 
   def index
-    if params[:q]
-      q = params[:q]
-      @users = User.where{ (name =~ q) | (nickname =~ q)}.limit(20)
+    if params[:q] || params[:term]
+      q = "%#{params[:q] || params[:term]}%"
+      @users = User.where{ name != nil }.where{ (name =~ q) | (nickname =~ q)}.limit(20)
     else
       @users = User.limit(20)
     end
 
-    render json: @users.collect(&:as_typeahead_json)
+    render json: @users
   end
 
   def show

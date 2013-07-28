@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726060705) do
+ActiveRecord::Schema.define(:version => 20130728040941) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -146,6 +146,14 @@ ActiveRecord::Schema.define(:version => 20130726060705) do
 
   add_index "event_products", ["event_id"], :name => "index_event_products_on_event_id"
 
+  create_table "event_requests", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.boolean  "accepted"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "event_sale_categories", :force => true do |t|
     t.integer "event_id"
     t.string  "name"
@@ -162,8 +170,20 @@ ActiveRecord::Schema.define(:version => 20130726060705) do
     t.integer  "price"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.string   "location"
+    t.string   "zip"
+    t.string   "phone"
+    t.integer  "city_id"
+    t.string   "municipality"
+  end
+
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "event_id"
   end
 
   create_table "followings", :force => true do |t|

@@ -5,8 +5,20 @@ class EventsController < ApplicationController
     @event = Event.find params[:id]
   end
 
+  def request_access
+    @event = Event.find params[:id]
+    if request.post?
+      @event.event_requests.create! user_id: current_user.id
+      redirect_to @event
+    end
+  end
+
   def checkout
     @event = Event.find params[:id]
+
+    if payment = @event.event_payments.where(user_id: current_user.id).first
+      redirect_to payment and return
+    end
 
     if request.post?
       @payment = @event.generate_payments(params, current_user)
@@ -28,7 +40,9 @@ class EventsController < ApplicationController
   end
 
   def create
+    params[:event][:user_ids] = params[:event][:user_ids].split(',')
     @event = Event.new params[:event]
+
     @event.user_id = current_user.id
 
     if @event.save

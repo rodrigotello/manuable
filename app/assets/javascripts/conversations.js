@@ -15,7 +15,7 @@ var ConversationsNew = new function(){
     $('#conversation_to_text').typeahead({
         name: 'users',
         prefetch: '/users.json',
-        remote: '/users.json?q=%QUERY',
+        remote: '/users.json?q=%QUERY&t=as_typeahead_json',
         template: [
           '<img src="{{avatar}}" style="width: 25px" class="pull-left">',
           '<p class="repo-name">{{name}}</p>'
