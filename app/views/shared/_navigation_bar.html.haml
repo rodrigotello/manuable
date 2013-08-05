@@ -14,10 +14,11 @@
               %li
                 = link_to 'Regístrate', "#sign_popup", "data-toggle" => "modal", :role => "button"
             %li.divider-vertical
+            %li
+              = link_to "La Comunidad".html_safe, "http://manuable.tumblr.com/", target: '_blank'
           %ul.nav.pull-right
-            / %li
-            /   = link_to "<i class='icon-search'></i>".html_safe, "#"
-            / %li.divider-vertical
+
+            %li.divider-vertical
             - if !user_signed_in?
               %li#login-options
                 .dropdown
