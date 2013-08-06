@@ -5,6 +5,25 @@ class EventsController < ApplicationController
     @event = Event.find params[:id]
   end
 
+  def edit
+    @event = Event.find params[:id]
+    redirect_to @event and return unless @event.user_ids.include?(current_user.id)
+
+  end
+
+  def update
+    @event = Event.find params[:id]
+    redirect_to @event and return unless @event.user_ids.include?(current_user.id)
+
+    params[:event][:user_ids] = params[:event][:user_ids].split(',')
+
+    if @event.update_attributes params[:event]
+      redirect_to @event
+    else
+      render action: :edit
+    end
+  end
+
   def request_access
     @event = Event.find params[:id]
     if request.post?
@@ -37,10 +56,11 @@ class EventsController < ApplicationController
     @event.event_products.build name: 'Mesa adicional', price: 50
     @event.event_sale_categories.build name: 'Comida', price: 500
     @event.event_sale_categories.build name: 'Otro', price: 200
+    @event.attachments.build
   end
 
   def create
-    params[:event][:user_ids] = params[:event][:user_ids].split(',')
+    params[:event][:user_ids] = params[:event][:user_ids].split(',')+[current_user.id]
     @event = Event.new params[:event]
 
     @event.user_id = current_user.id

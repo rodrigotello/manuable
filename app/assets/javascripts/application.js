@@ -21,13 +21,14 @@
 //= require handlebars
 //= require jquery_nested_form
 //= require jquery.chosen.min
-//= require holder
 //= require jquery.ba-throttle-debounce.min
 //= require jquery-fileupload/basic
 //= require jquery.jcrop.min
 //= require jquery.inputmask.min
 //= require plugins
 //= require jquery.ui.autocomplete
+//= require jquery.markitup
+//= require set
 //= require_tree .
 
 ClientSideValidations.formBuilders['NestedForm::SimpleBuilder'] = ClientSideValidations.formBuilders['SimpleForm::FormBuilder'];

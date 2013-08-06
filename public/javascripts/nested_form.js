@@ -63,13 +63,13 @@
     removeFields: function(e) {
       var $link = $(e.currentTarget),
           assoc = $link.data('association'); // Name of child to be removed
-      
+
       var hiddenField = $link.prev('input[type=hidden]');
       hiddenField.val('1');
-      
+
       var field = $link.closest('.fields');
       field.hide();
-      
+
       field
         .trigger({ type: 'nested:fieldRemoved', field: field })
         .trigger({ type: 'nested:fieldRemoved:' + assoc, field: field });
@@ -92,23 +92,23 @@
  *
  */
 (function($) {
-        $.fn.closestChild = function(selector) {
-                // breadth first search for the first matched node
-                if (selector && selector != '') {
-                        var queue = [];
-                        queue.push(this);
-                        while(queue.length > 0) {
-                                var node = queue.shift();
-                                var children = node.children();
-                                for(var i = 0; i < children.length; ++i) {
-                                        var child = $(children[i]);
-                                        if (child.is(selector)) {
-                                                return child; //well, we found one
-                                        }
-                                        queue.push(child);
-                                }
-                        }
-                }
-                return $();//nothing found
-        };
+  $.fn.closestChild = function(selector) {
+    // breadth first search for the first matched node
+    if (selector && selector != '') {
+      var queue = [];
+      queue.push(this);
+      while(queue.length > 0) {
+        var node = queue.shift();
+        var children = node.children();
+        for(var i = 0; i < children.length; ++i) {
+          var child = $(children[i]);
+          if (child.is(selector)) {
+            return child; //well, we found one
+          }
+          queue.push(child);
+        }
+      }
+    }
+    return $();//nothing found
+  };
 })(jQuery);

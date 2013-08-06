@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :events
   has_many :event_requests, through: :events
 
-  validates :nickname, :email, uniqueness: true, allow_nil: true
+  validates :nickname, :email, uniqueness: true, allow_nil: true, allow_blank: true
 
   mount_uploader :avatar, AvatarUploader
 

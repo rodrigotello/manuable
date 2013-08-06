@@ -1,5 +1,6 @@
 = simple_form_for(current_user, url: my_profile_path, html: { method: :put }) do |f|
   = f.error_notification
+
   - if params[:f] == 's'
     = f.input :name, input_html: { class: 'input-xlarge' }
     = f.input :nickname, wrapper: :prepend do

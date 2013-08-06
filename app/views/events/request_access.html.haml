@@ -1,43 +1,45 @@
-/ %div{ style: "background-image: url(#{@event.cover.url}); width: 1200px; height: 250px;" }
-/ %h1= @event.name
-/ %p.lead
-/   = @event.description
-.text-center.span6
-  Antes solicitar tu espacio como artesano dentro del evento, asegurate que
-  %strong
-    actualizadar tu perfil
-  dentro de Manuable.
-  También en necesario que
-  %strong
-    subas tu productos
-  para saber que se estará presentado durante
-  el evento.
-  %br
-  %br
+.row
+  .span6
+    %h4 Beneficios
+    %p
+      = @event.benefits
+    %h4 Consideraciones importantes
+    %p
+      = @event.notes
 
-  .clearfix
+    .text-center
+      Antes solicitar tu espacio como artesano dentro del evento, asegurate que
+      %strong
+        actualizadar tu perfil
+      dentro de Manuable.
+      También en necesario que
+      %strong
+        subas tu productos
+      para saber que se estará presentado durante
+      el evento.
+      .clearfix
 
-  - if event_request = @event.event_requests.where(user_id: current_user.id).first
-    - if event_request.accepted.nil?
-      .btn.btn-warning.disabled
-        Esperando respuesta
-    - elsif event_request.accepted
-      .btn.btn-success.disabled
-        Aceptada
-    - else
-      .btn.btn-danger.disabled
-        Rechazada
-  - else
-    - if @event.seats_left?
-      - if current_user.seller_ready?
-        = link_to 'Estoy listo(a)', request_access_event_path, class: 'btn btn-info', method: :post
+      - if event_request = @event.event_requests.where(user_id: current_user.id).first
+        - if event_request.accepted.nil?
+          .btn.btn-warning.disabled
+            Esperando respuesta
+        - elsif event_request.accepted
+          .btn.btn-success.disabled
+            Aceptada
+        - else
+          .btn.btn-danger.disabled
+            Rechazada
       - else
-        .btn.btn-info.disabled
-          Solicitar acceso
-        %p
-          Llena la siguiente información en tu
-          = link_to 'perfil', edit_my_profile_path(f: 's')
-          %br
-          = current_user.missing_seller_info.to_sentence
-    %br
-    %br
+        - if @event.seats_left?
+          - if current_user.seller_ready?
+            = link_to 'Estoy listo(a)', request_access_event_path, class: 'btn btn-info', method: :post
+          - else
+            .btn.btn-info.disabled
+              Solicitar acceso
+            %p
+              Llena la siguiente información en tu
+              = link_to 'perfil', edit_my_profile_path(f: 's')
+              %br
+              = current_user.missing_seller_info.to_sentence
+        %br
+        %br

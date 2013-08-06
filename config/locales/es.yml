@@ -45,6 +45,8 @@ es:
         duration: Duración
         price: Costo admisión (Artesano)
         description: Descripción
+        benefits: Beneficios
+        notes: Notas
         address: Dirección
         location: Colonia
         zip: Código Postal

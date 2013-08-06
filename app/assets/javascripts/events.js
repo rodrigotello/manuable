@@ -242,3 +242,5 @@ var EventsShow = new function(){
     });
   }
 }
+
+var EventsCreate = EventsNew;

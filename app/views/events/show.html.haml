@@ -11,7 +11,7 @@
     %address
       = @event.address
       %br
-      = "#{@event.city.name}, Nuevo León, #{@event.zip}"
+      = "#{@event.city.try :name}, Nuevo León, #{@event.zip}"
       - if @event.phone
         %abbr{ title: 'Teléfono' }
           T:
@@ -45,3 +45,15 @@
 
 - if @event.lat && @event.lng
   #event-map{ data: { lat: @event.lat, lng: @event.lng }}
+#artisans
+  %h4 Artesanos confirmados
+  - @event.artisants.in_groups_of(4).each do |g|
+    .row-fluid
+      - g.each do |u|
+      - next unless u
+        .span3
+          %div.media
+            = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
+            .media-body
+              = link_to u.name, u
+
