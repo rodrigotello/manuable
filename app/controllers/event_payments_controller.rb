@@ -48,7 +48,7 @@ class EventPaymentsController < ApplicationController
                         url_respuesta: 'http://www.manuable.com/event_payment/oxxo_success',
                         cliente: current_user.name,
                         email: current_user.email,
-                        sendPDF: false,
+                        sendPDF: true,
                         usuario: 'manuable',
                         format: 'JSON'
     c.send!
