@@ -40,47 +40,69 @@
         %td
           #total.strong
             %strong= number_to_currency @payment.grand_total
+
   - unless @payment.paid?
-    = f.fields_for :card do |f|
-      .row
-        .span3
-          = f.label :card_name, 'Nombre'
-          = f.text_field :card_name, class: 'span3'
-        .span3
-          = f.label :card_lastname, 'Apellido(s)'
-          = f.text_field :card_lastname, class: 'span3'
-      .row
-        .span4
-          = f.label :card_num, 'Número de tarjeta'
-          = f.text_field :card_num, class: 'span4'
-        .span2
-          = f.label :card_exp, 'Expiración'
-          = f.text_field :card_exp_month, style: 'width: 67px; float: left;', placeholder: 'mes'
-          = f.text_field :card_exp_year, style: 'width: 70px; float: left;margin-left:5px;', placeholder: 'año'
+    %h4
+      Paga usando tu tarjeta de crédito o en tu tienda OXXO más cercana
+    .row
+      .span6
+        = f.fields_for :card do |f|
+          .row
+            .span3
+              = f.label :card_name, 'Nombre'
+              = f.text_field :card_name, class: 'span3'
+            .span3
+              = f.label :card_lastname, 'Apellido(s)'
+              = f.text_field :card_lastname, class: 'span3'
+          .row
+            .span4
+              = f.label :card_num, 'Número de tarjeta'
+              = f.text_field :card_num, class: 'span4'
+            .span2
+              = f.label :card_exp, 'Expiración'
+              = f.text_field :card_exp_month, style: 'width: 67px; float: left;', placeholder: 'mes'
+              = f.text_field :card_exp_year, style: 'width: 70px; float: left;margin-left:5px;', placeholder: 'año'
 
-      .row
-        .span2
-          = f.label :card_ccv2, 'Código de seguridad'
-          = f.text_field :card_ccv2, class: 'span2'
-        .span2
-          = f.label :card_brand, 'Tipo'
-          = f.select :brand, [ ['Visa', 'visa'], ['American Express'], ['Mastercard', 'mastercard']], {}, class: 'span2'
-        .span2
-          = f.label :phone, 'Teléfono'
-          = f.text_field :phone, class: 'span2'
-      .row
-        .span3
-          = f.label :address, 'Dirección'
-          = f.text_field :address, class: 'span3'
-        .span3
-          = f.label :post_code, 'Código postal'
-          = f.text_field :post_code, class: 'span3'
+          .row
+            .span2
+              = f.label :card_ccv2, 'Código de seguridad'
+              = f.text_field :card_ccv2, class: 'span2'
+            .span2
+              = f.label :card_brand, 'Tipo'
+              = f.select :brand, [ ['Visa', 'visa'], ['American Express'], ['Mastercard', 'mastercard']], {}, class: 'span2'
+            .span2
+              = f.label :phone, 'Teléfono'
+              = f.text_field :phone, class: 'span2'
+          .row
+            .span3
+              = f.label :address, 'Dirección'
+              = f.text_field :address, class: 'span3'
+            .span3
+              = f.label :post_code, 'Código postal'
+              = f.text_field :post_code, class: 'span3'
 
-      %br
-      .row
-        .span6
-          %button.btn.btn-primary.pull-right{ type: 'submit' }
-            Pagar &raquo;
+          %br
+          .row
+            .span6
+              %button.btn.btn-primary.pull-right{ type: 'submit' }
+                Pagar &raquo;
+      .span6
+        - if @payment.oxxo_ready? && @payment.oxxo_expires_on > Date.today
+          .alert.alert-success
+            Gracias, estamos esperando por tu pago
+          = image_tag "/uploads/event_payment_barcodes/#{@payment.id}/#{@payment.id}.gif"
+        - else
+          - if @errors
+            .alert.alert-error
+              Tu petición no puedo ser procesada
+              %br
+              = @errors
+          #oxxo-payment-option
+            Paga en tu OXXO más cercano
+            %br
+            = link_to oxxo_payment_event_payment_path(@payment), method: :post do
+              = image_tag 'oxxo.jpg', style: 'width: 150px'
+            Recibirás en tu correo instrucciones de como realizar tu pago
   - else
     %a.btn.btn-success.disabled
       Pagado!

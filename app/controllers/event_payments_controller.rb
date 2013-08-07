@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'banwire_oxxo'
+
 class EventPaymentsController < ApplicationController
   before_filter :authenticate_user!
 
@@ -37,4 +39,31 @@ class EventPaymentsController < ApplicationController
     end
 
   end
+
+  def oxxo_payment
+    @payment = EventPayment.where(user_id: current_user.id).find params[:id]
+    c = BanwireOxxo.new referencia: @payment.id,
+                        dias_vigencia: 5,
+                        monto: @payment.grand_total,
+                        url_respuesta: 'http://www.manuable.com/event_payment/oxxo_success',
+                        cliente: current_user.name,
+                        email: current_user.email,
+                        sendPDF: false,
+                        usuario: 'manuable',
+                        format: 'JSON'
+    c.send!
+    if c.successful?
+      @payment.oxxo_ready = true
+      @payment.oxxo_expires_on = c.response['response[fecha_vigencia]']
+      @payment.oxxo_barcode = c.response['response[barcode]']
+      @payment.save
+
+      c.store_barcode File.join Rails.root, "/public/uploads/event_payment_barcodes/#{@payment.id}"
+      redirect_to :back
+    else
+      @errors = c.errors
+      render action: :show
+    end
+  end
 end
+

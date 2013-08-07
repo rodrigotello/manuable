@@ -25,7 +25,10 @@ Manuable::Application.routes.draw do
     resources :attachments
   end
 
-  resources :event_payments
+  resources :event_payments do
+    post :oxxo_payment, on: :member
+  end
+
   resources :event_requests, only: [:update, :destroy]
 
   resources :events do

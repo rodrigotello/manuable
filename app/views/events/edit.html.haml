@@ -1,0 +1,6 @@
+.row
+  .span5
+    = simple_nested_form_for @event, html: { }, validate: false do |f|
+      = render partial: 'form', locals: { f: f }
+
+      = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)

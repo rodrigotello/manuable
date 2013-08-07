@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806032804) do
+ActiveRecord::Schema.define(:version => 20130807060922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -125,6 +125,9 @@ ActiveRecord::Schema.define(:version => 20130806032804) do
     t.integer "grand_total"
     t.boolean "paid",                   :default => false
     t.integer "event_sale_category_id"
+    t.boolean "oxxo_ready",             :default => false
+    t.date    "oxxo_expires_on"
+    t.string  "oxxo_barcode"
   end
 
   create_table "event_product_payments", :force => true do |t|

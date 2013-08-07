@@ -3,6 +3,7 @@ gem 'rails', "~>3.2"
 
 gem "manuable-entities", :path => "vendor/engines/manuable-entities"
 gem "draper"
+gem "httpclient"
 # DB
   group :production do
     gem "pg"
