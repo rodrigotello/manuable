@@ -1,0 +1,114 @@
+.event-show
+  %div{ style: "background-image: url(#{@event.cover.url}); width: 1200px; height: 250px;" }
+  %ul.nav.nav-pills.row-fluid.event-nav
+    %li.active.span3.text-center
+      %a{ href: "#desc" }
+        Descripción
+        %br
+        del Evento
+    %li.span3.text-center
+      %a{ href: "#itinerary" }
+        Itenerario
+    %li.span3.text-center
+      %a{ href: "#artisans" }
+        Conoce a los
+        %br
+        Expositores
+    %li.span3.text-center
+      %a{ href: "#join" }
+        Quiero
+        %br
+        ser Expositor
+
+  %section#desc
+    %h3 Descripción del Evento
+    .section-content.clearfix
+      = link_to "Editar evento", edit_event_path(@event), rel: 'modal', class: 'btn btn-info pull-right' if @event.user_ids.include?(current_user.id)
+      .row-fluid
+        .span4
+          %h5 Organizador
+          %br
+            = image_tag @event.author.avatar.url(:medium)
+            = @event.author.name
+            %br
+            = @event.author.city.try(:name)
+            - if @event.phone
+              Informes acerca del registro
+              %abbr{ title: 'Teléfono' }
+                Tel.
+              = @event.phone
+        .span4
+          %h5 El evento
+          = @event.description
+        .span4
+          %h5 &nbsp;
+          = @event.name
+          se llevará acabo en:
+          %br
+          %address
+            = @event.address
+            %br
+            = "#{@event.city.try :name}, Nuevo León, #{@event.zip}"
+          El día:
+          %br
+          = l @event.starts_at, format: :human
+          -# if @event.lat && @event.lng
+            - #event-map{ data: { lat: @event.lat, lng: @event.lng }}
+
+  %section#itinerary
+    %h3 El itinerario
+    .section-content.clearfix
+      = link_to "Editar itinerario", event_event_schedules_path(@event), rel: 'modal', class: 'btn btn-info pull-right' if @event.user_ids.include?(current_user.id)
+      - @event.event_schedule_categories.each do |category|
+        .event-schedule-category
+          %h4= category.name
+          - if @event.user_ids.include?(current_user.id)
+            = form_for [category, EventSchedule.new], url: event_schedule_category_event_schedules_path(category, format: :json), remote: true, html: { id: "new_event_schedule_for_#{category.id}" } do |f|
+              .row-fluid
+                .span3
+                  = f.text_field :name, class: 'input-medium', id: "event_schedule_starts_at_#{category.id}"
+                .span2.bootstrap-timepicker
+                  = f.text_field :starts_at, class: 'input-small datetime', id: "event_schedule_starts_at_#{category.id}"
+                .span2
+                  %button.btn.btn-mini
+                    %i.icon-plus
+                      Agregar
+          %ul.schedule
+            - category.event_schedules.each do |es|
+              %li.clearfix
+                %span.schedule-time
+                  = l es.starts_at, format: :time
+                %span.schedule-name
+                  = es.name
+                - if @event.user_ids.include?(current_user.id)
+                  = link_to "x", event_schedule_category_event_schedule_path(category, es), remote: true, method: :delete, class: 'remove-event-schedule'
+  %section#artisans
+    %h3 Nuestros Expositores
+    .section-content.clearfix
+      - @event.artisants.in_groups_of(5).each do |g|
+        .row-fluid
+          - g.each do |u|
+            - next unless u
+            .artisan
+              = image_tag u.avatar.url(:small)
+              %hr
+              %span.name= u.first_name
+              %span.location= u.location.present? ? u.location : 'monterrey'
+              = link_to 'PRODUCTOS', u
+
+
+  %section#join
+    %h3 Quiero ser expositor
+    .section-content.clearfix
+      - if event_request = @event.event_requests.where(user_id: current_user.id).first
+        - if event_request.accepted.nil?
+          .btn.btn-warning.disabled
+            Esperando respuesta
+        - elsif event_request.accepted
+          = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'btn btn-success'
+        - else
+          .btn.btn-danger.disabled
+            Rechazada
+      - else
+        - if @event.seats_left?
+          = link_to 'Solicitar acceso', request_access_event_path, class: 'btn btn-info', rel: 'modal'

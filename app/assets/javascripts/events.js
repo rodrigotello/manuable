@@ -223,6 +223,30 @@ var EventsShow = new function(){
     if(window["EventsShow"].initialized){ return ;}
     window["EventsShow"].initialized = true;
     window.loadGmaps('initEventMap');
+
+    $('.datetime').timepicker({
+      format: 'yyyy-mm-dd'
+    });
+
+    $('form.new_event_schedule').bind('ajax:success', function(e, schedule){
+      var $li = $("<li class=\"clearfix\">" +
+                  "  <span class=\"schedule-time\">" +
+                  schedule.starts_at +
+                  "  </span>" +
+                  "  <span class=\"schedule-name\">" +
+                  schedule.name +
+                  "  </span>" +
+                  "  <a href=\"" + $(this).attr('action').replace('.json','') + "/" + schedule.id + ".json\" class=\"remove-event-schedule\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">x</a>" +
+                  "</li>");
+      $li.find('a').bind('ajax:success', function(){
+        $(this).parents("li:first").remove();
+      });
+      $(this).siblings('ul.schedule').append($li)
+    });
+
+    $('.remove-event-schedule').bind('ajax:success', function(){
+      $(this).parents("li:first").remove();
+    });
   }
   window.initEventMap = function(){
     var ele = document.getElementById("event-map");
@@ -241,6 +265,53 @@ var EventsShow = new function(){
         draggable: false
     });
   }
-}
+};
 
 var EventsCreate = EventsNew;
+
+
+var EventSchedulesIndex = new function(){
+  "use strict";
+  var self = this;
+
+  self.init = function(){
+    window["EventSchedulesIndex"].initialized = true;
+    $('#event-schedule-categories .remove-category').bind("ajax:success", function(){
+      $(this).parents('tr:first').remove();
+    });
+
+    $('#event_schedule_category_name').bind({
+      keydown :function(e){
+        var $input = $(this),
+            $form = $input.parents('form:first');
+
+        if ( e.keyCode === 13){
+          e.stopPropagation();
+          e.preventDefault();
+          $.ajax({
+            url: $form.attr('action')+'.json',
+            data: $form.serialize(),
+            type: "POST",
+            success: function(category){
+              var tr = "<tr>" +
+                "<td>" + category.name + "</td>" +
+                "<td>" +
+                "<a href=\""+$form.attr('action')+"/" + category.id + ".json\" class=\"remove-category\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">x</a>" +
+                "</td>" +
+              "</tr>";
+              var $tr = $(tr);
+              $tr.find('a').bind("ajax:success", function(){
+                $(this).parents('tr:first').remove();
+              });
+              $('#event-schedule-categories tbody tr:last').before($tr);
+              $form[0].reset();
+            }
+          });
+          return false;
+        }
+
+      }
+    });
+  }
+
+};

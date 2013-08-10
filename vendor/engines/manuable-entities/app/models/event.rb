@@ -6,9 +6,12 @@ class Event < ActiveRecord::Base
   has_many :event_payments
   has_many :artisants, through: :event_payments, source: :user, conditions: { event_payments: { paid: true } }
   has_many :event_requests
+  has_many :event_schedules
+  has_many :event_schedule_categories
   has_many :attachments, as: :attachable, dependent: :destroy
   has_and_belongs_to_many :users
   belongs_to :city
+  belongs_to :author, foreign_key: :user_id, class_name: 'User'
 
   validates :spaces, numericality: { greater_than: 0 }, presence: true
   validates :name, :address, :location, :zip, :city, presence: true

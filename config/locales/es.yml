@@ -20,6 +20,7 @@ es:
     formats:
       default: "%b %d, %Y %H:%M"
       long: "%d %B, %Y %H:%M"
+      human: "%d de %B de %Y"
       time: "%I:%M %p"
       day_month: "%e %b"
       month_year: "%B %Y"

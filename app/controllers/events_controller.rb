@@ -7,13 +7,13 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find params[:id]
-    redirect_to @event and return unless @event.user_ids.include?(current_user.id)
+    # redirect_to @event and return unless @event.user_ids.include?(current_user.id)
 
   end
 
   def update
     @event = Event.find params[:id]
-    redirect_to @event and return unless @event.user_ids.include?(current_user.id)
+    # redirect_to @event and return unless @event.user_ids.include?(current_user.id)
 
     params[:event][:user_ids] = params[:event][:user_ids].split(',')
 

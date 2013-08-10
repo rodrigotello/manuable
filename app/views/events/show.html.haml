@@ -1,59 +1,247 @@
-%div{ style: "background-image: url(#{@event.cover.url}); width: 1200px; height: 250px;" }
-%h1= @event.name
-%p.lead
-  = @event.description
-.row-fluid
-  .span5
-    %h4 Te esperamos el
-    %strong= l @event.starts_at, format: :long
-    en
-    %br
-    %address
-      = @event.address
-      %br
-      = "#{@event.city.try :name}, Nuevo León, #{@event.zip}"
-      - if @event.phone
-        %abbr{ title: 'Teléfono' }
-          T:
-          = @event.phone
-  .span3
-    %h4
-      Organizadores
-    - @event.users.each do |u|
-      .media
-        = link_to u, class: 'pull-left' do
-          = image_tag u.avatar.url(:thumb), class: 'user-avatar organizer'
-        .media-body
-          = link_to u do
-            = u.name
+.event-show
+  %div{ style: "border-bottom: 5px solid #000;background-image: url(#{@event.cover.url}); width: 1200px; height: 390px;" }
+  %ul.nav.nav-pills.row-fluid.event-nav
+    %li.active.span3.text-center
+      %a{ href: "#desc" }
+        Descripción
+        %br
+        del Evento
+    %li.span3.text-center
+      %a{ href: "#itinerary", style: 'line-height: 40px' }
+        Itenerario
+    %li.span3.text-center
+      %a{ href: "#artisans" }
+        Conoce a los
+        %br
+        Expositores
+    %li.span3.text-center
+      %a{ href: "#join" }
+        Quiero
+        %br
+        ser Expositor
 
-  .span4
-    %h4 ¿Eres artesano? ¿Quieres vender tus productos en este evento?
-    - if event_request = @event.event_requests.where(user_id: current_user.id).first
-      - if event_request.accepted.nil?
-        .btn.btn-warning.disabled
-          Esperando respuesta
-      - elsif event_request.accepted
-        = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'btn btn-success'
+  %section#desc
+    %h3 Descripción del Evento
+    .section-content.clearfix
+      =# link_to "Editar evento", edit_event_path(@event), rel: 'modal', class: 'btn btn-info pull-right' if @event.user_ids.include?(current_user.id)
+      .row-fluid
+        .span4#organizer
+          %h4.horizontal Organizadores
+          = image_tag @event.author.avatar.url(:medium)
+          .name
+            = @event.author.name
+            %br
+            = @event.author.city.try(:name)
+          %br
+          %br
+          %br
+          %small
+            *Informes acerca del
+            %br
+            registro a cualquiera
+            %br
+            de los      al
+            %br
+            Tel. (81) 17691414
+
+        .span4
+          %h4.horizontal El evento
+          = @event.description
+          #collaboration
+            Colaboradores:
+            %br
+            %img{ src: '/assets/casasemilla.png' }
+            %img{ src: '/assets/manuable.png' }
+            %img{ src: '/assets/lamiselanea.png' }
+        .span4
+          %h4.horizontal.nodecoration
+            &nbsp;
+          El Mercado Semilla se
+          %br
+          llevará a cabo en
+          %br
+          Casa Semilla, ubicada
+          %br
+          en:
+          %br
+          %br
+          Río Volga #120 Oriente
+          %br
+          Colonia Del Valle,
+          %br
+          66220 San Pedro N.L.
+          %br
+          %br
+          El día:
+          %br
+          7 de septiembre de 2013
+          %br
+          de 4:00 pm a 10:00 pm
+          %br
+          %br
+          %small Cupo limitado a 100 expositores
+          %br
+          %br
+          %strong
+            Entrada libre
+  %section#itinerary
+    %h3 El itinerario
+    .section-content.clearfix
+      .event-schedule-category
+        %h4
+          Talleres de Manualidades
+        %ul.schedule#talleres
+          %li.clearfix
+            %span.schedule-time
+              4:00 pm
+            %span.schedule-name
+              Acurela por Arte Lunario
+          %li.clearfix
+            %span.schedule-time
+              4:50 pm
+            %span.schedule-name
+              Creación de malas por Eunice García
+          %li.clearfix
+            %span.schedule-time
+              6:30 pm
+            %span.schedule-name
+              Mandalas Power por Carlos Díaz
+        %small
+          * Informes acer del registro a cualquiera de los tallere al Tel. (81) 1769 1414
+      .event-schedule-category
+        %h4
+          Cine al libre
+        %ul.schedule#cine
+          %li.clearfix
+            %span.schedule-time
+              10:00 pm
+            %span.schedule-name
+              Cine "Artesanos"
+              %strong
+                Jardín Fuego
+      .event-schedule-category
+        %h4
+          Música en vivo
+        #musicians
+          .musician
+            %a{ href: 'https://www.facebook.com/xiahatroden', class: 'fb-link', target: '_blank' }
+              %img{ src: '/assets/music-test.jpg' }
+              %span.name
+                Xiaha Troden
+          .musician
+            %a{ href: 'https://www.facebook.com/andresluismx', class: 'fb-link', target: '_blank' }
+              %img{ src: '/assets/music-test.jpg' }
+              %span.name
+                Andrés Luis
+          .musician
+            %a{ href: 'https://www.facebook.com/pages/Noyolo/232188323561365', class: 'fb-link', target: '_blank' }
+              %img{ src: '/assets/music-test.jpg' }
+              %span.name
+                Noyolo
+          .musician
+            %a{ href: 'https://www.facebook.com/RapDeLuz', class: 'fb-link', target: '_blank' }
+              %img{ src: '/assets/music-test.jpg' }
+              %span.name
+                Rap de Luz
+          .musician
+            %a{ href: 'https://www.facebook.com/dhumeda', class: 'fb-link', target: '_blank' }
+              %img{ src: '/assets/music-test.jpg' }
+              %span.name
+                David Humeda
+          .musician
+            %a{ href: 'https://www.facebook.com/pages/Viento-Wirikuta/530434550301687', class: 'fb-link', target: '_blank' }
+              %img{ src: '/assets/music-test.jpg' }
+              %span.name
+                Viento Wikirikuta
+          .musician
+            %a{ href: '"http://flavors.me/cantisani', class: 'fb-link', target: '_blank' }
+              %img{ src: '/assets/music-test.jpg' }
+              %span.name
+                Daniel Cantisani
+
+  %section#artisans
+    %h3 Nuestros Expositores
+    .section-content.clearfix#artisans-bg
+      - @event.artisants.in_groups_of(5).each do |g|
+        .row-fluid
+          - g.each do |u|
+            - next unless u
+            .artisan
+              = image_tag u.avatar.url(:small)
+              %hr
+              %span.name= u.first_name
+              %span.location= u.location.present? ? u.location : 'monterrey'
+              = link_to 'PRODUCTOS', u
+
+
+  %section#join
+    %h3 Quiero ser expositor
+    .section-content.clearfix#benefits-bg
+      %h4 Beneficios por Participar
+      = @event.benefits
+      - if event_request = @event.event_requests.where(user_id: current_user.id).first
+        - if event_request.accepted.nil?
+          .btn.btn-warning.disabled
+            Esperando respuesta
+        - elsif event_request.accepted
+          = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'pull-right'
+        - else
+          .btn.btn-danger.disabled
+            Rechazada
       - else
-        .btn.btn-danger.disabled
-          Rechazada
-    - else
-      - if @event.seats_left?
+        - if @event.seats_left?
+          = link_to '¡Envía tu Solicitud!', request_access_event_path, class: 'pull-right', rel: 'modal'
 
-        = link_to 'Solicitar acceso', request_access_event_path, class: 'btn btn-info', rel: 'modal'
+      %h4 Observaciones y Espacios
+      = @event.notes
+      - if event_request = @event.event_requests.where(user_id: current_user.id).first
+        - if event_request.accepted.nil?
+          .btn.btn-warning.disabled
+            Esperando respuesta
+        - elsif event_request.accepted
+          = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'pull-right'
+        - else
+          .btn.btn-danger.disabled
+            Rechazada
+      - else
+        - if @event.seats_left?
+          = link_to '¡Envía tu Solicitud!', request_access_event_path, class: 'pull-right', rel: 'modal'
 
-- if @event.lat && @event.lng
-  #event-map{ data: { lat: @event.lat, lng: @event.lng }}
-#artisans
-  %h4 Artesanos confirmados
-  - @event.artisants.in_groups_of(4).each do |g|
-    .row-fluid
-      - g.each do |u|
-      - next unless u
-        .span3
-          %div.media
-            = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
-            .media-body
-              = link_to u.name, u
+      %h4 Consideraciones para el Registro
+      Costo por participar:
+      %br
+      $250 pesos para expositores (artesanos, artistas).
+      %br
+      $350 Alimentos (El precio varía por considerar que son más pocos
+      los lugares)
 
+      %h4.purple Pasos para participar
+      %ol
+        %li Regístrate en manuable.com/mercadosemilla
+        %li Sube la mayor cantidad de productos en tu perfil (esto ayudara a que las personas que nos vistan conozcan más acerca de lo que haces).
+        %li Envía tu solicitud para participar en el evento.
+        %li Por tu comodidad el pago lo podrás realizar en tiendas Oxxo, tarjeta de débito, crédito o transferencia electrónica.
+      %strong
+        Nota.- en el caso de que tus productos sean alimentos preparados, no subir fotografía al sitio, solo envía la solicitud de participación y envía un mensaje al organizador del evento
+      .call-to-action
+        .text
+          HAZ CLICK EN EL BOTÓN DE LA
+          %br
+          DERECHA PARA ENVÍAR TU SOLICITUD,
+          %br
+          TE CONTACTAREMOS A LA BREVEDAD.
+        .sign
+          &raquo;
+        %div
+          - if event_request = @event.event_requests.where(user_id: current_user.id).first
+            - if event_request.accepted.nil?
+              .btn.btn-warning.disabled
+                Esperando respuesta
+            - elsif event_request.accepted
+              = link_to "¡Aceptada!<br> pasar a paga".html_safe, checkout_event_path(@event), class: 'pull-right request-access'
+            - else
+              .btn.btn-danger.disabled
+                Rechazada
+          - else
+            - if @event.seats_left?
+              = link_to '¡Envía tu <br> Solicitud!'.html_safe, request_access_event_path, class: 'pull-right request-access', rel: 'modal'

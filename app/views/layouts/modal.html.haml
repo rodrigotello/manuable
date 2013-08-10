@@ -1,5 +1,5 @@
 = yield
 :javascript
-  if( "object" === typeof window['#{[params[:controller].titleize.gsub("/",""), params[:action].titleize].join}'] )
-  window['#{[params[:controller].titleize.gsub("/",""), params[:action].titleize].join }'].init();
+  if( "object" === typeof window['#{[params[:controller].titleize.gsub(/[\/ ]/,""), params[:action].titleize].join("")}'] )
+  window['#{[params[:controller].titleize.gsub(/[\/ ]/,""), params[:action].titleize].join("") }'].init();
 

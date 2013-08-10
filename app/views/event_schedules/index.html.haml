@@ -1,0 +1,16 @@
+%table.table#event-schedule-categories
+  %thead
+    %tr
+      %th
+  %tbody
+    - @event.event_schedule_categories.each do |category|
+      %tr
+        %td
+          = category.name
+        %td= link_to "x", event_event_schedule_category_path(@event, category, format: :json), method: :delete, remote: true, class: 'remove-category'
+
+    %tr
+      %td{ colspan: 2 }
+        = form_for [@event, EventScheduleCategory.new] do |f|
+          = f.text_field :name
+

@@ -1,6 +1,6 @@
 Manuable::Application.routes.draw do
-  match "/404", :to => "errors#not_found"
-  match "/500", :to => "errors#app_failure"
+  # match "/404", :to => "errors#not_found"
+  # match "/500", :to => "errors#app_failure"
   root :to => 'home#index'
 
   ActiveAdmin.routes(self)
@@ -36,6 +36,12 @@ Manuable::Application.routes.draw do
     post :checkout, on: :member
     get :request_access, on: :member
     post :request_access, on: :member
+    resources :event_schedules
+    resources :event_schedule_categories
+  end
+
+  resources :event_schedule_categories do
+    resources :event_schedules
   end
 #  resources :categories do
 #    resources :categories
