@@ -1,6 +1,6 @@
 .event-show
   %div{ style: "border-bottom: 5px solid #000;background-image: url(#{@event.cover.url}); width: 1200px; height: 390px;" }
-  %ul.nav.nav-pills.row-fluid.event-nav
+  %ul.nav.nav-pills.row-fluid.event-nav{ data: { "spy" => 'affix', "offset-top" => '414' }}
     %li.active.span3.text-center
       %a{ href: "#desc" }
         Descripción
@@ -46,7 +46,7 @@
 
         .span4
           %h4.horizontal El evento
-          = @event.description
+          = raw @event.description
           #collaboration
             Colaboradores:
             %br
@@ -84,6 +84,7 @@
           %br
           %strong
             Entrada libre
+
   %section#itinerary
     %h3 El itinerario
     .section-content.clearfix
@@ -178,7 +179,7 @@
     %h3 Quiero ser expositor
     .section-content.clearfix#benefits-bg
       %h4 Beneficios por Participar
-      = @event.benefits
+      =raw @event.benefits
       - if event_request = @event.event_requests.where(user_id: current_user.id).first
         - if event_request.accepted.nil?
           .btn.btn-warning.disabled
@@ -191,21 +192,21 @@
       - else
         - if @event.seats_left?
           = link_to '¡Envía tu Solicitud!', request_access_event_path, class: 'pull-right', rel: 'modal'
-
-      %h4 Observaciones y Espacios
-      = @event.notes
-      - if event_request = @event.event_requests.where(user_id: current_user.id).first
-        - if event_request.accepted.nil?
-          .btn.btn-warning.disabled
-            Esperando respuesta
-        - elsif event_request.accepted
-          = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'pull-right'
+      #observations-bg
+        %h4 Observaciones y Espacios
+        =raw @event.notes
+        - if event_request = @event.event_requests.where(user_id: current_user.id).first
+          - if event_request.accepted.nil?
+            .btn.btn-warning.disabled
+              Esperando respuesta
+          - elsif event_request.accepted
+            = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'pull-right'
+          - else
+            .btn.btn-danger.disabled
+              Rechazada
         - else
-          .btn.btn-danger.disabled
-            Rechazada
-      - else
-        - if @event.seats_left?
-          = link_to '¡Envía tu Solicitud!', request_access_event_path, class: 'pull-right', rel: 'modal'
+          - if @event.seats_left?
+            = link_to '¡Envía tu Solicitud!', request_access_event_path, class: 'pull-right', rel: 'modal'
 
       %h4 Consideraciones para el Registro
       Costo por participar:

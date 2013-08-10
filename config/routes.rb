@@ -8,6 +8,7 @@ Manuable::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   get "home/index"
+  get "/mercadosemilla", to: "events#show", id: 7
   get "about", to: "home#about"
 
   # match 'product/:id' => 'home#product'

@@ -227,6 +227,11 @@ var EventsShow = new function(){
     $('.datetime').timepicker({
       format: 'yyyy-mm-dd'
     });
+    $('.event-nav a').click(function(){
+      $('html,body').animate({
+        scrollTop: $($(this).attr("href")).offset().top - 150
+        }, 500);
+    });
 
     $('form.new_event_schedule').bind('ajax:success', function(e, schedule){
       var $li = $("<li class=\"clearfix\">" +
