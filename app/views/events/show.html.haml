@@ -180,33 +180,9 @@
     .section-content.clearfix#benefits-bg
       %h4 Beneficios por Participar
       =raw @event.benefits
-      - if event_request = @event.event_requests.where(user_id: current_user.id).first
-        - if event_request.accepted.nil?
-          .btn.btn-warning.disabled
-            Esperando respuesta
-        - elsif event_request.accepted
-          = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'pull-right'
-        - else
-          .btn.btn-danger.disabled
-            Rechazada
-      - else
-        - if @event.seats_left?
-          = link_to '¡Envía tu Solicitud!', request_access_event_path, class: 'pull-right', rel: 'modal'
       #observations-bg
         %h4 Observaciones y Espacios
         =raw @event.notes
-        - if event_request = @event.event_requests.where(user_id: current_user.id).first
-          - if event_request.accepted.nil?
-            .btn.btn-warning.disabled
-              Esperando respuesta
-          - elsif event_request.accepted
-            = link_to "Aceptada!, pasar a pagar &raquo;".html_safe, checkout_event_path(@event), class: 'pull-right'
-          - else
-            .btn.btn-danger.disabled
-              Rechazada
-        - else
-          - if @event.seats_left?
-            = link_to '¡Envía tu Solicitud!', request_access_event_path, class: 'pull-right', rel: 'modal'
 
       %h4 Consideraciones para el Registro
       Costo por participar:
@@ -224,7 +200,7 @@
         %li Por tu comodidad el pago lo podrás realizar en tiendas Oxxo, tarjeta de débito, crédito o transferencia electrónica.
       %strong
         Nota.- en el caso de que tus productos sean alimentos preparados, no subir fotografía al sitio, solo envía la solicitud de participación y envía un mensaje al organizador del evento
-      .call-to-action
+      #call-to-action
         .text
           HAZ CLICK EN EL BOTÓN DE LA
           %br
@@ -246,3 +222,10 @@
           - else
             - if @event.seats_left?
               = link_to '¡Envía tu <br> Solicitud!'.html_safe, request_access_event_path, class: 'pull-right request-access', rel: 'modal'
+        #thankyou
+          ESTE EVENTO
+          %br
+          LO HACEMOS TODOS.
+          %br
+          ¡GRACIAS!
+
