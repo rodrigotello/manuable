@@ -24,7 +24,7 @@ class EventPaymentsController < ApplicationController
       address = params[:event_payment][:card][:address]
 
       cc = ActiveMerchant::Billing::CreditCard.new number: number, first_name: name, last_name: lastname, month: month, year: year, verification_value: cvv, brand: params[:event_payment][:card][:brand]
-      res = gateway.purchase(@payment.grand_total, cc, { currency: 'MXN', order_id: @payment.id, description: "Cuota evento #{@payment.event.name}", billing_address: {address1: address, zip: params[:event_payment][:card][:post_code], phone: params[:event_payment][:card][:phone]} , email: 'cesar@letwrong.com'})
+      res = gateway.purchase(@payment.grand_total, cc, { currency: 'MXN', order_id: @payment.id, description: "Cuota evento #{@payment.event.name}", billing_address: {address1: address, zip: params[:event_payment][:card][:post_code], phone: params[:event_payment][:card][:phone]} , email: current_user.email })
 
       if res.success?
         @payment.update_attribute :paid, true
