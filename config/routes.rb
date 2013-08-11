@@ -33,6 +33,7 @@ Manuable::Application.routes.draw do
   resources :event_requests, only: [:update, :destroy]
 
   resources :events do
+    get :map, on: :member
     get :checkout, on: :member
     post :checkout, on: :member
     get :request_access, on: :member
