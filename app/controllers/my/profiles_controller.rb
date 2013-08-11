@@ -30,7 +30,7 @@ module My
         current_user.update_attributes params[:user]
       end
       sign_in @user, :bypass => true
-      redirect_to :back
+      redirect_to :back, notice: 'Actualizado'
     end
   end
 end

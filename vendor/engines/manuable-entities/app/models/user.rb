@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     arr << 'Nombre'  if name.blank?
     arr << 'Tu foto' if avatar.blank?
     arr << 'Acerca de ti' if about.blank?
-    arr << 'Tus productos' if products.count == 0
+    # arr << 'Tus productos' if products.count == 0
     arr
   end
 

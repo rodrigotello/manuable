@@ -21,7 +21,7 @@
         ser Expositor
 
   %section#desc
-    %h3 Descripción del Evento
+    %h3 Descripción del evento
     .section-content.clearfix
       =# link_to "Editar evento", edit_event_path(@event), rel: 'modal', class: 'btn btn-info pull-right' if @event.user_ids.include?(current_user.id)
       .row-fluid
@@ -40,9 +40,9 @@
             %br
             registro a cualquiera
             %br
-            de los      al
+            de los Talleres de Manualidades al
             %br
-            Tel. (81) 17691414
+            Tel. (81)17691414
 
         .span4
           %h4.horizontal El evento
@@ -79,8 +79,6 @@
           de 4:00 pm a 10:00 pm
           %br
           %br
-          %small Cupo limitado a 100 expositores
-          %br
           %br
           %strong
             Entrada libre
@@ -98,7 +96,7 @@
             %span.schedule-time
               4:00 pm
             %span.schedule-name
-              Acurela por Arte Lunario
+              Acurela para niños por Arte Lunario
           %li.clearfix
             %span.schedule-time
               4:50 pm
@@ -110,10 +108,10 @@
             %span.schedule-name
               Mandalas Power por Carlos Díaz
         %small
-          * Informes acer del registro a cualquiera de los tallere al Tel. (81) 1769 1414
+          * Informes acerca del registro a cualquiera de los Talleres de Manualidades al Tel. (81)17691414
       .event-schedule-category
         %h4
-          Cine al libre
+          Cine al aire libre
         %ul.schedule#cine
           %li.clearfix
             %span.schedule-time
@@ -125,6 +123,14 @@
       .event-schedule-category
         %h4
           Música en vivo
+        %ul.schedule
+          %li.clearfix
+            %span.schedule-time
+              4:00 pm  a 10:00 pm
+            %span.schedule-name
+              Los siguientes músicos
+        %br
+
         #musicians
           .musician
             %a{ href: 'https://www.facebook.com/xiahatroden', class: 'fb-link', target: '_blank' }
