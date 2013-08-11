@@ -10,7 +10,7 @@ class EventPaymentsController < ApplicationController
 
   def update
     @payment = EventPayment.where(user_id: current_user.id).find params[:id]
-    if Rails.env.development?
+    # if Rails.env.development?
       gateway = ActiveMerchant::Billing::BanwireGateway.new login: 'manuable'
 
       name = params[:event_payment][:card][:card_name]
@@ -35,8 +35,8 @@ class EventPaymentsController < ApplicationController
         flash[:error] = 'No pudimos procesar tu pago'
         redirect_to :back
       end
-    else
-    end
+    # else
+    # end
 
   end
 
