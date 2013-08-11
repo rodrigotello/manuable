@@ -214,8 +214,10 @@
         %div
           - if event_request = @event.event_requests.where(user_id: current_user.id).first
             - if event_request.accepted.nil?
-              .btn.btn-warning.disabled
-                Esperando respuesta
+              .btn.btn-warning.disabled.pull-right.request-access
+                Esperando
+                %br
+                respuesta
             - elsif event_request.accepted
               = link_to "¡Aceptada!<br> pasar a paga".html_safe, checkout_event_path(@event), class: 'pull-right request-access'
             - else
@@ -223,7 +225,7 @@
                 Rechazada
           - else
             - if @event.seats_left?
-              = link_to '¡Envía tu <br> Solicitud!'.html_safe, request_access_event_path, class: 'pull-right request-access', rel: 'modal'
+              = link_to '¡Envía tu <br> Solicitud!'.html_safe, request_access_event_path, class: 'pull-right request-access', rel: 'modal', title: '¡Envía tu Solicitud!'
         #thankyou
           ESTE EVENTO
           %br

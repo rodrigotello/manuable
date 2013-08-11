@@ -100,6 +100,8 @@
           #oxxo-payment-option
             Paga en tu OXXO más cercano
             %br
+            %small Clic en el logo
+            %br
             = link_to oxxo_payment_event_payment_path(@payment), method: :post do
               = image_tag 'oxxo.jpg', style: 'width: 150px'
             Recibirás en tu correo instrucciones de como realizar tu pago
