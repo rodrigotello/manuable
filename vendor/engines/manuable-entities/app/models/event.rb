@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
     ep.event_sale_category_id = params[:event_sale_category]
     ep.user_id = current_user.id
     gt = ep.event_sale_category.price
-    params[:event_products].each do |item_id, amount|
+    (params[:event_products]||[]).each do |item_id, amount|
       item_id = item_id.to_i
       amount = amount.to_i
       epp = ep.event_product_payments.build
