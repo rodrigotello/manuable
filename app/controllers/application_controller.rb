@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  force_ssl if: :ssl_configured?
+
   layout :set_layout
   before_filter :beta
   before_filter :dev_user, if: proc { Rails.env.development? }
@@ -24,5 +26,9 @@ class ApplicationController < ActionController::Base
     if params[:dev_user].present?
       sign_in :user, User.find(params[:dev_user])
     end
+  end
+
+  def ssl_configured?
+    !Rails.env.development?
   end
 end

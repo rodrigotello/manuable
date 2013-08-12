@@ -20,26 +20,15 @@
             Rechazada
       - else
         - if @event.seats_left?
-          - if current_user.seller_ready?
-            = link_to 'Estoy listo(a)', request_access_event_path, class: 'btn btn-info', method: :post
-          - else
+          %br
+          = link_to 'Solicitar acceso', request_access_event_path, class: 'btn btn-info', method: :post
+          %br
+          %br
+          %p
+            Llena tu nombre, correo, fotografía y acerca de ti en:
+            = link_to 'Mi información', edit_my_profile_path(f: 's')
             %br
-            .btn.btn-info.disabled
-              Solicitar acceso
-            %br
-            %br
-
-
-            - if current_user.missing_seller_info.present? || current_user.products.count == 0
-              %p
-                Llena la siguiente información en:
-                - if current_user.missing_seller_info.present?
-                  = link_to 'Mi información', edit_my_profile_path(f: 's')
-                  %br
-                  = current_user.missing_seller_info.to_sentence
-                - if current_user.products.count == 0
-                  %br
-                  = "#{current_user.missing_seller_info.present? ? 'Y tus' : 'Tus' } productos en"
-                  = link_to 'Vende', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
+            Y tus productos en:
+            = link_to 'Vende', new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button"
         %br
         %br
