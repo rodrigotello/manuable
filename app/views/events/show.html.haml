@@ -23,7 +23,6 @@
   %section#desc
     %h3 Descripción del evento
     .section-content.clearfix
-      =# link_to "Editar evento", edit_event_path(@event), rel: 'modal', class: 'btn btn-info pull-right' if @event.user_ids.include?(current_user.id)
       .row-fluid
         .span4#organizer
           %h4.horizontal Organizadores
@@ -219,7 +218,7 @@
         .sign
           &raquo;
         %div
-          - if event_request = @event.event_requests.where(user_id: current_user.id).first
+          - if signed_in? && (event_request = @event.event_requests.where(user_id: current_user.id).first)
             - if event_request.accepted.nil?
               .btn.btn-warning.disabled.pull-right.request-access
                 Esperando
@@ -232,7 +231,10 @@
                 Rechazada
           - else
             - if @event.seats_left?
-              = link_to '¡Envía tu <br> Solicitud!'.html_safe, request_access_event_path, class: 'pull-right request-access', rel: 'modal', title: '¡Envía tu Solicitud!'
+              - if signed_in?
+                = link_to '¡Envía tu <br> Solicitud!'.html_safe, request_access_event_path, class: 'pull-right request-access', rel: 'modal', title: '¡Envía tu Solicitud!'
+              - else
+                = link_to '¡Envía tu <br> Solicitud!'.html_safe, "#sign_popup", "data-toggle" => "modal", :role => "button", class: 'pull-right request-access'
         #thankyou
           ESTE EVENTO
           %br
