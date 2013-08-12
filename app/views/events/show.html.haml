@@ -29,8 +29,6 @@
           = image_tag @event.author.avatar.url(:medium)
           .name
             = @event.author.name
-            %br
-            = @event.author.city.try(:name)
           %br
           %br
           %br
@@ -179,7 +177,7 @@
               = image_tag u.avatar.url(:small)
               %hr
               %span.name= u.first_name
-              Organizador
+              %span.location= u.location.present? ? u.location : 'monterrey'
               = link_to 'PRODUCTOS', u
 
 
