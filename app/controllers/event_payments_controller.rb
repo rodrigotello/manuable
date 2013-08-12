@@ -58,7 +58,7 @@ class EventPaymentsController < ApplicationController
       @payment.oxxo_barcode = c.response['response[barcode]']
       @payment.save
 
-      c.store_barcode File.join Rails.root, "/public/uploads/event_payment_barcodes/#{@payment.id}"
+      c.store_barcode File.join Rails.root, "/app/assets/event_payment_barcodes/#{@payment.id}"
       redirect_to :back
     else
       @errors = c.errors

@@ -90,7 +90,7 @@
         - if @payment.oxxo_ready? && @payment.oxxo_expires_on > Date.today
           .alert.alert-success
             Gracias, estamos esperando por tu pago
-          = image_tag "/uploads/event_payment_barcodes/#{@payment.id}/#{@payment.id}.gif"
+          = image_tag "/assets/event_payment_barcodes/#{@payment.id}/#{@payment.id}.gif"
         - else
           - if @errors
             .alert.alert-error
