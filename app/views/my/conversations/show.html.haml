@@ -1,6 +1,7 @@
 .row-fluid
-  .span3
-    = render partial: 'conversation_list', locals: { current_conversation: @conversation }
-  .span7
+  - unless params[:modal] == '1'
+    .span3
+      = render partial: 'conversation_list', locals: { current_conversation: @conversation }
+  %div{ class: params[:modal] == '1' ? 'span12' : 'span7' }
     - if @conversation
       = render partial: 'conversation', locals: { conversation: @conversation }

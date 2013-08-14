@@ -24,13 +24,17 @@
     %h3 Descripción del evento
     .section-content.clearfix
       .row-fluid
-        .span4#organizer
+        .span4#organizers
           %h4.horizontal Organizadores
-          = image_tag @event.author.avatar.url(:medium)
-          .name
-            = @event.author.name
-          %br
-          %br
+          - @event.users.each do |user|
+            .organizer
+              = image_tag user.avatar.url(:medium)
+              .name
+                = user.name
+                - if signed_in?
+                  %small
+                    = raw "(#{link_to "Enviar mensaje", new_my_conversation_path(to: user.id), rel: 'modal'})"
+
           %br
           %small
             *Informes acerca del

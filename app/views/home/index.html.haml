@@ -4,14 +4,17 @@
 .row-fluid
   .span3
     %h3#discover-header
-      Descrube
+      Descubre
     %ul#discover.nav.nav-list{ "data-spy" => 'affix', "data-offset-top" => 130 }
       %li{ class: params[:c].nil? ? 'active' : '' }
         = link_to "Todos", root_path
       - Category.all.each do |category|
         %li{ class: params[:c].to_i == category.id ? 'active' : '' }
           = link_to category.name, root_path(c: category.id)
-  .span9
-
+  .span6
     #main-feed
       = render partial: '/products/feed', locals: { products: @products }
+  .span3
+    #home-left-banner
+      = link_to '/mercadosemilla' do
+        = image_tag("/assets/7sep/banner.png")

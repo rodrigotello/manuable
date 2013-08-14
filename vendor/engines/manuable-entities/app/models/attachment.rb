@@ -5,6 +5,7 @@ class Attachment < ActiveRecord::Base
   scope :random, order("RANDOM()")
   mount_uploader :attachment, AttachUploader
   include Rails.application.routes.url_helpers
+  validates :attachment, presence: true
   # validate :attachment_count
   # after_save :cache_if_avail
 

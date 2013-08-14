@@ -24,12 +24,13 @@ class My::ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     @product.user_id = current_user.id
-    if @product.attachments.length < 4
-      (4 - @product.attachments.length).times { @product.attachments.build }
-    end
+
     if @product.save
       redirect_to @product
     else
+      if @product.attachments.length < 4
+        (4 - @product.attachments.length).times { @product.attachments.build }
+      end
       render action: :new
     end
   end

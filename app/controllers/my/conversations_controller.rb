@@ -10,7 +10,7 @@ class My::ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new params[:conversation].merge(from_id: current_user.id)
     if @conversation.save
-      redirect_to [:my, @conversation]
+      redirect_to :back
     else
       @conversations = Conversation.for(current_user).includes(:from, :to).order('conversations.created_at DESC')
       render action: :new
@@ -21,7 +21,7 @@ class My::ConversationsController < ApplicationController
     userid = current_user.id
     to = params[:to]
     if to && (@conversation = Conversation.where { (from_id == userid) | (to_id == userid) && (from_id == to) | (to_id == to)  }.first)
-      redirect_to [:my, @conversation]
+      redirect_to my_conversation_path(@conversation, modal: params[:modal])
     else
       @conversations = Conversation.for(current_user).includes(:from, :to).order('conversations.created_at DESC')
       @conversation = Conversation.new from_id: current_user.id, to_id: params[:to]
