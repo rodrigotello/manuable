@@ -40,12 +40,20 @@ class EventPaymentsController < ApplicationController
 
   end
 
+  def oxxo_success
+    @payment = EventPayment.where(oxxo_barcode: params[:cb], id: params[:referencia]).first!
+    @payment.paid = true
+    @payment.amount_paid = params[:monto]
+    @payment.save
+    head :ok
+  end
+
   def oxxo_payment
     @payment = EventPayment.where(user_id: current_user.id).find params[:id]
     c = BanwireOxxo.new referencia: @payment.id,
                         dias_vigencia: 5,
                         monto: @payment.grand_total,
-                        url_respuesta: 'http://www.manuable.com/event_payment/oxxo_success',
+                        url_respuesta: 'https://www.manuable.com/event_payments/oxxo_success',
                         cliente: current_user.name,
                         email: current_user.email,
                         sendPDF: true,

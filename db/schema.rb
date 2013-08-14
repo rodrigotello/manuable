@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130810022630) do
+ActiveRecord::Schema.define(:version => 20130814080109) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20130810022630) do
     t.boolean "oxxo_ready",             :default => false
     t.date    "oxxo_expires_on"
     t.string  "oxxo_barcode"
+    t.integer "amount_paid"
   end
 
   create_table "event_product_payments", :force => true do |t|

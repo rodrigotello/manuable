@@ -28,6 +28,8 @@ Manuable::Application.routes.draw do
 
   resources :event_payments do
     post :oxxo_payment, on: :member
+    post :oxxo_success, on: :collection
+    get :oxxo_success, on: :collection
   end
 
   resources :event_requests, only: [:update, :destroy]
