@@ -114,8 +114,14 @@
   #artisans
     .artisan
       width: 100px
+      height: 200px
       float: left
-      margin: 0 30px 30px 0
+      margin: 0 30px 20px 0
+      position: relative
+      .avatar
+        width: 100px
+        height: 90px
+        background-position: center
       hr
         margin: 0 0 10px 0
         border: 0
@@ -125,11 +131,12 @@
         color: #000
         font-weight: bold
         text-decoration: underline
-        text-indent: 5px
         display: block
+        padding-left: 5px
       .location
-        text-indent: 5px
         display: block
+        font-size: 12px
+        padding-left: 5px
       a
         display: block
         color: #fff
@@ -141,6 +148,8 @@
         font-size: 11px
         width: 90px
         margin: 0 auto
+        position: absolute
+        bottom: 5px
   #musicians
     .musician
       float: left

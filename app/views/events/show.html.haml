@@ -108,7 +108,7 @@
             %span.schedule-time
               6:30 pm
             %span.schedule-name
-              Mandalas Power por Carlos Díaz
+              Mandalas Power por Luis Wero
         %small
           * Informes acerca del registro a cualquiera de los Talleres de Manualidades al Tel. (81)17691414
       .event-schedule-category
@@ -178,7 +178,7 @@
           - g.each do |u|
             - next unless u
             .artisan
-              = image_tag u.avatar.url(:small)
+              %div.avatar{  style: "background-image: url(#{u.avatar.url(:small)})" }
               %hr
               %span.name= u.first_name
               %span.location= u.location.present? ? u.location : 'monterrey'
