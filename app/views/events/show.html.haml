@@ -26,7 +26,7 @@
       .row-fluid
         .span4#organizers
           %h4.horizontal Organizadores
-          - @event.users.order("users.name").each do |user|
+          - @event.users.order("users.name DESC").each do |user|
             .organizer
               = image_tag user.avatar.url(:medium)
               .name
