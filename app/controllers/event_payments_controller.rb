@@ -2,7 +2,7 @@
 require 'banwire_oxxo'
 
 class EventPaymentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :oxxo_success
 
   def show
     @payment = EventPayment.where(user_id: current_user.id).find params[:id]
