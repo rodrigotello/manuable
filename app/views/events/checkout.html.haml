@@ -1,7 +1,7 @@
 = form_tag checkout_event_path, method: :post, class: 'form-horizontal' do
   %h1= @event.name
   %p.lead
-    = @event.description
+    = raw @event.description
   %table#event-checkout.table
     %thead
       %tr

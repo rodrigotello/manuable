@@ -27,7 +27,10 @@ class EventPaymentsController < ApplicationController
       res = gateway.purchase(@payment.grand_total*100, cc, { currency: 'MXN', order_id: @payment.id, description: "Cuota evento #{@payment.event.name}", billing_address: {address1: address, zip: params[:event_payment][:card][:post_code], phone: params[:event_payment][:card][:phone]} , email: current_user.email })
 
       if res.success?
-        @payment.update_attribute :paid, true
+        @payment.paid = true
+        @payment.position = params[:event_payment][:position]
+        @payment.save
+
         flash[:notice] = 'Gracias por ser parte de este evento. Nos estaremos comunicando a la brevedad posible.'
         redirect_to root_path
       else
@@ -49,9 +52,10 @@ class EventPaymentsController < ApplicationController
   end
 
   def oxxo_payment
+    redirect_to :back and return unless params[:position].present?
     @payment = EventPayment.where(user_id: current_user.id).find params[:id]
     c = BanwireOxxo.new referencia: @payment.id,
-                        dias_vigencia: 5,
+                        dias_vigencia: 1,
                         monto: @payment.grand_total,
                         url_respuesta: 'https://www.manuable.com/event_payments/oxxo_success',
                         cliente: current_user.name,
@@ -64,6 +68,7 @@ class EventPaymentsController < ApplicationController
       @payment.oxxo_ready = true
       @payment.oxxo_expires_on = c.response['response[fecha_vigencia]']
       @payment.oxxo_barcode = c.response['response[barcode]']
+      @payment.position = params[:position]
       @payment.save
 
       c.store_barcode File.join Rails.root, "/public/uploads/event_payment_barcodes/#{@payment.id}"

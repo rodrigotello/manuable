@@ -141,7 +141,10 @@ $(function(){
         }).modal('show');
       $modal.on('hidden', function(){
         $modal.remove();
-      })
+      });
+      if ( $this.data('modalclass') ){
+        $modal.addClass($this.data('modalclass'));
+      }
     });
   });
 

@@ -21,7 +21,9 @@
         ser Expositor
 
   %section#desc
-    %h3 Descripción del evento
+    %h3
+      Descripción del evento
+      = request_link @event
     .section-content.clearfix
       .row-fluid
         .span4#organizers
@@ -54,6 +56,8 @@
             %img{ src: '/assets/casasemilla.png' }
             %img{ src: '/assets/manuable.png' }
             %img{ src: '/assets/lamiselanea.png' }
+            %p
+              = mail_to 'mercadosemilla@gmail.com'
         .span4
           %h4.horizontal.nodecoration
             &nbsp;
@@ -77,7 +81,7 @@
           %br
           El día:
           %br
-          7 de septiembre de 2013
+          5 de octubre de 2013
           %br
           de 4:00 pm a 10:00 pm
           %br
@@ -88,7 +92,9 @@
           .clearfix
           = link_to 'MAPA', "https://maps.google.com/maps?q=25.654206,-100.368171&hl=en&ll=25.654177,-100.368057&spn=0.004246,0.008068&num=1&t=m&z=18&iwloc=A", target: '_blank', class: 'show-map pull-left'
   %section#itinerary
-    %h3 El itinerario
+    %h3
+      El itinerario
+      = request_link @event
     .section-content.clearfix
       .event-schedule-category
         %h4
@@ -171,7 +177,9 @@
                 Daniel Cantisani
 
   %section#artisans
-    %h3 Nuestros Expositores
+    %h3
+      Nuestros Expositores
+      = request_link @event
     .section-content.clearfix#artisans-bg
       - @event.artisants.in_groups_of(5).each do |g|
         .row-fluid
@@ -186,61 +194,33 @@
 
 
   %section#join
-    %h3 Quiero ser expositor
-    .section-content.clearfix#benefits-bg
-      %h4 Beneficios por Participar
-      =raw @event.benefits
-      #observations-bg
-        %h4 Observaciones y Espacios
-        =raw @event.notes
-
-      %h4 Consideraciones para el Registro
-      Costo por participar:
-      %br
-      $250 pesos para expositores (artesanos, artistas).
-      %br
-      $350 Alimentos (El precio varía por considerar que son más pocos
-      los lugares)
-
-      %h4.purple Pasos para participar
-      %ol
-        %li Regístrate en manuable.com/mercadosemilla
-        %li Sube la mayor cantidad de productos en tu perfil (esto ayudara a que las personas que nos vistan conozcan más acerca de lo que haces).
-        %li Envía tu solicitud para participar en el evento.
-        %li Por tu comodidad el pago lo podrás realizar en tiendas Oxxo, tarjeta de débito, crédito o transferencia electrónica.
-      %strong
-        Nota.- en el caso de que tus productos sean alimentos preparados, no subir fotografía al sitio, solo envía la solicitud de participación y envía un mensaje al organizador del evento
+    %h3
+      Pasos para participar
+      = request_link @event
+    .section-content.clearfix#steps-bg
       #call-to-action
-        .text
-          HAZ CLICK EN EL BOTÓN DE LA
-          %br
-          DERECHA PARA ENVÍAR TU SOLICITUD,
-          %br
-          TE CONTACTAREMOS A LA BREVEDAD.
         .sign
           &raquo;
         %div
-          - if signed_in? && (event_request = @event.event_requests.where(user_id: current_user.id).first)
-            - if event_request.accepted.nil?
-              .btn.btn-warning.disabled.pull-right.request-access
-                Esperando
-                %br
-                respuesta
-            - elsif event_request.accepted
-              = link_to "¡Aceptada!<br> pasar a paga".html_safe, checkout_event_path(@event), class: 'pull-right request-access'
-            - else
-              .btn.btn-danger.disabled
-                Rechazada
-          - else
-            - if @event.seats_left?
-              - if signed_in?
-                = link_to '¡Envía tu <br> Solicitud!'.html_safe, request_access_event_path, class: 'pull-right request-access', rel: 'modal', title: '¡Envía tu Solicitud!'
-              - else
-                = link_to '¡Envía tu <br> Solicitud!'.html_safe, "#sign_popup", "data-toggle" => "modal", :role => "button", class: 'pull-right request-access'
-        #thankyou
-          ESTE EVENTO
-          %br
-          LO HACEMOS TODOS.
-          %br
-          ¡GRACIAS!
+      %h4 Pasos para participar
+      %ul
+        %li
+          %span.number
+            1.
+          Regístrate en manuable.com
+        %li
+          %span.number
+            2.
+          Sube la mayor cantidad de productos en tu perfil (esto ayudara a que las personas que nos vistan conozcan más acerca de lo que haces).
+        %li
+          %span.number
+            3.
+          Entra a manuable.com y visita el event de Mercado Semilla y envia tu solicitud para participar en el evento.
+        %li
+          %span.number
+            4.
+          Por tu comodidad, el pago lo podrás realizar en tiendas Oxxo, tarjeta de débito, crédito o transferencia electrónica.
 
+      %h4 Video con los pasos
+      %iframe{ width: "740", height:"416", src: "//www.youtube.com/embed/31_e-yLP69w", frameborder: "0", allowfullscreen: true }
+      %h5 Mercado Semilla ¿Comó ser expositor?

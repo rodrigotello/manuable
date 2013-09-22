@@ -20,7 +20,7 @@
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="favicon.ico" rel="shortcut icon")
 
-  %body{ id: "#{params[:controller]}-#{params[:action]}", data: { page: [controller_name.capitalize, action_name.capitalize].join } }
+  %body{ id: "#{params[:controller].titleize.gsub(/[\/ ]/,"")}-#{params[:action]}", data: { page: [controller_name.titleize.gsub(/[\/ ]/,""), action_name.capitalize].join.gsub(" ","") } }
     = render partial: '/shared/social_plugins'
     .container
       = render partial: '/shared/navigation_bar'

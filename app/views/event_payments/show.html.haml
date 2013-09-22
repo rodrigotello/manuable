@@ -1,7 +1,7 @@
 = form_for @payment, html: { } do |f|
   %h1= @payment.event.name
   %p.lead
-    = @payment.event.description
+    = raw @payment.event.description
   %table#event-checkout.table
     %thead
       %tr
@@ -40,6 +40,11 @@
         %td
           #total.strong
             %strong= number_to_currency @payment.grand_total
+  #space-selector
+    Por favor selecciona la posición donde te gustaría estar durante el evento.
+    %br
+    = f.select :position, @payment.event_sale_category.available_positions, {}, class: 'input-small'
+  = link_to image_tag('semillamap.jpg'), '/assets/semillamap.jpg', target: '_blank'
 
   - unless @payment.paid?
     %h4
@@ -102,9 +107,12 @@
             %br
             %small Clic en el logo
             %br
-            = link_to oxxo_payment_event_payment_path(@payment), method: :post do
+            = link_to oxxo_payment_event_payment_path(@payment, position: @payment.event_sale_category.available_positions.first), method: :post, id: 'oxxo-link' do
               = image_tag 'oxxo.jpg', style: 'width: 150px'
             Recibirás en tu correo instrucciones de como realizar tu pago
+            %br
+            %strong
+              Tendrás 24 hrs para realizar tu pago
   - else
     %a.btn.btn-success.disabled
       Pagado!

@@ -43,8 +43,7 @@ var EventsNew = new function(){
         $hidden.val(cleaned_ids.join(','));
       }
     });
-    $('#organizer_names_tag').data('autocomplete')
-      .option('select', function(event, ui ){
+    $('#organizer_names_tag').bind('autocompleteselect', function(event, ui){
           var $hidden = $('#event_user_ids'),
               selected_items = $('#organizer_names_tag').data('selected_items');
           if ( !selected_items ){
@@ -59,12 +58,7 @@ var EventsNew = new function(){
           }else{
             $hidden.val( ui.item.id  );
           }
-        })
-      ._renderItem = function( ul, item ) {
-        return $( "<li>" )
-          .append( "<a><img src='" + item.avatar + "' class='user-avatar'>&nbsp;" + item.name + "</a>" )
-          .appendTo( ul );
-      };
+        });
 
     $('#event_address, #event_zip, #event_location, #event_city_input').blur( function(){
       if( !($('#event_city_input').val() && $('#event_address').val() && $('#event_zip').val() && $('#event_city_input').val() ) ){ return; }
@@ -346,3 +340,34 @@ var EventsMap = new function(){
     });
   }
 };
+var EventsRequestAccess = new function(){
+  "use strict";
+  var self = this;
+  self.init = function(){
+    if(window["EventsRequestAccess"].initialized){ return ;}
+    window["EventsRequestAccess"].initialized = true;
+    $('#event-tos .request-access').click(function(e){
+      if($(this).hasClass('disabled')){
+        return false;
+      }
+    });
+    $('#obs-cb, #terms-cb').change(function(){
+      if( $('#obs-cb').is(':checked') && $('#terms-cb').is(':checked')  ){
+        $('#event-tos .request-access').removeClass('disabled');
+      }else{
+        $('#event-tos .request-access').addClass('disabled');
+      }
+    });
+  }
+}
+var EventPaymentsShow = new function(){
+  "use strict";
+  var self = this;
+  self.init = function(){
+    if(window["EventPaymentsShow"].initialized){ return ;}
+    window["EventPaymentsShow"].initialized = true;
+    $('#event_payment_position').change(function(){
+     $('#oxxo-link').attr('href', location.pathname+'?position=' + $(this).val());
+    });
+  }
+}
