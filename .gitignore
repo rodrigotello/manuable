@@ -17,3 +17,4 @@ public/uploads
 public/assets
 ignored_folder
 spec/support/images/
+*.swp

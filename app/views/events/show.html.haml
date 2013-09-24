@@ -1,5 +1,5 @@
 .event-show
-  %div{ style: "border-bottom: 5px solid #000;background-image: url(#{@event.cover.url}); width: 1200px; height: 390px;" }
+  %div{ style: "border-bottom: 5px solid #000;background-image: url(#{@event.cover.url}); width: 1200px; height: 225px; background-repeat: no-repeat; background-position: center;" }
   %ul.nav.nav-pills.row-fluid.event-nav{ data: { "spy" => 'affix', "offset-top" => '414' }}
     %li.active.span3.text-center
       %a{ href: "#desc" }
@@ -201,7 +201,7 @@
       #call-to-action
         .sign
           &raquo;
-        %div
+          = image_tag 'manuable.png'
       %h4 Pasos para participar
       %ul
         %li
