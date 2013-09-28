@@ -15,6 +15,6 @@
     #main-feed
       = render partial: '/products/feed', locals: { products: @products }
   .span3
-    #home-left-banner
+    #home-left-banner{ style: 'display: none' }
       = link_to '/mercadosemilla' do
         = image_tag("/assets/5octbanner.png")
