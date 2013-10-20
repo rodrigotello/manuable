@@ -23,7 +23,7 @@ class EventUploader < CarrierWave::Uploader::Base
   end
 
   version :cover do
-    process resize_to_limit: [800, 250]
+    process resize_to_limit: [851, 315]
   end
 
   def default_url
