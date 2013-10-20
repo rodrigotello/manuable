@@ -74,7 +74,7 @@
         - next unless u
         .artisan
           = link_to user_path(u) do
-            %div.avatar{  style: "background-image: url(#{@images[u.id].try(:attachment).try(:try, :medium) })" }
+            %div.avatar{  style: "background-image: url(#{@images[u.id].try(:attachment).try(:try, :large) })" }
             %span.name= u.name
 
   %section#benefits
