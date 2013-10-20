@@ -8,9 +8,11 @@ gem 'rails', "~>3.2"
 gem "manuable-entities", :path => "vendor/gems/manuable-entities"
 gem "draper"
 gem "httpclient"
-gem "mysql2"
+
+
 # DB
   group :production do
+    gem "pg"
     gem 'puma', :github => 'puma/puma'
     gem 'newrelic_rpm'
   end
@@ -73,6 +75,7 @@ group :assets do
 end
 
 group :development do
+
   gem 'guard-livereload'
   gem 'rack-livereload'
   gem "better_errors"
@@ -83,6 +86,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "mysql2"
   gem "yard", :require => false
   gem "simplecov", :require => false
   gem "simplecov-rcov", :require => false
