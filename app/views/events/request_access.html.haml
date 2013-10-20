@@ -1,52 +1,45 @@
-.event-show
-  %h2 PARTICIPA EN MERCADO SEMILLA
-  %section
-    #benefits-observations
-      #benefits-bg
-        %h4 Beneficios por Participar
-        =raw @event.benefits
+#event-request-access
+  %h2
+    PARTICIPA EN
+    = @event.name
+  #benefits-observations
+    #benefits-bg
+      %h4 Beneficios por Participar
+      =raw @event.benefits
 
-      #observations-bg
-        %h4 Observaciones y Espacios
-        =raw @event.notes
-
+    #observations-bg
+      %h4 Observaciones y Espacios
+      =raw @event.notes
+      - if @event.location_map.present?
         #semilla-map
-          = link_to image_tag('semillamapmin.jpg'), '/assets/semillamap.jpg',  target: '_blank'
-        %h4 Consideraciones para el Registro
-        Costo por participar:
-        %br
-        $250 pesos para expositores (artesanos, artistas).
-        %br
-        $350 Alimentos (El precio varía por considerar que son más pocos
-        los lugares)
-        %strong
-          Nota.- en el caso de que tus producos sean alimentos preparados, no subir fotografías al sitio, solo envía la solicitud de participación y envía un mensaje al organizador del evento.
-    #event-tos
-      .row-fluid
-        .span6
-          #checkbox-acceptance
-            %label
-              %input{ type: 'checkbox', id: 'obs-cb' }
-              He leído las observaciones
-            %label
-              %input{ type: 'checkbox', id: 'terms-cb' }
-              Acepto los términos y condiciones
-        .span4
-        .span4
-          %p#do-click
-            HAZ CLICK EN EL BOTÓN DE LA DERECHA PARA ENVÍAR TU SOLICITUD, TE CONTACTAREMOS A LA BREVEDAD
-        .span2
-          - if event_request = @event.event_requests.where(user_id: current_user.id).first
-            - if event_request.accepted.nil?
-              .btn.btn-warning.disabled
-                Esperando respuesta
-            - elsif event_request.accepted
-              .btn.btn-success.disabled
-                Aceptada
-            - else
-              .btn.btn-danger.disabled
-                Rechazada
+          = link_to image_tag(@event.location_map.url), @event.location_map.url,  target: '_blank'
+
+  #event-tos
+    .row-fluid
+      .span6
+        #checkbox-acceptance
+          %label
+            %input{ type: 'checkbox', id: 'obs-cb' }
+            He leído las observaciones
+          %label
+            %input{ type: 'checkbox', id: 'terms-cb' }
+            Acepto los términos y condiciones
+      .span4
+      .span4
+        %p#do-click
+          HAZ CLICK EN EL BOTÓN DE LA DERECHA PARA ENVÍAR TU SOLICITUD, TE CONTACTAREMOS A LA BREVEDAD
+      .span2
+        - if event_request = @event.event_requests.where(user_id: current_user.id).first
+          - if event_request.accepted.nil?
+            .btn.btn-warning.disabled
+              Esperando respuesta
+          - elsif event_request.accepted
+            .btn.btn-success.disabled
+              Aceptada
           - else
-            - if @event.seats_left?
-              = link_to '<br>Envia tu <br>solicitud'.html_safe, request_access_event_path, class: 'disabled pull-right request-access', method: :post
+            .btn.btn-danger.disabled
+              Rechazada
+        - else
+          - if @event.seats_left?
+            = link_to '<br>Envia tu <br>solicitud'.html_safe, request_access_event_path, class: 'disabled pull-right request-access', method: :post
 
