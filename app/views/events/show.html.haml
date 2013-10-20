@@ -7,7 +7,8 @@
       = l @event.starts_at, format: :human
       %br
       = @event.location_name
-    %ul.event-nav.clearfix{ data: { "spy" => 'affix', "offset-top" => '414' }}
+      - #%ul.event-nav.clearfix{ data: { "spy" => 'affix', "offset-top" => '414' }}
+    %ul.event-nav.clearfix
       %li.active.text-center
         %a{ href: "#desc" }
           %h4 Descripción del evento
