@@ -8,9 +8,7 @@ module EventsHelper
       elsif event_request.accepted
         output << link_to("¡Aceptada! pasar a paga".html_safe, checkout_event_path(event), class: 'request-access')
       else
-        output << "<div class='btn btn-danger disabled'>
-          Rechazada
-        </div>"
+        output << "<div class='btn btn-danger disabled'> Rechazada </div>"
       end
     else
       if event.seats_left?
