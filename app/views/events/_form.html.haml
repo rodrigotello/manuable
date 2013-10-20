@@ -1,5 +1,6 @@
 = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?", wrapper: :control_row
 = f.input :cover, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
+= f.input :location_map, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
 = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text, wrapper: :control_row
 = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text, wrapper: :control_row
 = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
@@ -21,6 +22,11 @@
     = f.input :city_id, :wrapper => :control_row do
       = f.input_field :city_id, class: 'form-control', id: 'event_city_input'
       = f.input_field :city_id, as: :hidden
+.row-fluid
+  .span12
+    = f.input :location_name, :wrapper => :control_row do
+      = f.input_field :location_name, class: 'form-control', as: :string
+
 
 = f.input :lat, as: :hidden
 = f.input :lng, as: :hidden
@@ -53,7 +59,7 @@
         %i.icon-time
 
 %fieldset
-  %legend Costos por tipo de producto a vender
+  %legend Costos por tipo de producto o zona a vender
   = f.fields_for :event_sale_categories do |product_form|
 
     .row
