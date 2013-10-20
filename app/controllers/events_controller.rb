@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :map]
 
   def show
-    @event = Event.find params[:id]
+    @event = Event.includes(:artisants => :last_product).find params[:id]
+    @images = Hash[*@event.artisants.collect {|art|
+          next if art.last_product.nil? || art.last_product.attachments.first.nil?
+          [art.id, art.last_product.attachments.first]
+        }.compact.flatten]
   end
 
   def map

@@ -68,12 +68,13 @@
   %section#artisans.clearfix
     %h3
       Expositores
+
     - @event.artisants.in_groups_of(4).each do |g|
       - g.each do |u|
         - next unless u
         .artisan
           = link_to user_path(u) do
-            %div.avatar{  style: "background-image: url(#{u.avatar.url(:small)})" }
+            %div.avatar{  style: "background-image: url(#{@images[u.id].try(:attachment).try(:try, :medium) })" }
             %span.name= u.name
 
   %section#benefits

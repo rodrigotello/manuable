@@ -42,6 +42,8 @@ class Product < ActiveRecord::Base
 
   }
 
+  after_create :update_user_last_product
+
   def self.filter params={}
     query = scoped
     if params[:c].present?
@@ -62,4 +64,9 @@ class Product < ActiveRecord::Base
     likes.where(user_id: current_user.id).first_or_create
   end
 
+  private
+
+  def update_user_last_product
+    user.update_attibute :last_product_id, id
+  end
 end

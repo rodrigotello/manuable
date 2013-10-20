@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
   belongs_to :state
   belongs_to :city
+  belongs_to :last_product, class_name: "Product", foreign_key: 'last_product_id'
   has_many :authentications, dependent: :destroy
   has_many :products, dependent: :destroy
 
