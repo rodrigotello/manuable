@@ -5,12 +5,12 @@ end
 source 'https://rubygems.org'
 gem 'rails', "~>3.2"
 
-gem "manuable-entities", :path => "vendor/engines/manuable-entities"
+gem "manuable-entities", :path => "vendor/gems/manuable-entities"
 gem "draper"
 gem "httpclient"
+gem "mysql2"
 # DB
   group :production do
-    gem "pg"
     gem 'puma', :github => 'puma/puma'
     gem 'newrelic_rpm'
   end
@@ -73,6 +73,8 @@ group :assets do
 end
 
 group :development do
+  gem 'guard-livereload'
+  gem 'rack-livereload'
   gem "better_errors"
   gem "binding_of_caller"
   gem 'meta_request'

@@ -1,229 +1,86 @@
-- if false
-  .event-show
-    %div{ style: "border-bottom: 5px solid #000;background-image: url(#{@event.cover.url}); width: 1200px; height: 225px; background-repeat: no-repeat; background-position: center;" }
-    %ul.nav.nav-pills.row-fluid.event-nav{ data: { "spy" => 'affix', "offset-top" => '414' }}
-      %li.active.span3.text-center
+.event-show
+  %div{ style: "background-image: url(#{@event.cover.url}); width: 1200px; height: 225px; background-repeat: no-repeat; background-position: center;" }
+  %section#event-header
+    %h1.event-name= @event.name
+    %p.event-brief
+      Fecha:
+      = l @event.starts_at, format: :human
+      %br
+      = @event.location_name
+    %ul.event-nav.clearfix{ data: { "spy" => 'affix', "offset-top" => '414' }}
+      %li.active.text-center
         %a{ href: "#desc" }
-          Descripción
-          %br
-          del Evento
-      %li.span3.text-center
-        %a{ href: "#itinerary", style: 'line-height: 40px' }
-          Itinerario
-      %li.span3.text-center
+          %h4 Descripción del evento
+      %li.text-center
+        %a{ href: "#itinerary" }
+          %h4 El Itinerario
+      %li.text-center
         %a{ href: "#artisans" }
-          Conoce a los
-          %br
-          Expositores
-      %li.span3.text-center
-        %a{ href: "#join" }
-          Quiero
-          %br
-          ser Expositor
+          %h4 Conoce a los Expositores
 
-    %section#desc
-      %h3
-        Descripción del evento
-        = request_link @event
-      .section-content.clearfix
-        .row-fluid
-          .span4#organizers
-            %h4.horizontal Organizadores
-            - @event.users.order("users.name DESC").each do |user|
-              .organizer
-                = image_tag user.avatar.url(:medium)
-                .name
-                  = user.name
-                  - if signed_in?
-                    %small
-                      = raw "(#{link_to "Enviar mensaje", new_my_conversation_path(to: user.id), rel: 'modal'})"
+  %section#desc
+    = @event.description
+    = request_link @event
 
-            %br
-            %small
-              *Informes acerca del
-              %br
-              registro a cualquiera
-              %br
-              de los Talleres de Manualidades al
-              %br
-              Tel. (81)17691414
+  %section#organizers
+    %h3 Organizadores
+    - @event.users.order("users.name DESC").in_groups_of(4, false) do |group|
+      .row-fluid
+        - group.each do |user|
+          .span3
+            .organizer
+              = image_tag user.avatar.url(:medium)
+              .name
+                = user.name
+                - if signed_in?
+                  %small
+                    = raw "(#{link_to "Enviar mensaje", new_my_conversation_path(to: user.id), rel: 'modal'})"
 
-          .span4
-            %h4.horizontal El evento
-            = raw @event.description
-            #collaboration
-              Colaboradores:
-              %br
-              %img{ src: '/assets/casasemilla.png' }
-              %img{ src: '/assets/manuable.png' }
-              %img{ src: '/assets/lamiselanea.png' }
-              %p
-                = mail_to 'mercadosemilla@gmail.com'
-          .span4
-            %h4.horizontal.nodecoration
-              &nbsp;
-            El Mercado Semilla se
-            %br
-            llevará a cabo en
-            %br
-            Casa Semilla, ubicada
-            %br
-            en:
-            %br
-            %br
-            Río Volga #120 Oriente
-            %br
-            Entre Río Tamanzunchale y Río Presas
-            %br
-            Colonia Del Valle,
-            %br
-            66220 San Pedro N.L.
-            %br
-            %br
-            El día:
-            %br
-            5 de octubre de 2013
-            %br
-            de 4:00 pm a 10:00 pm
-            %br
-            %br
-            %br
-            %strong
-              Entrada libre
-            .clearfix
-            = link_to 'MAPA', "https://maps.google.com/maps?q=25.654206,-100.368171&hl=en&ll=25.654177,-100.368057&spn=0.004246,0.008068&num=1&t=m&z=18&iwloc=A", target: '_blank', class: 'show-map pull-left'
-    %section#itinerary
-      %h3
-        El itinerario
-        = request_link @event
-      .section-content.clearfix
-        .event-schedule-category
-          %h4
-            Talleres de Manualidades
-          %ul.schedule#talleres
-            %li.clearfix
-              %span.schedule-time
-                4:00 pm
-              %span.schedule-name
-                Acuarela para niños por Arte Lunario
-            %li.clearfix
-              %span.schedule-time
-                4:50 pm
-              %span.schedule-name
-                Creación de malas por Eunice García
-            %li.clearfix
-              %span.schedule-time
-                6:30 pm
-              %span.schedule-name
-                Mandalas Power por Luis Wero
-          %small
-            * Informes acerca del registro a cualquiera de los Talleres de Manualidades al Tel. (81)17691414
-        .event-schedule-category
-          %h4
-            Cine al aire libre
-          %ul.schedule#cine
-            %li.clearfix
-              %span.schedule-time
-                10:00 pm
-              %span.schedule-name
-                Cine "Artesanos"
-                %strong
-                  Jardín Fuego
-        .event-schedule-category
-          %h4
-            Música en vivo
-          %ul.schedule
-            %li.clearfix
-              %span.schedule-time
-                4:00 pm  a 10:00 pm
-              %span.schedule-name
-                Los siguientes músicos
-          %br
+  %section#itinerary
+    %h3 Itinerario
+    - @event.event_schedules.group_by { |iti| iti.starts_at.to_date }.each do |date, itis|
+      %table.card.iti-date-group{ cellpadding: 0, cellspacing: 0}
+        %tr
+          %td.card-present
+            %h1= l date, format: :day_month
+            %span.time-range= l itis.first.starts_at, format: :time
+            :plain
+              -
+            %span.time-range= l itis.last.starts_at, format: :time
+          %td.card-detail
+            %ul
+              - itis.each do |iti|
+                %li
+                  .iti-time= l iti.starts_at, format: :time
+                  .iti-name= iti.name
+    - if @event.location_name && @event.lat.present? && @event.lng
+      %h3 Lugar
+      %table.card{ cellpadding: 0, cellspacing: 0}
+        %tr
+          %td.card-present
+            %h1
+              = @event.location_name
+            .address
+              = @event.address
+          %td.card-detail
+            #map{ data: {lat: @event.lat, lng: @event.lng }}
 
-          #musicians
-            .musician
-              %a{ href: 'https://www.facebook.com/xiahatroden', class: 'fb-link', target: '_blank' }
-                %img{ src: '/assets/7sep/xiaha_troden.png' }
-                %span.name
-                  Xiaha Troden
-            .musician
-              %a{ href: 'https://www.facebook.com/andresluismx', class: 'fb-link', target: '_blank' }
-                %img{ src: '/assets/7sep/andresluis.png' }
-                %span.name
-                  Andrés Luis
-            .musician
-              %a{ href: 'https://www.facebook.com/pages/Noyolo/232188323561365', class: 'fb-link', target: '_blank' }
-                %img{ src: '/assets/7sep/noyolo.png' }
-                %span.name
-                  Noyolo
-            .musician
-              %a{ href: 'https://www.facebook.com/RapDeLuz', class: 'fb-link', target: '_blank' }
-                %img{ src: '/assets/7sep/rap.png' }
-                %span.name
-                  Rap de Luz
-            .musician
-              %a{ href: 'https://www.facebook.com/dhumeda', class: 'fb-link', target: '_blank' }
-                %img{ src: '/assets/7sep/david.png' }
-                %span.name
-                  David Humeda
-            .musician
-              %a{ href: 'https://www.facebook.com/pages/Viento-Wirikuta/530434550301687', class: 'fb-link', target: '_blank' }
-                %img{ src: '/assets/7sep/viento.png' }
-                %span.name
-                  Viento Wikirikuta
-            .musician
-              %a{ href: '"http://flavors.me/cantisani', class: 'fb-link', target: '_blank' }
-                %img{ src: '/assets/7sep/daniel.png' }
-                %span.name
-                  Daniel Cantisani
+  %section#artisans.clearfix
+    %h3
+      Expositores
+    - @event.artisants.in_groups_of(4).each do |g|
+      - g.each do |u|
+        - next unless u
+        .artisan
+          = link_to user_path(u) do
+            %div.avatar{  style: "background-image: url(#{u.avatar.url(:small)})" }
+            %span.name= u.name
 
-    %section#artisans
-      %h3
-        Nuestros Expositores
-        = request_link @event
-      .section-content.clearfix#artisans-bg
-        - @event.artisants.in_groups_of(5).each do |g|
-          .row-fluid
-            - g.each do |u|
-              - next unless u
-              .artisan
-                %div.avatar{  style: "background-image: url(#{u.avatar.url(:small)})" }
-                %hr
-                %span.name= u.first_name
-                %span.location= u.location.present? ? u.location : 'monterrey'
-                = link_to 'PRODUCTOS', u
-
-
-    %section#join
-      %h3
-        Pasos para participar
-        = request_link @event
-      .section-content.clearfix#steps-bg
-        #call-to-action
-          .sign
-            &raquo;
-            = image_tag 'manuable.png'
-        %h4 Pasos para participar
-        %ul
-          %li
-            %span.number
-              1.
-            Regístrate en manuable.com
-          %li
-            %span.number
-              2.
-            Sube la mayor cantidad de productos en tu perfil (esto ayudara a que las personas que nos vistan conozcan más acerca de lo que haces).
-          %li
-            %span.number
-              3.
-            Entra a manuable.com y visita el event de Mercado Semilla y envia tu solicitud para participar en el evento.
-          %li
-            %span.number
-              4.
-            Por tu comodidad, el pago lo podrás realizar en tiendas Oxxo, tarjeta de débito, crédito o transferencia electrónica.
-
-        %h4 Video con los pasos
-        %iframe{ width: "740", height:"416", src: "//www.youtube.com/embed/31_e-yLP69w", frameborder: "0", allowfullscreen: true }
-        %h5 Mercado Semilla ¿Comó ser expositor?
-- else
-  = image_tag 'pospone.png'
+  %section#benefits
+    %h3 Beneficios por participar
+    = raw @event.benefits
+  %section#participate
+    %h2 ¿Eres artesano y quieres participar?
+    %p
+      ¿Alguna duda? Comunicate con nosotros
+    = request_link @event

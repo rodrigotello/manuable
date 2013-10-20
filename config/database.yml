@@ -1,6 +1,6 @@
 development:
   username: root
-  adapter: postgresql
+  adapter: mysql2
   database: manuable_dev
   pool: 5
   timeout: 5000

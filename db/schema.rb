@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130922082652) do
+ActiveRecord::Schema.define(:version => 20131020012501) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20130922082652) do
   create_table "authentications", :force => true do |t|
     t.string   "provider"
     t.string   "uuid"
-    t.integer  "user_id"
+    t.string   "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(:version => 20130922082652) do
   create_table "cities", :force => true do |t|
     t.string  "name"
     t.integer "state_id"
-    t.decimal "longitude"
-    t.decimal "latitude"
+    t.decimal "longitude", :precision => 10, :scale => 0
+    t.decimal "latitude",  :precision => 10, :scale => 0
   end
 
   add_index "cities", ["name"], :name => "index_cities_on_name"
@@ -194,10 +194,10 @@ ActiveRecord::Schema.define(:version => 20130922082652) do
     t.integer  "price"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.decimal  "lat"
-    t.decimal  "lng"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.decimal  "lat",           :precision => 10, :scale => 0
+    t.decimal  "lng",           :precision => 10, :scale => 0
     t.string   "location"
     t.string   "zip"
     t.string   "phone"
@@ -205,6 +205,8 @@ ActiveRecord::Schema.define(:version => 20130922082652) do
     t.string   "municipality"
     t.text     "notes"
     t.text     "benefits"
+    t.string   "location_name"
+    t.string   "location_map"
   end
 
   create_table "events_users", :id => false, :force => true do |t|
@@ -239,12 +241,12 @@ ActiveRecord::Schema.define(:version => 20130922082652) do
   create_table "notifications", :force => true do |t|
     t.integer  "from_id"
     t.integer  "to_id"
-    t.integer  "product_id"
     t.integer  "comment_id"
     t.string   "code"
     t.boolean  "read",       :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.integer  "product_id"
   end
 
   create_table "products", :force => true do |t|

@@ -1,3 +1,163 @@
+$dark-gray: #333332
+$gray: #474747
+$light-gray: #999999
+$lightest-gray: #f2f2f2
+$blue-manuable: #44c1e0
+$blue-manuable-text-shadow: #1D95B3
+$p-regular: 15px
+.event-show
+  h1
+    font-size: 50px
+    font-weight: 600
+  h2
+    font-size: 38px
+    font-weight: 600
+  h3
+    font-size: 28px
+    font-weight: 600
+  h4
+    font-size: 20px
+    font-weight: 600
+  h5
+    font-size: 14px
+    font-weight: 600
+  h6
+    font-size: $p-regular
+    font-weight: 600
+  h1.event-name
+    width: 840px
+    margin: 0 auto 10px -4px
+  section
+    width: 840px
+    margin: 10px auto
+    padding: 25px 180px
+    h3
+      color: $gray
+      text-align: center
+
+  .event-brief
+    color: $light-gray
+  .event-nav.affix
+    top: 40px
+    left: 50%
+    margin-left: -400px
+  .event-nav
+    margin: 0 auto
+    background: #fff
+    z-index: 2
+    li
+      float: left
+      width: 33.33333%
+      list-style: none
+    a
+      margin: 0
+      color: $gray
+      text-decoration: none
+      font-weight: bold
+      font-size: 18px
+      height: 40px
+      display: block
+      line-height: 20px
+      -webkit-border-radius: 0
+      -moz-border-radius: 0
+      border-radius: 0
+    .active
+      background-color: transparent
+    &:hover
+      background-color: transparent
+
+
+.request-access
+  display: block
+  background-color: $blue-manuable
+  padding: 10px 5px 10px 5px
+  color: #fff
+  text-decoration: none
+  width: 420px
+  margin: 0 auto
+  border-radius: 7px
+  text-align: center
+  line-height: 16px
+  font-size: 13px
+.request-access.disabled
+  color: #ccc
+  opacity: 0.65
+#event-header
+  padding-bottom: 0
+  margin-bottom: 0
+#organizers
+  .organizer
+    margin-bottom: 10px
+    img
+      display: block
+    .name
+      font-size: $p-regular
+#map
+  height: 420px
+  width: 419px
+.card
+  width: 100%
+  border: 1px solid $light-gray
+  .card-present
+    background: #fff
+    text-align: center
+  .card-present, .card-detail
+    width: 50%
+    overflow: hidden
+#itinerary
+  background-color: $lightest-gray
+  .section-content
+    background-color: transparent
+  h1.date
+    color: $dark-gray
+  .iti-date-group
+    .time-range
+      color: $light-gray
+      font-size: $p-regular
+    ul
+      margin: 0
+      padding: 0
+      li
+        display: block
+        padding: 5% 10%
+        margin: 0
+        width: 80.5%
+        list-style: none
+        &:nth-child(even)
+          background: $lightest-gray
+        &:nth-child(odd)
+          background: $blue-manuable
+          color: #fff
+          text-shadow: 0px 1px 1px $blue-manuable-text-shadow
+        .iti-time
+          float: left
+          width: 80px
+        .iti-name
+          font-style: italic
+          word-break: break-all
+          overflow: hidden
+#artisans
+  .artisan
+    width: 200px
+    height: 200px
+    float: left
+    position: relative
+    margin:  0 0 20px 10px
+    .avatar
+      width: 200px
+      height: 200px
+      background-position: center
+      // border: 1px solid $gray
+    .name
+      color: $gray
+      text-decoration: none
+      display: block
+      padding-left: 5px
+    &:last-child
+      margin-right: 0
+#participate
+  background-color: $lightest-gray
+  text-align: center
 #new-event-map
   width: 100%
   height: 250px
@@ -17,293 +177,6 @@
   width: 740px
   margin: 0 auto
   padding: 20px 30px
-.nav-pills.event-nav.affix
-  top: 40px
-  left: 50%
-  margin-left: -400px
-.nav-pills.event-nav
-  width: 740px
-  margin: 0 auto
-  background: #fff
-  padding: 0 30px
-  z-index: 2
-  a
-    margin: 0
-    color: #fff
-    text-decoration: underline
-    font-weight: bold
-    font-size: 18px
-    height: 40px
-    display: block
-    line-height: 20px
-    background: #ee2a7b
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjMyJSIgc3RvcC1jb2xvcj0iI2VmNDEzNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjcyJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZjQxMzciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-    background: -moz-linear-gradient(left,  #ee2a7b 0%, #ef4137 32%, #ee2a7b 72%, #ef4137 100%)
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ee2a7b), color-stop(32%,#ef4137), color-stop(72%,#ee2a7b), color-stop(100%,#ef4137))
-    background: -webkit-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    background: -o-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    background: -ms-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    background: linear-gradient(to right,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee2a7b', endColorstr='#ef4137',GradientType=1 )
-    -webkit-border-radius: 0
-    -moz-border-radius: 0
-    border-radius: 0
-  .active
-    a
-      background-color: #92278F
-.nav.event-nav
-  >li
-    >a
-      &:hover, &:focus
-        background-color: #B46AB2
-.event-show
-  font-family: 'Varela Round'
-  background: #ee2a7b
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjMyJSIgc3RvcC1jb2xvcj0iI2VmNDEzNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjcyJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZjQxMzciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-  background: -moz-linear-gradient(left,  #ee2a7b 0%, #ef4137 32%, #ee2a7b 72%, #ef4137 100%)
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ee2a7b), color-stop(32%,#ef4137), color-stop(72%,#ee2a7b), color-stop(100%,#ef4137))
-  background: -webkit-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-  background: -o-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-  background: -ms-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-  background: linear-gradient(to right,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee2a7b', endColorstr='#ef4137',GradientType=1 )
-
-  h5
-    text-decoration: underline
-  section#desc
-    .section-content
-      background-image: url(/assets/7sep/bg1.png)
-      background-repeat: no-repeat
-      background-position: 0 100%
-  section
-    h3
-      color: white
-      background-color: #999999
-      padding: 0
-      border: 5px solid #221f1f
-      border-left: 0
-      border-right: 0
-      margin: 0
-      font-size: 23px
-      text-indent: 100px
-    h4
-      margin-bottom: 30px
-      margin-top: 30px
-      background-color: #000
-      color: #fff
-      text-decoration: underline
-      padding: 10px
-      width: 50%
-    h4.purple
-      background-color: #92278F
-    h4.horizontal
-      background-color: transparent
-      color: #000
-      margin: 0
-      padding-left: 0
-  .schedule
-    list-style: none
-    margin: 0
-    .schedule-time
-      float: left
-      padding: 5px
-      background: #ee2a7b
-      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjMyJSIgc3RvcC1jb2xvcj0iI2VmNDEzNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjcyJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZjQxMzciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-      background: -moz-linear-gradient(left,  #ee2a7b 0%, #ef4137 32%, #ee2a7b 72%, #ef4137 100%)
-      background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ee2a7b), color-stop(32%,#ef4137), color-stop(72%,#ee2a7b), color-stop(100%,#ef4137))
-      background: -webkit-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-      background: -o-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-      background: -ms-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-      background: linear-gradient(to right,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee2a7b', endColorstr='#ef4137',GradientType=1 )
-      color: #000
-      display: block
-    .schedule-name
-      float: left
-      border-bottom: 4px solid #92278F
-      line-height: 13px
-      display: block
-      padding: 8px 0 0 10px
-    .remove-event-schedule
-      display: block
-      padding: 3px
-      float: left
-  #artisans
-    .artisan
-      width: 100px
-      height: 200px
-      float: left
-      margin: 0 30px 20px 0
-      position: relative
-      .avatar
-        width: 100px
-        height: 90px
-        background-position: center
-      hr
-        margin: 0 0 10px 0
-        border: 0
-        border-top: 0
-        border-bottom: 5px solid #000
-      .name
-        color: #000
-        font-weight: bold
-        text-decoration: underline
-        display: block
-        padding-left: 5px
-      .location
-        display: block
-        font-size: 12px
-        padding-left: 5px
-      a
-        display: block
-        color: #fff
-        text-decoration: underline
-        font-weight: bold
-        background-color: #92278F
-        text-align: center
-        padding: 0px
-        font-size: 11px
-        width: 90px
-        margin: 0 auto
-        position: absolute
-        bottom: 5px
-  #musicians
-    .musician
-      float: left
-      width: 100px
-      margin-right: 30px
-      margin-bottom: 25px
-      img
-        display: block
-        width: 100px
-      .name
-        display: block
-        padding: 5px 0
-        text-decoration: underline
-        color: #000
-        font-size: 16px
-  #call-to-action
-    margin-top: 125px
-    margin-right: 155px
-    float: right
-    div
-      font-size: 17px
-      margin: 0
-      height: 66px
-      line-height: 52px
-      display: inline-block
-    div.sign
-      font-size: 131px
-      height: 86px
-      margin-left: 30px
-      margin-right: 30px
-      img
-        height: 70px
-  .request-access
-    display: block
-    background-color: #0f0
-    padding: 10px 5px 10px 5px
-    color: #000
-    text-decoration: underline
-    border-radius: 78%
-    width: 92px
-    height: 82px
-    text-align: center
-    line-height: 16px
-    border: 4px solid #fff
-    font-size: 13px
-    margin: -35px 50px 0 0
-  .request-access.disabled
-    color: #ccc
-    opacity: 0.65
-  #organizers
-    .organizer
-      margin-bottom: 10px
-      img
-        display: block
-      .name
-        font-size: 15px
-  #collaboration
-    margin-top: 20px
-    font-size: 11px
-    img
-      width: 50px
-  .nodecoration
-    text-decoration: none
-  #talleres
-    background-image: url(/assets/7sep/bg4.png)
-    width: 100%
-    margin: 0
-    background-position: 100% 100%
-    background-repeat: no-repeat
-    background-position: 100% 100%
-    padding: 50px 0 40px 0
-    margin-top: -50px
-  #cine
-    background-image: url(/assets/7sep/bg3.png)
-    width: 100%
-    margin: 0
-    background-position: 100% 100%
-    background-repeat: no-repeat
-    background-position: 100% 45px
-    padding: 118px 0 70px 0
-    margin-top: -107px
-    background-size: 100%
-  div#thankyou
-    font-size: 30px
-    line-height: 40px
-  #artisans-bg
-    background-image: url(/assets/7sep/bg1.png)
-    background-repeat: no-repeat
-    background-position: 100% 100%
-    padding-bottom: 74px
-
-  .show-map
-    display: block
-    background: #ee2a7b
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjMyJSIgc3RvcC1jb2xvcj0iI2VmNDEzNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjcyJSIgc3RvcC1jb2xvcj0iI2VlMmE3YiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZjQxMzciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
-    background: -moz-linear-gradient(left,  #ee2a7b 0%, #ef4137 32%, #ee2a7b 72%, #ef4137 100%)
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ee2a7b), color-stop(32%,#ef4137), color-stop(72%,#ee2a7b), color-stop(100%,#ef4137))
-    background: -webkit-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    background: -o-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    background: -ms-linear-gradient(left,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    background: linear-gradient(to right,  #ee2a7b 0%,#ef4137 32%,#ee2a7b 72%,#ef4137 100%)
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee2a7b', endColorstr='#ef4137',GradientType=1 )
-    padding: 10px 15px
-    color: #fff
-    text-decoration: underline
-#join
-  ul
-    list-style: none
-    margin-top: 100px
-    li
-      .number
-        font-size: 30px
-        font-weight: bold
-
-#observations-bg
-  background-image: url(/assets/7sep/bg6.png)
-  background-repeat: no-repeat
-  background-position: 64.7% 0px
-#steps-bg
-  background-image: url(/assets/7sep/bg2.png)
-  background-repeat: no-repeat
-  background-position: 100% 8px
-  padding-bottom: 74px
-  background-size: 100%
-  padding: 20px 30px
-  h4
-    margin-bottom: 50px
-
-#benefits-bg
-  background-image: url(/assets/7sep/bg2.png)
-  background-repeat: no-repeat
-  background-position: 100% 8px
-  padding-bottom: 74px
-  background-size: 100%
-  padding: 10px 0
-  h4
-    margin-bottom: 50px
 .request-access-modal
   border: 0
   h2

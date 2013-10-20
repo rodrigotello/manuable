@@ -248,7 +248,7 @@ var EventsShow = new function(){
     });
   }
   window.initEventMap = function(){
-    var ele = document.getElementById("event-map");
+    var ele = document.getElementById("map");
     if ( !ele ){ return false; }
     var latlng = new google.maps.LatLng(ele.attributes['data-lat'].value, ele.attributes['data-lng'].value);
 
@@ -269,77 +269,32 @@ var EventsShow = new function(){
 var EventsCreate = EventsNew;
 var EventsEdit = EventsNew;
 
-// var EventSchedulesIndex = new function(){
+// var EventsMap = new function(){
 //   "use strict";
 //   var self = this;
-
 //   self.init = function(){
-//     window["EventSchedulesIndex"].initialized = true;
-//     $('#event-schedule-categories .remove-category').bind("ajax:success", function(){
-//       $(this).parents('tr:first').remove();
-//     });
+//     if(window["EventsMap"].initialized){ return ;}
+//     window["EventsMap"].initialized = true;
+//     window.loadGmaps('initEventMap');
+//   }
+//   window.initEventMap = function(){
+//     var ele = document.getElementById("event-map");
+//     if ( !ele ){ return false; }
+//     var latlng = new google.maps.LatLng(ele.attributes['data-lat'].value, ele.attributes['data-lng'].value);
 
-//     $('#event_schedule_category_name').bind({
-//       keydown :function(e){
-//         var $input = $(this),
-//             $form = $input.parents('form:first');
-
-//         if ( e.keyCode === 13){
-//           e.stopPropagation();
-//           e.preventDefault();
-//           $.ajax({
-//             url: $form.attr('action')+'.json',
-//             data: $form.serialize(),
-//             type: "POST",
-//             success: function(category){
-//               var tr = "<tr>" +
-//                 "<td>" + category.name + "</td>" +
-//                 "<td>" +
-//                 "<a href=\""+$form.attr('action')+"/" + category.id + ".json\" class=\"remove-category\" data-method=\"delete\" data-remote=\"true\" rel=\"nofollow\">x</a>" +
-//                 "</td>" +
-//               "</tr>";
-//               var $tr = $(tr);
-//               $tr.find('a').bind("ajax:success", function(){
-//                 $(this).parents('tr:first').remove();
-//               });
-//               $('#event-schedule-categories tbody tr:last').before($tr);
-//               $form[0].reset();
-//             }
-//           });
-//           return false;
-//         }
-
-//       }
+//     var mapOptions = {
+//       zoom: 14,
+//       center: latlng,
+//       mapTypeId: google.maps.MapTypeId.ROADMAP
+//     }
+//     var map = new google.maps.Map(ele, mapOptions);
+//     var marker = new google.maps.Marker({
+//         map: map,
+//         position: latlng,
+//         draggable: false
 //     });
 //   }
 // };
-
-var EventsMap = new function(){
-  "use strict";
-  var self = this;
-  self.init = function(){
-    if(window["EventsMap"].initialized){ return ;}
-    window["EventsMap"].initialized = true;
-    window.loadGmaps('initEventMap');
-  }
-  window.initEventMap = function(){
-    var ele = document.getElementById("event-map");
-    if ( !ele ){ return false; }
-    var latlng = new google.maps.LatLng(ele.attributes['data-lat'].value, ele.attributes['data-lng'].value);
-
-    var mapOptions = {
-      zoom: 14,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(ele, mapOptions);
-    var marker = new google.maps.Marker({
-        map: map,
-        position: latlng,
-        draggable: false
-    });
-  }
-};
 var EventsRequestAccess = new function(){
   "use strict";
   var self = this;
