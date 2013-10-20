@@ -83,7 +83,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3', '1.3.7'
   gem "yard", :require => false
   gem "simplecov", :require => false
   gem "simplecov-rcov", :require => false
