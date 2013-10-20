@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :benefits, :notes, :attachments_attributes, :address, :cover, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes, :lat, :lng, :city_id, :location, :phone, :zip, :user_ids
+  attr_accessible :benefits, :notes, :attachments_attributes, :address, :cover, :location_map, :location_name, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes, :lat, :lng, :city_id, :location, :phone, :zip, :user_ids
 
   has_many :event_products
   has_many :event_sale_categories
