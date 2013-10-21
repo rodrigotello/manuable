@@ -3,6 +3,7 @@ class EventSaleCategory < ActiveRecord::Base
   belongs_to :event
 
   def available_positions
+    @_avail_pos = nil if positions_changed?
     return [] if positions.blank?
     return @_avail_pos if !@_avail_pos.nil?
     @_avail_pos = []
