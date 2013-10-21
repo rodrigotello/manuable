@@ -23,7 +23,7 @@ class EventsController < ApplicationController
     @event = Event.find params[:id]
     redirect_to @event and return unless @event.user_ids.include?(current_user.id)
 
-    params[:event][:user_ids] = params[:event][:user_ids].split(',')
+    params[:event][:user_ids] = params[:event][:user_ids].split(',') if params[:event][:user_ids].present?
 
     if @event.update_attributes params[:event]
       redirect_to @event
