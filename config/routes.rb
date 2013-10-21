@@ -9,6 +9,7 @@ Manuable::Application.routes.draw do
 
   get "home/index"
   get "/mercadosemilla", to: "events#show", id: 4
+  get "/octapus", to: "events#show", id: 5
   get "about", to: "home#about"
 
   # match 'product/:id' => 'home#product'
