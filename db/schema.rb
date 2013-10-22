@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131020030740) do
+ActiveRecord::Schema.define(:version => 20131022040201) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -207,6 +207,8 @@ ActiveRecord::Schema.define(:version => 20131020030740) do
     t.text     "benefits"
     t.string   "location_name"
     t.string   "location_map"
+    t.string   "slug"
+    t.text     "requirements"
   end
 
   create_table "events_users", :id => false, :force => true do |t|

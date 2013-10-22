@@ -24,6 +24,7 @@ es:
       human: "%d de %B de %Y"
       time: "%I:%M %p"
       day_month: "%e %b"
+      day_of_month: "%e de %b"
       month_year: "%B %Y"
     am: "am"
     pm: "pm"
@@ -49,6 +50,7 @@ es:
         description: Descripción
         benefits: Beneficios
         notes: Notas
+        requirements: Requisitos
         address: Dirección
         location: Colonia
         zip: Código Postal

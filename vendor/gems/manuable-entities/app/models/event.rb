@@ -24,6 +24,9 @@ class Event < ActiveRecord::Base
 
   before_validation :build_times
 
+  scope :incoming, lambda { where { starts_at >= Date.today } }
+  scope :banner, lambda { includes(city: :state) }
+
   def seats_left?
     seats_left > 0
   end

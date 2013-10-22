@@ -3,16 +3,22 @@
     PARTICIPA EN
     = @event.name
   #benefits-observations
-    #benefits-bg
-      %h4 Beneficios por Participar
-      =raw @event.benefits
+    - if @event.benefits.present?
+      #benefits-bg
+        %h4 Beneficios por Participar
+        =raw @event.benefits
+    - if @event.requirements.present?
+      #requirements-bg
+        %h4 Requisitos
+        =raw @event.requirements
 
-    #observations-bg
-      %h4 Observaciones y Espacios
-      =raw @event.notes
-      - if @event.location_map.present?
-        #semilla-map
-          = link_to image_tag(@event.location_map.url), @event.location_map.url,  target: '_blank'
+    - if @event.notes.present?
+      #observations-bg
+        %h4 Observaciones y Espacios
+        =raw @event.notes
+        - if @event.location_map.present?
+          #semilla-map
+            = link_to image_tag(@event.location_map.url), @event.location_map.url,  target: '_blank'
 
   #event-tos
     .row-fluid

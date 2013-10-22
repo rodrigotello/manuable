@@ -3,7 +3,8 @@
 = f.input :location_map, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
 = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text, wrapper: :control_row
 = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text, wrapper: :control_row
-= f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
+= f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text, wrapper: :control_row
+= f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
 =# f.input :user_ids, input_html: { id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Organizadores", wrapper: :control_row
 =# f.input :user_ids, input_html: { class: 'span12', value: '' }, as: :hidden
 

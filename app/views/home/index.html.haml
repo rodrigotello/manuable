@@ -15,6 +15,17 @@
     #main-feed
       = render partial: '/products/feed', locals: { products: @products }
   .span3
-    #home-left-banner{ style: 'display: none' }
-      = link_to '/mercadosemilla' do
-        = image_tag("/assets/5octbanner.png")
+    #home-left-banner
+      - if Event.incoming.present?
+        %h3 Eventos
+        #event-banners
+          - Event.incoming.banner.each do |event|
+            = link_to event.slug.present? ? "/#{event.slug}" : event_path(event), class: 'event-banner' do
+              .event-banner-name
+                = event.name
+              .event-banner-date
+                = l event.starts_at, format: :day_of_month
+              .event-banner-location
+                - if event.city
+                  = "#{ event.city.name }, #{ event.city.state.name }"
+

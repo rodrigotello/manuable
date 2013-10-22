@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
   before_filter :dev_user, if: proc { Rails.env.development? }
 
   protected
-
+  def god_mode?
+    current_user && current_user.id == 43
+  end
   def set_admin_locale
     I18n.locale = :en
   end
