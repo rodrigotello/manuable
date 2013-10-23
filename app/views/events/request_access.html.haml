@@ -1,3 +1,4 @@
+- event_request = @event.event_requests.where(user_id: current_user.id).first
 #event-request-access
   %h2
     PARTICIPA EN
@@ -26,17 +27,17 @@
       .span6
         #checkbox-acceptance
           %label
-            %input{ type: 'checkbox', id: 'obs-cb' }
+            %input{ type: 'checkbox', id: 'obs-cb', disabled: event_request.present? ? 'disabled' : nil, checked: event_request.present? ? 'checked' : nil }
             He leído las observaciones
           %label
-            %input{ type: 'checkbox', id: 'terms-cb' }
+            %input{ type: 'checkbox', id: 'terms-cb', disabled: event_request.present? ? 'disabled' : nil, checked: event_request.present? ? 'checked' : nil }
             Acepto los términos y condiciones
       .span4
       .span4
         %p#do-click
           HAZ CLICK EN EL BOTÓN DE LA DERECHA PARA ENVÍAR TU SOLICITUD, TE CONTACTAREMOS A LA BREVEDAD
       .span2
-        - if event_request = @event.event_requests.where(user_id: current_user.id).first
+        - if event_request
           - if event_request.accepted.nil?
             .btn.btn-warning.disabled
               Esperando respuesta
