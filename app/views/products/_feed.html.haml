@@ -1,4 +1,4 @@
-- products.reject! { |product| product.attachments.length == 0 }
+- products.reject! { |product| product.attachments.length == 0 || product.user_id == 43}
 - unless local_assigns[:no_wrapper]
   .activities{id: "#{params[:controller]}-#{params[:action]}-feed"}
     = render partial: '/products/create', collection: products, as: :product, locals: local_assigns, spacer_template: '/products/divider'

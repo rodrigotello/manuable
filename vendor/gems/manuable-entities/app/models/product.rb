@@ -67,6 +67,6 @@ class Product < ActiveRecord::Base
   private
 
   def update_user_last_product
-    user.update_attibute :last_product_id, id
+    user.update_attribute :last_product_id, id
   end
 end
