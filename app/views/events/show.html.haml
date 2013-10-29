@@ -70,7 +70,7 @@
     %h3
       Expositores
     - if @event.artisants.empty?
-      = request_link @event, "Se el primero"
+      = request_link @event, "Sé el primero"
     - else
       - @event.artisants.in_groups_of(4).each do |g|
         - g.each do |u|
