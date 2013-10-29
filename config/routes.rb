@@ -8,7 +8,7 @@ Manuable::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   get "home/index"
-  get "/mercadosemilla", to: "events#show", id: 4
+  get "/mercadosemilla", to: "events#show", id: 6
   get "/octapus", to: "events#show", id: 5
   get "about", to: "home#about"
 

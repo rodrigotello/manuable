@@ -68,7 +68,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    params[:event][:user_ids] = params[:event][:user_ids].split(',')+[current_user.id]
+    params[:event][:user_ids] = [current_user.id]
     @event = Event.new params[:event]
 
     @event.user_id = current_user.id
