@@ -31,6 +31,7 @@ class Event < ActiveRecord::Base
 
   scope :incoming, lambda { where { starts_at >= Date.today } }
   scope :banner, lambda { includes(city: :state) }
+  scope :paid, lambda { where(paid: true) }
 
   def seats_left?
     seats_left > 0

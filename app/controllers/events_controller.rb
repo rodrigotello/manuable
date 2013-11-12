@@ -3,6 +3,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.includes(:artisans => :last_product).find params[:id]
+    redirect_to root_path unless @event.paid || current_user && @event.user_ids.include?(current_user.id) || god_mode?
+
     @images = Hash[*@event.artisans.collect {|art|
           next if art.last_product.nil? || art.last_product.attachments.first.nil?
           [art.id, art.last_product.attachments.first]

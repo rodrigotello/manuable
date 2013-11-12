@@ -16,10 +16,10 @@
       = render partial: '/products/feed', locals: { products: @products }
   .span3
     #home-left-banner
-      - if Event.incoming.present?
+      - if Event.incoming.paid.present?
         %h3 Eventos
         #event-banners
-          - Event.incoming.banner.each do |event|
+          - Event.incoming.paid.banner.each do |event|
             = link_to event.slug.present? ? "/#{event.slug}" : event_path(event), class: 'event-banner' do
               .event-banner-name
                 = event.name
