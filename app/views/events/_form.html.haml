@@ -5,6 +5,7 @@
 = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text, wrapper: :control_row
 = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text, wrapper: :control_row
 = f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
+= f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text, wrapper: :control_row
 = f.input :user_ids, input_html: { data: { selected_items: Hash[*f.object.users.collect{|u| [u.name, u.id] }.flatten], users: f.object.users.collect{|u| u.name }.join(',') }, id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Organizadores", wrapper: :control_row
 = f.input :user_ids, input_html: { class: 'span12', value: f.object.users.collect{|u| u.id }.join(',') }, as: :hidden
 

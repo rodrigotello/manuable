@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112073207) do
+ActiveRecord::Schema.define(:version => 20131112075404) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -194,10 +194,10 @@ ActiveRecord::Schema.define(:version => 20131112073207) do
     t.integer  "price"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",                                                      :null => false
-    t.datetime "updated_at",                                                      :null => false
-    t.decimal  "lat",           :precision => 10, :scale => 0
-    t.decimal  "lng",           :precision => 10, :scale => 0
+    t.datetime "created_at",                                                                :null => false
+    t.datetime "updated_at",                                                                :null => false
+    t.decimal  "lat",                     :precision => 10, :scale => 0
+    t.decimal  "lng",                     :precision => 10, :scale => 0
     t.string   "location"
     t.string   "zip"
     t.string   "phone"
@@ -209,7 +209,8 @@ ActiveRecord::Schema.define(:version => 20131112073207) do
     t.string   "location_map"
     t.string   "slug"
     t.text     "requirements"
-    t.boolean  "paid",                                         :default => false
+    t.boolean  "paid",                                                   :default => false
+    t.text     "info_for_accepted_users"
   end
 
   create_table "events_users", :id => false, :force => true do |t|
