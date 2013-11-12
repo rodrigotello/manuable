@@ -44,6 +44,7 @@ es:
         name: Nombre
       event:
         user_ids: Organizadores
+        artisan_ids: Artesanos
         name: Nombre
         duration: Duración
         price: Costo admisión (Artesano)

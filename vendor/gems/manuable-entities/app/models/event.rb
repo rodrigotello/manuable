@@ -1,10 +1,15 @@
 class Event < ActiveRecord::Base
-  attr_accessible :benefits, :notes, :attachments_attributes, :address, :cover, :location_map, :location_name, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes, :lat, :lng, :city_id, :location, :phone, :zip, :user_ids
+  attr_accessible :benefits, :notes, :attachments_attributes, :address, :cover, :location_map, :location_name, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes, :lat, :lng, :city_id, :location, :phone, :zip, :user_ids, :requirements, :artisan_ids
 
   has_many :event_products
   has_many :event_sale_categories
   has_many :event_payments
-  has_many :artisants, through: :event_payments, source: :user, conditions: { event_payments: { paid: true } }
+  # has_many :artisans, through: :event_payments, source: :user, conditions: { event_payments: { paid: true } }
+  has_many :artisans, through: :event_requests, source: :user do
+    def accepted
+      where({ event_requests: { accepted: true } })
+    end
+  end
   has_many :event_requests
   has_many :event_schedules
   has_many :event_schedule_categories

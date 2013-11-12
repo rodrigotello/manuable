@@ -30,7 +30,7 @@ var EventsNew = new function(){
       autocomplete_url: '/users.json',
       autocomplete: { selectFirst: true, width: '100px', autoFill: true },
       onRemoveTag: function(tag){
-        var selected_items = $('#organizer_names_tag').data('selected_items'),
+        var selected_items = $('#organizer_names').data('selected-items'),
             $hidden = $('#event_user_ids'),
             removed_id = selected_items[tag],
             ids = $hidden.val().split(','),
@@ -42,10 +42,48 @@ var EventsNew = new function(){
         }
         $hidden.val(cleaned_ids.join(','));
       }
-    });
+    }).importTags( $('#organizer_names').data('users') );
     $('#organizer_names_tag').bind('autocompleteselect', function(event, ui){
           var $hidden = $('#event_user_ids'),
-              selected_items = $('#organizer_names_tag').data('selected_items');
+              selected_items = $('#organizer_names').data('selected-items');
+          if ( !selected_items ){
+            selected_items = {};
+          }
+          selected_items[ui.item.label] = ui.item.id;
+          $('#organizer_names').data('selected_items', selected_items);
+          if ( $hidden.val() !== "" ){
+            var arr = $hidden.val().split(',');
+            arr.push(ui.item.id);
+            $hidden.val( arr.join(',')  );
+          }else{
+            $hidden.val( ui.item.id  );
+          }
+    });
+
+    $('#artisan_names').tagsInput({
+      height: 30,
+      width: '100%',
+      defaultText: 'Artesanos',
+      autocomplete_url: '/users.json',
+      autocomplete: { selectFirst: true, width: '100px', autoFill: true },
+      onRemoveTag: function(tag){
+        var selected_items = $('#artisan_names').data('selected-items'),
+            $hidden = $('#event_artisan_ids'),
+            removed_id = selected_items[tag],
+            ids = $hidden.val().split(','),
+            cleaned_ids = [];
+        for(var i=0;i< ids.length; i++){
+          if ( parseInt(ids[i], 10) !== removed_id){
+            cleaned_ids.push(ids[i]);
+          }
+        }
+        $hidden.val(cleaned_ids.join(','));
+      }
+    }).importTags( $('#artisan_names').data('users') );
+
+    $('#artisan_names_tag').bind('autocompleteselect', function(event, ui){
+          var $hidden = $('#event_artisan_ids'),
+              selected_items = $('#artisan_names').data('selected-items');
           if ( !selected_items ){
             selected_items = {};
           }
@@ -58,7 +96,7 @@ var EventsNew = new function(){
           }else{
             $hidden.val( ui.item.id  );
           }
-        });
+    });
 
     $('#event_address, #event_zip, #event_location, #event_city_input').blur( function(){
       if( !($('#event_city_input').val() && $('#event_address').val() && $('#event_zip').val() && $('#event_city_input').val() ) ){ return; }

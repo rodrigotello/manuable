@@ -5,8 +5,8 @@
 = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text, wrapper: :control_row
 = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text, wrapper: :control_row
 = f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
-=# f.input :user_ids, input_html: { id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Organizadores", wrapper: :control_row
-=# f.input :user_ids, input_html: { class: 'span12', value: '' }, as: :hidden
+= f.input :user_ids, input_html: { data: { selected_items: Hash[*f.object.users.collect{|u| [u.name, u.id] }.flatten], users: f.object.users.collect{|u| u.name }.join(',') }, id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Organizadores", wrapper: :control_row
+= f.input :user_ids, input_html: { class: 'span12', value: f.object.users.collect{|u| u.id }.join(',') }, as: :hidden
 
 .row-fluid
   .span9
@@ -101,4 +101,6 @@
           = attachments.file_field :attachment
     = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe unless attachments.object.new_record?
   = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :attachments, class: 'btn btn-mini'
-
+%fieldset
+  = f.input :artisan_ids, input_html: { data: { selected_items: Hash[*f.object.artisans.accepted.collect{|u| [u.name, u.id] }.flatten], users: f.object.artisans.accepted.collect{|u| u.name }.join(',') }, id: 'artisan_names', name: 'artisan_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Artesanos", wrapper: :control_row
+  = f.input :artisan_ids, input_html: { class: 'span12', value: f.object.artisans.accepted.collect{|u| u.id }.join(',') }, as: :hidden

@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :map]
 
   def show
-    @event = Event.includes(:artisants => :last_product).find params[:id]
-    @images = Hash[*@event.artisants.collect {|art|
+    @event = Event.includes(:artisans => :last_product).find params[:id]
+    @images = Hash[*@event.artisans.collect {|art|
           next if art.last_product.nil? || art.last_product.attachments.first.nil?
           [art.id, art.last_product.attachments.first]
         }.compact.flatten]
@@ -24,8 +24,18 @@ class EventsController < ApplicationController
     redirect_to @event and return unless @event.user_ids.include?(current_user.id) || god_mode?
 
     params[:event][:user_ids] = params[:event][:user_ids].split(',') if params[:event][:user_ids].present?
+    params[:event][:artisan_ids] = params[:event][:artisan_ids].split(',').map(&:to_i) if params[:event][:artisan_ids].present?
 
     if @event.update_attributes params[:event]
+
+      if params[:event][:artisan_ids].present?
+        ids = @event.event_requests.pluck :user_id
+        @event.event_requests.where(user_id: params[:event][:artisan_ids]).update_all('accepted = true')
+        @event.event_requests.where(" event_requests.user_id NOT IN (?)", params[:event][:artisan_ids]).update_all('accepted = false')
+      else
+        @event.event_requests.update_all('accepted = false')
+      end
+
       redirect_to @event
     else
       render action: :edit

@@ -40,11 +40,11 @@
         %td
           #total.strong
             %strong= number_to_currency @payment.grand_total
-  #space-selector
+  #space-selector{ style: 'display:none' }
     Por favor selecciona la posición donde te gustaría estar durante el evento.
     %br
     = f.select :position, @payment.event_sale_category.available_positions, {}, class: 'input-small'
-  = link_to image_tag(@payment.event.location_map.url(:checkout)), '/assets/semillamap.jpg', target: '_blank'
+  = link_to image_tag(@payment.event.location_map.url(:checkout)), @payment.event.location_map.url, target: '_blank'
 
   - unless @payment.paid?
     %h4

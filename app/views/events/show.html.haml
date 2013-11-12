@@ -69,10 +69,10 @@
   %section#artisans.clearfix
     %h3
       Expositores
-    - if @event.artisants.empty?
+    - if @event.artisans.accepted.empty?
       = request_link @event, "Sé el primero"
     - else
-      - @event.artisants.in_groups_of(4).each do |g|
+      - @event.artisans.accepted.in_groups_of(4).each do |g|
         - g.each do |u|
           - next unless u
           .artisan
@@ -83,6 +83,20 @@
   %section#benefits
     %h3 Beneficios por participar
     = raw @event.benefits
+
+  - if @event.requirements.present?
+    %section#requirements
+      %h3 Requisitos
+      =raw @event.requirements
+
+  - if @event.notes.present?
+    %section#observations
+      %h3 Observaciones y Espacios
+      =raw @event.notes
+      - if @event.location_map.present?
+        #semilla-map
+          = link_to image_tag(@event.location_map.url), @event.location_map.url,  target: '_blank'
+
   %section#participate
     %h2 ¿Eres artesano y quieres participar?
     %p
