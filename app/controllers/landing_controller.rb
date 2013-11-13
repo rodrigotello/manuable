@@ -4,7 +4,7 @@ class LandingController < ApplicationController
     redirect_to user and return if user.present?
 
     event = Event.incoming.where(:slug => params[:id]).first
-    redirect_to event and return if user.present?
+    redirect_to event and return if event.present?
 
     redirect_to root_path
   end
