@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id,
-                  :address, :zipcode, :occupation, :about, :birthday
+                  :address, :zipcode, :occupation, :about, :birthday, :nickname
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   devise :database_authenticatable, :registerable,
@@ -25,13 +25,18 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :events
   has_many :event_requests, through: :events
 
-  validates :nickname, :email, uniqueness: true, allow_nil: true, allow_blank: true
+  validates :email, uniqueness: true, allow_nil: true, allow_blank: true
+  validates_with UserEventSlugValidator
 
   mount_uploader :avatar, AvatarUploader
 
   after_create :notify_signup
   before_create :grab_avatar
   after_update :crop_avatar
+
+  def slug
+    nickname
+  end
 
   def as_json options={}
     {

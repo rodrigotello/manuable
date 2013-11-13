@@ -100,6 +100,7 @@ es:
         remember_me: Recordar
         city_id: Ciudad
         state_id: Estado
+        state: Estado
         avatar: Mi foto
         occupation: Ocupación
         about: Acerca de ti
@@ -127,6 +128,8 @@ es:
             spaces:
               blank: no debe estar vació
               not_a_number: al menos 1
+            slug:
+              taken: ya registrado
         conversation:
           attributes:
             body:
@@ -140,6 +143,8 @@ es:
             email:
               blank: no debe estar vació
               invalid: formato incorrecto
+              taken: ya registrado
+            nickname:
               taken: ya registrado
         product:
           attributes:

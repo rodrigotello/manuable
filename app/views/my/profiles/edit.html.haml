@@ -1,28 +1,20 @@
 = simple_form_for(current_user, url: my_profile_path, html: { method: :put }) do |f|
   = f.error_notification
 
-  - if params[:f] == 's'
+  - if @my_section == 's' || @my_section.blank?
     = f.input :name, input_html: { class: 'input-xlarge' }
     = f.input :nickname, wrapper: :prepend do
       %span.add-on
         http://manuable.com/
       = f.input_field :nickname, class: 'input-xlarge'
+    = f.input :avatar, as: :file
     = f.input :birthday, input_html: { class: 'input-small', "data-inputmask" =>"'mask': 'd/m/y'"  }, as: :string
     = f.association :state, input_html: { class: 'input-xlarge' }
     = f.input :city_id, as: :string, autocomplete: "off", input_html: { name: 'city-autocomplete', id: 'city-autocomplete', value: f.object.city ? "#{f.object.city.name}, #{f.object.city.state.name}" : '' }
     = f.input :city_id, as: :hidden
     = f.input :about, as: :text, input_html: { rows: 3, class: 'input-xlarge' }
 
-  - if params[:f] == 'a'
-    = f.input :avatar, as: :file
-    / - if f.object.avatar.file && f.object.avatar.file.exists?
-    /   = image_tag f.object.avatar.url(:large), id: 'croppable'
-    /   #crop-preview-wrapper
-    /     = image_tag f.object.avatar.url(:large), id: 'crop-preview'
-    /   - %w[x y w h].each do |attribute|
-    /     = f.hidden_field "crop_#{attribute}"
-
-  - if params[:f] == 'p'
+  - if @my_section == 'p'
     .form-inputs
       = f.input :email, required: true, autofocus: true, input_html: { class: 'input-xlarge' }
       = f.input :password, autocomplete: "off", hint: "dejar en blanco si no quieres cambiarlo", required: false, input_html: { class: 'input-xlarge' }

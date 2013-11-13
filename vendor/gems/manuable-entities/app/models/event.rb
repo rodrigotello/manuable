@@ -20,6 +20,8 @@ class Event < ActiveRecord::Base
 
   validates :spaces, numericality: { greater_than: 0 }, presence: true
   validates :name, :address, :location, :zip, :city, presence: true
+  validates_with UserEventSlugValidator
+
   mount_uploader :cover, EventUploader
   mount_uploader :location_map, EventLocationMapUploader
 

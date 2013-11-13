@@ -5,32 +5,36 @@ module My
     layout 'my'
 
     def show
-      @my_section = "profile"
+      render action: :edit
     end
 
     def edit
-      case params[:f]
-      when 's'
-        @my_section = "name"
-      when 'p'
-        @my_section = 'password'
-      when 'a'
-        @my_section = 'picture'
-      end
+      @my_section = params[:f]
     end
 
     def update
       @user = current_user
       if params[:password].present? && params[:password_confirmation].present? && params[:current_password].present?
-        current_user.update_with_password params[:user]
+        if current_user.update_with_password params[:user]
+          sign_in @user, :bypass => true
+          redirect_to :back, notice: 'Actualizado'
+        else
+          @my_section = "p"
+          render action: :edit
+        end
       else
         params[:user].delete :password
         params[:user].delete :password_confirmation
         params[:user].delete :current_password
-        current_user.update_attributes params[:user]
+        if current_user.update_attributes params[:user]
+          sign_in @user, :bypass => true
+          redirect_to :back, notice: 'Actualizado'
+        else
+          @my_section = "s"
+          render action: :edit
+        end
       end
-      sign_in @user, :bypass => true
-      redirect_to :back, notice: 'Actualizado'
+
     end
   end
 end
