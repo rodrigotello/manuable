@@ -166,7 +166,7 @@ var EventsNew = new function(){
         draggable: true
     });
     var pinIcon = new google.maps.MarkerImage(
-        "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00",
+        "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00",
         null, /* size is determined at runtime */
         null, /* origin is 0,0 */
         null, /* anchor is bottom center of the scaled image */
