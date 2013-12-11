@@ -7,17 +7,18 @@
     - if @event.benefits.present?
       #benefits-bg
         %h4 Beneficios por Participar
-        =raw @event.benefits
+        = sanitize @event.benefits, tags: %w( table tr td ul li ol), attributes: %w(style)
 
     - if @event.requirements.present?
       #requirements-bg
         %h4 Requisitos
-        =raw @event.requirements
+        = sanitize @event.requirements, tags: %w( table tr td ul li ol), attributes: %w(style)
 
     - if @event.notes.present?
       #observations-bg
         %h4 Observaciones y Espacios
-        =raw @event.notes
+        = sanitize @event.notes, tags: %w( table tr td ul li ol), attributes: %w(style)
+
         - if @event.location_map.present?
           #semilla-map
             = link_to image_tag(@event.location_map.url), @event.location_map.url,  target: '_blank'
