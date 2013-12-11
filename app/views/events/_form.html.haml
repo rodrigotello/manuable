@@ -1,107 +1,155 @@
-= f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?", wrapper: :control_row
-= f.input :cover, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
-= f.input :location_map, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
-= f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text, wrapper: :control_row
-= f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text, wrapper: :control_row
-= f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text, wrapper: :control_row
-= f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
-= f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text, wrapper: :control_row
-= f.input :user_ids, input_html: { data: { selected_items: Hash[*f.object.users.collect{|u| [u.name, u.id] }.flatten], users: f.object.users.collect{|u| u.name }.join(',') }, id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Organizadores", wrapper: :control_row
-= f.input :user_ids, input_html: { class: 'span12', value: f.object.users.collect{|u| u.id }.join(',') }, as: :hidden
-
-.row-fluid
-  .span9
-    = f.input :address, :wrapper => :control_row do
-      = f.input_field :address, class: 'form-control', as: :string
-  .span3
-    = f.input :zip, :wrapper => :control_row do
-      = f.input_field :zip, class: 'form-control', as: :string
-.row-fluid
-  .span6
-    = f.input :location, :wrapper => :control_row do
-      = f.input_field :location, class: 'form-control', as: :string
-  .span6
-    = f.input :city_id, :wrapper => :control_row do
-      = f.input_field :city_id, class: 'form-control', id: 'event_city_input'
-      = f.input_field :city_id, as: :hidden
-.row-fluid
-  .span12
-    = f.input :location_name, :wrapper => :control_row do
-      = f.input_field :location_name, class: 'form-control', as: :string
-
-
-= f.input :lat, as: :hidden
-= f.input :lng, as: :hidden
-
-#new-event-map
-
-%p.text-danger#maps-error
-= f.input :spaces, input_html: { class: 'span2' }, hint: "¿Cuántos artesamos puede alojar?", wrapper: :control_row
-
-= f.input :starts_at, :wrapper => :append do
-  .row
-    .span2
-      = f.input_field :starts_at_date, class: 'input-small datepicker', as: :string
+%fieldset
+  %legend Detalles del evento
+  .well
+    = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?", wrapper: :control_row
+    = f.input :slug, wrapper: :prepend do
       %span.add-on
-        %i.icon-calendar
-    .span2.bootstrap-timepicker
-      = f.input_field :starts_at_time, class: 'input-small datetime', as: :string
-      %span.add-on
-        %i.icon-time
+        http://manuable.com/
+      = f.input_field :slug, class: 'input-xlarge'
+    = f.input :cover, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
+    = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text, wrapper: :control_row
+    = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text, wrapper: :control_row
+    = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text, wrapper: :control_row
+    = f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
+    = f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text, wrapper: :control_row
 
-= f.input :ends_at, :wrapper => :append do
-  .row
-    .span2
-      = f.input_field :ends_at_date, class: 'input-small datepicker', as: :string
-      %span.add-on
-        %i.icon-calendar
-    .span2.bootstrap-timepicker
-      = f.input_field :ends_at_time, class: 'input-small datetime', as: :string
-      %span.add-on
-        %i.icon-time
+%fieldset
+  %legend Organizadores
+  .well
+    = f.input_field :user_ids, data: { selected_items: Hash[*f.object.users.collect{|u| [u.name, u.id] }.flatten], users: f.object.users.collect{|u| u.name }.join(',') }, id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Organizadores"
+    = f.input :user_ids, input_html: { class: 'span12', value: f.object.users.collect{|u| u.id }.join(',') }, as: :hidden
+
+%fieldset
+  %legend Ubicación
+  .well
+    .row-fluid
+      .span9
+        = f.input :address, :wrapper => :control_row do
+          = f.input_field :address, class: 'form-control', as: :string
+      .span3
+        = f.input :zip, :wrapper => :control_row do
+          = f.input_field :zip, class: 'form-control', as: :string
+    .row-fluid
+      .span6
+        = f.input :location, :wrapper => :control_row do
+          = f.input_field :location, class: 'form-control', as: :string
+      .span6
+        = f.input :city_id, :wrapper => :control_row do
+          = f.input_field :city_id, class: 'form-control', id: 'event_city_input'
+          = f.input_field :city_id, as: :hidden
+    .row-fluid
+      .span12
+        = f.input :location_name, :wrapper => :control_row do
+          = f.input_field :location_name, class: 'form-control', as: :string
+
+    = f.input :lat, as: :hidden
+    = f.input :lng, as: :hidden
+
+    #new-event-map
+
+%fieldset
+  %legend Horario y espacios
+  .well
+    %p.text-danger#maps-error
+    = f.input :spaces, input_html: { class: 'span2' }, hint: "¿Cuántos artesamos puede alojar?", wrapper: :control_row
+    = f.input :location_map, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
+    = f.input :starts_at, :wrapper => :append do
+      .row
+        .span2
+          = f.input_field :starts_at_date, class: 'input-small datepicker', as: :string
+          %span.add-on
+            %i.icon-calendar
+        .span2.bootstrap-timepicker
+          = f.input_field :starts_at_time, class: 'input-small datetime', as: :string
+          %span.add-on
+            %i.icon-time
+
+    = f.input :ends_at, :wrapper => :append do
+      .row
+        .span2
+          = f.input_field :ends_at_date, class: 'input-small datepicker', as: :string
+          %span.add-on
+            %i.icon-calendar
+        .span2.bootstrap-timepicker
+          = f.input_field :ends_at_time, class: 'input-small datetime', as: :string
+          %span.add-on
+            %i.icon-time
+
+%fieldset
+  %legend Itinerario
+  .well
+    = f.fields_for :event_schedules, :wrapper => false do |schedule|
+      .form-appendable
+        = schedule.input :name, input_html: { class: 'span12' }, wrapper: :control_row
+        = schedule.input :starts_at, :wrapper => :append do
+          .row
+            .span2
+              = schedule.input_field :starts_at_date, class: 'input-small datepicker', as: :string
+              %span.add-on
+                %i.icon-calendar
+            .span2.bootstrap-timepicker
+              = schedule.input_field :starts_at_time, class: 'input-small datetime', as: :string
+              %span.add-on
+                %i.icon-time
+
+        = schedule.input :ends_at, :wrapper => :append do
+          .row
+            .span2
+              = schedule.input_field :ends_at_date, class: 'input-small datepicker', as: :string
+              %span.add-on
+                %i.icon-calendar
+            .span2.bootstrap-timepicker
+              = schedule.input_field :ends_at_time, class: 'input-small datetime', as: :string
+              %span.add-on
+                %i.icon-time
+        = schedule.link_to_remove "<i class='icon-trash'></i>".html_safe unless schedule.object.new_record?
+        %br
+    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_schedules, class: 'btn btn-mini'
 
 %fieldset
   %legend Costos por tipo de producto o zona a vender
-  = f.fields_for :event_sale_categories do |product_form|
-
-    .row
-      .span2
-        = product_form.input :name, input_html: { value: product_form.object.name, class: 'input-medium' }
-      .span2
-        = product_form.input :price, :wrapper => :prepend do
-          %span.add-on $
-          = product_form.input_field :price, class: 'input-small'
-      .span1
-        = product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
-  = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_sale_categories, class: 'btn btn-mini'
+  .well
+    = f.fields_for :event_sale_categories do |product_form|
+      .row.form-appendable
+        .span2
+          = product_form.input :name, input_html: { value: product_form.object.name, class: 'input-medium' }
+        .span2
+          = product_form.input :price, :wrapper => :prepend do
+            %span.add-on $
+            = product_form.input_field :price, class: 'input-small'
+        .span1
+          = product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
+    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_sale_categories, class: 'btn btn-mini'
 
 %fieldset
   %legend Adicionales
-  = f.fields_for :event_products do |product_form|
-
-    .row
-      .span2
-        = product_form.input :name, input_html: { value: product_form.object.name, class: 'input-medium' }
-      .span2
-        = product_form.input :price, :wrapper => :prepend do
-          %span.add-on $
-          = product_form.input_field :price, class: 'input-small'
-      .span1
-        = product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
-
-  = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_products, class: 'btn btn-mini'
+  .well
+    = f.fields_for :event_products do |product_form|
+      .row.form-appendable
+        .span2
+          = product_form.input :name, input_html: { value: product_form.object.name, class: 'input-medium' }
+        .span2
+          = product_form.input :price, :wrapper => :prepend do
+            %span.add-on $
+            = product_form.input_field :price, class: 'input-small'
+        .span1
+          = product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
+    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_products, class: 'btn btn-mini'
 
 %fieldset
   %legend Adjuntos
-  = f.fields_for :attachments,  :wrapper => false do |attachments|
-    .row
-      - if attachments.object.new_record?
-        .span2
-          = attachments.text_field :name, class: 'input-medium'
-        .span2
-          = attachments.file_field :attachment
-    = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe unless attachments.object.new_record?
-  = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :attachments, class: 'btn btn-mini'
+  .well
+    = f.fields_for :attachments,  :wrapper => false do |attachments|
+      .row.form-appendable
+        - if attachments.object.new_record?
+          .span2
+            = attachments.text_field :name, class: 'input-medium'
+          .span2
+            = attachments.file_field :attachment
+      = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe unless attachments.object.new_record?
+    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :attachments, class: 'btn btn-mini'
 %fieldset
-  = f.input :artisan_ids, input_html: { data: { selected_items: Hash[*f.object.artisans.accepted.collect{|u| [u.name, u.id] }.flatten], users: f.object.artisans.accepted.collect{|u| u.name }.join(',') }, id: 'artisan_names', name: 'artisan_names', class: 'span12', autocomplete: "off", value: '' }, required: false, as: :string, label: '', placeholder: "Artesanos", wrapper: :control_row
-  = f.input :artisan_ids, input_html: { class: 'span12', value: f.object.artisans.accepted.collect{|u| u.id }.join(',') }, as: :hidden
+  %legend Artesanos
+  .well
+    = f.input_field :artisan_ids, data: { selected_items: Hash[*f.object.artisans.accepted.collect{|u| [u.name, u.id] }.flatten], users: f.object.artisans.accepted.collect{|u| u.name }.join(',') }, id: 'artisan_names', name: 'artisan_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Artesanos"
+    = f.input :artisan_ids, input_html: { class: 'span12', value: f.object.artisans.accepted.collect{|u| u.id }.join(',') }, as: :hidden

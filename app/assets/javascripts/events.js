@@ -16,13 +16,19 @@ var EventsNew = new function(){
   self.init = function(){
     window["EventsNew"].initialized = true;
     window.loadGmaps('initNewEventMap');
-    $('#event_starts_at_date, #event_ends_at_date').datepicker({
-      format: 'yyyy-mm-dd'
-    });
-    $('#event_starts_at_time, #event_ends_at_time').timepicker({
-      format: 'yyyy-mm-dd'
-    });
+    //$('#event_starts_at_date, #event_ends_at_date').datepicker({
+      //format: 'yyyy-mm-dd'
+    //});
+    //$('#event_starts_at_time, #event_ends_at_time').timepicker({
+      //format: 'yyyy-mm-dd'
+    //});
 
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+    $('.datetime').timepicker({
+      format: 'yyyy-mm-dd'
+    });
     $('#organizer_names').tagsInput({
       height: 30,
       width: '100%',
@@ -131,6 +137,16 @@ var EventsNew = new function(){
       $('#event_city_id').val(datum.city.id);
     });
 
+    $(document).on('nested:fieldAdded', ".new_event,.edit_event", function(e){
+      //var $field = e.field;
+
+      $('.datetime', e.field).timepicker({
+        format: 'yyyy-mm-dd'
+      });
+      $('.datepicker', e.field).datepicker({
+        format: 'yyyy-mm-dd'
+      });
+    });
   }
 
   window.initNewEventMap = function(){

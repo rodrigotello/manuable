@@ -39,11 +39,16 @@ es:
       event_product:
         price: Precio
         name: Nombre
+      event_schedule:
+        name: Nombre
+        ends_at: Termina
+        starts_at: Comienza
       event_sale_category:
         price: Precio
         name: Nombre
       event:
         user_ids: Organizadores
+        cover: Imagen cover
         artisan_ids: Artesanos
         name: Nombre
         duration: Duración
@@ -55,6 +60,7 @@ es:
         info_for_accepted_users: Información para artesanos aceptados
         address: Dirección
         location: Colonia
+        location_map: Mapa del local
         zip: Código Postal
         spaces: Espacios
         cover: Imagen
@@ -63,6 +69,7 @@ es:
         phone: Teléfono
         municipality: Municipio
         city_id: Ciudad
+        location_name: Nombre del lugar
       conversation:
         to_id: Para
         body: ''

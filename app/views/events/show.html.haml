@@ -1,6 +1,9 @@
 .event-show
   %div{ style: "margin: 0 auto;background-image: url(#{@event.cover.url(:cover)}); width: 851px; height: 315px; background-repeat: no-repeat; background-position: center;" }
   %section#event-header
+    - if current_user && @event.users.include?(current_user)
+      #event-admin-options
+        = link_to 'Editar Evento', edit_event_path(@event), class: 'btn btn-primary'
     %h1.event-name= @event.name
     %p.event-brief
       Fecha:

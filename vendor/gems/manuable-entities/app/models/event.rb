@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :benefits, :notes, :attachments_attributes, :address, :cover, :location_map, :location_name, :name, :spaces, :price, :description, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes, :lat, :lng, :city_id, :location, :phone, :zip, :user_ids, :requirements, :artisan_ids, :info_for_accepted_users
+  attr_accessible :slug, :benefits, :notes, :attachments_attributes, :address, :cover, :location_map, :location_name, :name, :spaces, :price, :description, :event_schedules_attributes, :event_products_attributes, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :event_sale_categories_attributes, :lat, :lng, :city_id, :location, :phone, :zip, :user_ids, :requirements, :artisan_ids, :info_for_accepted_users
 
   has_many :event_products
   has_many :event_sale_categories
@@ -28,6 +28,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :event_products, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
   accepts_nested_attributes_for :event_sale_categories, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
   accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }
+  accepts_nested_attributes_for :event_schedules, reject_if: proc{ |at| at[:name].blank? }
 
   before_validation :build_times
 
@@ -125,7 +126,7 @@ class Event < ActiveRecord::Base
     return value unless value.is_a?(String)
 
     begin
-      DateTime.strptime(value, format)
+      Time.zone.parse(value)
     rescue ArgumentError
       nil
     end

@@ -77,6 +77,7 @@ class EventsController < ApplicationController
     @event.event_sale_categories.build name: 'Comida', price: 500
     @event.event_sale_categories.build name: 'Otro', price: 200
     @event.attachments.build
+    @event.event_schedules.build
   end
 
   def create
