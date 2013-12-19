@@ -1,6 +1,6 @@
 = div_for product do
   = link_to my_product_path(product), title: (product.name.present? ? product.name : "--") do
-    - if att = product.attachments.random.first || product.attachments.build
+    - if att = product.attachments.first || product.attachments.build
       = product_image_tag att, :medium
   .actions
     = link_to "<i class='icon-pencil'></i>".html_safe, edit_my_product_path(product)

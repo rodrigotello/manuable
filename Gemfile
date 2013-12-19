@@ -9,10 +9,10 @@ gem "manuable-entities", :path => "vendor/gems/manuable-entities"
 gem "draper"
 gem "httpclient"
 
+gem "pg"
 
 # DB
   group :production do
-    gem "pg"
     gem 'puma', :github => 'puma/puma'
     gem 'newrelic_rpm'
   end
@@ -86,7 +86,6 @@ group :development do
 end
 
 group :development, :test do
-  gem "mysql2"
   gem "yard", :require => false
   gem "simplecov", :require => false
   gem "simplecov-rcov", :require => false

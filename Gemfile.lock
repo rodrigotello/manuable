@@ -270,7 +270,6 @@ GEM
     multi_json (1.7.9)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
-    mysql2 (0.3.11)
     nested_form (0.3.2)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -498,7 +497,6 @@ DEPENDENCIES
   manuable-entities!
   meta_request
   meta_search (>= 1.1.0.pre)
-  mysql2
   nested_form
   newrelic_rpm
   omniauth

@@ -1,31 +1,52 @@
-#welcome-title
-  %h1 ¡Bienvenido a Manuable!
-  %h4 Descubre y Compra productos hechos a mano en México.
-.row-fluid
-  .span3
-    %h3#discover-header
-      Descubre
-    %ul#discover.nav.nav-list{ "data-spy" => 'affix', "data-offset-top" => 130 }
-      %li{ class: params[:c].nil? ? 'active' : '' }
-        = link_to "Todos", root_path
-      - Category.all.each do |category|
-        %li{ class: params[:c].to_i == category.id ? 'active' : '' }
-          = link_to category.name, root_path(c: category.id)
-  .span6
+#welcome
+  %div#home-cover
+    %h1
+      Descubre y Compra productos
+      %br
+      hechos a mano en México.
+    = link_to 'CONOCE MÁS', '#', id: 'conoce-mas', class: 'transparent-button'
+    = link_to 'SUBIR PRODUCTO', '#', id: 'subir-producto'
+  %h2
+    Encuentra productos originales hecho a mano
+    %br
+    en México
+  #products-wrapper
+    .navbar.categories-menu
+      .navbar-inner
+        %ul.nav
+          %li
+            .dropdown
+              %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
+                Categorías
+                &nbsp;&nbsp;
+                = image_tag 'catdd.png'
+              %ul.dropdown-menu
+                %li
+                  = link_to "Todos", root_path
+                - Category.all.each do |category|
+                  %li{ class: params[:c].to_i == category.id ? 'active' : '' }
+                    = link_to category.name, root_path(c: category.id)
+          %li.divider-vertical
+          %li
+            = link_to 'Populares', '#', class: ( params[:pop] == '1' || params[:new].nil? && params[:special].nil? ? 'active' : nil )
+          %li
+            = link_to 'Nuevos', '#', class: ( params[:new] == '1' ? 'active' : nil )
+          %li
+            = link_to 'Promociones', '#', class: ( params[:special] == '1' ? 'active' : nil )
     #main-feed
       = render partial: '/products/feed', locals: { products: @products }
-  .span3
-    #home-left-banner
-      - if Event.incoming.paid.present?
-        %h3 Eventos
-        #event-banners
-          - Event.incoming.paid.banner.each do |event|
-            = link_to event.slug.present? ? "/#{event.slug}" : event_path(event), class: 'event-banner' do
-              .event-banner-name
-                = event.name
-              .event-banner-date
-                = l event.starts_at, format: :day_of_month
-              .event-banner-location
-                - if event.city
-                  = "#{ event.city.name }, #{ event.city.state.name }"
+    -#.span3
+      -##home-left-banner
+        -#- if Event.incoming.paid.present?
+          -#%h3 Eventos
+          -##event-banners
+            -#- Event.incoming.paid.banner.each do |event|
+              -#= link_to event.slug.present? ? "/#{event.slug}" : event_path(event), class: 'event-banner' do
+                -#.event-banner-name
+                  -#= event.name
+                -#.event-banner-date
+                  -#= l event.starts_at, format: :day_of_month
+                -#.event-banner-location
+                  -#- if event.city
+                    -#= "#{ event.city.name }, #{ event.city.state.name }"
 

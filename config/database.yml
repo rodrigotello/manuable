@@ -1,7 +1,9 @@
 development:
   username: root
-  adapter: mysql2
-  database: manuable_dev
+  adapter: postgresql
+  database: manuable_development
+  user: root
+  password:
   pool: 5
   timeout: 5000
 
