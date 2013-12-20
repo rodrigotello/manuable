@@ -1,8 +1,7 @@
-- include_avatar = true if local_assigns[:include_avatar].nil?
 - if product.attachments.length >= 1
-  = div_for product, class: 'product-card' do
+  = div_for product, class: "product-card #{size}" do
     - liked = product.respond_to?(:liked) ? product.liked.to_i != 0 : false
-    .product-card-image{ style: "background-image: url(#{ product.attachments.first.attachment.url :xlarge }" }
+    .product-card-image{ style: "background-image: url(#{ product.attachments.first.attachment.url :xlarge })" }
       - if user_signed_in?
         - if !liked
           = link_to( image_tag('heart-r.png'), like_product_path(product, format: 'json'), method: :post, class: "like", remote: true)
@@ -13,6 +12,6 @@
       = link_to image_tag('share-r.png'), "//www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(product)}", target: "_blank", class: 'fbshare'
 
     .product-card-info
-      %span.product-card-name= product.name
+      %span.product-card-name= truncate product.name, length: 20, omission: '…'
       = link_to user_path(product.user), class: 'user' do
         %span.user-name= product.user.first_name

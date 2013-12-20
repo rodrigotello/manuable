@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @products = Product.filter(params).feed(current_user).page( params[:page] ).per( params[:per_page] || 5 )
+    @products = Product.filter(params).feed(current_user).page( params[:page] ).per( params[:per_page] || 12 )
 
     respond_to do |format|
       format.html {}

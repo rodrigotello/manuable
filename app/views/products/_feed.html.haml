@@ -1,10 +1,28 @@
 - products.reject! { |product| product.attachments.length == 0 || product.user_id == 43}
-- unless local_assigns[:no_wrapper]
-  .activities{id: "#{params[:controller]}-#{params[:action]}-feed"}
-    = render partial: '/products/create', collection: products, as: :product, locals: local_assigns
-    - unless Rails.env.development?
-      - content_for :script do
-        feedPagination('##{params[:controller]}-#{params[:action]}-feed', #{products.total_pages}, #{params[:page]||1}, '#{request.path}', #{raw request.query_parameters.except(['controller', 'action', 'page']).to_json} );
-- else
-  = render partial: '/products/divider'
-  = render partial: '/products/create', collection: products, as: :product, locals: local_assigns, spacer_template: '/products/divider'
+- content_for :products_feed_3 do
+  #crea-mercadito-banner
+    = image_tag 'house.png'
+    %hr
+    Crea eventos en tu
+    %br
+    ciduad, organizate y vende
+    %br
+    tus productos dentro de
+    %br
+    tu comunidad
+    %hr
+    = link_to 'Crear Mercadito', '#'
+.products-feed.clearfix{id: "#{params[:controller]}-#{params[:action]}-feed"}
+  - products.in_groups_of(4,nil).each_with_index do |group, group_index|
+    - group.each_with_index do |product, i|
+      - next unless product.present?
+      - content_for "products_feed_#{i}".to_sym do
+        = render partial: '/products/create', locals: { product: product, size: ( i + group_index ).odd? ? 'small' : 'large' }
+  - unless Rails.env.development?
+    - content_for :script do
+      feedPagination('##{params[:controller]}-#{params[:action]}-feed', #{products.total_pages}, #{params[:page]||1}, '#{request.path}', #{raw request.query_parameters.except(['controller', 'action', 'page']).to_json} );
+
+  .column= yield(:products_feed_0)
+  .column= yield(:products_feed_1)
+  .column= yield(:products_feed_2)
+  .column= yield(:products_feed_3)
