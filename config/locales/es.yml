@@ -12,6 +12,7 @@ es:
     formats:
       default: "%b %d, %Y %H:%M"
       birthday: "%d de %B del %y"
+      event_long: "%d de %B del %Y"
       day_month: "%e %b"
     abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
     day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
@@ -21,6 +22,7 @@ es:
     formats:
       default: "%b %d, %Y %H:%M"
       long: "%d %B, %Y %H:%M"
+      event_long: "%d de %B del %Y"
       human: "%d de %B de %Y"
       time: "%I:%M %p"
       day_month: "%e %b"

@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'carrierwave/processing/mime_types'
-class EventUploader < CarrierWave::Uploader::Base
+class CoverUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
@@ -27,7 +27,7 @@ class EventUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/assets/event_cover.jpg"
+    "/assets/#{model.class.to_s.parameterize}-cover-dummy.jpg"
   end
 
 end

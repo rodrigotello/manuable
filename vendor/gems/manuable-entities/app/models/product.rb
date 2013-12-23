@@ -50,6 +50,18 @@ class Product < ActiveRecord::Base
       query = query.where(category_id: params[:c])
     end
 
+    if params[:pop] == '1'
+      query = query.order('products.likes_count DESC, products.created_at DESC')
+    end
+
+    if params[:new] == '1'
+      query = query.order('products.created_at DESC')
+    end
+
+    #if params[:special] == '1'
+      #query = query.where(category_id: params[:c])
+    #end
+
     if params[:tags].present?
       query = query.tagged_with(params[:tags])
     end

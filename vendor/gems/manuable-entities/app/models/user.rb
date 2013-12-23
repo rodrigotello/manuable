@@ -26,9 +26,11 @@ class User < ActiveRecord::Base
   has_many :event_requests, through: :events
 
   validates :email, uniqueness: true, allow_nil: true, allow_blank: true
+  validates :about, length: { maximum: 100 }, allow_nil: true, allow_blank: true
   validates_with UserEventSlugValidator
 
   mount_uploader :avatar, AvatarUploader
+  mount_uploader :cover, CoverUploader
 
   after_create :notify_signup
   before_create :grab_avatar

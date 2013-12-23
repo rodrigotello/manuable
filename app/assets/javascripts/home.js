@@ -4,7 +4,16 @@ var HomeIndex = new function(){
   self.init = function(){
     $('.want-learn').tooltip({placement: 'right'});
     $('.want-buy').tooltip({placement: 'right'});
-
+    $('#upcoming-events .flexslider').flexslider({
+      animation: 'slide',
+      animationLoop: false,
+      minItems: 3,
+      maxItems: 3,
+      itemWidth: 353,
+      controlNav: false,
+      prevText: '',
+      nextText: ''
+    });
   }
 };
 

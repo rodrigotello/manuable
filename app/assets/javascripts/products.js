@@ -68,23 +68,14 @@ var ProductsNew = new function(){
 var ProductsEdit = ProductsNew;
 
 
-// var ProductsShow = new function(){
-//   "use strict";
-//   var self = this;
-//   self.init = function(){
-//     window["ProductsShow"].initialized = true;
-//     $('.product-image-medium').click(function(e){
-//       var $this = $(this),
-//           $bigimage = $('.product-image-xlarge'),
-//           from_medium = $this.css('backgroundImage'),
-//           from_xlarge = $this.data('xlarge'),
-//           to_xlarge = $bigimage.css('backgroundImage'),
-//           to_medium = $bigimage.data('medium');
+var ProductsShow = new function(){
+  "use strict";
+  var self = this;
+  self.init = function(){
+    window["ProductsShow"].initialized = true;
 
-//       $bigimage.css({ backgroundImage: 'url(' + from_xlarge + ')' });
-//       $bigimage.data('medium', from_medium);
-//       $this.css({ backgroundImage: 'url(' + to_medium + ')' });
-//       $this.data('xlarge', to_xlarge);
-//     });
-//   }
-// };
+    $('.product .flexslider').flexslider({
+      namespace: 'product-'
+    });
+  }
+};

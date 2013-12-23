@@ -11,7 +11,7 @@
     %br
     en México
   #products-wrapper
-    .navbar.categories-menu
+    .navbar.categories-menu.sub-menu
       .navbar-inner
         %ul.nav
           %li
@@ -28,25 +28,31 @@
                     = link_to category.name, root_path(c: category.id)
           %li.divider-vertical
           %li
-            = link_to 'Populares', '#', class: ( params[:pop] == '1' || params[:new].nil? && params[:special].nil? ? 'active' : nil )
+            = link_to 'Populares', { pop: 1, c: params[:c] }, class: ( params[:pop] == '1' || params[:new].nil? && params[:special].nil? ? 'active' : nil )
           %li
-            = link_to 'Nuevos', '#', class: ( params[:new] == '1' ? 'active' : nil )
+            = link_to 'Nuevos', { new: 1, c: params[:c] }, class: ( params[:new] == '1' ? 'active' : nil )
           %li
-            = link_to 'Promociones', '#', class: ( params[:special] == '1' ? 'active' : nil )
+            = link_to 'Promociones', 'javascript:void(0)', class: ( params[:special] == '1' ? 'active disabled' : 'disabled' )
     #main-feed
       = render partial: '/products/feed', locals: { products: @products }
-    -#.span3
-      -##home-left-banner
-        -#- if Event.incoming.paid.present?
-          -#%h3 Eventos
-          -##event-banners
-            -#- Event.incoming.paid.banner.each do |event|
-              -#= link_to event.slug.present? ? "/#{event.slug}" : event_path(event), class: 'event-banner' do
-                -#.event-banner-name
-                  -#= event.name
-                -#.event-banner-date
-                  -#= l event.starts_at, format: :day_of_month
-                -#.event-banner-location
-                  -#- if event.city
-                    -#= "#{ event.city.name }, #{ event.city.state.name }"
+
+- if Event.incoming.paid.present?
+  #upcoming-events
+    %h3
+      Mercaditos
+    .current-location
+      .fa.fa-map-marker
+      Monterrey, México
+    .flexslider
+      %ul.slides
+        - Event.incoming.paid.banner.each do |event|
+          %li
+            = link_to event.slug.present? ? "/#{event.slug}" : event_path(event), class: 'event-banner' do
+              .event-banner-image{ style: "background-image: url(#{event.cover.url(:cover)});" }
+              .event-banner-info-wrapper
+                = image_tag 'event-arrow.png'
+                .event-banner-name
+                  = event.name
+                .event-banner-date
+                  = l event.starts_at, format: :event_long
 

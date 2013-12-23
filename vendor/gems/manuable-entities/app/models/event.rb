@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   validates :name, :address, :location, :zip, :city, presence: true
   validates_with UserEventSlugValidator
 
-  mount_uploader :cover, EventUploader
+  mount_uploader :cover, CoverUploader
   mount_uploader :location_map, EventLocationMapUploader
 
   accepts_nested_attributes_for :event_products, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }

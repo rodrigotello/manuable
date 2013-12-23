@@ -14,7 +14,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage Rails.env.production? ? :fog : :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -40,8 +40,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    size = AvatarUploader.versions[version_name||:medium][:uploader].processors[0][1][0]
-    "http://avatar.3sd.me/#{size}"
+    "/assets/user-dummy.jpg"
   end
 
   def crop

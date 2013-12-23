@@ -79,6 +79,16 @@ var UsersShow = new function(){
       li += '</div>';
       $('#followers').prepend(li);
     });
+    $('.user .user-menu a').bind('click', function(e){
+      var $this = $(this);
+      if( $this.attr('href').match(/#.+/) ){
+        $this.parents('ul').find('a').removeClass('active');
+        $this.addClass('active');
+        $('.user section').fadeOut();
+        $($this.attr('href')).fadeIn();
+      }else{
 
+      }
+    });
   }
 };

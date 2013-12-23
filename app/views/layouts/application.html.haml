@@ -28,7 +28,18 @@
       = bootstrap_flash
       = yield
       %footer
-        = link_to 'Acerca de Manuable', '/about', rel: 'modal'
+        = image_tag 'logo-ccc.svg'
+        %ul.pull-right
+          %li
+            = link_to 'Nosotros', '/about', rel: 'modal'
+          %li
+            = link_to 'Empresa', '#'
+          %li
+            = link_to 'Regalos', '#'
+          %li
+            = link_to 'Contacto', '#'
+          %li
+            = link_to 'Terminos y Condiciones', '#'
     = javascript_include_tag "application"
 
     - if user_signed_in?

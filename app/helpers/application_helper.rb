@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def div_image url, options={}, &block
+    style = "background-image: url(#{url});"
+    options[:style] = style + options[:style].to_s
+    content_tag 'div', nil, options, &block
+  end
+
   def aware_date date, &block
     if date.year == DateTime.now.year
       if date.day == DateTime.now.day && date.month == DateTime.now.month
@@ -40,10 +46,10 @@ module ApplicationHelper
     metas.html_safe
   end
 
-  def div_image *args
-    options = args.extract_options!
-    options['class'] = "div-image #{options['class']||options[:class]}"
-    options['style'] = "background-image: url(#{args.shift});#{options['style']||options[:style]}"
-    content_tag :div, nil, options
-  end
+  #def div_image *args
+    #options = args.extract_options!
+    #options['class'] = "div-image #{options['class']||options[:class]}"
+    #options['style'] = "background-image: url(#{args.shift});#{options['style']||options[:style]}"
+    #content_tag :div, nil, options
+  #end
 end

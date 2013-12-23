@@ -13,9 +13,6 @@ class UsersController < ApplicationController
   end
 
   def show
-
-    # redirect_to root_path and return unless session[:beta].present?
-    # @products = Product.recently_created.limit(50)
     uid = params[:id]
     @user = User.where{ ( id == uid) | (nickname == uid.to_s) }.first
 
@@ -25,12 +22,12 @@ class UsersController < ApplicationController
 
     if params[:f] == 'l'
       @products = @products.where(id: @user.liked_product_ids)
-    elsif params[:f] == 'p'
-      @products = @products.where(user_id: @user.id)
+    #elsif params[:f] == 'p'
+      #user_ids = @user.followee_ids+[@user.id]
+      #liked_product_ids = @user.liked_product_ids
+      #@products = @products.where{ (user_id >> user_ids) | (id >> liked_product_ids)}
     else
-      user_ids = @user.followee_ids+[@user.id]
-      liked_product_ids = @user.liked_product_ids
-      @products = @products.where{ (user_id >> user_ids) | (id >> liked_product_ids)}
+      @products = @products.where(user_id: @user.id)
     end
 
     respond_to do |format|

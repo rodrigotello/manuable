@@ -28,6 +28,7 @@
 //= require plugins
 //= require jquery.ui.autocomplete
 //= require jquery.markitup
+//= require jquery.flexslider-min
 //= require set
 //= require_tree .
 

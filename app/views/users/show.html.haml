@@ -1,55 +1,59 @@
-.row-fluid
-  .span3
-    .sidebar.text-center
-      = image_tag @user.avatar.url(:medium), class: 'user-avatar'
-      = for_logging_user_only do
+= div_for @user do
+  = div_image @user.cover.url(:cover), class: 'cover' do
+    = div_image @user.avatar.url(:medium), class: 'user-avatar'
+    .user-name
+      = @user.name
+    .user-location
+      = @user.location
+    .user-description
+      = link_to 'Mis Mercaditos', '#', class: 'transparent-button', id: 'user-events'
+      - if current_user
         - if @user != current_user
-          .text-center
-            - if @user.followed_by? current_user
-              %span.btn.btn-mini.btn-success.active.disabled
-                %i.icon-ok
-                Siguiendo
-            - else
-              = link_to '<i class="icon-plus"></i> Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow', class: 'btn btn-mini'
-        - unless user_signed_in?
-          = link_to '<i class="icon-plus"></i> Seguir'.html_safe, "#sign_popup", "data-toggle" => "modal", id: 'follow', class: 'btn btn-mini'
+          = link_to '<i class="fa fa-envelope-o"></i>'.html_safe, '#', class: 'follow', id: 'message-user'
+      - else
+        = link_to 'Seguir'.html_safe, "#sign_popup", "data-toggle" => "modal", id: 'follow-user'
+      - if current_user
+        - if @user != current_user
+          - if @user.followed_by? current_user
+            %span{ class: 'followed', id: 'follow-user' }
+              Siguiendo
+          - else
+            = link_to 'Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow-user'
+      - else
+        = link_to 'Seguir'.html_safe, "#sign_popup", "data-toggle" => "modal", id: 'follow-user'
 
-        %h3.user-name
-          = @user.name
-        .occupation
-          = @user.occupation
-        .birthday
-          - if @user.birthday.present?
-            = "Nacido el #{l @user.birthday, format: :birthday}"
-        .about
-          - if @user.location.present?
-            %small
-              = @user.location
-      %p
-        = truncate @user.about, length: 100, omission: '...'
-      - if @user.followers.count > 0
-        .module
-          %h6 Seguidores
-          %ul#followers.media-list
-            - @user.followers.limit(5).each do |u|
-              %li.media{ id: "follower-#{u.id}"}
-                = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
-                .media-body
-                  = link_to u.name, u
-      - if @user.followees.count > 0
-        .module
-          %h6 Siguiendo
-          %ul#followees.media-list
-            - @user.followees.limit(5).each do |u|
-              %li.media{ id: "followee-#{u.id}" }
-                = link_to u, class: 'pull-left' do
-                  = image_tag u.avatar.url(:thumb), class: 'media-object pull-left'
-                .media-body
-                  = link_to u.name, u
-  .span7.text-center
-    .btn-group{ 'data-toggle' => "buttons-radio" }
-      = link_to 'Todo', '?', class: "btn #{ params[:f].blank? ? ' active' : ''}"
-      = link_to 'Gustos', '?f=l', class: "btn#{ params[:f] == 'l' ? ' active' : ''}"
-      = link_to 'Compartido', '?f=p', class: "btn#{ params[:f] == 'p' ? ' active' : ''}"
-    = render partial: '/products/feed', locals: { products: @products, include_avatar: false }
+
+      .user-about
+        = @user.about
+  .navbar.user-menu.sub-menu
+    .navbar-inner
+      %ul.nav
+        %li
+          = link_to 'Productos', '?', class: "#{ params[:f].blank? ? ' active' : ''}"
+          %li.divider-vertical
+        %li
+          = link_to 'Gustos', '?f=l', class: "#{ params[:f] == 'l' ? ' active' : ''}"
+          %li.divider-vertical
+        %li
+          = link_to 'Seguidores', '#followers'
+          %li.divider-vertical
+        %li
+          = link_to 'Siguiendo', '#followings'
+  %section#user-products
+    = render partial: '/products/feed', locals: { products: @products, no_banner: true }
+  %section#likes
+  %section#followers
+    %ul#followers.user-list.clearfix
+      - @user.followers.each do |u|
+        .item
+          = div_image u.avatar.url(:medium), class: 'user-avatar'
+          .item-name= link_to u.name, u
+          .item-location= u.location
+  %section#followings
+    %ul#followees.user-list.clearfix
+      - @user.followees.limit(5).each do |u|
+        .item
+          = div_image u.avatar.url(:medium), class: 'user-avatar'
+          .item-name= link_to u.name, u
+          .item-location= u.location
 

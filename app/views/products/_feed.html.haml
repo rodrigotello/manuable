@@ -1,17 +1,18 @@
 - products.reject! { |product| product.attachments.length == 0 || product.user_id == 43}
-- content_for :products_feed_3 do
-  #crea-mercadito-banner
-    = image_tag 'house.png'
-    %hr
-    Crea eventos en tu
-    %br
-    ciduad, organizate y vende
-    %br
-    tus productos dentro de
-    %br
-    tu comunidad
-    %hr
-    = link_to 'Crear Mercadito', '#'
+- unless local_assigns[:no_banner]
+  - content_for :products_feed_3 do
+    #crea-mercadito-banner
+      = image_tag 'house.png'
+      %hr
+      Crea eventos en tu
+      %br
+      ciduad, organizate y vende
+      %br
+      tus productos dentro de
+      %br
+      tu comunidad
+      %hr
+      = link_to 'Crear Mercadito', '#'
 .products-feed.clearfix{id: "#{params[:controller]}-#{params[:action]}-feed"}
   - products.in_groups_of(4,nil).each_with_index do |group, group_index|
     - group.each_with_index do |product, i|
