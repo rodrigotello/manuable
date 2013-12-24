@@ -1,0 +1,184 @@
+.user{
+  width: 1064px;
+  margin: 0 auto;
+  .user-list{
+    .item {
+      .user-avatar{ margin: 0 auto 10px; }
+      float: left;
+      margin-left: 35px;
+      text-align: center;
+      .item-name {
+        a { color: #000; }
+        font-size: 15px;
+        font-weight: 600
+      }
+      .item-location {
+        font-size: 13px;
+      }
+    }
+  }
+  #followings, #followers, #likes{ display: none; }
+  #user-products {}
+  .cover {
+    background-position: top center;
+    width: 100%;
+    height: 395px;
+  }
+  .user-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 70px;
+    background-position: center center;
+  }
+  .cover {
+     padding-top: 1px;
+     position: relative;
+    .user-avatar {
+      margin: 100px auto 5px;
+      border: 1px solid #fff;
+    }
+    .user-name, .user-location{
+      color: #fff;
+      text-align: center;
+    }
+    .user-name {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .user-location{
+      font-size: 17px;
+    }
+    .user-description {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 95px;
+    }
+  }
+
+  .cover {
+    background-position: top center;
+    width: 100%;
+    height: 395px;
+  }
+  .user-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 70px;
+    background-position: center center;
+  }
+  .cover {
+     padding-top: 1px;
+     position: relative;
+    .user-avatar {
+      margin: 100px auto 5px;
+      border: 1px solid #fff;
+    }
+    .user-name, .user-location{
+      color: #fff;
+      text-align: center;
+    }
+    .user-name {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .user-location{
+      font-size: 17px;
+    }
+    .user-description {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 95px;
+      border-top: 1px solid #635f61;
+      a {
+        padding: 10px;
+        display: block;
+        text-align: center;
+      }
+      #user-events{
+        width: 135px;
+        height: 22px;
+        font-weight: 600;
+        margin: 25px 0 0 35px;
+        float: left;
+        &:hover {
+          color: #ddd;
+        }
+      }
+      #follow-user{
+        float: right;
+        margin: 25px 35px 0 0;
+        background-color: #1dda71;
+        border: 1px solid #04683d;
+        border-radius: 3px;
+        color: #fff;
+        padding: 10px 47px;
+        font-weight: 600;
+        font-size: 15px;
+        text-shadow: 0 1px 0 #16AF6E;
+        &:hover, &.followed{
+          background-color: #16AF6E;
+          text-decoration: none;
+        }
+      }
+      #message-user{
+        float: right;
+        margin: 35px 0 0 25px;
+        background-color: #43c3e2;
+        color: #fff;
+        border: 1px solid #164a56;
+        font-size: 15px;
+        margin: 25px 35px 0 0;
+        &:hover{
+          background-color: #1D9FBE;
+        }
+      }
+      .user-about{
+        margin: 0 auto;
+        width: 360px;
+        margin-top: 25px;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+  .user-menu {
+    border-bottom: 2px solid #364664;
+    .navbar-inner {
+      border-radius: 0;
+      border: 0;
+      ul {
+        width: 100%;
+        li {
+          width: 265px;
+          a {
+            text-align: center;
+            background-color: #04a3e2;
+            padding: 23px;
+            color: #fff;
+            text-shadow: 0 1px 0 #0382b5 !important;
+            font-size: 16px;
+            &.active {
+              background-color: #00aeef;
+              color: #fff;
+              text-decoration: none;
+            }
+            &:hover,&:active,&:focus{
+              background-color: #00aeef;
+              text-decoration: none;
+            }
+          }
+        }
+        li.divider-vertical{
+          width: 0;
+          margin: 0;
+          border-color: #24afe6;
+        }
+      }
+    }
+  }
+}
