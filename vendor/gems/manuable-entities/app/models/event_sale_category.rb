@@ -1,5 +1,5 @@
 class EventSaleCategory < ActiveRecord::Base
-  attr_accessible :name, :price
+  # attr_accessible :name, :price
   belongs_to :event
 
   def available_positions

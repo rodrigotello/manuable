@@ -1,9 +1,9 @@
 class Product < ActiveRecord::Base
-
-  attr_accessible :about, :made_by, :name, :price,
-                  :attachments_attributes, :category_id, :on_sale, :amount, :prop_list
+  # attr_accessible :about, :made_by, :name, :price,
+                  # :attachments_attributes, :category_id, :on_sale, :amount, :prop_list
   attr_accessor :made_by
   acts_as_taggable_on :prop
+  acts_as_commontable
 
   belongs_to :user
   belongs_to :category
@@ -32,7 +32,7 @@ class Product < ActiveRecord::Base
       .recently_created
     end
   }
-  scope :recently_created, order('products.created_at DESC')
+  scope :recently_created, lambda { order('products.created_at DESC') }
   scope :liked_by, lambda { |id_or_ids_or_record|
     if id_or_ids_or_record.is_a? user
       where(id: user.id)

@@ -2,15 +2,24 @@
   = product_metadata @product
 
 = div_for @product, class: 'product clearfix' do
+  %h2= @product.name
+  %h5= @product.category.try :name
   .flexslider
     %ul.slides
       - @product.attachments.each do |attachment|
         %li
           = div_image attachment.attachment.url( :xlarge ), class: 'product-avatar'
-  .product-options
-    = link_to 'Me gusta', '#', class: 'like'
-    = link_to 'Mensaje', '#', class: 'message'
-    = link_to 'Compartir', '#', class: 'share'
+  .product-options.clearfix
+    = link_to '<i class="fa fa-heart-o">&nbsp;</i>Me gusta'.html_safe, like_product_path(@product, format: 'json'), class: 'manuable-like', remote: true, method: :post
+    = link_to '<i class="fa fa-envelope-o">&nbsp;</i>Mensaje'.html_safe, '#', class: 'message'
+    = link_to '<i class="fa fa-share-square-o">&nbsp;</i>Compartir'.html_safe, 'https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(@product)}', class: 'share', target: '_blank'
+  .product-description
+    = @product.about
+  .spacer
+  = commontator_thread(@product)
+  = if params[:no_layout] == '1'
+    :javascript
+      ProductsShow.init();
 -#.row-fluid.product
   -#.span3
     -#.sidebar.text-center

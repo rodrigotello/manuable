@@ -148,6 +148,10 @@
     border-radius: 0 0 5px 5px;
     text-align: center;
     padding-top: 1px;
+    a {
+      color: #000;
+      &:hover,&:active,&:active { text-decoration: none; }
+    }
   }
   .product-card-name{
     display: block;
@@ -164,15 +168,23 @@
     position: relative;
     background-position: center center;
     width: 240px;
-    .like {
+    .manuable-like {
       position: absolute;
       bottom: 0;
       left: 0;
+      display: block;
+      padding: 10px 14px;
+      background-color: #239fe7;
+      color: #fff;
     }
     .fbshare {
       position: absolute;
       bottom: 0;
-      left: 41px;
+      left: 42px;
+      display: block;
+      padding: 10px 14px;
+      background-color: #282e3a;
+      color: #fff;
     }
   }
 }
@@ -261,7 +273,7 @@
       font-size: 20px;
     }
     .event-banner-date {
-       font-weight: 100;
+      font-weight: 100;
       color: #908f8f;
       font-size: 15px;
     }
@@ -275,9 +287,25 @@
   }
 }
 /* product popup */
-.product {
+.product:not(.product-card) {
   width: 480px;
   margin: 0 auto;
+  h2 {
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    line-height: 1;
+    margin: 0;
+    font-weight: 600;
+  }
+  h5 {
+    color: #8f8f8f;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0 0 20px;
+  }
   .product-options{
     a {
       display: block;
@@ -290,14 +318,23 @@
       line-height: 65px;
       float: left;
       zoom: 1;
-      &.like { background-color: #239fe7; }
+      &.manuable-like { background-color: #239fe7; }
       &.message { background-color: #282e3a; }
       &.share { background-color: #456198; }
     }
   }
   .product-avatar{
     background-position: center center;
+    background-repeat: no-repeat;
     width: 480px;
     height: 430px;
+    border-radius: 3px 3px;
+  }
+  .product-description {
+    min-height: 50px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 0 0 3px 3px;
   }
 }

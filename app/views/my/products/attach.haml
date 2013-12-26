@@ -8,7 +8,7 @@
 	%li No utilice imágenes de más de 500Kb
 
 %br
-= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
+= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' } do |f|
 	= field_set_tag nil, id: 'product-fields' do
 		= f.input :media, class: 'form' do
 			= f.fields_for :attachments do |attachments|

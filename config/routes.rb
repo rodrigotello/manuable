@@ -2,10 +2,7 @@ Manuable::Application.routes.draw do
   # match "/404", :to => "errors#not_found"
   # match "/500", :to => "errors#app_failure"
   root :to => 'home#index'
-
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  mount Commontator::Engine => '/commontator'
 
   get "home/index"
   # get "/mercadosemilla", to: "events#show", id: 6

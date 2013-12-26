@@ -1,8 +1,7 @@
 development:
-  username: root
+  username: goreorto
   adapter: postgresql
   database: manuable_development
-  user: root
   password:
   pool: 5
   timeout: 5000
@@ -13,8 +12,10 @@ test:
   pool: 5
   timeout: 5000
 
-production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+staging:
+  username: goreorto
+  adapter: postgresql
+  database: manuable_development
+  password:
   pool: 5
   timeout: 5000

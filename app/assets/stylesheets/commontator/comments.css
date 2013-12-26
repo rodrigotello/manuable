@@ -1,0 +1,152 @@
+.thread {
+  display: block !important;
+}
+
+.thread_actions {
+  position: absolute;
+  right: 8px;
+}
+
+.thread_header {
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.thread_new_comment {
+  display: none;
+  padding-left: 15px;
+}
+
+.thread_comment_list {
+  padding-top: 1px;
+  margin-top: -1px;
+}
+.comment {
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+
+  padding: 8px 0 15px 15px;
+
+  color: #000;
+  border-color: #ddd;
+  background-color: #fff;
+
+  clear: both;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment:last-child{
+  border-bottom: 0;
+}
+
+.comment_commontator a {
+  font-size: 16px;
+  color: #239fe7;
+}
+
+.comment_commontator, .comment_timestamp {
+  display: block;
+  margin: 17px 0 0 72px;
+  line-height: 1;
+}
+
+.comment_actions {
+  float: right;
+}
+
+.comment_body {
+  margin: 0 0 0 72px;
+  padding: 0px;
+  color: #969696;
+  font-size: 16px;
+}
+
+.comment_body p {
+	margin: 0px;
+
+	overflow: hidden;
+}
+
+.comment_div {
+	clear: both;
+}
+
+.comment_form_actions button {
+  background-color: #239fe7;
+  background-image: none;
+  color: #fff;
+  text-shadow: none;
+  border: 0;
+}
+
+.comment_form_actions button:hover,.comment_form_actions button:active,.comment_form_actions button:focus{
+  background-color: #3BB2F7;
+  color: #fff;
+  background-image: none;
+  border: 0;
+}
+
+.comment_form_actions {
+  margin-top: 15px;
+}
+
+.comment_form_field > .field_with_errors {
+  display: block;
+  padding-right: 4px;
+}
+
+.comment_form_field textarea {
+  padding: 20px;
+  background-color: rgba(242,242,242,1);
+  border: 1px solid rgba(204,204,204,1);
+  width: 422px;
+  height: 25px;
+}
+
+.comment_gravatar_image {
+  float: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.comment_gravatar_image div {
+  height: 60px;
+  width: 60px;
+  border-radius: 40px;
+  background-position: center center;
+}
+
+.comment_timestamp {
+	color: #777;
+  font-size: 11px;
+}
+
+.comment_votes {
+  float: right;
+
+  text-align: center;
+}
+
+.comment_votes input,
+.comment_votes img {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+}
+
+.comment_votes form {
+  margin: 0px;
+}
+
+.comment_vote_count p {
+  margin: 0px;
+}
+.thread{
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 22px 8px;
+}

@@ -10,9 +10,9 @@
     %br
     %br
     %div
-      = link_to "<i class='icon-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook), class: 'login-service'
-      = link_to "<i class='icon-twitter-sign'></i>".html_safe,  user_omniauth_authorize_path(:twitter), class: 'login-service'
-      = link_to "<i class='icon-envelope-alt'></i>".html_safe,  new_user_registration_path, rel: "modal", class: 'login-service'
+      = link_to "<i class='fa fa-facebook-square'></i>".html_safe, user_omniauth_authorize_path(:facebook), class: 'login-service'
+      = link_to "<i class='fa fa-twitter-square'></i>".html_safe, user_omniauth_authorize_path(:twitter), class: 'login-service'
+      = link_to "<i class='fa fa-envelope'></i>".html_safe, new_user_registration_path, rel: "modal", class: 'login-service'
     %p
       o
     = link_to "Entra", new_session_path(:user), rel: "modal"

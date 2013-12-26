@@ -75,7 +75,10 @@ var ProductsShow = new function(){
     window["ProductsShow"].initialized = true;
 
     $('.product .flexslider').flexslider({
-      namespace: 'product-'
+      namespace: 'product-',
+      prevText: '',
+      nextText: '',
+      controlNav: false
     });
   }
 };

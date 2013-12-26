@@ -4,7 +4,7 @@
 %h4 2.- Características del Producto
 %h6 La siguiente información será desplegada en la página de descripción del producto. Por favor, complete la información correctamente.
 %br
-= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' }, validate: true do |f|
+= simple_nested_form_for [:my, @product], html: { class: 'form-horizontal' } do |f|
 	= field_set_tag nil, id: 'product-fields' do
 		%ul{:id => "tab_char", :class => "nav nav-tabs"}
 			%li.active

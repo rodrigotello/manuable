@@ -92,34 +92,34 @@ html[xmlns] .slides {display: block;}
 
 /* Direction Nav */
 .product-direction-nav {*height: 0;}
-.product-direction-nav a {  text-decoration:none; display: block; width: 40px; height: 40px; margin: -20px 0 0; position: absolute; top: 50%; z-index: 10; overflow: hidden; cursor: pointer; color: rgba(0,0,0,0.8); text-shadow: 1px 1px 0 rgba(255,255,255,0.3); -webkit-transition: all .3s ease; -moz-transition: all .3s ease; transition: all .3s ease; }
-.product-direction-nav .flex-prev { left: -40px; }
-.product-direction-nav .flex-next { right: -40px; text-align: right; }
-.flexslider:hover .product-next:hover, .flexslider:hover .flex-prev:hover { opacity: 1; }
-.product-direction-nav .flex-disabled { opacity: 0!important; filter:alpha(opacity=0); cursor: default; }
-.product-direction-nav a:before  { color: #9ba0a4; font-family: FontAwesome;font-style: normal;font-weight: normal;line-height: 1;-webkit-font-smoothing: antialiased;  font-size: 40px; display: inline-block; content: "\f104"; }
-.product-direction-nav a.flex-next:before  { content: '\f105'; }
+.product-direction-nav a { text-decoration:none; display: block; width: 40px; height: 40px; margin: -20px 0 0; position: absolute; top: 50%; z-index: 10; overflow: hidden; cursor: pointer; color: rgba(255,255,255,1); width: 20px; height: 35px; padding: 10px; background-color: rgba(0,0,0,0.3); border-radius: 5px; }
+.product-direction-nav .product-prev { left: 2px; }
+.product-direction-nav .product-next { right: 2px; text-align: right; }
+.flexslider:hover .product-next:hover, .flexslider:hover .product-prev:hover { opacity: 1; }
+.product-direction-nav .product-disabled { opacity: 0!important; filter:alpha(opacity=0); cursor: default; }
+.product-direction-nav a:before  { color: #fff; font-family: FontAwesome;font-style: normal;font-weight: normal;line-height: 32px;-webkit-font-smoothing: antialiased;  font-size: 40px; display: inline-block; content: "\f104"; font-weight: bold;}
+.product-direction-nav a.product-next:before  { content: '\f105'; }
 
 /* Pause/Play */
 .product-pauseplay a { display: block; width: 20px; height: 20px; position: absolute; bottom: 5px; left: 10px; opacity: 0.8; z-index: 10; overflow: hidden; cursor: pointer; color: #000; }
 .product-pauseplay a:before  { font-family: "flexslider-icon"; font-size: 20px; display: inline-block; content: '\f004'; }
 .product-pauseplay a:hover  { opacity: 1; }
-.product-pauseplay a.flex-play:before { content: '\f003'; }
+.product-pauseplay a.product-play:before { content: '\f003'; }
 
 /* Control Nav */
 .product-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center;}
 .product-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
 .product-control-paging li a {width: 11px; height: 11px; display: block; background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); -moz-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); -o-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); box-shadow: inset 0 0 3px rgba(0,0,0,0.3); }
 .product-control-paging li a:hover { background: #333; background: rgba(0,0,0,0.7); }
-.product-control-paging li a.flex-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
+.product-control-paging li a.product-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
 
 .product-control-thumbs {margin: 5px 0 0; position: static; overflow: hidden;}
 .product-control-thumbs li {width: 25%; float: left; margin: 0;}
 .product-control-thumbs img {width: 100%; display: block; opacity: .7; cursor: pointer;}
 .product-control-thumbs img:hover {opacity: 1;}
-.product-control-thumbs .flex-active {opacity: 1; cursor: default;}
+.product-control-thumbs .product-active {opacity: 1; cursor: default;}
 
 @media screen and (max-width: 860px) {
-  .product-direction-nav .flex-prev { opacity: 1; left: 10px;}
-  .product-direction-nav .flex-next { opacity: 1; right: 10px;}
+  .product-direction-nav .product-prev { opacity: 1; left: 10px;}
+  .product-direction-nav .product-next { opacity: 1; right: 10px;}
 }

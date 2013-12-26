@@ -1,5 +1,5 @@
 class EventSchedule < ActiveRecord::Base
-  attr_accessible :ends_at, :event_schedule_category_id, :name, :starts_at, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+  # attr_accessible :ends_at, :event_schedule_category_id, :name, :starts_at, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
   belongs_to :event
   belongs_to :event_schedule_category

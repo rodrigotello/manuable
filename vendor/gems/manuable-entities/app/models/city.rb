@@ -1,5 +1,5 @@
 class City < ActiveRecord::Base
-  attr_accessible :name
+  # attr_accessible :name
   belongs_to :state
 
   def as_json options={}

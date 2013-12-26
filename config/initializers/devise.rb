@@ -17,7 +17,7 @@ Devise.setup do |config|
 
   config.omniauth :google_oauth2, "353732191989.apps.googleusercontent.com", "RmVxVlIBvKSEPOvoUT7ju5kS", { access_type: "offline", approval_prompt: "" }
   config.omniauth :twitter, "1MWaPUAMZYAdAA3mGwXQ", "SboyIHLCFi25AdZcZCQ9T88JFOSU7oE2aTSLMsJLk"
-
+  config.secret_key = '1b2c1ca0168fa723d2c41900475731b717e81ff675bd1371f5d1eb8eb0b6bdd553f76bc708eaea94a0ccf6cfa95440fa5b90ca0474aee7163e2ad81cbc578f7f'
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 

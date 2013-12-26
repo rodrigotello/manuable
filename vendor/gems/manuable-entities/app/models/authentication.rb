@@ -1,4 +1,4 @@
 class Authentication < ActiveRecord::Base
-  attr_accessible :provider, :uuid
+  # attr_accessible :provider, :uuid
   belongs_to :user
 end

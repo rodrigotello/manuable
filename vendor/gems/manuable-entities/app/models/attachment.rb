@@ -1,5 +1,5 @@
 class Attachment < ActiveRecord::Base
-  attr_accessible :attachable_id, :attachable_type, :attachment
+  # attr_accessible :attachable_id, :attachable_type, :attachment
   belongs_to :attachable, polymorphic: true, counter_cache: true
 
   scope :random, order("RANDOM()")

@@ -5,15 +5,11 @@
       = link_to 'Crear Mercadito', '#', class: 'transparent-button', id: 'nav-crear-mercadito'
       %ul.nav.pull-right
         - if !user_signed_in?
-          %li#login-options
-            .dropdown
-              %a.dropdown-toggle{ "data-toggle" => "dropdown", :href => "#" } Entrar
-              %ul.dropdown-menu
-                %li
-                  = link_to "<i class='fa fa-facebook-sign'></i>".html_safe, user_omniauth_authorize_path(:facebook)
-                  / = link_to "<i class='icon-google-plus-sign'></i>".html_safe,   user_omniauth_authorize_path(:google_oauth2)
-                  = link_to "<i class='fa fa-twitter-sign'></i>".html_safe, user_omniauth_authorize_path(:twitter)
-                  = link_to "<i class='fa fa-envelope-o'></i>".html_safe, new_session_path(:user), rel: "modal"
+          %li.login-option
+            = link_to 'Entrar', new_session_path(:user), rel: "modal", class: 'transparent-button'
+          %li.login-option.login-icons
+            = link_to "<i class='fa fa-facebook-square'></i>".html_safe, user_omniauth_authorize_path(:facebook)
+            = link_to "<i class='fa fa-twitter-square'></i>".html_safe, user_omniauth_authorize_path(:twitter)
         - else
           %li#current-user-options
             .dropdown
@@ -21,7 +17,6 @@
                 %div.user-round-avatar{ style: "background-image: url(#{ current_user.avatar.url(:small).to_s })" }
                 %span.user-name
                   = current_user.first_name
-
               %ul.dropdown-menu
                 %li
                   = link_to "<i class='fa fa-user'></i> Mi perfil".html_safe, user_path(current_user)

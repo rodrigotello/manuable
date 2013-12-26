@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @user = @product.user
+    commontator_thread_show(@product)
   end
 
   def like

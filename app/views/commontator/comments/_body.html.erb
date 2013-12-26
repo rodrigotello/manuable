@@ -1,0 +1,8 @@
+<% # Clients of this partial must provide the following variable:
+   # comment
+%>
+
+<%= simple_format comment.is_deleted? ? \
+      comment.thread.config.comment_name.capitalize + \
+      ' deleted by ' + commontator_name(comment.editor) : \
+      comment.body %>

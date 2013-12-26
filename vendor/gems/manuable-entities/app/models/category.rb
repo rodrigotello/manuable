@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name, :value, :parent_id
+  # attr_accessible :name, :value, :parent_id
   belongs_to :parent, foreign_key: 'parent_id', class_name: 'Category'
   has_many :childs, foreign_key: 'parent_id', class_name: 'Category'
 

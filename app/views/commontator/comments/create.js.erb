@@ -1,0 +1,12 @@
+$("#thread_<%= @thread.id %>_comment_list_div").html("<%= escape_javascript(
+    render :partial => 'list',
+           :locals => {:comments => @thread.ordered_comments,
+                       :user => @user}) %>");
+
+$("#thread_<%= @thread.id %>_new_comment_div").hide();
+
+$("#thread_<%= @thread.id %>_new_comment_link_span").fadeIn();
+
+$("#comment_<%= @comment.id.to_s %>_div").hide().fadeIn()[0];
+
+<%= javascript_proc %>

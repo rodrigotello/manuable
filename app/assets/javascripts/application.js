@@ -16,8 +16,6 @@
 //= require bootstrap-timepicker
 //= require bootstrap-datepicker
 //= require jquery.tagsinput.min
-//= require rails.validations
-//= require rails.validations.simple_form
 //= require handlebars
 //= require jquery_nested_form
 //= require jquery.chosen.min
@@ -31,8 +29,6 @@
 //= require jquery.flexslider-min
 //= require set
 //= require_tree .
-
-ClientSideValidations.formBuilders['NestedForm::SimpleBuilder'] = ClientSideValidations.formBuilders['SimpleForm::FormBuilder'];
 
 function toCurrency(num) {
   var sign;
@@ -60,6 +56,19 @@ function toCurrency(num) {
 
 $(function(){
   "use strict";
+  var LOADERIMG = '<div id="loader"><div id="loader_1" class="loader"></div><div id="loader_2" class="loader"></div><div id="loader_3" class="loader"></div><div id="loader_4" class="loader"></div><div id="loader_5" class="loader"></div><div id="loader_6" class="loader"></div><div id="loader_7" class="loader"></div><div id="loader_8" class="loader"></div></div>';
+  $.expr[':'].regex = function(elem, index, match) {
+      var matchParams = match[3].split(','),
+          validLabels = /^(data|css):/,
+          attr = {
+              method: matchParams[0].match(validLabels) ?
+                          matchParams[0].split(':')[0] : 'attr',
+              property: matchParams.shift().replace(validLabels,'')
+          },
+          regexFlags = 'ig',
+          regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
+      return regex.test(jQuery(elem)[attr.method](attr.property));
+  }
 
   var page = $("body").data("page");
   if( "object" === typeof window[page] && !window[page].initialized){
@@ -149,15 +158,31 @@ $(function(){
     });
   });
 
-  $(document).on('ajax:success', 'a.like', function(data, status, xhr){
+  $(document).on('click', 'a:regex(href,^\/products\/[0-9]+$)', function(e){
+    e.preventDefault();
     var $this = $(this);
-    $this.addClass('disable').parents('.heart-overlay').addClass('liked');
-    var $counter = $this.find(".likes-count");
+    $('#product-modal-body').html(LOADERIMG);
+    $('#product-modal').css({ top: $(window).scrollTop() + 50 });
+    $('#product-modal-overlay, #product-modal').fadeIn();
+    $.get($this.attr('href'), { no_layout: 1 }, function(data){
+      $('#product-modal-body').html(data);
+    });
+  });
+
+  $('#product-modal-overlay, #product-modal-close').click(function(e){
+    e.preventDefault();
+    $('#product-modal-overlay, #product-modal').fadeOut();
+  });
+  $(document).on('ajax:success', 'a.manuable-like', function(data, status, xhr){
+    var $this = $(this);
+    if($this.html().match(/gusta/)){
+      $this.html('<i class="fa fa-heart">&nbsp;</i>Te gusta');
+    }else{
+      $this.html('<i class="fa fa-heart"></i>');
+    }
     $this.removeAttr('data-method');
     $this.removeAttr('data-remote');
     $this.attr('href', 'javascript:void(1)');
-    $counter.html(parseInt($counter.html(), 10)+1);
-
   });
 
   $(document).bind('dragover', function (e) {

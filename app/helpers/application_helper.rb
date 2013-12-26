@@ -1,3 +1,8 @@
+module Commontator
+  module ApplicationHelper
+
+  end
+end
 module ApplicationHelper
   def div_image url, options={}, &block
     style = "background-image: url(#{url});"

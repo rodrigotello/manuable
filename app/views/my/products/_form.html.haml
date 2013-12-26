@@ -1,4 +1,4 @@
-= simple_nested_form_for [:my, @product], html: { }, validate: false do |f|
+= simple_nested_form_for [:my, @product], html: { } do |f|
   = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Cómo se llama tu producto?", wrapper: :control_row
   = f.input :media do
     #file-dropzone.clearfix

@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  attr_accessible :body, :conversation_id, :from_id
+  # attr_accessible :body, :conversation_id, :from_id
   belongs_to :conversation
   belongs_to :from, foreign_key: 'from_id', class_name: 'User'
 

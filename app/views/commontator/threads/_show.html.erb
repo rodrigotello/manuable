@@ -1,0 +1,58 @@
+<% # Clients of this partial must supply the following variables:
+   # thread
+   # user
+%>
+
+<% can_subscribe = thread.can_subscribe?(user) %>
+<% can_edit = thread.can_be_edited_by?(user) %>
+<!--
+<span id="thread_<%= thread.id.to_s %>_header_span" class="thread_header">
+  <%= thread.config.comment_name.capitalize.pluralize + (thread.is_closed? ? ' (closed)' : '') %>
+</span>
+ -->
+<!-- <span id="thread_<%= thread.id.to_s %>_actions_span" class="thread_actions">
+  <% if can_subscribe %>
+    <span id="thread_<%= thread.id.to_s %>_subscription_span" class="thread_subscription">
+      <%= render :partial => 'commontator/subscriptions/link',
+                 :locals => {:thread => thread,
+                             :user => user} %>
+    </span>
+  <% end %>
+
+  &nbsp;
+
+  <% if can_edit %>
+    <% is_closed = thread.is_closed? %>
+    <% close_string = is_closed ? "reopen" : "close" %>
+    <%= link_to close_string.capitalize,
+                commontator.polymorphic_path([close_string, thread]),
+                :confirm => (!is_closed ? \
+                              'Are you sure you want to close this thread?' : nil),
+                :method => :put,
+                :id => "thread_#{thread.id.to_s}_#{close_string}_link",
+                :class => "thread_#{close_string}_link",
+                :remote => true %>
+  <% end %>
+</span> -->
+
+<div id="thread_<%= thread.id.to_s %>_comment_list_div" class="thread_comment_list">
+  <%= render :partial => 'commontator/comments/list',
+             :locals => {:comments => thread.ordered_comments,
+                         :user => user} %>
+</div>
+
+<% if thread.is_closed? %>
+  <p><%= thread.config.comment_name.capitalize.pluralize %> cannot be <%= thread.config.comment_create_verb_past %> at this time.</p>
+<% elsif !user %>
+  <p>You must log in before you can <%= thread.config.comment_create_verb_present %> a <%= thread.config.comment_name %>.</p>
+<% else %>
+  <div id="thread_<%= thread.id %>_new_comment_div" class="thread_new_comment"></div>
+
+  <span id="thread_<%= thread.id %>_new_comment_link_span" class="thread_new_comment_link">
+    <%= render :partial => 'commontator/comments/form',
+         :locals => {
+             :comment => thread.comments.new(creator: current_user),
+             :thread => thread
+          } %>
+  </span>
+<% end %>

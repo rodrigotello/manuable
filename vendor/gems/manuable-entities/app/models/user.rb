@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id,
-                  :address, :zipcode, :occupation, :about, :birthday, :nickname
+  # attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  # :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id,
+                  # :address, :zipcode, :occupation, :about, :birthday, :nickname
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
+  acts_as_commontator
   belongs_to :state
   belongs_to :city
   belongs_to :last_product, class_name: "Product", foreign_key: 'last_product_id'
