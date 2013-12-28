@@ -133,9 +133,10 @@ $(function(){
   $("select.go-chosen").chosen();
 
   $(document).on('click', 'a.fbshare', function(e){
-
+    e.preventDefault();
     window.open($(this).attr('href'), 'sharer', 'width=626,height=436');
   });
+
   $(document).on('click', 'a[rel*=modal]', function(e){
     e.preventDefault();
     var $this = $(this);

@@ -17,6 +17,7 @@ Manuable::Application.routes.draw do
   resources :users, only: [:show, :index] do
     resources :followings, only: :create
     resources :products, only: [:index, :show]
+    resources :events, only: :index
   end
 
   resources :products do

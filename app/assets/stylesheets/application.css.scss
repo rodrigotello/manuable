@@ -30,6 +30,10 @@ body {
   font-family: 'Open Sans', sans-serif;
   padding-top: 70px;
 }
+#social-plugins{
+  padding: 0 20px;
+  >div {margin: 0 5px; }
+}
 .login-option {
   .transparent-button { color: #fff !important; padding: 2px 5px !important; margin-top: 7px; }
   .fa-twitter-square, .fa-facebook-square {
@@ -56,7 +60,7 @@ body {
 }
 footer {
   padding: 30px 70px;
-  img { width: 150px; }
+  img { width: 150px; margin-top: 35px; }
   &:hover {
     text-decoration: none;
   }
@@ -64,11 +68,11 @@ footer {
     margin-top: 7px;
     li{
       list-style: none;
-      float: left;
+      display: inline-block;
       a {
         font-size: 12px;
         display: block;
-        padding: 2px 5px;
+        padding: 0px 5px;
         border-radius: 5px;
         color: #787878;
         font-weight: bold;

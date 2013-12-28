@@ -27,10 +27,10 @@
       %a{ id: 'product-modal-close' }
         %i.fa.fa-close
       #product-modal-body
-    = render partial: '/shared/social_plugins'
     .container
       = render partial: 'shared/navigation_bar'
-      = bootstrap_flash
+      #notice
+        = bootstrap_flash
       = yield
       %footer
         = image_tag 'logo-ccc.svg'
@@ -44,7 +44,9 @@
           %li
             = link_to 'Contacto', '#'
           %li
-            = link_to 'Terminos y Condiciones', '#'
+            = link_to 'Terminos y Condiciones', '/about', rel: 'modal'
+          %li
+            = render partial: '/shared/social_plugins'
     = javascript_include_tag "application"
 
     - if user_signed_in?

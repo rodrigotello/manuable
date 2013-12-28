@@ -42,9 +42,9 @@
 </div>
 
 <% if thread.is_closed? %>
-  <p><%= thread.config.comment_name.capitalize.pluralize %> cannot be <%= thread.config.comment_create_verb_past %> at this time.</p>
+  <p></p>
 <% elsif !user %>
-  <p>You must log in before you can <%= thread.config.comment_create_verb_present %> a <%= thread.config.comment_name %>.</p>
+  <p></p>
 <% else %>
   <div id="thread_<%= thread.id %>_new_comment_div" class="thread_new_comment"></div>
 
