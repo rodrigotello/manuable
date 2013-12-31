@@ -22,6 +22,6 @@
     = @product.about
   .spacer
   = commontator_thread(@product)
-  = if params[:no_layout] == '1'
+  - if params[:no_layout] == '1'
     :javascript
       ProductsShow.init();
