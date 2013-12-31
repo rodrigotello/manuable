@@ -28,17 +28,17 @@ body { padding-top: 60px; }
   body {
     padding-top: 0;
   }
-  #social-plugins{ top: 60px; right:10px; position: absolute; }
+  #social-plugins { top: 60px; right:10px; position: absolute; }
 }
 .navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner{ border-width: 0; }
-body > .container { width: 1200px; }
+body > .container { max-width: 1200px; width: 100%; }
 .navbar-inner {
   color: #ffffff;
   background: #41cbeb; /* Old browsers */
   height: 57px;
   padding-top: 14px;
 }
-.navbar .brand { color: #ffffff; text-shadow: none; padding: 0 15px; }
+.navbar .brand { margin-left: 0; color: #ffffff; text-shadow: none; padding: 0 15px; }
 .navbar .brand img { height: 35px; }
 .navbar a { color: #fff; font-weight:bold; text-shadow: -1px 0px 1px #646262 !important; }
 .navbar a:hover { text-decoration: none; }
@@ -113,3 +113,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 select.form-control{ height: 30px;}
+
+@media (min-width: 1200px){
+  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
+    max-width: 1200px;
+    width: 100%;
+  }
+}

@@ -27,7 +27,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/assets/#{model.class.to_s.parameterize}-cover-dummy.jpg"
+    "/assets/#{model.class.to_s.parameterize}-cover-dummy.png"
   end
 
 end

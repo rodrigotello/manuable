@@ -1,9 +1,14 @@
 class HomeController < ApplicationController
   def index
-    @products = Product.filter(params).feed(current_user).page( params[:page] ).per( params[:per_page] || 12 )
-
     respond_to do |format|
-      format.html {}
+      format.html {
+        @products = Product.filter(params).feed(current_user)
+        @multipages = @products.count > 15
+        @products = @products.limit(15)
+      }
+      format.js {
+        @products = Product.filter(params).feed(current_user).offset(15 + (params[:page].to_i - 1) * 12).limit(12)
+      }
       format.json {
         self.formats = [:html]
         render( json: {

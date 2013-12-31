@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   respond_to :json, :html
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.feed(current_user).find(params[:id])
     @user = @product.user
     commontator_thread_show(@product)
   end

@@ -1,0 +1,360 @@
+$dark-gray: #333332;
+$gray: #474747;
+$light-gray: #999999;
+$lightest-gray: #f2f2f2;
+$blue-manuable: #44c1e0;
+$blue-manuable-text-shadow: #1d95b3;
+$p-regular: 15px;
+
+.event-show {
+  #event-admin-options {
+    float: right;
+  }
+  h1 {
+    font-size: 50px;
+    font-weight: 600;
+  }
+  h2 {
+    font-size: 38px;
+    font-weight: 600;
+  }
+  h3 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+  h4 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  h6 {
+    font-size: $p-regular;
+    font-weight: 600;
+  }
+  h1.event-name {
+    width: 840px;
+    margin: 0 auto 10px -4px;
+  }
+  section {
+    width: 840px;
+    margin: 10px auto;
+    padding: 25px 180px;
+    h3 {
+      color: $gray;
+      text-align: center;
+    }
+  }
+  .event-brief {
+    color: $light-gray;
+  }
+  .event-nav.affix {
+    top: 40px;
+    left: 50%;
+    margin-left: -400px;
+  }
+  .event-nav {
+    margin: 0 auto;
+    background: white;
+    z-index: 2;
+    li {
+      float: left;
+      width: 33.33333%;
+      list-style: none;
+    }
+    a {
+      margin: 0;
+      color: $gray;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      height: 40px;
+      display: block;
+      line-height: 20px;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+    }
+    .active {
+      background-color: transparent;
+    }
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.request-access {
+  display: block;
+  background-color: $blue-manuable;
+  padding: 10px 5px 10px 5px;
+  color: white;
+  text-decoration: none;
+  width: 420px;
+  margin: 0 auto;
+  border-radius: 7px;
+  text-align: center;
+  line-height: 16px;
+  font-size: 13px;
+}
+
+.request-access.disabled {
+  color: rgb(218, 218, 218);
+  opacity: 1;
+  background-color: #077792;
+}
+
+#event-header {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#organizers {
+  .organizer {
+    margin-bottom: 10px;
+    .user-avatar {
+      display: block;
+    }
+    .name {
+      font-size: $p-regular;
+    }
+  }
+}
+
+#map {
+  height: 420px;
+  width: 419px;
+}
+
+.card {
+  width: 100%;
+  border: 1px solid $light-gray;
+  margin-bottom: 70px;
+  margin-top: 20px;
+  .card-present {
+    background: white;
+    text-align: center;
+  }
+  .card-present, .card-detail {
+    width: 50%;
+    overflow: hidden;
+  }
+}
+
+#desc {
+  .request-access {
+    margin-top: 50px;
+  }
+}
+
+#itinerary {
+  background-color: $lightest-gray;
+  .section-content {
+    background-color: transparent;
+  }
+  h1.date {
+    color: $dark-gray;
+  }
+  .iti-date-group {
+    .time-range {
+      color: $light-gray;
+      font-size: $p-regular;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        display: block;
+        padding: 5% 6%;
+        margin: 0;
+        width: 88.5%;
+        list-style: none;
+        &:nth-child(even) {
+          background: $lightest-gray;
+        }
+        &:nth-child(odd) {
+          background: $blue-manuable;
+          color: white;
+          text-shadow: 0px 1px 1px $blue-manuable-text-shadow;
+        }
+        .iti-time {
+          float: left;
+          width: 80px;
+        }
+        .iti-name {
+          font-style: italic;
+          word-break: break-word;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+
+#artisans {
+  .row-fluid{
+    margin-bottom: 20px;
+  }
+  .artisan {
+    width: 200px;
+    float: left;
+    position: relative;
+    margin: 0 0 15px 10px;
+    a {
+      display: block;
+    }
+    .avatar {
+      width: 200px;
+      height: 200px;
+      background-position: center;
+      background-repeat: no-repeat;
+      // border: 1px solid $gray
+
+    }
+    .name {
+      color: $gray;
+      text-decoration: none;
+      display: block;
+      padding-left: 5px;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+#participate {
+  background-color: $lightest-gray;
+  text-align: center;
+}
+
+#event-tos {
+  height: 150px;
+  padding: 1px 30px;
+  .request-access {
+    margin: 10px 0 0 0;
+    width: 80px;
+    height: 70px;
+    font-weight: bold;
+  }
+}
+
+#checkbox-acceptance {
+  padding-top: 60px;
+  label {
+    color: $gray;
+  }
+}
+
+#semilla-map {
+  a {
+    display: block;
+    width: 500px;
+    margin: 20px auto 0 auto;
+    font-size: 16px;
+  }
+}
+
+#event-request-access {
+  color: $gray;
+  width: 800px;
+}
+
+#do-click {
+  color: $dark-gray;
+  font-size: 15px;
+  margin: 17px 0 0 0;
+  line-height: 17px;
+}
+
+#event-banners {
+  .event-banner {
+    display: block;
+    border: 3px solid $blue-manuable;
+    border-radius: 3px;
+    padding: 40px 20px;
+    margin: 10px 0;
+    &:hover {
+      text-decoration: none;
+    }
+    .event-banner-name {
+      font-size: 18px;
+      color: $blue-manuable;
+      margin-bottom: 10px;
+    }
+    .event-banner-date, .event-banner-location {
+      color: $light-gray;
+      font-size: 14px;
+    }
+  }
+}
+
+#home-left-banner {
+  margin-top: 25px;
+  h3 {
+    background-color: $lightest-gray;
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 20px;
+  }
+}
+
+#new-event-map {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+#event-map {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+#oxxo-payment-option {
+  text-align: center;
+  a {
+    display: block;
+    margin: 20px 0;
+  }
+}
+
+.section-content {
+  background-color: white;
+  width: 740px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+
+.request-access-modal {
+  border: 0;
+  h2 {
+    margin: 0;
+    padding: 0 0 0 30px;
+    color: white;
+  }
+  .modal-header {
+    display: none;
+  }
+  .modal-body {
+    padding: 0;
+  }
+  .event-show {
+    width: 700px;
+    padding: 30px;
+  }
+  #benefits-observations {
+    background: white;
+    padding: 1px 30px;
+    height: 500px;
+    overflow: auto;
+  }
+}
+
+#space-selector {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}

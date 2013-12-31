@@ -75,8 +75,12 @@ class User < ActiveRecord::Base
     likes.where(product_id: product.id).first_or_create
   end
 
-  def follow_to! user
+  def follow! user
     Following.where( followee_id: user.id, follower_id: self.id ).first_or_create
+  end
+
+  def unfollow! user
+    Following.where( followee_id: user.id, follower_id: self.id ).delete_all
   end
 
   def followed_by? user

@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :map]
 
+  def index
+    @user = User.find(params[:user_id]) if params[:user_id]
+  end
+
   def show
     @event = Event.includes(:artisans => :last_product).find params[:id]
     redirect_to root_path unless @event.paid || current_user && @event.user_ids.include?(current_user.id) || god_mode?

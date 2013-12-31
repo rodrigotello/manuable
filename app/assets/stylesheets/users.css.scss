@@ -1,34 +1,34 @@
+.user-list{
+  .item {
+    .user-avatar {
+      margin: 0 auto 10px;
+      width: 130px;
+      height: 130px;
+      border-radius: 70px;
+      background-position: center center;
+    }
+    float: left;
+    margin-left: 35px;
+    text-align: center;
+    .item-name {
+      a { color: #000; }
+      font-size: 15px;
+      font-weight: 600
+    }
+    .item-location {
+      font-size: 13px;
+    }
+  }
+}
 .user{
   width: 1064px;
   margin: 0 auto;
-  .user-list{
-    .item {
-      .user-avatar{ margin: 0 auto 10px; }
-      float: left;
-      margin-left: 35px;
-      text-align: center;
-      .item-name {
-        a { color: #000; }
-        font-size: 15px;
-        font-weight: 600
-      }
-      .item-location {
-        font-size: 13px;
-      }
-    }
-  }
-  #followings, #followers, #likes{ display: none; }
+  #followees, #followers, #likes{ display: none; }
   #user-products {}
   .cover {
     background-position: top center;
     width: 100%;
     height: 395px;
-  }
-  .user-avatar {
-    width: 130px;
-    height: 130px;
-    border-radius: 70px;
-    background-position: center center;
   }
   .cover {
      padding-top: 1px;
@@ -132,6 +132,7 @@
         border: 1px solid #164a56;
         font-size: 15px;
         margin: 25px 35px 0 0;
+        border-radius: 3px;
         &:hover{
           background-color: #1D9FBE;
         }

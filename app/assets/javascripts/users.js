@@ -68,16 +68,21 @@ var UsersShow = new function(){
   var self = this;
   self.init = function(){
     window["UsersShow"].initialized = true;
-    $('#follow').bind('ajax:success', function(){
-      var $this = $(this);
-      $this.replaceWith('<span class="btn btn-mini btn-success active disabled"><i class="icon-ok"></i> Siguiendo</span>');
+    $('#follow-user').bind('ajax:success', function(){
+      var $this = $(this),
+          matches = $this.attr('href').match(/users\/([0-9]+)\/follow/);
 
-      var li = "<li class='media'>";
-      li += '<img class="media-object pull-left" src="'+ current_user.avatar.small.url +'" alt="'+current_user.name+'"/>';
-      li += '<div class="media-body">';
-      li += ('<a href="/users/"'+current_user.id+'">' + current_user.name + '</a>');
-      li += '</div>';
-      $('#followers').prepend(li);
+      if( matches ){
+        $this.html("Siguiendo");
+        $this.attr('href', "/users/" + matches[1] + "/unfollow");
+        $this.data('method', "delete");
+      }else{
+        matches = $this.attr('href').match(/users\/([0-9]+)\/unfollow/);
+        $this.html("Seguir");
+        $this.attr('href', "/users/" + matches[1] + "/follow");
+        $this.data('method', "post");
+      }
+
     });
     $('.user .user-menu a').bind('click', function(e){
       var $this = $(this);

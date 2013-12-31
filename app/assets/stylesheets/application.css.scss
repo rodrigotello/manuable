@@ -34,6 +34,20 @@ body {
   padding: 0 20px;
   >div {margin: 0 5px; }
 }
+.load-product-feed{
+  clear: both;
+  background-color: #e9e9e9;
+  padding: 20px 70px;
+  color: #787878;
+  font-weight: 600;
+  border-radius: 3px;
+  margin: 20px auto;
+  width: 77px;
+  display: block;
+  &:hover,&:active, &:focus {
+    color: #787878;
+  }
+}
 .login-option {
   .transparent-button { color: #fff !important; padding: 2px 5px !important; margin-top: 7px; }
   .fa-twitter-square, .fa-facebook-square {

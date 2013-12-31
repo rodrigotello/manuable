@@ -15,7 +15,8 @@ Manuable::Application.routes.draw do
   # get '/users/auth/:provider/' => 'omniauth_callbacks#passthru'
 
   resources :users, only: [:show, :index] do
-    resources :followings, only: :create
+    post '/follow', on: :member, to: 'followings#create'
+    delete '/unfollow', on: :member, to: 'followings#destroy'
     resources :products, only: [:index, :show]
     resources :events, only: :index
   end

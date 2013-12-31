@@ -18,9 +18,11 @@
     - group.each_with_index do |product, i|
       - next unless product.present?
       - content_for "products_feed_#{i}".to_sym do
-        = render partial: '/products/create', locals: { product: product, size: ( i + group_index ).odd? ? 'small' : 'large' }
+        = render partial: '/products/create', locals: { product: product }
 
   .column= yield(:products_feed_0)
   .column= yield(:products_feed_1)
   .column= yield(:products_feed_2)
   .column= yield(:products_feed_3)
+- if @multipages
+  = link_to 'Cargar más', "#{request.path != '/' ? request.path.to_s : '/home/index' }.js?page=#{params[:page] || 2}&f=#{params[:f]}", :remote => true, class: 'load-product-feed'

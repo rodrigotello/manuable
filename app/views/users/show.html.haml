@@ -8,17 +8,14 @@
     .user-description
       = link_to 'Mis Mercaditos', user_events_path(@user), class: 'transparent-button', id: 'user-events'
       - if current_user && @user != current_user
-        - if @user.followed_by? current_user
-          %span{ class: 'followed', id: 'follow-user' }
-            Siguiendo
-        - else
-          = link_to 'Seguir'.html_safe, user_followings_path(@user), method: 'post', remote: true, id: 'follow-user'
         = link_to '<i class="fa fa-envelope-o"></i>'.html_safe, '#', class: 'follow', id: 'message-user'
+        - if @user.followed_by? current_user
+          = link_to 'Siguiendo'.html_safe, unfollow_user_path(@user), method: 'delete', remote: true, id: 'follow-user'
+        - else
+          = link_to 'Seguir'.html_safe, follow_user_path(@user), method: 'post', remote: true, id: 'follow-user'
       - else
         - unless current_user
           = link_to 'Seguir'.html_safe, "#sign_popup", "data-toggle" => "modal", id: 'follow-user'
-
-
       .user-about
         = @user.about
   .navbar.user-menu.sub-menu
@@ -35,19 +32,19 @@
           %li.divider-vertical
         %li
           = link_to 'Siguiendo', '#followings'
-  %section#user-products
+  %section#main-feed
     = render partial: '/products/feed', locals: { products: @products, no_banner: true }
   %section#likes
   %section#followers
-    %ul#followers.user-list.clearfix
+    %ul.user-list.clearfix
       - @user.followers.each do |u|
         .item
           = div_image u.avatar.url(:medium), class: 'user-avatar'
           .item-name= link_to u.name, u
           .item-location= u.location
-  %section#followings
-    %ul#followees.user-list.clearfix
-      - @user.followees.limit(5).each do |u|
+  %section#followees
+    %ul.user-list.clearfix
+      - @user.followees.each do |u|
         .item
           = div_image u.avatar.url(:medium), class: 'user-avatar'
           .item-name= link_to u.name, u

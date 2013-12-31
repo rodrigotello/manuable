@@ -26,10 +26,6 @@
             %dl
               %dt
                 Cuenta
-              / %dd{ class: @my_section == "profile" ? 'active' : "" }
-              /   = link_to "#" do
-              /     %i{ class: "icon-user" }
-              /     Perfil
               %dd{ class: @my_section == "name" ? 'active' : "" }
                 = link_to edit_my_profile_path(f: 's') do
                   %i{ class: "icon-cogs" }

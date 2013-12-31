@@ -1,0 +1,18 @@
+<%- @products.in_groups_of(4, nil).each_with_index do |group, i| -%>
+  $('#main-feed .column:nth(0)').append('<%= escape_javascript render(partial: '/products/create', locals: { product: group[0] }) -%>');
+
+  <%- if group[1] -%>
+    $('#main-feed .column:nth(1)').append('<%= escape_javascript render(partial: '/products/create', locals: { product: group[1] }) -%>');
+  <%- end -%>
+
+  <%- if group[2] -%>
+    $('#main-feed .column:nth(2)').append('<%= escape_javascript render(partial: '/products/create', locals: { product: group[2] }) -%>');
+  <%- end -%>
+
+  <%- if group[3] -%>
+    $('#main-feed .column:nth(3)').append('<%= escape_javascript render(partial: '/products/create', locals: { product: group[3] }) -%>');
+  <%- end -%>
+<%- end -%>
+<% if @products.length < 12 %>
+  $('#main-feed .load-product-feed').remove();
+<% end %>

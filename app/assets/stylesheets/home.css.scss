@@ -15,14 +15,16 @@
 }
 #products-wrapper{
   margin: 0 auto;
-  width: 1064px;
+  max-width: 1064px;
+  width: 100%;
 }
 #welcome {
   #home-cover {
     background-image: image-url('homecover.png');
     background-position: center center;
     height: 486px;
-    width: 1200px;
+    max-width: 1200px;
+    width: 100%;
     padding-top: 1px;
     margin-top: -1px;
     text-align: center;
@@ -188,16 +190,6 @@
     }
   }
 }
-.product-card.small {
-  .product-card-image {
-    height: 195px
-  }
-}
-.product-card.large {
-  .product-card-image {
-    height: 310px;
-  }
-}
 .products-feed{
   .column {
     width: 22.7%;
@@ -207,6 +199,38 @@
   .column:first-child {
     margin-left: 0;
   }
+  .column:nth-child(odd){
+    .product-card {
+      &:nth-child(odd) {
+        .product-card-image {
+          height: 195px
+        }
+      }
+    }
+    .product-card {
+      &:nth-child(even) {
+        .product-card-image {
+          height: 310px;
+        }
+      }
+    }
+  }
+  .column:nth-child(even){
+    .product-card {
+      &:nth-child(even) {
+        .product-card-image {
+          height: 195px
+        }
+      }
+    }
+    .product-card {
+      &:nth-child(odd) {
+        .product-card-image {
+          height: 310px;
+        }
+      }
+    }
+  }
 }
 #crea-mercadito-banner {
   display: block;
@@ -215,7 +239,7 @@
   border-radius: 5px;
   color: #fff;
   width: 236px;
-  height: 350px;
+  height: 370px;
   margin-bottom: 26px;
   text-align: center;
   text-shadow: -1px 0 1px #646262;
@@ -236,8 +260,8 @@
     font-size: 20px;
     display: block;
     border-top: 1px solid #229b55;
-    line-height: 50px;
-    height: 55px;
+    line-height: 73px;
+    height: 74px;
     &:hover {
       text-decoration: none;
       background-color: #16AF6E;

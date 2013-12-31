@@ -137,6 +137,15 @@ $(function(){
     window.open($(this).attr('href'), 'sharer', 'width=626,height=436');
   });
 
+  $(document).on('ajax:success', 'a.load-product-feed', function(e){
+    var $this = $(this);
+    $this.attr('href', $this.attr('href').replace(/page=(\d+)/, function(a,b){ return 'page=' + (parseInt(b, 10) + 1); })).html('Cargar más');
+  });
+
+  $(document).on('click', 'a.load-product-feed', function(e){
+    $(this).html('Cargando&hellip;');
+  });
+
   $(document).on('click', 'a[rel*=modal]', function(e){
     e.preventDefault();
     var $this = $(this);

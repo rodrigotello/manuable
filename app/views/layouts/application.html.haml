@@ -27,8 +27,8 @@
       %a{ id: 'product-modal-close' }
         %i.fa.fa-close
       #product-modal-body
+    = render partial: 'shared/navigation_bar'
     .container
-      = render partial: 'shared/navigation_bar'
       #notice
         = bootstrap_flash
       = yield
