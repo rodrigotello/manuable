@@ -23,11 +23,10 @@ class Product < ActiveRecord::Base
 
   scope :feed, lambda { |u|
     if u.present?
-      joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id}")
+      joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id} INNER JOIN attachments on attachable_id = products.id and attachable_type = 'Product'")
       .select("products.*, coalesce(likes.id, 0) AS liked")
       .includes([{user: [:city, :state]}, :category, :prop, :attachments])
       .recently_created
-      .joins(:attachments)
     else
       includes([{user: [:city, :state]}, :category, :prop, :attachments])
       .recently_created
