@@ -2,7 +2,10 @@
   .navbar-inner
     .container
       = link_to image_tag("logo.svg"), root_path, class: 'brand'
-      = link_to 'Crear Mercadito', '#', class: 'transparent-button', id: 'nav-crear-mercadito'
+      - if user_signed_in?
+        = link_to 'Crear Mercadito', '#', class: 'transparent-button', id: 'nav-crear-mercadito'
+      - else
+        = link_to 'Crear Mercadito', new_session_path(:user, return_to: new_event_path), rel: "modal", class: 'transparent-button', id: 'nav-crear-mercadito'
       %ul.nav.pull-right
         - if !user_signed_in?
           %li.login-option
@@ -27,7 +30,7 @@
                 %li
                   = link_to "<i class='fa fa-power-off'></i> Salir".html_safe, destroy_user_session_path, method: :delete
           %li
-            = link_to 'Subir Producto', '#', class: 'transparent-button', id: 'nav-subir-producto'
+            = link_to 'Subir Producto', new_my_product_path, class: 'transparent-button', id: 'nav-subir-producto'
           %li#inbox{ class: current_user.has_notifications? ? 'active' : '' }
             %a{ href: my_conversations_path }
               %i.fa.fa-envelope-o

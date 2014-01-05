@@ -23,13 +23,13 @@
       %ul.nav
         %li
           = link_to 'Productos', '?', class: "#{ params[:f].blank? ? ' active' : ''}"
-          %li.divider-vertical
+        %li.divider-vertical
         %li
           = link_to 'Gustos', '?f=l', class: "#{ params[:f] == 'l' ? ' active' : ''}"
-          %li.divider-vertical
+        %li.divider-vertical
         %li
           = link_to 'Seguidores', '#followers'
-          %li.divider-vertical
+        %li.divider-vertical
         %li
           = link_to 'Siguiendo', '#followings'
   %section#main-feed

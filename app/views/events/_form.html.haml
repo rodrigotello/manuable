@@ -1,17 +1,17 @@
 %fieldset
   %legend Detalles del evento
   .well
-    = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?", wrapper: :control_row
+    = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?"
     = f.input :slug, wrapper: :prepend do
       %span.add-on
         http://manuable.com/
       = f.input_field :slug, class: 'input-xlarge'
-    = f.input :cover, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
-    = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text, wrapper: :control_row
-    = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text, wrapper: :control_row
-    = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text, wrapper: :control_row
-    = f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text, wrapper: :control_row
-    = f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text, wrapper: :control_row
+    = f.input :cover, input_html: { class: 'span5' }, as: :file
+    = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text
+    = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text
+    = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text
+    = f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text
+    = f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text
 
 %fieldset
   %legend Organizadores
@@ -24,22 +24,22 @@
   .well
     .row-fluid
       .span9
-        = f.input :address, :wrapper => :control_row do
+        = f.input :address do
           = f.input_field :address, class: 'form-control', as: :string
       .span3
-        = f.input :zip, :wrapper => :control_row do
+        = f.input :zip do
           = f.input_field :zip, class: 'form-control', as: :string
     .row-fluid
       .span6
-        = f.input :location, :wrapper => :control_row do
+        = f.input :location do
           = f.input_field :location, class: 'form-control', as: :string
       .span6
-        = f.input :city_id, :wrapper => :control_row do
+        = f.input :city_id do
           = f.input_field :city_id, class: 'form-control', id: 'event_city_input'
           = f.input_field :city_id, as: :hidden
     .row-fluid
       .span12
-        = f.input :location_name, :wrapper => :control_row do
+        = f.input :location_name do
           = f.input_field :location_name, class: 'form-control', as: :string
 
     = f.input :lat, as: :hidden
@@ -51,8 +51,8 @@
   %legend Horario y espacios
   .well
     %p.text-danger#maps-error
-    = f.input :spaces, input_html: { class: 'span2' }, hint: "¿Cuántos artesamos puede alojar?", wrapper: :control_row
-    = f.input :location_map, input_html: { class: 'span5' }, wrapper: :control_row, as: :file
+    = f.input :spaces, input_html: { class: 'span2' }, hint: "¿Cuántos artesamos puede alojar?"
+    = f.input :location_map, input_html: { class: 'span5' }, as: :file
     = f.input :starts_at, :wrapper => :append do
       .row
         .span2
@@ -80,7 +80,7 @@
   .well
     = f.fields_for :event_schedules, :wrapper => false do |schedule|
       .form-appendable
-        = schedule.input :name, input_html: { class: 'span12' }, wrapper: :control_row
+        = schedule.input :name, input_html: { class: 'span12' }
         = schedule.input :starts_at, :wrapper => :append do
           .row
             .span2

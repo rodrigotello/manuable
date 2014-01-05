@@ -25,15 +25,15 @@ class Product < ActiveRecord::Base
     if u.present?
       joins("LEFT OUTER JOIN likes ON likes.product_id = products.id AND likes.user_id = #{u.id}")
       .select("products.*, coalesce(likes.id, 0) AS liked")
-      .includes([{user: [:city, :state]}, :category, :prop, :attachments])
-      .recently_created
+      .includes([:user, :category, :attachments])
+      .where('products.attachments_count > 0')
     else
-      includes([{user: [:city, :state]}, :category, :prop, :attachments])
-      .recently_created
-      .joins(:attachments)
+      includes([:user, :category, :attachments])
+      .where('products.attachments_count > 0')
     end
   }
   scope :recently_created, lambda { order('products.created_at DESC') }
+  scope :popular, lambda { order('products.likes_count DESC') }
   scope :liked_by, lambda { |id_or_ids_or_record|
     if id_or_ids_or_record.is_a? user
       where(id: user.id)
@@ -51,8 +51,8 @@ class Product < ActiveRecord::Base
       query = query.where(category_id: params[:c])
     end
 
-    if params[:pop] == '1'
-      query = query.order('products.likes_count DESC, products.created_at DESC')
+    if params[:pop] == '1' || params[:new].blank?
+      query = query.popular
     end
 
     if params[:new] == '1'

@@ -5,7 +5,10 @@
       %br
       hechos a mano en México.
     = link_to 'CONOCE MÁS', '/about', id: 'conoce-mas', class: 'transparent-button', rel: 'modal'
-    = link_to 'SUBIR PRODUCTO', new_my_product_path, id: 'subir-producto'
+    - if user_signed_in?
+      = link_to 'SUBIR PRODUCTO', new_my_product_path, id: 'subir-producto'
+    - else
+      = link_to 'SUBIR PRODUCTO', new_session_path(:user, return_to: new_my_product_path), id: 'subir-producto', rel: 'modal'
   %h2
     Encuentra productos originales hecho a mano
     %br
@@ -31,8 +34,6 @@
             = link_to 'Populares', { pop: 1, c: params[:c] }, class: ( params[:pop] == '1' || params[:new].nil? && params[:special].nil? ? 'active' : nil )
           %li
             = link_to 'Nuevos', { new: 1, c: params[:c] }, class: ( params[:new] == '1' ? 'active' : nil )
-          %li
-            = link_to 'Promociones', 'javascript:void(0)', class: ( params[:special] == '1' ? 'active disabled' : 'disabled' )
     #main-feed
       = render partial: '/products/feed', locals: { products: @products }
 

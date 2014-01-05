@@ -1,15 +1,12 @@
 $dark-gray: #333332;
 $gray: #474747;
-$light-gray: #999999;
+$light-gray: #cbcbcb;
 $lightest-gray: #f2f2f2;
 $blue-manuable: #44c1e0;
 $blue-manuable-text-shadow: #1d95b3;
 $p-regular: 15px;
 
 .event-show {
-  #event-admin-options {
-    float: right;
-  }
   h1 {
     font-size: 50px;
     font-weight: 600;
@@ -111,43 +108,11 @@ $p-regular: 15px;
   margin-bottom: 0;
 }
 
-#organizers {
-  .organizer {
-    margin-bottom: 10px;
-    .user-avatar {
-      display: block;
-    }
-    .name {
-      font-size: $p-regular;
-    }
-  }
-}
-
 #map {
   height: 420px;
   width: 419px;
 }
 
-.card {
-  width: 100%;
-  border: 1px solid $light-gray;
-  margin-bottom: 70px;
-  margin-top: 20px;
-  .card-present {
-    background: white;
-    text-align: center;
-  }
-  .card-present, .card-detail {
-    width: 50%;
-    overflow: hidden;
-  }
-}
-
-#desc {
-  .request-access {
-    margin-top: 50px;
-  }
-}
 
 #itinerary {
   background-color: $lightest-gray;
@@ -223,11 +188,6 @@ $p-regular: 15px;
       margin-right: 0;
     }
   }
-}
-
-#participate {
-  background-color: $lightest-gray;
-  text-align: center;
 }
 
 #event-tos {
@@ -357,4 +317,202 @@ $p-regular: 15px;
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+}
+
+
+
+
+
+#Events-show {
+  background-color: #eee;
+}
+.event{
+  .container {
+    width: 1060px;
+    margin: 0 auto;
+  }
+  section{
+    margin: 0 0 40px 0;
+    h3{
+      color: #a9a9a9;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+  .mini-card {
+    border-radius: 3px;
+    box-shadow: 0px 12px 17px -13px #999;
+    .mini-card-avatar{
+      height: 197px;
+      width: 237px;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    .mini-card-footer {
+      height: 65px;
+      border-left: 1px solid #d5d5d5;
+      border-right: 1px solid #d5d5d5;
+      border-bottom: 1px solid #d5d5d5;
+      border-radius: 0 0 3px 3px;
+      background-color: #fff;
+      text-align: center;
+      padding-top: 1px;
+      margin-top: -1px;
+      .mini-card-name a {
+        margin-top: 10px;
+        display: block;
+        color: #000;
+        font-weight: 400;
+      }
+      .mini-card-location a {
+        color: #000;
+        font-weight: 300;
+      }
+    }
+  }
+  .card {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 23px;
+    width: 100%;
+    border-bottom: 1px solid $light-gray;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0px 12px 17px -13px #999;
+    .card-padding { padding: 40px 70px; }
+    .card-mini-padding { padding: 40px 30px; }
+    .card-present {
+      background: white;
+      text-align: center;
+    }
+    .card-present, .card-detail {
+      width: 50%;
+      overflow: hidden;
+    }
+  }
+  .request-access {
+    max-width: 160px;
+    margin: 35px auto 0 auto;
+    background-color: #1dda71;
+    border-radius: 3px;
+    color: #fff;
+    padding: 20px 80px;
+    font-weight: 600;
+    font-size: 15px;
+    text-shadow: 0 1px 0 #16AF6E;
+  }
+  #organizers {
+    .user-avatar {
+      border-radius: 0;
+    }
+  }
+  #desc{
+    color: #a9a9a9;
+  }
+  #benefits{
+    .card {
+      h3 {
+        border-bottom: 1px solid #dadada;
+        color: #888;
+        .fa-star{
+          float: left;
+          color: #fbe194;
+          display: block;
+          padding: 7px;
+          background-color: #f5f5f5;
+          border: 1px solid #dedede;
+        }
+      }
+      .card-mini-padding{
+        color: #a9a9a9;
+        font-size: 20px;
+        font-weight: 300;
+        text-align: center;
+        line-height: 25px;
+      }
+    }
+  }
+  #participate{
+    background-color: #bdd1d8;
+    padding: 40px 90px;
+    text-align: center;
+    h2{
+      font-weight: 400;
+      color: #133d4c;
+    }
+    p{
+      font-size: 20px;
+      font-weight: 300;
+    }
+  }
+  #followees, #followers, #likes{ display: none; }
+  .cover {
+    background-position: top center;
+    width: 100%;
+    height: 395px;
+    padding-top: 1px;
+    position: relative;
+    background-position: top center;
+    #event-admin-options {
+      bottom: 20px;
+      right: 20px;
+      position: absolute;
+    }
+    #event-cover-info {
+      position: absolute;
+      bottom: 70px;
+      left: 100px;
+      color: #fff;
+      .event-name{
+        font-weight: 600;
+        margin: 0;
+      }
+      .event-date{
+        font-weight: 100;
+        font-size: 22px;
+        margin: 0 0 5px 0;
+      }
+      .event-location{
+        font-weight: 100;
+        font-size: 21px;
+        margin: 0 0 5px 0;
+      }
+    }
+  }
+  .navbar.event-menu {
+    border-bottom: 2px solid #364664;
+    .navbar-inner {
+      border-radius: 0;
+      border: 0;
+      >ul {
+        width: 100%;
+        >li {
+          width: 352px;
+          >a {
+            text-align: center;
+            background-color: #04a3e2;
+            padding: 23px;
+            color: #fff;
+            text-shadow: 0 1px 0 #0382b5 !important;
+            font-size: 16px;
+            &.active {
+              background-color: #00aeef;
+              color: #fff;
+              text-decoration: none;
+            }
+            &:hover,&:active,&:focus{
+              background-color: #00aeef;
+              text-decoration: none;
+            }
+          }
+        }
+        li.divider-vertical{
+          width: 0;
+          margin: 0;
+          border-color: #24afe6;
+        }
+      }
+    }
+  }
 }

@@ -1,105 +1,113 @@
-.event-show
-  %div{ style: "margin: 0 auto;background-image: url(#{@event.cover.url(:cover)}); width: 851px; height: 315px; background-repeat: no-repeat; background-position: center;" }
-  %section#event-header
-    - if current_user && @event.users.include?(current_user)
-      #event-admin-options
-        = link_to 'Editar Evento', edit_event_path(@event), class: 'btn btn-primary'
-    %h1.event-name= @event.name
-    %p.event-brief
-      Fecha:
-      = l @event.starts_at, format: :human
-      %br
-      = @event.location_name
-    %ul.event-nav.clearfix
-      %li.active.text-center
-        %a{ href: "#desc" }
-          %h4 Descripción del evento
-      %li.text-center
-        %a{ href: "#itinerary" }
-          %h4 El Itinerario
-      %li.text-center
-        %a{ href: "#artisans" }
-          %h4 Conoce a los Expositores
+= div_for @event do
+  .container
+    = div_image @event.cover.url(:cover), class: 'cover' do
+      - if current_user && @event.users.include?(current_user) || current_user.try(:id) == 43
+        #event-admin-options
+          = link_to 'Editar Evento', edit_event_path(@event), class: 'btn btn-primary'
+      #event-cover-info
+        %h1.event-name= @event.name
+        %p.event-date
+          Fecha:
+          = l @event.starts_at, format: :human
+        - if @event.location_name.present?
+          %p.event-location
+            %i.fa.fa-map-marker
+            = @event.location_name
+    .navbar.event-menu.sub-menu
+      .navbar-inner
+        %ul.nav
+          %li
+            = link_to 'Descripción', '#desc'
+          %li.divider-vertical
+          %li
+            = link_to 'Itinerario', '#itinerary'
+          %li.divider-vertical
+          %li
+            = link_to 'Conoce a los Expositores', '#artisans'
 
-  %section#desc
-    = @event.description
-    = request_link @event
+    %section#desc
+      .card
+        .card-padding
+          = @event.description
+          = request_link @event
 
-  %section#organizers.user-list
-    %h3 Organizadores
-    - @event.users.order("users.name DESC").in_groups_of(4, false) do |group|
-      .row-fluid
-        - group.each do |user|
-          .span3
-            .item
-              = div_image user.avatar.url(:medium), class: 'user-avatar'
-              .item-name= link_to user.name, user
-              .item-location= user.location
-              - if signed_in?
-                %small
-                  = raw "(#{link_to "Enviar mensaje", new_my_conversation_path(to: user.id), rel: 'modal'})"
+    %section#organizers.user-list
+      %h3
+        %i.fa.fa-users
+        Organizadores
+      .card
+        .card-padding
+          - @event.users.order("users.name DESC").in_groups_of(4, false) do |group|
+            .row-fluid
+              - group.each do |user|
+                .span3
+                  .item
+                    = div_image user.avatar.url(:medium), class: 'user-avatar'
+                    .item-name= link_to user.name, user
+                    - if signed_in?
+                      %small
+                        = raw "(#{link_to "Enviar mensaje", new_my_conversation_path(to: user.id), rel: 'modal'})"
+    - if @event.event_schedules.present?
+      %section#itinerary
+        %h3
+          %i.fa.fa-clock-o
+          Itinerario
+        - @event.event_schedules.group_by { |iti| iti.starts_at.to_date }.each do |date, itis|
+          %table.card.iti-date-group{ cellpadding: 0, cellspacing: 0}
+            %tr
+              %td.card-present
+                %h1= l date, format: :day_month
+                %span.time-range= l itis.first.starts_at, format: :time
+                :plain
+                  -
+                %span.time-range= l itis.last.starts_at, format: :time
+              %td.card-detail
+                %ul
+                  - itis.each do |iti|
+                    %li
+                      .iti-time= l iti.starts_at, format: :time
+                      .iti-name= iti.name
 
-  %section#itinerary
-    %h3 Itinerario
-    - @event.event_schedules.group_by { |iti| iti.starts_at.to_date }.each do |date, itis|
-      %table.card.iti-date-group{ cellpadding: 0, cellspacing: 0}
-        %tr
-          %td.card-present
-            %h1= l date, format: :day_month
-            %span.time-range= l itis.first.starts_at, format: :time
-            :plain
-              -
-            %span.time-range= l itis.last.starts_at, format: :time
-          %td.card-detail
-            %ul
-              - itis.each do |iti|
-                %li
-                  .iti-time= l iti.starts_at, format: :time
-                  .iti-name= iti.name
     - if @event.location_name && @event.lat.present? && @event.lng
-      %h3 Lugar
-      %table.card{ cellpadding: 0, cellspacing: 0}
-        %tr
-          %td.card-present
-            %h1
-              = @event.location_name
-            .address
-              = @event.address
-          %td.card-detail
-            #map{ data: {lat: @event.lat, lng: @event.lng }}
+      %section#location
+        %h3
+          %i.fa.fa-map-marker
+          Lugar
+        %table.card{ cellpadding: 0, cellspacing: 0}
+          %tr
+            %td.card-present
+              %h1
+                = @event.location_name
+              .address
+                = @event.address
+            %td.card-detail
+              #map{ data: {lat: @event.lat, lng: @event.lng }}
 
-  %section#artisans.clearfix.user-list
-    %h3
-      Expositores
-    - if @event.artisans.accepted.empty?
-      = request_link @event, "Sé el primero"
-    - else
-      - @event.artisans.accepted.in_groups_of(4).each do |g|
-        .row-fluid
-          - g.each do |user|
-            - next unless user
-            .span3
-              .item
-                = div_image user.avatar.url(:medium), class: 'user-avatar'
-                .item-name= link_to user.name, user
-                .item-location= user.location
+    %section#artisans.clearfix.user-list
+      %h3
+        %i.fa.fa-smile-o
+        Expositores
+      - if @event.artisans.accepted.empty?
+        = request_link @event, "Sé el primero"
+      - else
+        - @event.artisans.accepted.in_groups_of(4).each do |g|
+          .row-fluid
+            - g.each do |user|
+              - next unless user
+              .span3
+                .mini-card
+                  = div_image user.avatar.url(:large), class: 'mini-card-avatar'
+                  .mini-card-footer
+                    .mini-card-name= link_to user.name, user
+                    .mini-card-location= user.location
 
-  %section#benefits
-    %h3 Beneficios por participar
-    = sanitize @event.benefits, tags: %w( table tr td ul li ol), attributes: %w(style)
-
-  - if @event.requirements.present?
-    %section#requirements
-      %h3 Requisitos
-      = sanitize @event.requirements, tags: %w( table tr td ul li ol), attributes: %w(style)
-
-  - if @event.notes.present?
-    %section#observations
-      %h3 Observaciones y Espacios
-      = sanitize @event.notes, tags: %w( table tr td ul li ol), attributes: %w(style)
-      - if @event.location_map.present?
-        #semilla-map
-          = link_to image_tag(@event.location_map.url), @event.location_map.url,  target: '_blank'
+    %section#benefits
+      .card
+        %h3
+          %i.fa.fa-star
+          Beneficios por participar
+        .card-mini-padding
+          = sanitize @event.benefits, tags: %w( table tr td ul li ol), attributes: %w(style)
 
   %section#participate
     %h2 ¿Eres artesano y quieres participar?

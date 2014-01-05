@@ -1,18 +1,19 @@
 - products.reject! { |product| product.attachments.length == 0 || product.user_id == 43}
 - unless local_assigns[:no_banner]
   - content_for :products_feed_3 do
-    #crea-mercadito-banner
+    = link_to new_event_path, id: 'crea-mercadito-banner' do
       = image_tag 'house.png'
       %hr
       Crea eventos en tu
       %br
-      ciduad, organizate y vende
+      ciudad, organízate y vende
       %br
       tus productos dentro de
       %br
       tu comunidad
       %hr
-      = link_to 'Crear Mercadito', new_event_path
+      %span
+        Crear Mercadito
 .products-feed.clearfix{id: "#{params[:controller]}-#{params[:action]}-feed"}
   - products.in_groups_of(4,nil).each_with_index do |group, group_index|
     - group.each_with_index do |product, i|
@@ -25,4 +26,4 @@
   .column= yield(:products_feed_2)
   .column= yield(:products_feed_3)
 - if @multipages
-  = link_to 'Cargar más', "#{request.path != '/' ? request.path.to_s : '/home/index' }.js?page=#{params[:page] || 2}&f=#{params[:f]}", :remote => true, class: 'load-product-feed'
+  = link_to 'Cargar más', "#{request.path != '/' ? request.path.to_s : '/home/index' }.js?page=#{params[:page] || 2}&f=#{params[:f]}&c=#{params[:c]}", :remote => true, class: 'load-product-feed'
