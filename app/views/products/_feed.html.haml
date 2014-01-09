@@ -1,5 +1,5 @@
 - products.reject! { |product| product.attachments.length == 0 || product.user_id == 43}
-- unless local_assigns[:no_banner]
+- unless local_assigns[:no_banner] || true
   - content_for :products_feed_3 do
     = link_to new_event_path, id: 'crea-mercadito-banner' do
       = image_tag 'house.png'

@@ -1,0 +1,29 @@
+#profile-layout{
+  .container{
+    width: 768px;
+  }
+  .layout-container{
+    border-top: 0;
+    border-radius: 0 0 5px 5px;
+  }
+}
+.navbar.profile-menu{
+  margin-bottom: 0;
+  margin-top: 20px;
+  .navbar-inner{
+    padding: 0px;
+    height: 20px;
+    border-radius: 4px 4px 0 0;
+  }
+  .nav > li > a {
+    color: #fff;
+    text-shadow: none;
+  }
+  .nav li.dropdown.open > .dropdown-toggle, .nav li.dropdown.active > .dropdown-toggle, .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: inherit;
+    color: #fff;
+  }
+  .dropdown-menu > li > a {
+    text-shadow: none !important;
+  }
+}

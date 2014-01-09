@@ -1,5 +1,5 @@
 = simple_nested_form_for [:my, @product], html: { } do |f|
-  = f.input :name, input_html: { class: 'span12' }, placeholder: "¿Cómo se llama tu producto?", wrapper: :bootstrap
+  = f.input :name, placeholder: "¿Cómo se llama tu producto?", wrapper: :bootstrap
   = f.input :media do
     #file-dropzone.clearfix
       .row-fluid
@@ -14,7 +14,7 @@
         -# unless f.object.attachments.count >= 4
           =# f.link_to_add "<i class='icon-plus'></i>".html_safe, :attachments
 
-  = f.input :category_id, collection: Category.all, :label_method => :name, :value_method => :id, input_html: { class: 'span12' }, label: "¿En cuál de estas categorías entra?", wrapper: :bootstrap
+  = f.input :category_id, collection: Category.all, :label_method => :name, :value_method => :id, label: "¿En cuál de estas categorías entra?", wrapper: :bootstrap
   .row-fluid
     .span6
       = f.input :price, :wrapper => :prepend do
@@ -23,8 +23,8 @@
     .span6
       = f.input :amount, prompt: "Seleccionar", label: "¿Cuántos tienes?", input_html: {:class => "dropdown"}
 
-  = f.input :prop_list, label: '¿Qué propiedades tiene? (Máximo 10)', input_html: { class: 'span12 tag-input' }, wrapper: :bootstrap
+  = f.input :prop_list, label: '¿Qué propiedades tiene? (Máximo 10)', input_html: { class: 'tag-input' }, wrapper: :bootstrap
 
-  = f.input :about, input_html: { rows: 3, class: 'span12' }, label: "Está hecho con:", wrapper: :bootstrap
+  = f.input :about, input_html: { rows: 3 }, label: "Está hecho con:", wrapper: :bootstrap
 
   = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)

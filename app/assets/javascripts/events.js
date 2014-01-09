@@ -379,4 +379,4 @@ var EventPaymentsShow = new function(){
      $('#oxxo-link').attr('href', location.pathname+'?position=' + $(this).val());
     });
   }
-}
+};

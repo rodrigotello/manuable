@@ -8,7 +8,7 @@
         http://manuable.com/
       = f.input_field :nickname, class: 'input-xlarge'
     = f.input :avatar, as: :file
-    = f.input :birthday, input_html: { class: 'input-small', "data-inputmask" =>"'mask': 'd/m/y'"  }, as: :string
+    = f.input :birthday, input_html: { class: 'input-small datepicker' }, as: :string
     = f.association :state, input_html: { class: 'input-xlarge' }
     = f.input :city_id, as: :string, autocomplete: "off", input_html: { name: 'city-autocomplete', id: 'city-autocomplete', value: f.object.city ? "#{f.object.city.name}, #{f.object.city.state.name}" : '' }
     = f.input :city_id, as: :hidden

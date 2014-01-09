@@ -3,9 +3,9 @@
     .container
       = link_to image_tag("logo.svg"), root_path, class: 'brand'
       - if user_signed_in?
-        = link_to 'Crear Mercadito', '#', class: 'transparent-button', id: 'nav-crear-mercadito'
+        / = link_to 'Crear Mercadito', '#', class: 'transparent-button', id: 'nav-crear-mercadito'
       - else
-        = link_to 'Crear Mercadito', new_session_path(:user, return_to: new_event_path), rel: "modal", class: 'transparent-button', id: 'nav-crear-mercadito'
+        / = link_to 'Crear Mercadito', new_session_path(:user, return_to: new_event_path), rel: "modal", class: 'transparent-button', id: 'nav-crear-mercadito'
       %ul.nav.pull-right
         - if !user_signed_in?
           %li.login-option

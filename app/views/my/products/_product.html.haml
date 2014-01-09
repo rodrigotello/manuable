@@ -1,8 +1,7 @@
-= div_for product do
+.profile-product-card
   = link_to my_product_path(product), title: (product.name.present? ? product.name : "--") do
     - if att = product.attachments.first || product.attachments.build
       = product_image_tag att, :medium
   .actions
-    = link_to "<i class='icon-pencil'></i>".html_safe, edit_my_product_path(product)
-    = link_to "<i class='icon-off'></i>".html_safe, edit_my_product_path(product, a: 'off')
-    = link_to "<i class='icon-remove'></i>".html_safe, my_product_path(product), method: :delete, confirm: "Está seguro que desea eliminar este producto?"
+    = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_my_product_path(product)
+    = link_to "<i class='fa fa-times'></i>".html_safe, my_product_path(product), method: :delete, confirm: "Está seguro que desea eliminar este producto?"

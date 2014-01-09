@@ -23,8 +23,44 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liked_products, through: :likes, source: :product
   has_many :notifications, foreign_key: :to_id
-  has_and_belongs_to_many :events
-  has_many :event_requests, through: :events
+  has_and_belongs_to_many :organized_events, :class_name => "Event"
+  has_many :event_requests
+  has_many :attended_events, through: :event_requests, source: :event do
+    def accepted
+      where({ event_requests: { accepted: true } })
+    end
+  end
+  has_many :events, finder_sql: proc {
+                                  <<-EOS
+                                    SELECT events.*
+                                    FROM events
+                                      INNER JOIN events_users ON events_users.event_id = events.id
+                                      INNER JOIN users ON events_users.user_id = users.id
+                                    WHERE users.id = #{id}
+                                    UNION
+                                    SELECT events.*
+                                    FROM events
+                                      INNER JOIN event_requests ON event_requests.event_id = events.id
+                                      INNER JOIN users ON event_requests.user_id = users.id
+                                    WHERE users.id = #{id} AND event_requests.accepted = TRUE
+                                  EOS
+                                },
+                    counter_sql: proc {
+                                  <<-EOS
+                                    SELECT SUM(count)
+                                    FROM (SELECT count(events.*)
+                                    FROM events
+                                    INNER JOIN events_users ON events_users.event_id = events.id
+                                    INNER JOIN users ON events_users.user_id = users.id
+                                    WHERE users.id = 43
+                                    UNION
+                                    SELECT count(events.*)
+                                    FROM events
+                                    INNER JOIN event_requests ON event_requests.event_id = events.id
+                                    INNER JOIN users ON event_requests.user_id = users.id
+                                    WHERE users.id = 43 AND event_requests.accepted = TRUE) as y
+                                  EOS
+                                }
 
   validates :email, uniqueness: true, allow_nil: true, allow_blank: true
   validates :about, length: { maximum: 100 }, allow_nil: true, allow_blank: true

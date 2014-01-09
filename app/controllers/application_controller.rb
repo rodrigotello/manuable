@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  rescue_from Exception, with: :catch_generic_exception
   force_ssl if: :ssl_configured?
 
   layout :set_layout
@@ -7,6 +8,27 @@ class ApplicationController < ActionController::Base
   before_filter :dev_user, if: proc { Rails.env.development? }
 
   protected
+
+  def catch_generic_exception exception
+    # raise exception if Rails.env == "development"
+    # raise exception if exception.is_a? Rack::OAuth2::Server::Resource::Bearer::Unauthorized
+
+    exception_message = exception.message
+    exception_backtrace = exception.backtrace.join("\n")
+    req_vars = {}
+    req_vars[:http_host] = request.env["HTTP_HOST"] || "--"
+    req_vars[:http_accept] = request.env["HTTP_ACCEPT"] || "--"
+    req_vars[:http_user_agent] = request.env["HTTP_USER_AGENT"] || "--"
+    req_vars[:http_referer] = request.env["HTTP_REFERER"] || "--"
+    req_vars[:query_string] = request.env["rack.request.query_string"] || "--"
+    req_vars[:request_parameters] = params.keys.empty? ? "--" : params.inspect
+    req_vars[:http_x_requested_with] = request.env["HTTP_X_REQUESTED_WITH"] || "--"
+    req_vars[:request_method] = request.env["REQUEST_METHOD"] || "--"
+    ErrorMailer.an_error_was_found(request.url.to_s, exception_message, exception_backtrace, request.remote_ip.to_s, req_vars).deliver #if ENV['RAILS_ENV'] == 'production'
+
+    logger.info exception_message + "\n" + exception_backtrace
+
+  end
 
   def stored_return_path
     # raise 'storing'

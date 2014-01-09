@@ -1,0 +1,15 @@
+- if @events.present?
+  .user-events
+    %ul.slides
+      - @events.each do |event|
+        %li
+          = link_to event.slug.present? ? "/#{event.slug}" : event_path(event), class: 'event-banner' do
+            .event-banner-image{ style: "background-image: url(#{event.cover.url(:cover)});" }
+            .event-banner-info-wrapper
+              = image_tag 'event-arrow.png'
+              .event-banner-name
+                = event.name
+              .event-banner-date
+                = l event.starts_at, format: :event_long
+- else
+  Sin eventos

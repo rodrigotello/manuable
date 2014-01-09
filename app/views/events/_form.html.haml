@@ -1,23 +1,25 @@
 %fieldset
   %legend Detalles del evento
   .well
-    = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?"
-    = f.input :slug, wrapper: :prepend do
-      %span.add-on
-        http://manuable.com/
-      = f.input_field :slug, class: 'input-xlarge'
-    = f.input :cover, input_html: { class: 'span5' }, as: :file
-    = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text
-    = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text
-    = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text
-    = f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text
-    = f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text
+    .row-fluid
+      = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?"
+      = f.input :slug, wrapper: :prepend do
+        %span.add-on
+          http://manuable.com/
+        = f.input_field :slug, class: 'input-xlarge'
+      = f.input :cover, input_html: { class: 'span5' }, as: :file
+      = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text
+      = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text
+      = f.input :notes, input_html: { class: 'span12', rows: 3 }, hint: "Observaciones y espacios", as: :text
+      = f.input :requirements, input_html: { class: 'span12', rows: 3 }, hint: "¿Existe alguna regla/restricción?", as: :text
+      = f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text
 
 %fieldset
   %legend Organizadores
   .well
-    = f.input_field :user_ids, data: { selected_items: Hash[*f.object.users.collect{|u| [u.name, u.id] }.flatten], users: f.object.users.collect{|u| u.name }.join(',') }, id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Organizadores"
-    = f.input :user_ids, input_html: { class: 'span12', value: f.object.users.collect{|u| u.id }.join(',') }, as: :hidden
+    .row-fluid
+      = f.input_field :user_ids, data: { selected_items: Hash[*f.object.users.collect{|u| [u.name, u.id] }.flatten], users: f.object.users.collect{|u| u.name }.join(',') }, id: 'organizer_names', name: 'organizer_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Organizadores"
+      = f.input :user_ids, input_html: { class: 'span12', value: f.object.users.collect{|u| u.id }.join(',') }, as: :hidden
 
 %fieldset
   %legend Ubicación

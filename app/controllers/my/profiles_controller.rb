@@ -15,7 +15,7 @@ module My
     def update
       @user = current_user
       if params[:password].present? && params[:password_confirmation].present? && params[:current_password].present?
-        if current_user.update_with_password params[:user]
+        if current_user.update_with_password user_params
           sign_in @user, :bypass => true
           redirect_to :back, notice: 'Actualizado'
         else
@@ -26,7 +26,7 @@ module My
         params[:user].delete :password
         params[:user].delete :password_confirmation
         params[:user].delete :current_password
-        if current_user.update_attributes params[:user]
+        if current_user.update_attributes user_params
           sign_in @user, :bypass => true
           redirect_to :back, notice: 'Actualizado'
         else
@@ -35,6 +35,12 @@ module My
         end
       end
 
+    end
+
+    protected
+
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id, :address, :zipcode, :occupation, :about, :birthday, :nickname)
     end
   end
 end

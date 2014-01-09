@@ -1,7 +1,7 @@
 class My::ProductsController < ApplicationController
   before_filter :authenticate_user!
   layout 'my'
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   def index
     @my_section = "products"
@@ -10,7 +10,7 @@ class My::ProductsController < ApplicationController
 
   def new
     @my_section = "new_product"
-    @product = current_user.products.new(params[:product])
+    @product = current_user.products.new(product_params)
     if @product.attachments.length < 4
       (4 - @product.attachments.length).times { @product.attachments.build }
     end
@@ -22,11 +22,12 @@ class My::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(params[:product])
+    @product = Product.new(product_params)
+
     @product.user_id = current_user.id
 
     if @product.save
-      redirect_to @product
+      redirect_to my_products_path
     else
       if @product.attachments.length < 4
         (4 - @product.attachments.length).times { @product.attachments.build }
@@ -36,6 +37,7 @@ class My::ProductsController < ApplicationController
   end
 
   def edit
+    @product = current_user.products.find params[:id]
     if @product.attachments.length < 4
       (4 - @product.attachments.length).times { @product.attachments.build }
     end
@@ -43,10 +45,10 @@ class My::ProductsController < ApplicationController
 
   def update
     @product = current_user.products.find(params[:id])
-
-    if !params[:product][:attachments_attributes].nil? && ( request.xhr? || params[:ajax_upload].present?)
+    pp = product_params
+    if !pp[:attachments_attributes].nil? && ( request.xhr? || params[:ajax_upload].present?)
       attachments_attributes = {}
-      params[:product][:attachments_attributes].each do |k, v|
+      pp[:attachments_attributes].each do |k, v|
 
         attachments_attributes[ k ] = {}
         attachments_attributes[ k ]["_destroy"] = 'false'
@@ -57,13 +59,13 @@ class My::ProductsController < ApplicationController
           attachments_attributes[ k ][:attachment] = v
         end
       end
-      params[:product][:attachments_attributes] = attachments_attributes
+      pp[:attachments_attributes] = attachments_attributes
 
-      @product.update_attributes(params[:product])
+      @product.update_attributes(pp)
 
       redirect_to edit_my_product_path(@product)
     else
-      @product.update_attributes(params[:product])
+      @product.update_attributes(pp)
       redirect_to edit_my_product_path(@product)
     end
 
@@ -75,5 +77,11 @@ class My::ProductsController < ApplicationController
   def destroy
     @product.destroy
     redirect_to :back
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:about, :made_by, :name, :price, { :attachments_attributes => [:attachment, :_destroy, :id, :attachable_type, :attachable_id] }, :category_id, :on_sale, :amount, :prop_list)
   end
 end

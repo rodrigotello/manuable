@@ -40,7 +40,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/assets/user-dummy.jpg"
+    "/assets/user-dummy-#{version_name}.jpg"
   end
 
   def crop

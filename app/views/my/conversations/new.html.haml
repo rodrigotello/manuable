@@ -4,8 +4,8 @@
       = render partial: 'conversation_list'
   %div{ class: params[:modal] == '1' ? 'span12' : 'span7' }
     = simple_nested_form_for [:my, @conversation], html: { } do |f|
-      = f.input :to_id, input_html: { id: 'conversation_to_text', name: 'conversation_to_text', class: 'span12', autocomplete: "off", value: @conversation.to ? @conversation.to.name : '' }, required: false, as: :string, label: '', placeholder: "Nombre", wrapper: :control_row
+      = f.input :to_id, input_html: { id: 'conversation_to_text', name: 'conversation_to_text', class: 'span12', autocomplete: "off", value: @conversation.to ? @conversation.to.name : '' }, required: false, as: :string, label: '', placeholder: "Nombre"
       = f.input :to_id, input_html: { class: 'span12', autocomplete: "off" }, as: :hidden
-      = f.input :body, input_html: { class: 'span12' }, required: false, as: :text, placeholder: "Escribe tu mensaje", wrapper: :control_row
+      = f.input :body, input_html: { class: 'span12' }, required: false, as: :text, placeholder: "Escribe tu mensaje"
 
       = button_tag 'Enviar', type: 'submit', class: 'btn btn-primary pull-right'

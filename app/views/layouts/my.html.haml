@@ -9,44 +9,51 @@
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
-    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"
+    %link(href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" type="text/css")
     = stylesheet_link_tag "application", :media => "all"
     %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
 
-  %body{data: { page: [controller_name.capitalize, action_name.capitalize].join }}
+  %body#profile-layout{ data: { page: [controller_name.capitalize, action_name.capitalize].join } }
     = render partial: '/shared/navigation_bar'
     .container
       = bootstrap_flash
-      .row-fluid
-        .span4
-          .layout-container.user-option-panel
-            %dl
-              %dt
-                Cuenta
-              %dd{ class: @my_section == "name" ? 'active' : "" }
-                = link_to edit_my_profile_path(f: 's') do
-                  %i{ class: "icon-cogs" }
-                  Preferencias
-              %dd{ class: @my_section == "password" ? 'active' : "" }
-                = link_to edit_my_profile_path(f: 'p') do
-                  %i{ class: "icon-lock" }
-                  Contraseña
-              %dt
-                Productos/Artesanías
-              %dd{ class: @my_section == "products" ? 'active' : "" }
-                = link_to my_products_path do
-                  %i{ class: "icon-th-large" }
-                  Mis Productos
-              %dd{ class: @my_section == "new_product" ? 'active' : "" }
-                = link_to new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button" do
-                  %i{ class: "icon-cloud-upload" }
-                  Registrar Producto
-        .span8
-          .layout-container
-            = yield
+      .navbar.profile-menu
+        .navbar-inner
+          .container
+            .nav-collapse.collapse.navbar-responsive-collapse
+              .nav
+                %li.dropdown
+                  = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+                    Cuenta
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      = link_to edit_my_profile_path(f: 's') do
+                        %i{ class: "icon-cogs" }
+                        Preferencias
+                    %li
+                      = link_to edit_my_profile_path(f: 'p') do
+                        %i{ class: "icon-lock" }
+                        Contraseña
+                %li.dropdown
+                  = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+                    Productos
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      = link_to my_products_path do
+                        %i{ class: "icon-th-large" }
+                        Mis Productos
+                    %li
+                      = link_to new_my_product_path, "data-toggle" => "modal", :href => "#product_wizard", :role => "button" do
+                        %i{ class: "icon-cloud-upload" }
+                        Registrar Producto
+
+      .layout-container
+        = yield
 
     = javascript_include_tag "application"
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"

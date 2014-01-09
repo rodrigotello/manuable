@@ -3,11 +3,11 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.html {
         @products = Product.filter(params).feed(current_user)
-        @multipages = @products.count > 15
-        @products = @products.limit(15)
+        @multipages = @products.count > 16
+        @products = @products.limit(16)
       }
       format.js {
-        @products = Product.filter(params).feed(current_user).offset(15 + (params[:page].to_i - 1) * 12).limit(12)
+        @products = Product.filter(params).feed(current_user).offset(16 + (params[:page].to_i - 1) * 12).limit(12)
       }
       format.json {
         self.formats = [:html]

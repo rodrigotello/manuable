@@ -40,7 +40,9 @@ var ProfilesEdit = new function(){
     }).on('typeahead:selected', function(e, datum){
       $('#user_city_id').val(datum.city.id);
     });
-
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
     $('#croppable').Jcrop({
       aspectRatio: 1,
       setSelect: [0, 0, 300, 300],

@@ -1,0 +1,59 @@
+Equipo Manuable,
+
+%br
+%br
+Les informo que he detectado un error.
+%br
+%br
+Detalles
+%br
+========================================
+%br
+%br
+%br
+Mensaje:
+=  @exception_message
+%br
+%br
+Backtrace:
+%pre= @exception_backtrace
+%br
+Environment:
+%br
+HTTP_HOST:
+= @env[:http_host]
+%br
+%br
+
+HTTP_ACCEPT:
+= @env[:http_accept]
+%br
+%br
+
+HTTP_USER_AGENT:
+= @env[:http_user_agent]
+%br
+%br
+
+HTTP_REFERER:
+= @env[:http_referer]
+%br
+%br
+
+rack.request.query_string:
+= @env[:query_string]
+%br
+%br
+
+action_controller.request.request_parameters:
+= @env[:request_parameters]
+%br
+%br
+
+HTTP_X_REQUESTED_WITH:
+= @env[:http_x_requested_with]
+%br
+%br
+
+REQUEST_METHOD:
+= @env[:request_method]

@@ -22,7 +22,6 @@
 //= require jquery.ba-throttle-debounce.min
 //= require jquery-fileupload/basic
 //= require jquery.jcrop.min
-//= require jquery.inputmask.min
 //= require plugins
 //= require jquery.ui.autocomplete
 //= require jquery.markitup
@@ -74,7 +73,6 @@ $(function(){
   if( "object" === typeof window[page] && !window[page].initialized){
     window[page].init();
   }
-  $(":input").inputmask();
 
   // $('input[type=file]').fileupload({
   //   dropZone: $('#file-dropzone'),
@@ -155,9 +153,13 @@ $(function(){
           $modal = $( $.trim(template({ "title" : new Handlebars.SafeString(($this.attr("title")||$this.attr("data-original-title")||$this.html())), "body" : new Handlebars.SafeString(data) }) ));
 
       $modal.modal({ "show" : false }).on("shown", function(){
-          $('form[data-validate]', $modal).validate();
-          $('.datepicker', $modal).datepicker({ 'format' : 'yyyy/mm/dd' });
-          $("select.chosen", $modal).chosen();
+        $('.datepicker', $modal).datepicker({ 'format' : 'yyyy/mm/dd' });
+        $("select.chosen", $modal).chosen();
+        $modal.css({
+            'margin-left': function () {
+                return -($(this).width() / 2);
+            }
+          });
         }).modal('show');
       $modal.on('hidden', function(){
         $modal.remove();
