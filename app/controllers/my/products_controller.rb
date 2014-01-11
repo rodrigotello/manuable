@@ -10,7 +10,7 @@ class My::ProductsController < ApplicationController
 
   def new
     @my_section = "new_product"
-    @product = current_user.products.new(product_params)
+    @product = current_user.products.new
     if @product.attachments.length < 4
       (4 - @product.attachments.length).times { @product.attachments.build }
     end
