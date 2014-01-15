@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
   config.fog_directory  = 'manuable'                     # required
   config.fog_public     = true                                   # optional, defaults to true
   config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }  # optional, defaults to {}
-  config.asset_host       = "//manuable.s3.amazonaws.com/"
+  config.asset_host       = "//manuable.s3.amazonaws.com"
 
   if Rails.env.test? or Rails.env.cucumber?
     config.storage = :file
