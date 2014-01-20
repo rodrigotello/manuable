@@ -17,7 +17,7 @@
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
-    %link(href="favicon.ico" rel="shortcut icon")
+    %link(href="/favicon.ico" rel="shortcut icon")
     %style{ type: 'text/css'}
       = yield :css
   %body{ id: "#{params[:controller].titleize.gsub(/[\/ ]/,"")}-#{params[:action]}", data: { page: [controller_name.titleize.gsub(/[\/ ]/,""), action_name.capitalize].join.gsub(" ","") } }

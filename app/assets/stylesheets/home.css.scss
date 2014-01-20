@@ -20,8 +20,9 @@
 }
 #welcome {
   #home-cover {
-    background-image: image-url('homecover.png');
+    background-image: image-url('homecover.jpg');
     background-position: center center;
+    background-repeat: no-repeat;
     height: 486px;
     max-width: 1200px;
     width: 100%;

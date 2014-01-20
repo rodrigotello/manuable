@@ -516,3 +516,103 @@ $p-regular: 15px;
     }
   }
 }
+#event-setup{
+  margin-top: 60px;
+  hr{
+    margin: 30px auto;
+    width: 50px;
+    border-top-color: #B6B5B5;
+  }
+
+  #home-circle{
+    border: 2px solid #105935;
+    padding: 15px;
+    border-radius: 45px;
+    width: 52px;
+    height: 52px;
+    margin: 0 auto;
+    background-image: image-url('house.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50%;
+    filter: saturate(8);
+    -webkit-filter: saturate(8);
+    -moz-filter: saturate(8);
+    -ms-filter: saturate(8);
+    -o-filter: saturate(8);
+  }
+  #event-plans{
+    text-align: center;
+    >h3{
+      color: #9dceda;
+      font-weight: 400;
+      font-size: 40px;
+      margin: 20px auto;
+    }
+    >p{
+      font-size: 30px;
+      line-height: 30px;
+      color: #a0a0a0;
+      font-weight: 100;
+    }
+    >strong{
+      color: #8b8b8b;
+      font-size: 25px;
+      font-weight: normal;
+      margin-bottom: 40px;
+      display: block;
+    }
+    .plans{
+      display: block;
+      background-color: #eceff2;
+      padding: 50px 100px;
+      .plan {
+        width: 100%;
+        height: 330px;
+        background-color: #3cda8b;
+        color: #fff;
+        border-radius: 5px;
+        float: left;
+        position: relative;
+        display: block;
+        &:hover {
+          text-decoration: none;
+          background-color: #69DDA3;
+        }
+        .size {
+          color: #11512c;
+          font-weight: 600;
+          font-size: 25px;
+          text-shadow: -1px 0 1px #77F1B6;
+          margin-top: 25px;
+        }
+        h1 {
+          text-shadow: -1px 2px 1px #34c37c;
+          font-size: 50px;
+          font-weight: 600;
+          margin-top: 35px;
+          margin-bottom: 50px;
+        }
+        p{
+          text-shadow: -1px 2px 1px #34c37c;
+          font-size: 27px;
+          font-weight: 100;
+          line-height: 27px;
+        }
+        .price{
+          font-size: 50px;
+          text-shadow: -1px 2px 1px #34c37c;
+          font-weight: 600;
+          line-height: 46px;
+          position: absolute;
+          bottom: 35px;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+  #event-form{
+    display: none;
+  }
+}

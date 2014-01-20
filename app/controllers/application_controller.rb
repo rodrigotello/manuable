@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def catch_generic_exception exception
-    # raise exception if Rails.env == "development"
+    raise exception if Rails.env == "development"
     # raise exception if exception.is_a? Rack::OAuth2::Server::Resource::Bearer::Unauthorized
 
     exception_message = exception.message

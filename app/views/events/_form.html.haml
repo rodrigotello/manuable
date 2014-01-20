@@ -37,7 +37,7 @@
           = f.input_field :location, class: 'form-control', as: :string
       .span6
         = f.input :city_id do
-          = f.input_field :city_id, class: 'form-control', id: 'event_city_input'
+          = f.input_field :city_id, class: 'form-control', id: 'event_city_input', as: :string
           = f.input_field :city_id, as: :hidden
     .row-fluid
       .span12
@@ -53,57 +53,58 @@
   %legend Horario y espacios
   .well
     %p.text-danger#maps-error
-    = f.input :spaces, input_html: { class: 'span2' }, hint: "¿Cuántos artesamos puede alojar?"
+    = f.input :spaces, input_html: { type: 'number', class: 'span2', max: '15' }, hint: "¿Cuántos artesamos puede alojar? <a id='cambiar-plan'>Cambiar plan</a>".html_safe
     = f.input :location_map, input_html: { class: 'span5' }, as: :file
+    = f.input :plan_id, as: :hidden
     = f.input :starts_at, :wrapper => :append do
       .row
         .span2
           = f.input_field :starts_at_date, class: 'input-small datepicker', as: :string
           %span.add-on
-            %i.icon-calendar
+            %i.fa.fa-calendar
         .span2.bootstrap-timepicker
           = f.input_field :starts_at_time, class: 'input-small datetime', as: :string
           %span.add-on
-            %i.icon-time
+            %i.fa.fa-clock-o
 
     = f.input :ends_at, :wrapper => :append do
       .row
         .span2
           = f.input_field :ends_at_date, class: 'input-small datepicker', as: :string
           %span.add-on
-            %i.icon-calendar
+            %i.fa.fa-calendar
         .span2.bootstrap-timepicker
           = f.input_field :ends_at_time, class: 'input-small datetime', as: :string
           %span.add-on
-            %i.icon-time
+            %i.fa.fa-clock-o
 
 %fieldset
   %legend Itinerario
   .well
     = f.fields_for :event_schedules, :wrapper => false do |schedule|
       .form-appendable
-        = schedule.input :name, input_html: { class: 'span12' }
+        = schedule.input :name
         = schedule.input :starts_at, :wrapper => :append do
           .row
             .span2
               = schedule.input_field :starts_at_date, class: 'input-small datepicker', as: :string
               %span.add-on
-                %i.icon-calendar
+                %i.fa.fa-calendar
             .span2.bootstrap-timepicker
               = schedule.input_field :starts_at_time, class: 'input-small datetime', as: :string
               %span.add-on
-                %i.icon-time
+                %i.fa.fa-clock-o
 
         = schedule.input :ends_at, :wrapper => :append do
           .row
             .span2
               = schedule.input_field :ends_at_date, class: 'input-small datepicker', as: :string
               %span.add-on
-                %i.icon-calendar
+                %i.fa.fa-calendar
             .span2.bootstrap-timepicker
               = schedule.input_field :ends_at_time, class: 'input-small datetime', as: :string
               %span.add-on
-                %i.icon-time
+                %i.fa.fa-clock-o
         = schedule.link_to_remove "<i class='icon-trash'></i>".html_safe unless schedule.object.new_record?
         %br
     = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_schedules, class: 'btn btn-mini'

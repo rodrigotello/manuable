@@ -139,6 +139,10 @@ es:
               not_a_number: al menos 1
             slug:
               taken: ya registrado
+            zip:
+              blank: no debe estar vació
+            location:
+              blank: no debe estar vació
         conversation:
           attributes:
             body:

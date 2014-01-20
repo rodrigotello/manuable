@@ -1,12 +1,58 @@
-.row
-  .span7.offset2
-    = simple_nested_form_for @event, html: { } do |f|
-      = render partial: 'form', locals: { f: f }
+#event-setup
+  #event-plans{ style: "#{@event.errors.present? ? 'display: none;' : 'display: block;' }" }
+    #home-circle
+    %h3
+      El Mercadito
+    %hr
+    %p
+      Crea "Mercaditos" en tu ciudad, organízate
+      %br
+      y vende tus productos dentro  de tu comunidad.
+    %hr
+    %strong
+      Dinos, ¿Qué es lo que necesitas?
+    .plans
+      .row-fluid
+        .span4
+          %a.plan{ href: "#plan1" }
+            %h1
+              Chico
+            %p
+              Organízate y vende
+              %br
+              desde tu casa o garage
+            .size
+              1 - 15 Expositores
+            .price
+              $80
+        .span4
+          %a.plan{ href: "#plan2" }
+            %h1
+              Mediano
+            %p
+              Organízate y vende
+              %br
+              desde tu casa o garage
+            .size
+              16 - 50 Expositores
+            .price
+              $160
+        .span4
+          %a.plan{ href: "#plan3" }
+            %h1
+              Grande
+            %p
+              Organízate y vende
+              %br
+              desde tu casa o garage
+            .size
+              51 - 100 Expositores
+            .price
+              $240
+  #event-form{ style: "#{@event.errors.present? ? 'display: block;' : 'display: none;' }" }
+    .row
+      .span7.offset2
+        = simple_nested_form_for @event, html: { } do |f|
+          = render partial: 'form', locals: { f: f }
 
-      = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)
-
-- content_for :script do
-  / :plain
-  /   $(document).ready(function(){
-  /     $('#event_description, #event_benefits, #event_notes').markItUp(MarkdownSettings);
-  /   });
+          = f.button :wrapped, cancel: (params[:modal] == '1' ? 'close-modal' : new_my_product_path)

@@ -16,13 +16,33 @@ var EventsNew = new function(){
   self.init = function(){
     window["EventsNew"].initialized = true;
     window.loadGmaps('initNewEventMap');
-    //$('#event_starts_at_date, #event_ends_at_date').datepicker({
-      //format: 'yyyy-mm-dd'
-    //});
-    //$('#event_starts_at_time, #event_ends_at_time').timepicker({
-      //format: 'yyyy-mm-dd'
-    //});
-
+    $('#cambiar-plan').click(function(e){
+      e.preventDefault();
+      $('#event-form').slideUp();
+      $('#event-plans').slideDown(function(){
+        window.location.hash = '#event-plans';
+      });
+    });
+    $('#event-plans .plan').click(function(){
+      switch( $(this).attr('href') ){
+        case '#plan1':
+          $('#event_plan_id').val(1);
+          $('#event_spaces').attr('max', 15).val(15);
+          break;
+        case '#plan2':
+          $('#event_plan_id').val(2);
+          $('#event_spaces').attr('max', 50).val(50);
+          break;
+        case '#plan3':
+          $('#event_plan_id').val(3);
+          $('#event_spaces').attr('max', 100).val(100);
+          break;
+      }
+      $('#event-plans').slideUp();
+      $('#event-form').slideDown(function(){
+        window.location.hash = '#event-form';
+      });
+    });
     $('.datepicker').datepicker({
       format: 'yyyy-mm-dd'
     });

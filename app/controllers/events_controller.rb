@@ -6,6 +6,11 @@ class EventsController < ApplicationController
     @events = @user.events
   end
 
+  def publish
+    @event = Event.find params[:id]
+    redirect_to @event and return unless @event.user_ids.include?(current_user.id) || god_mode?
+  end
+
   def show
     @event = Event.includes(:artisans => :last_product).find params[:id]
     redirect_to root_path unless @event.paid || current_user && @event.user_ids.include?(current_user.id) || god_mode?
@@ -29,15 +34,14 @@ class EventsController < ApplicationController
     @event = Event.find params[:id]
     redirect_to @event and return unless @event.user_ids.include?(current_user.id) || god_mode?
 
-    params[:event][:user_ids] = params[:event][:user_ids].split(',') if params[:event][:user_ids].present?
-    params[:event][:artisan_ids] = params[:event][:artisan_ids].split(',').map(&:to_i) if params[:event][:artisan_ids].present?
+    event_params[:user_ids] = event_params[:user_ids].split(',') if event_params[:user_ids].present?
+    event_params[:artisan_ids] = event_params[:artisan_ids].split(',').map(&:to_i) if event_params[:artisan_ids].present?
 
-    if @event.update_attributes params[:event]
-
-      if params[:event][:artisan_ids].present?
+    if @event.update_attributes event_params
+      if event_params[:artisan_ids].present?
         ids = @event.event_requests.pluck :user_id
-        @event.event_requests.where(user_id: params[:event][:artisan_ids]).update_all('accepted = true')
-        @event.event_requests.where(" event_requests.user_id NOT IN (?)", params[:event][:artisan_ids]).update_all('accepted = false')
+        @event.event_requests.where(user_id: event_params[:artisan_ids].take(@event.spaces)).update_all('accepted = true')
+        @event.event_requests.where(" event_requests.user_id NOT IN (?)", event_params[:artisan_ids].take(@event.spaces)).update_all('accepted = false')
       else
         @event.event_requests.update_all('accepted = false')
       end
@@ -82,11 +86,11 @@ class EventsController < ApplicationController
     @event.event_sale_categories.build name: 'Otro', price: 200
     @event.attachments.build
     @event.event_schedules.build
+    @event.users << current_user
   end
 
   def create
-    params[:event][:user_ids] = [current_user.id]
-    @event = Event.new params[:event]
+    @event = Event.new event_params
 
     @event.user_id = current_user.id
 
@@ -95,5 +99,16 @@ class EventsController < ApplicationController
     else
       render action: :new
     end
+  end
+
+  private
+  def event_params
+    @event_params ||= params.require(:event).permit(:name, :slug, :description, :benefits,
+                                  :notes, :requirements, :info_for_accepted_users,
+                                  :user_ids, :address, :zip, :location, :city_id,
+                                  :location_name, :lat, :lng, :spaces, :plan_id,
+                                  :starts_at_date, :starts_at_time, :ends_at_time,
+                                  :ends_at_date, :artisan_ids, :event_schedules_attributes => [:name, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time],
+                                  :attachments_attributes => [:name, :attachment])
   end
 end

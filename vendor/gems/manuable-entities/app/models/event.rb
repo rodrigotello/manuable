@@ -31,6 +31,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :event_schedules, reject_if: proc{ |at| at[:name].blank? }
 
   before_validation :build_times
+  before_validation :set_spaces
 
   scope :incoming, lambda { where { starts_at >= Date.today } }
   scope :banner, lambda { includes(city: :state) }
@@ -116,6 +117,23 @@ class Event < ActiveRecord::Base
   end
 
   protected
+
+  def set_spaces
+    case plan_id
+    when 1, "1"
+      if read_attribute(:spaces).to_i > 15
+        write_attribute :spaces, 15
+      end
+    when 2, "2"
+      if read_attribute(:spaces).to_i > 50
+        write_attribute :spaces, 50
+      end
+    when 3, "3"
+      if read_attribute(:spaces).to_i > 100
+        write_attribute :spaces, 100
+      end
+    end
+  end
 
   def build_times
     write_attribute :starts_at, self.string_to_datetime("#{@starts_at_date} #{@starts_at_time}", '%Y-%m-%d %I:%M %p') if @starts_at_date.present? && @starts_at_time.present?
