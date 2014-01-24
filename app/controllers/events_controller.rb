@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :map, :webhook]
+  protect_from_forgery :except => [:webhook]
 
   def index
     @user = User.find(params[:user_id]) if params[:user_id]
