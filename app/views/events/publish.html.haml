@@ -1,0 +1,63 @@
+%form#payment-form{ method: 'post', action: publish_event_path(@event) }
+  %span.payment-errors
+
+  %input{ type: "text", size: "13", data: { conekta: "amount" }, value: @event.total * 100 }
+  %input{ type: "text", size: "13", data: { conekta: "reference_id" }, value: @event.id }
+  %input{ type: "text", size: "20", data: { conekta: "description" }, value: "Evento en Manauble $ #{@event.total} MXN" }
+  %input{ type: "text", size: "3", data: { conekta: "currency" }, value: "MXN" }
+
+  .form-row
+    %label
+      %span Nombre del tarjetahabiente
+      %input{ type: "text", size: "20", data: { conekta: "card[name]" } }
+
+  .form-row
+    %label
+      %span Número de Tarjeta
+      %input{ type: "text", size: "20", data: { conekta: "card[number]" } }
+
+  .form-row
+    %label
+      %span CVC
+      %input{ type: "text", size: "4", data: { conekta: "card[cvc]" } }
+
+  .form-row
+    %label
+      %span Expiración (MM/YYYY)
+      %input{ type: "text", size: "2", data: { conekta: "card[exp_month]" } }
+      %span /
+      %input{ type: "text", size: "2", data: { conekta: "card[exp_year]" } }
+  %button{ type: "submit" } Completar Cargo
+
+:javascript
+  jQuery(function($) {
+    Conekta.setPublishableKey('key_F5HN9NRV8TxUWyyt');
+    var conektaSuccessResponseHandler = function(response) {
+      var $form = $('#payment-form');
+
+        var charge_id = response.id;
+        // Insert the charge_id into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="conektaChargeId" />').val(charge_id));
+        // and submit
+        $form.get(0).submit();
+    };
+
+    var conektaErrorResponseHandler = function(response) {
+      var $form = $('#payment-form');
+
+       // Show the errors on the form
+        $form.find('.payment-errors').text(response.message);
+        $form.find('button').prop('disabled', false);
+    };
+    $('#payment-form').submit(function(event) {
+      var $form = $(this);
+
+      // Inhabilita el botón submit para prevenir múltiples clics
+      $form.find('button').prop('disabled', true);
+
+      Conekta.charge.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+
+      // Prevenir que la información del formulario sea mandado a tu servidor
+      return false;
+    });
+  });

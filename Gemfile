@@ -10,7 +10,7 @@ gem "draper"
 gem "httpclient"
 gem "sprockets-rails"
 gem "pg"
-
+gem 'conekta'
 # DB
   group :production do
     gem 'puma', :github => 'puma/puma'

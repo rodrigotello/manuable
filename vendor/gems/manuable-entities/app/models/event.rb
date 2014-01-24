@@ -116,6 +116,17 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def total
+    case plan_id
+    when 1, "1"
+      80
+    when 2, "2"
+      160
+    when 3, "3"
+      240
+    end
+  end
+
   protected
 
   def set_spaces

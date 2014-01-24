@@ -35,8 +35,12 @@ Manuable::Application.routes.draw do
   resources :event_requests, only: [:update, :destroy]
 
   resources :events do
+    get :webhook, on: :collection
+    post :webhook, on: :collection
     get :map, on: :member
     get :checkout, on: :member
+    get :publish, on: :member
+    post :publish, on: :member
     post :checkout, on: :member
     get :request_access, on: :member
     post :request_access, on: :member

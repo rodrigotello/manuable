@@ -1,10 +1,12 @@
+- if current_user && @event.user_ids.include?(current_user.id)
+  %script{ type: "text/javascript", src: "https://conektaapi.s3.amazonaws.com/v0.3.0/js/conekta.js" }
 = div_for @event do
   .container
     = div_image @event.cover.url(:cover), class: 'cover' do
       - if current_user && @event.users.include?(current_user) || current_user.try(:id) == 43
         #event-admin-options
           - if !@event.paid?
-            = link_to '<i class="fa fa-check"></i> Publicar!'.html_safe, checkout_event_path(@event), class: 'btn btn-success'
+            = link_to '<i class="fa fa-check"></i> Publicar!'.html_safe, publish_event_path(@event), class: 'btn btn-success', rel: 'modal'
           = link_to 'Editar Evento', edit_event_path(@event), class: 'btn btn-primary'
       #event-cover-info
         %h1.event-name= @event.name

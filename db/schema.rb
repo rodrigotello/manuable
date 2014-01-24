@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120024335) do
+ActiveRecord::Schema.define(version: 20140124045155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,7 @@ ActiveRecord::Schema.define(version: 20140120024335) do
     t.text     "info_for_accepted_users"
     t.integer  "attachments_count"
     t.integer  "plan_id"
+    t.string   "conekta_charge_id"
   end
 
   create_table "events_users", id: false, force: true do |t|

@@ -1,24 +1,49 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :map]
+  before_filter :authenticate_user!, except: [:show, :map, :webhook]
 
   def index
     @user = User.find(params[:user_id]) if params[:user_id]
     @events = @user.events
   end
 
+  def webhook
+    # "id"=>"51cef9faf23668b1f4000001", "created_at"=>1390540322, "livemode"=>true, "type"=>"charge.paid", "data"=>{"object"=>{"id"=>"51d5ea80db49596aa9000001", "created_at"=>1390540317, "amount"=>10000, "fee"=>310, "currency"=>"MXN", "status"=>"paid", "livemode"=>true, "description"=>"E-Book: Les Miserables", "error"=>nil, "error_message"=>nil, "payment_method"=>{"object"=>"card_payment", "last4"=>"1111", "name"=>"Arturo Octavio Ortiz", "dispute"=>nil}}, "previous_attributes"=>{"status"=>"payment_pending"}}, "event"=>{"id"=>"51cef9faf23668b1f4000001", "created_at"=>1390540322}}
+
+    if params[:livemode] && params[:type] == 'charge.paid'
+      @event = Event.find(params[:data][:object][:reference_id])
+      if @event.total == params[:data][:object][:amount]
+        @event.paid = true
+        @event.save
+      end
+    end
+
+    head :ok
+  end
+
   def publish
     @event = Event.find params[:id]
     redirect_to @event and return unless @event.user_ids.include?(current_user.id) || god_mode?
+    if request.post? && params[:conektaChargeId].present? && !@event.paid
+      @event.conekta_charge_id = params[:conektaChargeId]
+      @event.save
+    end
+
+    redirect_to @event
   end
 
   def show
     @event = Event.includes(:artisans => :last_product).find params[:id]
-    redirect_to root_path unless @event.paid || current_user && @event.user_ids.include?(current_user.id) || god_mode?
+    redirect_to root_path and return unless @event.paid || current_user && @event.user_ids.include?(current_user.id) || god_mode?
 
     @images = Hash[*@event.artisans.collect {|art|
           next if art.last_product.nil? || art.last_product.attachments.first.nil?
           [art.id, art.last_product.attachments.first]
         }.compact.flatten]
+  end
+
+  def publish
+    @event = Event.find params[:id]
+    redirect_to root_path and return unless current_user && @event.user_ids.include?(current_user.id) || god_mode?
   end
 
   def map
