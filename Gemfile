@@ -46,6 +46,8 @@ gem 'conekta'
   gem "haml-rails"
   gem "twitter-bootstrap-rails"
   gem "less-rails"
+  gem "libv8", "~> 3.11.8"
+  gem "therubyracer", :require => false
   gem 'simple_form'
   gem 'nested_form'
   # gem 'client_side_validations'
@@ -76,8 +78,6 @@ group :development do
   gem 'meta_request'
   gem 'letter_opener'
   gem 'rails-footnotes', '>= 3.7.9'
-  gem "libv8", "~> 3.11.8"
-  gem "therubyracer", :require => false
 end
 
 group :development, :test do

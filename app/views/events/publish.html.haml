@@ -1,37 +1,44 @@
-%form#payment-form{ method: 'post', action: publish_event_path(@event) }
+= form_tag publish_event_path(@event), id: 'payment-form', method: 'post' do
   %span.payment-errors
+  .hidden
+    %input{ type: "text", size: "13", data: { conekta: "amount" }, value: @event.total * 100 }
+    %input{ type: "text", size: "13", data: { conekta: "reference_id" }, value: @event.id }
+    %input{ type: "text", size: "20", data: { conekta: "description" }, value: "Evento en Manuable $ #{@event.total} MXN" }
+    %input{ type: "text", size: "3", data: { conekta: "currency" }, value: "MXN" }
+  .row
+    .span3
+      .form-row
+        %label
+          %span Nombre del tarjetahabiente
+        %input{ type: "text", class: 'input-medium', data: { conekta: "card[name]" } }
 
-  %input{ type: "text", size: "13", data: { conekta: "amount" }, value: @event.total * 100 }
-  %input{ type: "text", size: "13", data: { conekta: "reference_id" }, value: @event.id }
-  %input{ type: "text", size: "20", data: { conekta: "description" }, value: "Evento en Manauble $ #{@event.total} MXN" }
-  %input{ type: "text", size: "3", data: { conekta: "currency" }, value: "MXN" }
+      .form-row
+        %label
+          %span Número de Tarjeta
+        %input{ type: "text", class: 'input-medium', data: { conekta: "card[number]" } }
 
-  .form-row
-    %label
-      %span Nombre del tarjetahabiente
-      %input{ type: "text", size: "20", data: { conekta: "card[name]" } }
+      .form-row
+        %label
+          %span CVC
+        %input{ type: "text", class: 'input-small', data: { conekta: "card[cvc]" } }
 
-  .form-row
-    %label
-      %span Número de Tarjeta
-      %input{ type: "text", size: "20", data: { conekta: "card[number]" } }
-
-  .form-row
-    %label
-      %span CVC
-      %input{ type: "text", size: "4", data: { conekta: "card[cvc]" } }
-
-  .form-row
-    %label
-      %span Expiración (MM/YYYY)
-      %input{ type: "text", size: "2", data: { conekta: "card[exp_month]" } }
-      %span /
-      %input{ type: "text", size: "2", data: { conekta: "card[exp_year]" } }
-  %button{ type: "submit" } Completar Cargo
+      .form-row
+        %label
+          %span Expiración (MM/YYYY)
+        %input{ type: "text", class: 'input-small', data: { conekta: "card[exp_month]" } }
+        %span /
+        %input{ type: "text", class: 'input-small', data: { conekta: "card[exp_year]" } }
+    .span3
+      %h6 Pagos procesador por
+      = link_to image_tag('https://s3.amazonaws.com/conekta/static/v6/assets/images/logo.png'), 'https://www.conekta.io', target: '_blank'
+  %br
+  %button{ type: "submit", class: 'btn btn-success pull-right' }
+    = "Pagar $ #{@event.total} MXN"
+  %br
 
 :javascript
   jQuery(function($) {
-    Conekta.setPublishableKey('key_F5HN9NRV8TxUWyyt');
+    Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
     var conektaSuccessResponseHandler = function(response) {
       var $form = $('#payment-form');
 
