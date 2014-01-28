@@ -45,6 +45,7 @@
           %li
             = render partial: '/shared/social_plugins'
     = javascript_include_tag "application"
+    %script{ type: "text/javascript", src: "https://conektaapi.s3.amazonaws.com/v0.3.0/js/conekta.js" }
 
     - if user_signed_in?
       = js_data

@@ -2,7 +2,7 @@
   %span.payment-errors
   .hidden
     %input{ type: "text", size: "13", data: { conekta: "amount" }, value: @event.total * 100 }
-    %input{ type: "text", size: "13", data: { conekta: "reference_id" }, value: @event.id }
+    %input{ type: "text", size: "13", data: { conekta: "reference_id" }, value: "event-#{@event.id} }
     %input{ type: "text", size: "20", data: { conekta: "description" }, value: "Evento en Manuable $ #{@event.total} MXN" }
     %input{ type: "text", size: "3", data: { conekta: "currency" }, value: "MXN" }
   .row
@@ -28,6 +28,7 @@
         %input{ type: "text", class: 'input-small', data: { conekta: "card[exp_month]" } }
         %span /
         %input{ type: "text", class: 'input-small', data: { conekta: "card[exp_year]" } }
+  .row
     .span3
       %h6 Pagos procesador por
       = link_to image_tag('https://s3.amazonaws.com/conekta/static/v6/assets/images/logo.png'), 'https://www.conekta.io', target: '_blank'
@@ -36,8 +37,7 @@
     = "Pagar $ #{@event.total} MXN"
   %br
 
-:javascript
-  jQuery(function($) {
+  - content_for :script
     Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
     var conektaSuccessResponseHandler = function(response) {
       var $form = $('#payment-form');
@@ -67,4 +67,3 @@
       // Prevenir que la información del formulario sea mandado a tu servidor
       return false;
     });
-  });

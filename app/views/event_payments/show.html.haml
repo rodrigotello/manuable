@@ -1,4 +1,5 @@
-= form_for @payment, html: { } do |f|
+= form_for @payment, html: { id: "payment-form" } do |f|
+  %span.payment-errors
   %h1= @payment.event.name
   %p.lead
     = raw @payment.event.description
@@ -51,47 +52,35 @@
       Paga usando tu tarjeta de crédito o en tu tienda OXXO más cercana
     .row
       .span6
+        .hidden
+          %input{ type: "text", value: @payment.grand_total * 100, data: { conekta: "amount" } }
+          %input{ type: "text", value: "eventpayment-#{@payment.id}", data: { conekta: "reference_id" } }
+          %input{ type: "text", value: "Participanción evento Manuable $ #{@payment.grand_total} MXN", data: { conekta: "description" } }
+          %input{ type: "text", value: "MXN", data: { conekta: "currency" } }
         = f.fields_for :card do |f|
           .row
             .span3
-              = f.label :card_name, 'Nombre'
-              = f.text_field :card_name, class: 'span3'
-            .span3
-              = f.label :card_lastname, 'Apellido(s)'
-              = f.text_field :card_lastname, class: 'span3'
+              = f.label :card_name, 'Nombre del tarjetahabiente'
+              = f.text_field :card_name, class: 'span3', data: { conekta: "card[name]" }
           .row
             .span4
               = f.label :card_num, 'Número de tarjeta'
-              = f.text_field :card_num, class: 'span4'
+              = f.text_field :card_num, class: 'span4', data: { conekta: "card[number]" }
+
+          .row
             .span2
               = f.label :card_exp, 'Expiración'
-              = f.text_field :card_exp_month, style: 'width: 67px; float: left;', placeholder: 'mes'
-              = f.text_field :card_exp_year, style: 'width: 70px; float: left;margin-left:5px;', placeholder: 'año'
-
-          .row
+              = f.text_field :card_exp_month, style: 'width: 67px; float: left;', placeholder: 'mes', data: { conekta: "card[exp_month]" }
+              = f.text_field :card_exp_year, style: 'width: 70px; float: left;margin-left:5px;', placeholder: 'año', data: { conekta: "card[exp_year]" }
             .span2
               = f.label :card_ccv2, 'Código de seguridad'
-              = f.text_field :card_ccv2, class: 'span2'
-            .span2
-              = f.label :card_brand, 'Tipo'
-              = f.select :brand, [ ['Visa', 'visa'], ['American Express'], ['Mastercard', 'mastercard']], {}, class: 'span2'
-            .span2
-              = f.label :phone, 'Teléfono'
-              = f.text_field :phone, class: 'span2'
-          .row
-            .span3
-              = f.label :address, 'Dirección'
-              = f.text_field :address, class: 'span3'
-            .span3
-              = f.label :post_code, 'Código postal'
-              = f.text_field :post_code, class: 'span3'
-
+              = f.text_field :card_ccv2, class: 'span1', data: { conekta: "card[cvc]" }
           %br
           .row
             .span6
               %button.btn.btn-primary.pull-right{ type: 'submit' }
                 Pagar &raquo;
-      .span6
+      .span6.hidden
         - if @payment.oxxo_ready? && @payment.oxxo_expires_on > Date.today
           .alert.alert-success
             Gracias, estamos esperando por tu pago
@@ -113,6 +102,25 @@
             %br
             %strong
               Tendrás 24 hrs para realizar tu pago
+    - content_for :script do
+      \Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
+      \var conektaSuccessResponseHandler = function(response) {
+      \  var $form = $('#payment-form');
+      \  var charge_id = response.id;
+      \  $form.append($('<input type="hidden" name="conektaChargeId" />').val(charge_id));
+      \  $form.get(0).submit();
+      \};
+      \var conektaErrorResponseHandler = function(response) {
+      \  var $form = $('#payment-form');
+      \  $form.find('.payment-errors').text(response.message);
+      \  $form.find('button').prop('disabled', false);
+      \};
+      \$('#payment-form').submit(function(event) {
+      \  var $form = $(this);
+      \  $form.find('button').prop('disabled', true);
+      \  Conekta.charge.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+      \  return false;
+      \});
   - else
     %a.btn.btn-success.disabled
       Pagado!

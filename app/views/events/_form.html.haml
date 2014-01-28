@@ -109,20 +109,20 @@
         %br
     = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_schedules, class: 'btn btn-mini'
 
--#%fieldset
-  -#%legend Costos por tipo de producto o zona a vender
-  -#.well
-    -#= f.fields_for :event_sale_categories do |product_form|
-      -#.row.form-appendable
-        -#.span2
-          -#= product_form.input :name, input_html: { value: product_form.object.name, class: 'input-medium' }
-        -#.span2
-          -#= product_form.input :price, :wrapper => :prepend do
-            -#%span.add-on $
-            -#= product_form.input_field :price, class: 'input-small'
-        -#.span1
-          -#= product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
-    -#= f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_sale_categories, class: 'btn btn-mini'
+%fieldset
+  %legend Costos por tipo de producto o zona a vender
+  .well
+    = f.fields_for :event_sale_categories do |product_form|
+      .row.form-appendable
+        .span2
+          = product_form.input :name, input_html: { value: product_form.object.name, class: 'input-medium' }
+        .span2
+          = product_form.input :price, :wrapper => :prepend do
+            %span.add-on $
+            = product_form.input_field :price, class: 'input-small'
+        .span1
+          = product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
+    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_sale_categories, class: 'btn btn-mini'
 
 -#%fieldset
   -#%legend Adicionales
