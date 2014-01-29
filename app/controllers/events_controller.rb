@@ -37,12 +37,13 @@ class EventsController < ApplicationController
   def publish
     @event = Event.find params[:id]
     redirect_to @event and return unless @event.user_ids.include?(current_user.id) || god_mode?
+
     if request.post? && params[:conektaChargeId].present? && !@event.paid
       @event.conekta_charge_id = params[:conektaChargeId]
       @event.save
+      redirect_to @event
     end
 
-    redirect_to @event
   end
 
   def show
@@ -53,11 +54,6 @@ class EventsController < ApplicationController
           next if art.last_product.nil? || art.last_product.attachments.first.nil?
           [art.id, art.last_product.attachments.first]
         }.compact.flatten]
-  end
-
-  def publish
-    @event = Event.find params[:id]
-    redirect_to root_path and return unless current_user && @event.user_ids.include?(current_user.id) || god_mode?
   end
 
   def map
