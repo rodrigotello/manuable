@@ -154,5 +154,5 @@
 %fieldset
   %legend Artesanos
   .well
-    = f.input_field :artisan_ids, data: { selected_items: Hash[*f.object.artisans.accepted.collect{|u| [u.name, u.id] }.flatten], users: f.object.artisans.accepted.collect{|u| u.name }.join(',') }, id: 'artisan_names', name: 'artisan_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Artesanos"
-    = f.input :artisan_ids, input_html: { class: 'span12', value: f.object.artisans.accepted.collect{|u| u.id }.join(',') }, as: :hidden
+    = f.input_field :artisan_ids, data: { selected_items: Hash[*f.object.artisans.collect{|u| [u.name, u.id] }.flatten], users: f.object.artisans.collect{|u| u.name }.join(',') }, id: 'artisan_names', name: 'artisan_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Artesanos"
+    = f.input :artisan_ids, input_html: { class: 'span12', value: f.object.artisans.collect{|u| u.id }.join(',') }, as: :hidden
