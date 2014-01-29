@@ -10,13 +10,14 @@ class EventPaymentsController < ApplicationController
 
   def update
     @payment = EventPayment.where(user_id: current_user.id).find params[:id]
+
     if params[:conektaChargeId].present? && !@payment.paid
       @payment.conekta_charge_id = params[:conektaChargeId]
       @payment.position = (params[:event_payment] || {})[:position]
       @payment.save
       flash[:notice] = 'Gracias por ser parte de este evento. Tu pago está siendo validado.'
-      redirect_to @payment.event
     end
+    redirect_to @payment.event
     # if Rails.env.development?
       # gateway = ActiveMerchant::Billing::BanwireGateway.new login: 'manuable'
 

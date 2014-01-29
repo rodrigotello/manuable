@@ -91,10 +91,10 @@
       %h3
         %i.fa.fa-smile-o
         Expositores
-      - if @event.artisans.accepted.empty?
+      - if @event.artisans.empty?
         = request_link @event, "Sé el primero"
       - else
-        - @event.artisans.accepted.in_groups_of(4).each do |g|
+        - @event.artisans.in_groups_of(4).each do |g|
           .row-fluid
             - g.each do |user|
               - next unless user

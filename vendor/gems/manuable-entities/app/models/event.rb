@@ -4,12 +4,12 @@ class Event < ActiveRecord::Base
   has_many :event_products
   has_many :event_sale_categories
   has_many :event_payments
-  # has_many :artisans, through: :event_payments, source: :user, conditions: { event_payments: { paid: true } }
-  has_many :artisans, through: :event_requests, source: :user do
-    def accepted
-      where({ event_requests: { accepted: true } })
-    end
-  end
+  has_many :artisans, through: :event_payments, source: :user, conditions: { event_payments: { paid: true } }
+  # has_many :artisans, through: :event_requests, source: :user do
+  #   def accepted
+  #     where({ event_requests: { accepted: true } })
+  #   end
+  # end
   has_many :event_requests
   has_many :event_schedules
   has_many :event_schedule_categories

@@ -14,7 +14,7 @@ class EventsController < ApplicationController
       if params[:data][:object][:reference_id].split('-')[0] == 'event'
         @event = Event.find(params[:data][:object][:reference_id].split('-')[1])
 
-        if @event.total == params[:data][:object][:amount]
+        if @event.total * 100 == params[:data][:object][:amount]
           @event.paid = true
           @event.save
         end
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
       if params[:data][:object][:reference_id].split('-')[0] == 'eventpayment'
         @event_payment = EventPayment.find(params[:data][:object][:reference_id].split('-')[1])
 
-        if @event_payment.grand_total == params[:data][:object][:amount]
+        if @event_payment.grand_total * 100 == params[:data][:object][:amount]
           @event_payment.paid = true
           @event_payment.save
         end
