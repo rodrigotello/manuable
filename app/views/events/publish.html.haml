@@ -1,12 +1,12 @@
 = form_tag publish_event_path(@event), id: 'payment-form', method: 'post' do
   %span.payment-errors
   .hidden
-    %input{ type: "text", size: "13", data: { conekta: "amount" }, value: @event.total * 100 }
-    %input{ type: "text", size: "13", data: { conekta: "reference_id" }, value: "event-#{@event.id} }
-    %input{ type: "text", size: "20", data: { conekta: "description" }, value: "Evento en Manuable $ #{@event.total} MXN" }
-    %input{ type: "text", size: "3", data: { conekta: "currency" }, value: "MXN" }
+    %input{ type: "text", data: { conekta: "amount" }, value: @event.total * 100 }
+    %input{ type: "text", data: { conekta: "reference_id" }, value: "event-#{@event.id}" }
+    %input{ type: "text", data: { conekta: "description" }, value: "Evento en Manuable $ #{@event.total} MXN" }
+    %input{ type: "text", data: { conekta: "currency" }, value: "MXN" }
   .row
-    .span3
+    .span6
       .form-row
         %label
           %span Nombre del tarjetahabiente
@@ -28,6 +28,7 @@
         %input{ type: "text", class: 'input-small', data: { conekta: "card[exp_month]" } }
         %span /
         %input{ type: "text", class: 'input-small', data: { conekta: "card[exp_year]" } }
+
   .row
     .span3
       %h6 Pagos procesador por
@@ -35,35 +36,36 @@
   %br
   %button{ type: "submit", class: 'btn btn-success pull-right' }
     = "Pagar $ #{@event.total} MXN"
-  %br
 
-  - content_for :script
-    Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
-    var conektaSuccessResponseHandler = function(response) {
-      var $form = $('#payment-form');
+:javascript
+  Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
 
-        var charge_id = response.id;
-        // Insert the charge_id into the form so it gets submitted to the server
-        $form.append($('<input type="hidden" name="conektaChargeId" />').val(charge_id));
-        // and submit
-        $form.get(0).submit();
-    };
+  var conektaSuccessResponseHandler = function(response) {
+    var $form = $('#payment-form');
 
-    var conektaErrorResponseHandler = function(response) {
-      var $form = $('#payment-form');
+      var charge_id = response.id;
+      // Insert the charge_id into the form so it gets submitted to the server
+      $form.append($('<input type="hidden" name="conektaChargeId" />').val(charge_id));
+      // and submit
+      $form.get(0).submit();
+  };
 
-       // Show the errors on the form
-        $form.find('.payment-errors').text(response.message);
-        $form.find('button').prop('disabled', false);
-    };
-    $('#payment-form').submit(function(event) {
-      var $form = $(this);
+  var conektaErrorResponseHandler = function(response) {
+    var $form = $('#payment-form');
 
-      // Inhabilita el botón submit para prevenir múltiples clics
-      $form.find('button').prop('disabled', true);
+     // Show the errors on the form
+      $form.find('.payment-errors').text(response.message);
+      $form.find('button').prop('disabled', false);
+  };
 
-      Conekta.charge.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+  $('#payment-form').submit(function(event) {
+    var $form = $(this);
 
-      // Prevenir que la información del formulario sea mandado a tu servidor
-      return false;
-    });
+    // Inhabilita el botón submit para prevenir múltiples clics
+    $form.find('button').prop('disabled', true);
+
+    Conekta.charge.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+
+    // Prevenir que la información del formulario sea mandado a tu servidor
+    return false;
+  });

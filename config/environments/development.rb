@@ -33,5 +33,6 @@ Manuable::Application.configure do
   config.assets.debug = true
   # Footnotes::Filter.prefix = 'mvim://open?url=file://%s&line=%d&column=%d'
   config.eager_load = false
+  Conekta.api_key = 'key_5W9AbycDhrdyyC66'
 end
 

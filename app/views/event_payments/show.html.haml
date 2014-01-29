@@ -47,7 +47,7 @@
     = f.select :position, @payment.event_sale_category.available_positions, {}, class: 'input-small'
   = link_to image_tag(@payment.event.location_map.url(:checkout)), @payment.event.location_map.url, target: '_blank'
 
-  - unless @payment.paid?
+  - unless @payment.paid? || @payment.conekta_charge_id.present?
     %h4
       Paga usando tu tarjeta de crédito o en tu tienda OXXO más cercana
     .row
@@ -80,11 +80,13 @@
             .span6
               %button.btn.btn-primary.pull-right{ type: 'submit' }
                 Pagar &raquo;
-      .span6.hidden
+      .span6
         - if @payment.oxxo_ready? && @payment.oxxo_expires_on > Date.today
           .alert.alert-success
-            Gracias, estamos esperando por tu pago
-          = image_tag "/uploads/event_payment_barcodes/#{@payment.id}/#{@payment.id}.gif"
+            Gracias, estamos esperando por tu pago en OXXO
+          = image_tag @payment.barcode_url
+          %br
+          = @payment.oxxo_barcode
         - else
           - if @errors
             .alert.alert-error
@@ -98,15 +100,13 @@
             %br
             = link_to oxxo_payment_event_payment_path(@payment, position: @payment.event_sale_category.available_positions.first), method: :post, id: 'oxxo-link' do
               = image_tag 'oxxo.jpg', style: 'width: 150px'
-            Recibirás en tu correo instrucciones de como realizar tu pago
-            %br
-            %strong
-              Tendrás 24 hrs para realizar tu pago
+
     - content_for :script do
       \Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
       \var conektaSuccessResponseHandler = function(response) {
       \  var $form = $('#payment-form');
       \  var charge_id = response.id;
+      \  $('#event_payment_card_card_name, #event_payment_card_card_num, #event_payment_card_card_exp_month, #event_payment_card_card_exp_year, #event_payment_card_card_ccv2').attr('disabled', true);
       \  $form.append($('<input type="hidden" name="conektaChargeId" />').val(charge_id));
       \  $form.get(0).submit();
       \};
@@ -122,7 +122,14 @@
       \  return false;
       \});
   - else
-    %a.btn.btn-success.disabled
-      Pagado!
+    .alert.alert-success
+      - if @payment.paid?
+        Pagado!
+      - else
+        Tu pago está siendo validado.
+        %br
+        = image_tag @payment.barcode_url
+        %br
+        = @payment.oxxo_barcode
     %p
     = link_to "&laquo; Regresar a evento".html_safe, @payment.event
