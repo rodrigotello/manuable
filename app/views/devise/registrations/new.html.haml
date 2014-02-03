@@ -5,6 +5,5 @@
     = f.input :email, :validate => { presence: true, uniqueness: false }
     = f.input :password, :validate => true
     = f.input :password_confirmation, :validate => true
-  .form-actions
     = f.button :submit, t('actions.sign_up')
-= render "devise/shared/links"
+=# render "devise/shared/links"
