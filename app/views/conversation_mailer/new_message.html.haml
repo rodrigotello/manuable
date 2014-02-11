@@ -8,3 +8,5 @@ escribe:
 %br
 %br
 %i= @message.body
+
+= link_to 'Responder', my_conversation_url(@message.conversation), class: 'btn'

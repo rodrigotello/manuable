@@ -1,13 +1,22 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   rescue_from Exception, with: :catch_generic_exception
   force_ssl if: :ssl_configured?
 
   layout :set_layout
+  before_filter :force_update_profile
   before_filter :beta, :stored_return_path
   before_filter :dev_user, if: proc { Rails.env.development? }
 
   protected
+
+  def force_update_profile
+    if current_user && self.class != My::ProfilesController && (current_user.email.include?('manuablefakeemail') || current_user.name.blank?)
+      flash[:notice] = 'Por favor llenar tú correo y/o nombre antes de continuar.'
+      redirect_to my_profile_path
+    end
+  end
 
   def catch_generic_exception exception
     raise exception if Rails.env == "development"

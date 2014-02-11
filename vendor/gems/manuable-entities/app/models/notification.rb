@@ -7,8 +7,18 @@ class Notification < ActiveRecord::Base
   scope :unread, where(read: false)
   scope :recent_first, order('notifications.created_at DESC')
 
+  after_create :notify_by_email
+
   def read!
     update_attribute :read, true
+  end
 
+  private
+
+  def notify_by_email
+    case code
+    when 'liked'
+      UserMailer.like(sender, product, recipient).deliver
+    end
   end
 end

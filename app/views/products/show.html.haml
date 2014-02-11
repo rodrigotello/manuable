@@ -20,6 +20,9 @@
     = link_to '<i class="fa fa-share-square-o">&nbsp;</i>Compartir'.html_safe, 'https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(@product)}', class: 'fbshare', target: '_blank'
   .product-description
     = @product.about
+    %br
+    = link_to "por #{@product.user.name}", user_path(@product.user)
+
   .spacer
   = commontator_thread(@product)
   - if params[:no_layout] == '1'

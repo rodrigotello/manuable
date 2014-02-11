@@ -1,0 +1,25 @@
+body {
+  color: #777;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.header {
+  text-align: center;
+  margin: 20px 0 50px 0;
+  img { width: 200px; }
+}
+.btn{
+  display: block;
+  width: 120px;
+  border: 1px solid #20A9C9;
+  padding: 10px 50px;
+  margin: 20px auto 0 auto;
+  background: #41cbeb;
+  color: #fff;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+}
+.content{
+  width: 550px;
+  margin: 0 auto;
+}

@@ -1,0 +1,10 @@
+= "Buenas noticias, #{h @owner.first_name}"
+%br
+%br
+= "A #{link_to @by.first_name, user_url(@by)} le ha gustado  uno de tus #{link_to('productos', product_url(@product))} en Manuable. ¡Eso es genial!".html_safe
+%br
+%br
+Quizás quieran ponerse en contacto. Tal vez hasta se lleve uno.
+%br
+%br
+= link_to "Enviar mensaje", new_my_conversation_url(to: @by.id), class: 'btn'

@@ -11,6 +11,7 @@ gem "httpclient"
 gem "sprockets-rails"
 gem "pg"
 gem 'conekta'
+gem "roadie", "~> 2.4.3"
 # DB
   group :production do
     gem 'puma', :github => 'puma/puma'

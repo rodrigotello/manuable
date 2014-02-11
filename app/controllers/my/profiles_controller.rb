@@ -40,7 +40,9 @@ module My
     protected
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id, :address, :zipcode, :occupation, :about, :birthday, :nickname)
+      params.require(:user).permit(:password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id, :address, :zipcode, :occupation, :about, :birthday, :nickname).tap do |h|
+        h[:email] = params[:user][:email] if current_user.email.include?('manuablefakeemail')
+      end
     end
   end
 end

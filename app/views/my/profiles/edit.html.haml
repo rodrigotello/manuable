@@ -3,6 +3,7 @@
 
   - if @my_section == 's' || @my_section.blank?
     = f.input :name, input_html: { class: 'input-xlarge' }
+    = f.input :email, input_html: { class: 'input-xlarge', disabled: current_user.email.present? && !current_user.email.include?('manuablefakeemail') }
     = f.input :nickname, wrapper: :prepend do
       %span.add-on
         http://manuable.com/

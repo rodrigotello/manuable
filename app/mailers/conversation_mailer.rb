@@ -1,5 +1,7 @@
 class ConversationMailer < ActionMailer::Base
   default from: "noreply@manuable.com"
+  layout 'user_mailer'
+
   helper ApplicationHelper
 
   def new_conversation conversation
