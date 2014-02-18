@@ -205,6 +205,8 @@ es:
               taken: ya registrado
             nickname:
               taken: ya registrado
+            reset_password_token:
+              invalid: no es válido
         product:
           attributes:
             amount:
