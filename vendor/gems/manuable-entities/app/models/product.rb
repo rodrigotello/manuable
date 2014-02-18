@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   acts_as_taggable_on :prop
   acts_as_commontable
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   belongs_to :category
   belongs_to :notification, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy

@@ -1,4 +1,5 @@
 Manuable::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # match "/404", :to => "errors#not_found"
   # match "/500", :to => "errors#app_failure"
   root :to => 'home#index'
@@ -68,5 +69,17 @@ Manuable::Application.routes.draw do
 
   resources :categories, only: [:show, :index]
   resources :cities, only: [:index]
+
+
+  scope defaults: { :format => :json }, :except => [:edit, :new] do
+    namespace :api do
+      resource :authentications, only: :create
+      resources :users, only: [:show, :index] do
+        resources :products, shallow: true
+      end
+      resources :products, only: :index
+    end
+  end
+
   get "/:id", to: "landing#index"
 end

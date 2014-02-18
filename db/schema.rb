@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128060603) do
+ActiveRecord::Schema.define(version: 20140218061234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_tokens", force: true do |t|
+    t.string   "token"
+    t.integer  "user_id"
+    t.datetime "expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -171,14 +179,15 @@ ActiveRecord::Schema.define(version: 20140128060603) do
     t.integer "user_id"
     t.integer "event_price"
     t.integer "grand_total"
-    t.boolean "paid",                   default: false
+    t.boolean "paid",                               default: false
     t.integer "event_sale_category_id"
-    t.boolean "oxxo_ready",             default: false
+    t.boolean "oxxo_ready",                         default: false
     t.date    "oxxo_expires_on"
     t.string  "oxxo_barcode"
     t.integer "amount_paid"
     t.integer "position"
     t.string  "conekta_charge_id"
+    t.string  "barcode_url",            limit: 500
   end
 
   create_table "event_product_payments", force: true do |t|
@@ -368,6 +377,7 @@ ActiveRecord::Schema.define(version: 20140128060603) do
     t.date     "birthday"
     t.integer  "last_product_id"
     t.string   "cover"
+    t.integer  "products_count"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

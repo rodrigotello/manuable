@@ -1,32 +1,34 @@
-if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
+if RUBY_VERSION =~ /1.9/ # assuming you"re running Ruby ~1.9
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
-source 'https://rubygems.org'
-gem 'rails', '~> 4.0'
-gem 'commontator', '~> 4.2.0'
+source "https://rubygems.org"
+gem "rails", "~> 4.0"
+gem "jbuilder"
+gem "commontator", "~> 4.2.0"
 gem "manuable-entities", :path => "vendor/gems/manuable-entities"
+gem "rails_admin"
 gem "draper"
 gem "httpclient"
 gem "sprockets-rails"
 gem "pg"
-gem 'conekta'
+gem "conekta"
 gem "roadie", "~> 2.4.3"
 # DB
   group :production do
-    gem 'puma', :github => 'puma/puma'
-    gem 'newrelic_rpm'
+    gem "puma", :github => "puma/puma"
+    gem "newrelic_rpm"
   end
-  gem 'activemerchant'
+  gem "activemerchant"
   gem "jquery-rails"
   gem "jquery-ui-rails"
 # attachments
-  gem 'carrierwave'
+  gem "carrierwave"
   gem "fog", "~> 1.3.1"
-  gem 'rmagick'
+  gem "rmagick"
 
 # pagination
-  gem 'kaminari'
+  gem "kaminari"
 
 # social login
   gem "omniauth"
@@ -49,36 +51,36 @@ gem "roadie", "~> 2.4.3"
   gem "less-rails"
   gem "libv8", "~> 3.11.8"
   gem "therubyracer", :require => false
-  gem 'simple_form'
-  gem 'nested_form'
-  # gem 'client_side_validations'
-  # gem 'client_side_validations-simple_form'
-  gem 'yaml_db'
+  gem "simple_form"
+  gem "nested_form"
+  # gem "client_side_validations"
+  # gem "client_side_validations-simple_form"
+  gem "yaml_db"
   gem "squeel"
-  gem 'quiet_assets'
+  gem "quiet_assets"
 
-gem 'acts-as-taggable-on'
-gem 'daemons'
+gem "acts-as-taggable-on"
+gem "daemons"
 # gem "activeadmin"
 # gem "meta_search", ">= 1.1.0.pre"
 gem "ransack"
 gem "jquery-fileupload-rails"
 
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+  gem "sass-rails"
+  gem "coffee-rails"
+  gem "uglifier"
 end
 
 group :development do
 
-  gem 'guard-livereload'
-  gem 'rack-livereload'
+  gem "guard-livereload"
+  gem "rack-livereload"
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'meta_request'
-  gem 'letter_opener'
-  gem 'rails-footnotes', '>= 3.7.9'
+  gem "meta_request"
+  gem "letter_opener"
+  gem "rails-footnotes", ">= 3.7.9"
 end
 
 group :development, :test do
@@ -89,14 +91,13 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-nav"
   gem "debugger"
-  gem 'thin'
+  gem "thin"
 end
 
 group :test do
   gem "factory_girl_rails"
   gem "rspec-rails"
   gem "database_cleaner"
-  gem 'capybara-screenshot'
+  gem "capybara-screenshot"
   gem "poltergeist"
-  gem "database_cleaner"
 end

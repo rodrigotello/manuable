@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   belongs_to :last_product, class_name: "Product", foreign_key: 'last_product_id'
+  has_many :access_tokens
   has_many :authentications, dependent: :destroy
   has_many :products, dependent: :destroy
 
