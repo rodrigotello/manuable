@@ -10,8 +10,8 @@ end
 
 if includes.include?(:category) && product.category.present?
   json.category do
-    json.name category.name
-    json.id category.id
+    json.name product.category.name
+    json.id product.category_id
   end
 end
 

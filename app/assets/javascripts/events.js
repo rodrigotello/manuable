@@ -6,8 +6,8 @@ window.loadGmaps = function(callback) {
 }
 var EventsNew = new function(){
   "use strict";
-  var self = this;
-  var map = false,
+  var self = this,
+      map = false,
       marker = false,
       $lat = false,
       $lng = false,
@@ -15,14 +15,18 @@ var EventsNew = new function(){
 
   self.init = function(){
     window["EventsNew"].initialized = true;
-    window.loadGmaps('initNewEventMap');
+    $lat = $('#event_lat');
+    $lng = $('#event_lng');
+
     $('#cambiar-plan').click(function(e){
       e.preventDefault();
       $('#event-form').slideUp();
       $('#event-plans').slideDown(function(){
         window.location.hash = '#event-plans';
       });
+
     });
+
     $('#event-plans .plan').click(function(){
       switch( $(this).attr('href') ){
         case '#plan1':
@@ -42,13 +46,17 @@ var EventsNew = new function(){
       $('#event-form').slideDown(function(){
         window.location.hash = '#event-form';
       });
+      window.loadGmaps('initNewEventMap');
     });
+
     $('.datepicker').datepicker({
       format: 'yyyy-mm-dd'
     });
+
     $('.datetime').timepicker({
       format: 'yyyy-mm-dd'
     });
+
     $('#organizer_names').tagsInput({
       height: 30,
       width: '100%',
@@ -69,6 +77,7 @@ var EventsNew = new function(){
         $hidden.val(cleaned_ids.join(','));
       }
     }).importTags( $('#organizer_names').data('users') );
+
     $('#organizer_names_tag').bind('autocompleteselect', function(event, ui){
           var $hidden = $('#event_user_ids'),
               selected_items = $('#organizer_names').data('selected-items');
@@ -86,26 +95,26 @@ var EventsNew = new function(){
           }
     });
 
-    $('#artisan_names').tagsInput({
-      height: 30,
-      width: '100%',
-      defaultText: 'Artesanos',
-      autocomplete_url: '/users.json',
-      autocomplete: { selectFirst: true, width: '100px', autoFill: true },
-      onRemoveTag: function(tag){
-        var selected_items = $('#artisan_names').data('selected-items'),
-            $hidden = $('#event_artisan_ids'),
-            removed_id = selected_items[tag],
-            ids = $hidden.val().split(','),
-            cleaned_ids = [];
-        for(var i=0;i< ids.length; i++){
-          if ( parseInt(ids[i], 10) !== removed_id){
-            cleaned_ids.push(ids[i]);
-          }
-        }
-        $hidden.val(cleaned_ids.join(','));
-      }
-    }).importTags( $('#artisan_names').data('users') );
+    // $('#artisan_names').tagsInput({
+    //   height: 30,
+    //   width: '100%',
+    //   defaultText: 'Artesanos',
+    //   autocomplete_url: '/users.json',
+    //   autocomplete: { selectFirst: true, width: '100px', autoFill: true },
+    //   onRemoveTag: function(tag){
+    //     var selected_items = $('#artisan_names').data('selected-items'),
+    //         $hidden = $('#event_artisan_ids'),
+    //         removed_id = selected_items[tag],
+    //         ids = $hidden.val().split(','),
+    //         cleaned_ids = [];
+    //     for(var i=0;i< ids.length; i++){
+    //       if ( parseInt(ids[i], 10) !== removed_id){
+    //         cleaned_ids.push(ids[i]);
+    //       }
+    //     }
+    //     $hidden.val(cleaned_ids.join(','));
+    //   }
+    // }).importTags( $('#artisan_names').data('users') );
 
     $('#artisan_names_tag').bind('autocompleteselect', function(event, ui){
           var $hidden = $('#event_artisan_ids'),
@@ -128,8 +137,6 @@ var EventsNew = new function(){
       if( !($('#event_city_input').val() && $('#event_address').val() && $('#event_zip').val() && $('#event_city_input').val() ) ){ return; }
       codeAddress($('#event_address').val() + ", " + $('#event_zip').val() + ", " + $('#event_location').val() + ", " + $('#event_city_input').val());
     });
-    $lat = $('#event_lat');
-    $lng = $('#event_lng');
 
     $("#event_city_input").typeahead({
       name: 'cities',
@@ -199,10 +206,9 @@ var EventsNew = new function(){
       $lat.val(marker.getPosition().lat());
       $lng.val(marker.getPosition().lng());
 
-
       geoCoder().geocode( { 'latLng': marker.getPosition()}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          $('#event_address').val(results[1].formatted_address);
+          // $('#event_address').val(results[1].formatted_address);
         } else {
           $('#maps-error').html('No pudimos ubicar el mapa. Solo la dirección será guardada')
           $lat.val('');

@@ -3,4 +3,4 @@
   = f.input :password, :required => false
   = f.input :remember_me, :as => :boolean, :label => false, :inline_label => true if devise_mapping.rememberable?
   = f.button :submit, t('actions.sign_in')
-= render "devise/shared/links"
+= link_to "Olvidé mi contraseña", new_password_path(resource_name), rel: "modal"

@@ -3,7 +3,7 @@
 
 = div_for @product, class: 'product clearfix' do
   %h2= @product.name
-  %h5= @product.category.try :name
+  %h5= @product.user.try :name
   .flexslider
     %ul.slides
       - @product.attachments.each do |attachment|
@@ -21,8 +21,6 @@
   .product-description
     = @product.about
     %br
-    = link_to "por #{@product.user.name}", user_path(@product.user)
-
   .spacer
   = commontator_thread(@product)
   - if params[:no_layout] == '1'

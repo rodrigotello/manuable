@@ -1,28 +1,5 @@
-gateway = ActiveMerchant::Billing::BanwireGateway.new login: 'manuable'
-
-cc = ActiveMerchant::Billing::CreditCard.new number: '5204164299999999', first_name: 'goreorto', last_name: 'orto', month: 11, year: 12, verification_value: 999
-
-gateway.purchase(1000, cc, { order_id: '123456', description: 'cosas', billing_address: {address1: 'horacio', zip: '11560', phone:'15799155'} , email: 'cesar@letwrong.com'})
-
-
-DONE Quitar validación en javascript
-DONE Checar filtro de categoría
-
-Evento
-  Crear perfil.
-  Subir productos.
-  eventos
-    cupo
-    buton quiero vender > petición para vender
-    Admin evento tiene un solicitud/inbox de querer participar
-    usuario aceptado, le permite registrarse al evento.
-    durante el registro
-      > Que vas a vender?
-        categoria de vendor(precio especial por categoría)
-Mensajes
-  1 <-> 1
-
-categorias
-  DONE Mover categorias al lado izquierdo(listo)
-  MISSINFO debajo 'La comunidad'
-DONE Cambiar like a fanpage
+- cambiar entrar por Registro
+correo de bienvenida
+- activar crear mercadito en landing
+invitar artesanos evento popup de sofia
+admin evento

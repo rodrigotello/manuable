@@ -1,6 +1,9 @@
 es:
   datetime:
     distance_in_words:
+      less_than_x_minutes:
+        one: menos de un minuto
+        other: 'menos de %{count} minutos'
       x_days:
         one: 'un día'
         other: '%{count} días'

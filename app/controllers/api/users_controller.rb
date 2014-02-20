@@ -9,7 +9,7 @@ class Api::UsersController < Api::ApplicationController
       @users = User.limit(20)
     end
 
-    render json: @users
+    # render json: @users
   end
 
   def show

@@ -3,10 +3,10 @@
   .well
     .row-fluid
       = f.input :name, input_html: { class: 'span12' }, hint: "¿Cómo se llama tu evento?"
-      = f.input :slug, wrapper: :prepend do
-        %span.add-on
-          http://manuable.com/
-        = f.input_field :slug, class: 'input-xlarge'
+      / = f.input :slug, wrapper: :prepend do
+      /   %span.add-on
+      /     http://manuable.com/
+      /   = f.input_field :slug, class: 'input-xlarge'
       = f.input :cover, input_html: { class: 'span5' }, as: :file
       = f.input :description, input_html: { class: 'span12', rows: 3 }, hint: "¿De que se trata?", as: :text
       = f.input :benefits, input_html: { class: 'span12', rows: 3 }, hint: "¿Qué obtendrán los artesanos al participar?", as: :text
@@ -151,8 +151,8 @@
             = attachments.file_field :attachment
       = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe unless attachments.object.new_record?
     = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :attachments, class: 'btn btn-mini'
-%fieldset
-  %legend Artesanos
-  .well
-    = f.input_field :artisan_ids, data: { selected_items: Hash[*f.object.artisans.collect{|u| [u.name, u.id] }.flatten], users: f.object.artisans.collect{|u| u.name }.join(',') }, id: 'artisan_names', name: 'artisan_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Artesanos"
-    = f.input :artisan_ids, input_html: { class: 'span12', value: f.object.artisans.collect{|u| u.id }.join(',') }, as: :hidden
+/ %fieldset
+/   %legend Artesanos
+/   .well
+/     = f.input_field :artisan_ids, data: { selected_items: Hash[*f.object.artisans.collect{|u| [u.name, u.id] }.flatten], users: f.object.artisans.collect{|u| u.name }.join(',') }, id: 'artisan_names', name: 'artisan_names', class: 'span12', autocomplete: "off", value: '', placeholder: "Artesanos"
+/     = f.input :artisan_ids, input_html: { class: 'span12', value: f.object.artisans.collect{|u| u.id }.join(',') }, as: :hidden
