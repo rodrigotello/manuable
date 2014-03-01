@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     @user = User.where{ ( id == uid) | (nickname == uid.to_s) }.first
 
     raise ActiveRecord::RecordNotFound unless @user.present?
-UserMailer.welcome_email(@user).deliver
     @products = Product.feed(current_user).page( params[:page] ).per( params[:per_page] || 12 )
 
     if params[:f] == 'l'

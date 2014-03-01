@@ -18,3 +18,4 @@ end
 if includes.include?(:attachments)
   json.attachments product.attachments, partial: '/api/attachments/show', as: :attachment
 end
+json.liked product.liked != 0 && !product.liked.blank?

@@ -72,15 +72,17 @@ group :assets do
   gem "uglifier"
 end
 
-group :development do
-
+group :development, :dev_api do
   gem "guard-livereload"
   gem "rack-livereload"
-  gem "better_errors"
-  gem "binding_of_caller"
   gem "meta_request"
   gem "letter_opener"
   gem "rails-footnotes", ">= 3.7.9"
+end
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :development, :test do

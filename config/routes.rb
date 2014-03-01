@@ -75,7 +75,9 @@ Manuable::Application.routes.draw do
     namespace :api do
       resource :authentications, only: :create
       resources :users, only: [:show, :index] do
-        resources :products, shallow: true
+        resources :products, shallow: true do
+          post :like, on: :member
+        end
       end
       resources :products, only: :index
     end

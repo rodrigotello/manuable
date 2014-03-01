@@ -2,7 +2,7 @@ class Api::ApplicationController < ActionController::Base
   skip_before_filter :verify_authenticity_token
 
   rescue_from Exception, with: :catch_generic_exception
-  # rescue_from ActiveRecord::RecordNotFound, :with => :catch_not_found_error
+  rescue_from ActiveRecord::RecordNotFound, :with => :catch_not_found_error
   # rescue_from InteamExceptions::NotFoundError, :with => :catch_not_found_error
   # rescue_from InteamExceptions::NotEnoughPermissionsError, :with => :catch_not_enough_permission
   # rescue_from InteamExceptions::MissingParametersError, :with => :catch_bad_parameters_error
@@ -25,13 +25,19 @@ class Api::ApplicationController < ActionController::Base
       if token.blank?
         render json: { http_status: '401', code: 'access_token.invalid' }
       else
-        if @current_token = AccessToken.valid.where(token: token).first
-          true
+        if access_token = AccessToken.where(token: token).first
+          if access_token.expires_at < DateTime.now
+            render json: { http_status: '401', code: 'access_token.expired' }
+          else
+            @current_token = access_token
+            @current_user = @current_token.user
+          end
+
         else
-          false
+          render json: { http_status: '401', code: 'access_token.invalid' }
         end
       end
-
+      true
     end
   end
 
@@ -41,8 +47,13 @@ class Api::ApplicationController < ActionController::Base
     end
   end
 
+  def catch_not_found_error exception
+    render json: { status: 404, code: 'not_found' }
+
+  end
+
   def catch_generic_exception exception
-    raise exception if Rails.env == "development"
+    raise exception if Rails.env == "dev_api"
     # raise exception if exception.is_a? Rack::OAuth2::Server::Resource::Bearer::Unauthorized
 
     exception_message = exception.message

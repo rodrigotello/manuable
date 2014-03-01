@@ -6,6 +6,14 @@ development:
   pool: 5
   timeout: 5000
 
+dev_api:
+  username: goreorto
+  adapter: postgresql
+  database: manuable_development
+  password:
+  pool: 5
+  timeout: 5000
+
 test:
   adapter: sqlite3
   database: db/test.sqlite3
