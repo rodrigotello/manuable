@@ -33,8 +33,6 @@ Manuable::Application.routes.draw do
     get :oxxo_success, on: :collection
   end
 
-  resources :event_requests, only: [:update, :destroy]
-
   resources :events do
     get :webhook, on: :collection
     post :webhook, on: :collection
@@ -47,6 +45,7 @@ Manuable::Application.routes.draw do
     post :request_access, on: :member
     resources :event_schedules
     resources :event_schedule_categories
+    resources :event_requests, path: :requests
   end
 
   resources :event_schedule_categories do

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
         @products = @products.limit(15)
       }
       format.js {
-        @products = Product.filter(params).feed(current_user).offset(15 + (params[:page].to_i - 1) * 12).limit(12)
+        @products = Product.filter(params).feed(current_user).offset((params[:page].to_i - 1) * 16).limit(16)
       }
       format.json {
         self.formats = [:html]

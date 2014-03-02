@@ -1,0 +1,17 @@
+.media{ id: "event-request-#{event_request.id}"}
+  = link_to event_request.user, class: 'pull-left' do
+    = image_tag event_request.user.avatar.url(:thumb), class: 'user-avatar organizevent_request'
+  .media-body
+    = link_to event_request.user do
+      = event_request.user.name
+    quiere participar
+    %br
+    - if event_request.accepted.nil?
+      .btn-group
+        = link_to '<i class="fa fa-check"></i> Aceptar'.html_safe, [event_request.event, event_request], method: :put, remote: true, class: 'btn btn-mini btn-success'
+        = link_to 'Rechazar <i class="fa fa-times"></i>'.html_safe, [event_request.event, event_request], method: :delete, remote: true, class: 'btn btn-mini btn-danger'
+    - else
+      - if event_request.accepted?
+        = link_to '<i class="fa fa-check"></i> Aceptado'.html_safe, 'javascript:void(1)', class: 'btn btn-mini btn-success disabled'
+      - else
+        = link_to 'Rechazado <i class="fa fa-times"></i>'.html_safe, 'javascript:void(1)', class: 'btn btn-mini btn-danger disabled'

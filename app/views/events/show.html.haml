@@ -7,6 +7,8 @@
         #event-admin-options
           - if !@event.paid?
             = link_to '<i class="fa fa-check"></i> Publicar!'.html_safe, publish_event_path(@event), class: 'btn btn-success', rel: 'modal'
+          - else
+            = link_to '<i class="fa fa-th-list"></i> Solicitudes'.html_safe, event_event_requests_path(@event), class: 'btn btn-success', rel: 'modal', id: 'show-solicitudes'
           = link_to 'Editar Evento', edit_event_path(@event), class: 'btn btn-primary'
       #event-cover-info
         %h1.event-name= @event.name

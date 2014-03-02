@@ -326,6 +326,11 @@ var EventsShow = new function(){
     $('.remove-event-schedule').bind('ajax:success', function(){
       $(this).parents("li:first").remove();
     });
+    if(location.hash == '#solicitudes'){
+      $(document).ready(function(){
+        $('#show-solicitudes').click();
+      });
+    }
   }
   window.initEventMap = function(){
     var ele = document.getElementById("map");

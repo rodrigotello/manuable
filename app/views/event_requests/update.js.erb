@@ -1,0 +1,1 @@
+$('#event-request-<%= @event_request.id %>').replaceWith("<%= escape_javascript render(partial: 'event_request', locals: { event_request: @event_request }) %>")

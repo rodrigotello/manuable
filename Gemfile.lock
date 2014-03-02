@@ -5,6 +5,12 @@ GIT
     puma (2.7.1)
       rack (>= 1.1, < 2.0)
 
+GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
+  specs:
+    nested_form (0.3.2)
+
 PATH
   remote: vendor/gems/manuable-entities
   specs:
@@ -228,7 +234,6 @@ GEM
       i18n (~> 0.6.4)
     multi_json (1.8.2)
     multipart-post (1.2.0)
-    nested_form (0.3.2)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.7.0)
@@ -448,7 +453,7 @@ DEPENDENCIES
   libv8 (~> 3.11.8)
   manuable-entities!
   meta_request
-  nested_form
+  nested_form!
   newrelic_rpm
   omniauth
   omniauth-facebook

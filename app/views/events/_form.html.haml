@@ -81,33 +81,35 @@
 %fieldset
   %legend Itinerario
   .well
-    = f.fields_for :event_schedules, :wrapper => false do |schedule|
-      .form-appendable
-        = schedule.input :name
-        = schedule.input :starts_at, :wrapper => :append do
-          .row
-            .span2
-              = schedule.input_field :starts_at_date, class: 'input-small datepicker', as: :string
-              %span.add-on
-                %i.fa.fa-calendar
-            .span2.bootstrap-timepicker
-              = schedule.input_field :starts_at_time, class: 'input-small datetime', as: :string
-              %span.add-on
-                %i.fa.fa-clock-o
+    = f.fields_for :event_schedules   do |schedule|
+      .row.form-appendable
+        .span4
+          = schedule.input :name
+          = schedule.input :starts_at, :wrapper => :append do
+            .row
+              .span2
+                = schedule.input_field :starts_at_date, class: 'input-small datepicker', as: :string
+                %span.add-on
+                  %i.fa.fa-calendar
+              .span2.bootstrap-timepicker
+                = schedule.input_field :starts_at_time, class: 'input-small datetime', as: :string
+                %span.add-on
+                  %i.fa.fa-clock-o
 
-        = schedule.input :ends_at, :wrapper => :append do
-          .row
-            .span2
-              = schedule.input_field :ends_at_date, class: 'input-small datepicker', as: :string
-              %span.add-on
-                %i.fa.fa-calendar
-            .span2.bootstrap-timepicker
-              = schedule.input_field :ends_at_time, class: 'input-small datetime', as: :string
-              %span.add-on
-                %i.fa.fa-clock-o
-        = schedule.link_to_remove "<i class='icon-trash'></i>".html_safe unless schedule.object.new_record?
-        %br
-    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_schedules, class: 'btn btn-mini'
+          = schedule.input :ends_at, :wrapper => :append do
+            .row
+              .span2
+                = schedule.input_field :ends_at_date, class: 'input-small datepicker', as: :string
+                %span.add-on
+                  %i.fa.fa-calendar
+              .span2.bootstrap-timepicker
+                = schedule.input_field :ends_at_time, class: 'input-small datetime', as: :string
+                %span.add-on
+                  %i.fa.fa-clock-o
+        .span1
+          = schedule.link_to_remove "<i class='fa fa-trash-o'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;' unless schedule.object.new_record?
+
+    = f.link_to_add "<i class='fa fa-plus'></i> agregar".html_safe, :event_schedules, class: 'btn btn-mini'
 
 %fieldset
   %legend Costos por tipo de producto o zona a vender
@@ -121,8 +123,8 @@
             %span.add-on $
             = product_form.input_field :price, class: 'input-small'
         .span1
-          = product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
-    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_sale_categories, class: 'btn btn-mini'
+          = product_form.link_to_remove "<i class='fa fa-trash-o'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
+    = f.link_to_add "<i class='fa fa-plus'></i> agregar".html_safe, :event_sale_categories, class: 'btn btn-mini'
 
 -#%fieldset
   -#%legend Adicionales
@@ -136,8 +138,8 @@
             -#%span.add-on $
             -#= product_form.input_field :price, class: 'input-small'
         -#.span1
-          -#= product_form.link_to_remove "<i class='icon-trash'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
-    -#= f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :event_products, class: 'btn btn-mini'
+          -#= product_form.link_to_remove "<i class='fa fa-trash-o'></i>".html_safe, class: 'pull-right', style: 'display: block;margin: 26px;font-size: 23px;'
+    -#= f.link_to_add "<i class='fa fa-plus'></i> agregar".html_safe, :event_products, class: 'btn btn-mini'
 
 %fieldset
   %legend Adjuntos
@@ -149,8 +151,8 @@
             = attachments.text_field :name, class: 'input-medium'
           .span2
             = attachments.file_field :attachment
-      = attachments.link_to_remove "<i class='icon-trash'></i>".html_safe unless attachments.object.new_record?
-    = f.link_to_add "<i class='icon-plus'></i> agregar".html_safe, :attachments, class: 'btn btn-mini'
+      = attachments.link_to_remove "<i class='fa fa-trash-o'></i>".html_safe unless attachments.object.new_record?
+    = f.link_to_add "<i class='fa fa-plus'></i> agregar".html_safe, :attachments, class: 'btn btn-mini'
 / %fieldset
 /   %legend Artesanos
 /   .well

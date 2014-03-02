@@ -15,4 +15,20 @@ class UserMailer < ActionMailer::Base
 
     mail to: owner.email, subject: "Manuable - Le gustó!"
   end
+
+  def new_event_request event_request, user
+    @event_request = event_request
+    @user = user
+    @event = @event_request.event
+    @petitioner = @event_request.user
+    mail to: @user.email, subject: "Manuable - #{@event.name}: Solicitud de participación"
+  end
+
+  def event_request_accepted event_request
+    @event_request = event_request
+    @event = @event_request.event
+    @petitioner = @event_request.user
+
+    mail to: @petitioner.email, subject: "Manuable - Solicitud aceptada"
+  end
 end

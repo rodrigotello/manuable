@@ -52,7 +52,7 @@ gem "roadie", "~> 2.4.3"
   gem "libv8", "~> 3.11.8"
   gem "therubyracer", :require => false
   gem "simple_form"
-  gem "nested_form"
+  gem "nested_form", github: 'ryanb/nested_form'
   # gem "client_side_validations"
   # gem "client_side_validations-simple_form"
   gem "yaml_db"

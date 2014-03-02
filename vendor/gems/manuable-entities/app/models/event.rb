@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   #     where({ event_requests: { accepted: true } })
   #   end
   # end
-  has_many :event_requests
+  has_many :event_requests, inverse_of: :event
   has_many :event_schedules
   has_many :event_schedule_categories
   has_many :attachments, as: :attachable, dependent: :destroy
@@ -25,10 +25,10 @@ class Event < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
   mount_uploader :location_map, EventLocationMapUploader
 
-  accepts_nested_attributes_for :event_products, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
-  accepts_nested_attributes_for :event_sale_categories, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }
-  accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }
-  accepts_nested_attributes_for :event_schedules, reject_if: proc{ |at| at[:name].blank? }
+  accepts_nested_attributes_for :event_products, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :event_sale_categories, reject_if: proc {|attrs| attrs['name'].blank? || attrs[:price].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :attachments, reject_if: proc{ |at| at[:attachment].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :event_schedules, reject_if: proc{ |at| at[:name].blank? }, allow_destroy: true
 
   before_validation :build_times
   before_validation :set_spaces

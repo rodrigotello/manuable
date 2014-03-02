@@ -1,0 +1,12 @@
+= @petitioner.name
+,
+%br
+Tu solicitud para participar en
+= @event.name
+fue aceptada.
+%br
+%br
+Pasa a pagar en la siguiente liga:
+%br
+%br
+= link_to 'Pagar', checkout_event_url(@event)

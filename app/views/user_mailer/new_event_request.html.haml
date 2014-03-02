@@ -1,0 +1,12 @@
+= @user.name
+,
+%br
+= @petitioner.name
+desea participar en
+= @event.name
+%br
+%br
+Para aceptar o rechazar su solicitud visita el siguiente liga:
+%br
+%br
+= link_to 'Solicitudes', event_url(@event, anchor: 'solicitudes')
