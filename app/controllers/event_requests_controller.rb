@@ -11,9 +11,9 @@ class EventRequestsController < ApplicationController
     @event_request = EventRequest.find params[:id]
     redirect_to @event_request.event and return unless @event_request.event.user_ids.include?(current_user.id) || god_mode?
 
-    if current_user.events.where(id: @event_request.event_id).exists?
+    # if current_user.events.where(id: @event_request.event_id).exists?
       @event_request.update_attribute :accepted, true
-    end
+    # end
     #
     respond_to do |format|
       format.html { redirect_to :back }
@@ -26,9 +26,9 @@ class EventRequestsController < ApplicationController
 
     redirect_to @event_request.event and return unless @event_request.event.user_ids.include?(current_user.id) || god_mode?
 
-    if current_user.events.where(id: @event_request.event_id).exists?
+    # if current_user.events.where(id: @event_request.event_id).exists?
       @event_request.update_attribute :accepted, false
-    end
+    # end
     respond_to do |format|
       format.html { redirect_to :back }
       format.js { }
