@@ -33,5 +33,6 @@ class EventRequest < ActiveRecord::Base
     if accepted_changed? && accepted
       UserMailer.event_request_accepted(self).deliver
     end
+    true
   end
 end
