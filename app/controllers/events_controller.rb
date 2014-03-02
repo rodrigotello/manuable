@@ -143,6 +143,7 @@ class EventsController < ApplicationController
                                   :user_ids, :address, :zip, :location, :city_id,
                                   :location_name, :lat, :lng, :spaces, :plan_id,
                                   :starts_at_date, :starts_at_time, :ends_at_time,
+                                  :location_map, :cover,
                                   :ends_at_date, :artisan_ids, :event_schedules_attributes => [:id, :_destroy, :name, :starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time],
                                   :attachments_attributes => [:id, :name, :attachment, :_destroy], :event_sale_categories_attributes => [:id, :name, :price, :_destroy])
   end
