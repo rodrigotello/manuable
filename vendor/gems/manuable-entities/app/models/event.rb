@@ -36,6 +36,11 @@ class Event < ActiveRecord::Base
   scope :incoming, lambda { where { starts_at >= Date.today } }
   scope :banner, lambda { includes(city: :state) }
   scope :paid, lambda { where(paid: true) }
+  scope :filter, lambda { |options|
+    if options['user_id'].present?
+      joins(artisans).where(event_payments: { user_id: options['user_id'] })
+    end
+  }
 
   def seats_left?
     seats_left > 0

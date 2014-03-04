@@ -73,13 +73,18 @@ Manuable::Application.routes.draw do
   scope defaults: { :format => :json }, :except => [:edit, :new] do
     namespace :api do
       resource :authentications, only: :create
+      resources :categories
+      resources :events
       resources :users, only: [:show, :index] do
         resources :products, shallow: true do
           post :like, on: :member
         end
       end
       resources :products, only: :index
+
+      match "*path", to: "application#routing_error", via: [:get, :post, :put, :delete, :patch]
     end
+
   end
 
   get "/:id", to: "landing#index"

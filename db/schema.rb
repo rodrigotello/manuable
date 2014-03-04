@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218061234) do
+ActiveRecord::Schema.define(version: 20140302202912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,9 +97,10 @@ ActiveRecord::Schema.define(version: 20140218061234) do
     t.string   "name"
     t.integer  "sort"
     t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "value"
+    t.integer  "products_count"
   end
 
   create_table "categories_products", id: false, force: true do |t|
@@ -179,15 +180,15 @@ ActiveRecord::Schema.define(version: 20140218061234) do
     t.integer "user_id"
     t.integer "event_price"
     t.integer "grand_total"
-    t.boolean "paid",                               default: false
+    t.boolean "paid",                   default: false
     t.integer "event_sale_category_id"
-    t.boolean "oxxo_ready",                         default: false
+    t.boolean "oxxo_ready",             default: false
     t.date    "oxxo_expires_on"
     t.string  "oxxo_barcode"
     t.integer "amount_paid"
     t.integer "position"
     t.string  "conekta_charge_id"
-    t.string  "barcode_url",            limit: 500
+    t.string  "barcode_url"
   end
 
   create_table "event_product_payments", force: true do |t|

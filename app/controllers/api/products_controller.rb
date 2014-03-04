@@ -1,7 +1,7 @@
 class Api::ProductsController < Api::ApplicationController
 
   def index
-    @products = Product.feed(@current_user).page(params[:page]).per(params[:pp] || 10)
+    @products = Product.feed(@current_user).page(params[:page])
   end
 
   def show
@@ -11,7 +11,5 @@ class Api::ProductsController < Api::ApplicationController
   def like
     @product = Product.find(params[:id])
     @like = @current_user.like! @product
-    @product = Product.feed(@current_user).find(params[:id])
-    render action: :show
   end
 end

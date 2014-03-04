@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
   belongs_to :parent, foreign_key: 'parent_id', class_name: 'Category'
   has_many :childs, foreign_key: 'parent_id', class_name: 'Category'
 
-  has_many :product
+  has_many :products
   #has_and_belongs_to_many :products
 
   def self.masters
@@ -21,4 +21,13 @@ class Category < ActiveRecord::Base
   def self.product_category
     where(:value => 'CATPROD').first.childs
   end
+
+  def as_json options={}
+    {
+      id: id,
+      name: name,
+      products_count: products_count
+    }
+  end
+
 end

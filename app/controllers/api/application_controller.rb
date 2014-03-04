@@ -2,8 +2,9 @@ class Api::ApplicationController < ActionController::Base
   skip_before_filter :verify_authenticity_token
 
   rescue_from Exception, with: :catch_generic_exception
-  rescue_from ActiveRecord::RecordNotFound, :with => :catch_not_found_error
-  # rescue_from InteamExceptions::NotFoundError, :with => :catch_not_found_error
+  rescue_from ActiveRecord::RecordNotFound, :with => :catch_record_not_found_error
+  rescue_from ActionController::RoutingError, :with => :catch_route_not_found_error
+  # rescue_from InteamExceptions::NotFoundError, :with => :catch_record_not_found_error
   # rescue_from InteamExceptions::NotEnoughPermissionsError, :with => :catch_not_enough_permission
   # rescue_from InteamExceptions::MissingParametersError, :with => :catch_bad_parameters_error
   # rescue_from InteamExceptions::UnexpectedError, :with => :catch_unexpected_error
@@ -12,9 +13,13 @@ class Api::ApplicationController < ActionController::Base
   respond_to :json
   force_ssl if: :ssl_configured?
 
-  before_filter :authenticate!
+  before_filter :authenticate!, except: :routing_error
   before_filter :beta
   before_filter :dev_user, if: proc { Rails.env.development? }
+
+  def routing_error
+    raise ActionController::RoutingError.new(params[:path])
+  end
 
   protected
 
@@ -23,18 +28,18 @@ class Api::ApplicationController < ActionController::Base
 
     authenticate_or_request_with_http_token do |token, options|
       if token.blank?
-        render json: { http_status: '401', code: 'access_token.invalid' }
+        render json: { status: 401, code: 'access_token.invalid' }
       else
         if access_token = AccessToken.where(token: token).first
           if access_token.expires_at < DateTime.now
-            render json: { http_status: '401', code: 'access_token.expired' }
+            render json: { status: 401, code: 'access_token.expired' }
           else
             @current_token = access_token
             @current_user = @current_token.user
           end
 
         else
-          render json: { http_status: '401', code: 'access_token.invalid' }
+          render json: { status: 401, code: 'access_token.invalid' }
         end
       end
       true
@@ -47,9 +52,12 @@ class Api::ApplicationController < ActionController::Base
     end
   end
 
-  def catch_not_found_error exception
-    render json: { status: 404, code: 'not_found' }
+  def catch_record_not_found_error exception
+    render json: { status: 404, code: 'record.not_found' }
+  end
 
+  def catch_route_not_found_error exception
+    render json: { status: 404, code: 'route.not_found' }
   end
 
   def catch_generic_exception exception

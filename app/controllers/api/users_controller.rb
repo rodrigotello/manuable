@@ -4,9 +4,9 @@ class Api::UsersController < Api::ApplicationController
   def index
     if params[:q] || params[:term]
       q = "%#{params[:q] || params[:term]}%"
-      @users = User.where{ name != nil }.where{ (name =~ q) | (nickname =~ q)}.limit(20)
+      @users = User.where{ name != nil }.where{ (name =~ q) | (nickname =~ q)}.page(params[:page])
     else
-      @users = User.limit(20)
+      @users = User.page(params[:page])
     end
   end
 

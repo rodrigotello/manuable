@@ -70,16 +70,16 @@ class EventsController < ApplicationController
     redirect_to @event and return unless @event.user_ids.include?(current_user.id) || god_mode?
 
     event_params[:user_ids] = event_params[:user_ids].split(',') if event_params[:user_ids].present?
-    event_params[:artisan_ids] = event_params[:artisan_ids].split(',').map(&:to_i) if event_params[:artisan_ids].present?
+    # event_params[:artisan_ids] = event_params[:artisan_ids].split(',').map(&:to_i) if event_params[:artisan_ids].present?
 
     if @event.update_attributes event_params
-      if event_params[:artisan_ids].present?
-        ids = @event.event_requests.pluck :user_id
-        @event.event_requests.where(user_id: event_params[:artisan_ids].take(@event.spaces)).update_all('accepted = true')
-        @event.event_requests.where(" event_requests.user_id NOT IN (?)", event_params[:artisan_ids].take(@event.spaces)).update_all('accepted = false')
-      else
-        @event.event_requests.update_all('accepted = false')
-      end
+      # if event_params[:artisan_ids].present?
+      #   ids = @event.event_requests.pluck :user_id
+      #   @event.event_requests.where(user_id: event_params[:artisan_ids].take(@event.spaces)).update_all('accepted = true')
+      #   @event.event_requests.where(" event_requests.user_id NOT IN (?)", event_params[:artisan_ids].take(@event.spaces)).update_all('accepted = false')
+      # else
+      #   @event.event_requests.update_all('accepted = false')
+      # end
 
       redirect_to @event
     else
