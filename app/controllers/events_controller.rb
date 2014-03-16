@@ -138,7 +138,8 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    @event_params ||= params.require(:event).permit(:name, :slug, :description, :benefits,
+    @event_params ||= params.require(:event).permit(:bank_name, :bank_account, :bank_account_full_name,
+                                  :bank_clabe,:name, :slug, :description, :benefits,
                                   :notes, :requirements, :info_for_accepted_users,
                                   :user_ids, :address, :zip, :location, :city_id,
                                   :location_name, :lat, :lng, :spaces, :plan_id,
