@@ -1,7 +1,7 @@
-.row-fluid
-  - unless params[:modal] == '1'
-    .span3
-      = render partial: 'conversation_list', locals: { current_conversation: @conversation }
-  %div{ class: params[:modal] == '1' ? 'span12' : 'span7' }
-    - if @conversation
-      = render partial: 'conversation', locals: { conversation: @conversation }
+= div_for @conversation do
+  %ul
+    = render partial: 'message', locals: { message: @conversation }
+    = render partial: 'message', collection: @conversation.messages
+  = simple_nested_form_for [:my, @conversation, Message.new], html: { class: 'row-fluid' }, remote: true do |f|
+    = f.input :body, input_html: { class: 'span12' }, required: false, as: :text, placeholder: "Escribe tu mensaje"
+    = button_tag 'Enviar', type: 'submit', class: 'btn btn-primary pull-right'

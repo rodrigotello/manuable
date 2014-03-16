@@ -1,23 +1,32 @@
+.new_conversation
+  .tt-suggestions
+    .repo-name
+      font-weight: normal
+      margin-left: 5px
 #conversations
-  width: 270px
-  margin-top: 30px
+  margin: 0px
   border: 1px solid #ddd
   padding: 10px
-  img
-    width: 25px
+  a
+    text-decoration: none
+    color: #000
+    &:hover
+      text-decoration: none
   li
     margin: 5px 0
-    img
-      margin-right: 3px
+    border-bottom: 1px solid #ddd
+    padding-bottom: 10px
+    padding-top: 10px
+    &:last-child
+      border-bottom: 0
   li.unread
     background: #A5E1FF
     a
       color: #328DC0
 .conversation
   position: relative
-  border: 1px solid #ddd
-  padding: 20px
   padding-bottom: 110px
+  width: 600px
   ul
     margin: 0
     overflow-y: auto
@@ -40,7 +49,6 @@
         font-size: 12px
       .time
         position: absolute
-        top: 10px
         right: 10px
         font-size: 11px
         color: #aaa

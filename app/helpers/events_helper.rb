@@ -5,9 +5,9 @@ module EventsHelper
     event_request = current_user ? event.event_requests.where(user_id: current_user.id).first : nil
     event_payment = current_user ? event.event_payments.where(user_id: current_user.id).first : nil
     if signed_in? && (event_request || event_payment)
-      if event_request.accepted.nil?
+      if event_request && event_request.accepted.nil?
         output << link_to("¡#{ text || "Esperando respuesta" }!".html_safe, request_access_event_path, class: 'request-access btn-warning', rel: 'modal', title: '¡Quiero participar!', data: { modalclass: 'request-access-modal' })
-      elsif event_request.accepted
+      elsif event_request && event_request.accepted
         if event_payment && event_payment.paid?
           output << link_to("Gracias por participar!".html_safe, 'javascript:void(1)', class: 'request-access') unless event.info_for_accepted_users.present?
         else

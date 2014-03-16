@@ -1,14 +1,17 @@
 #welcome
   %div#home-cover
     %h1
-      Descubre y Compra productos
-      %br
-      hechos a mano en México.
+      Amamos lo hecho a mano
+    %h2
+      Únete a la comunidad de diseñadores, artesanos y artistas en tu ciudad.
+    %br
+    %small Solo en México
+
     = link_to 'CONOCE MÁS', '/about', id: 'conoce-mas', class: 'transparent-button', rel: 'modal'
     - if user_signed_in?
-      = link_to 'SUBIR PRODUCTO', new_my_product_path, id: 'subir-producto'
+      = link_to 'COMPARTIR UN PRODUCTO', new_my_product_path, id: 'subir-producto'
     - else
-      = link_to 'SUBIR PRODUCTO', new_session_path(:user, return_to: new_my_product_path), id: 'subir-producto', rel: 'modal'
+      = link_to 'COMPARTIR UN PRODUCTO', new_session_path(:user, return_to: new_my_product_path), id: 'subir-producto', rel: 'modal'
   %h2
     Encuentra productos originales hechos a mano
     %br

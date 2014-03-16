@@ -90,7 +90,7 @@ class EventsController < ApplicationController
   def request_access
     @event = Event.find params[:id]
     if request.post?
-      @event.event_requests.create! user_id: current_user.id
+      @event.event_requests.create user_id: current_user.id
       redirect_to @event
     end
   end

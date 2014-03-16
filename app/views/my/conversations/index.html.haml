@@ -1,25 +1,17 @@
 .row-fluid
-  .span3
-    = render partial: 'conversation_list', locals: { current_conversation: @last_conversation }
-  .span7
-    - if @event_requests.present?
-      #event-requests
-        %h4
-          Peticiones
-        - @event_requests.each do |er|
-          .media
-            = link_to er.user, class: 'pull-left' do
-              = image_tag er.user.avatar.url(:thumb), class: 'user-avatar organizer'
-            .media-body
-              = link_to er.user do
-                = er.user.name
-              quiere vender en
-              = er.event.name
-              %br
-              %br
-              .clearfix
-                = link_to '<i class="icon-ok"></i> Aceptar'.html_safe, er, method: :put, class: 'btn btn-mini btn-success pull-left'
-                = link_to '<i class="icon-remove"></i> Rechazar'.html_safe, er, method: :delete, class: 'btn btn-mini btn-danger pull-left', style: 'margin-left: 200px'
+  .span6.offset3
+    %h4
+      Mensajes
+      = link_to "Nuevo", new_my_conversation_path, class: 'btn btn-mini', rel: 'modal'
+    - current_conversation = nil unless local_assigns[:current_conversation]
+    %ul.media-list#conversations
+      - @conversations.each do |conversation|
+        %li.media
+          = link_to my_conversation_path(conversation), class: 'pull-left', rel: 'modal', title: conversation.name(current_user) do
+            = image_tag conversation.sender(current_user).avatar.url(:thumb), class: 'media-object'
+          .media-body
+            = link_to my_conversation_path(conversation), rel: 'modal', title: conversation.name(current_user) do
+              %h4.media-heading= conversation.name(current_user)
+              .media
+                = truncate conversation.body, length: 80
 
-    - if @last_conversation
-      = render partial: 'conversation', locals: { conversation: @last_conversation }

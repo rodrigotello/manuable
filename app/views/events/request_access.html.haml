@@ -7,22 +7,22 @@
     - if @event.benefits.present?
       #benefits-bg
         %h4 Beneficios por Participar
-        = sanitize @event.benefits, tags: %w( table tr td ul li ol), attributes: %w(style)
+        = sanitize @event.benefits, tags: %w( i table th tr td ul li ol strong), attributes: %w(style)
 
     - if @event.requirements.present?
       #requirements-bg
         %h4 Requisitos
-        = sanitize @event.requirements, tags: %w( table tr td ul li ol), attributes: %w(style)
+        = sanitize @event.requirements, tags: %w( i table th tr td ul li ol strong), attributes: %w(style)
 
     - if @event.notes.present?
       #observations-bg
         %h4 Observaciones y Espacios
-        = sanitize @event.notes, tags: %w( table tr td ul li ol), attributes: %w(style)
+        = sanitize @event.notes, tags: %w( i table th tr td ul li ol strong), attributes: %w(style)
 
         - if @event.location_map.present?
           #semilla-map
             = link_to image_tag(@event.location_map.url), @event.location_map.url,  target: '_blank'
-
+- if current_user.products_count > 0
   #event-tos
     .row-fluid
       .span6
@@ -51,4 +51,9 @@
         - else
           - if @event.seats_left?
             = link_to '<br>Envia tu <br>solicitud'.html_safe, request_access_event_path, class: 'disabled pull-right request-access', method: :post
-
+- else
+  #event-tos.text-center
+    %strong Antes de enviar tu solicitud, por favor sube al menos UN producto a Manuable para que el/los organizadores conozcan tu trabajo.
+    %br
+    %br
+    = link_to 'Subir Producto'.html_safe, new_my_product_path, class: 'btn btn-info'

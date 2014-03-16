@@ -29,6 +29,9 @@
     padding-top: 1px;
     margin-top: -1px;
     text-align: center;
+    h1, h2 { color: #fff;}
+    h2 { margin: 0; }
+    small { display:block;color:#fff; text-align:center; margin: 0 auto;}
     #conoce-mas, #subir-producto {
       padding: 0 !important;
       width: 280px;

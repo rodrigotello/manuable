@@ -15,6 +15,15 @@
       = f.input :info_for_accepted_users, input_html: { class: 'span12', rows: 3 }, hint: "Información visible para los artesanos aceptados", as: :text
 
 %fieldset
+  %legend Información Bancaria
+  .well
+    .row-fluid
+      = f.input :bank_name, input_html: { class: 'span12' }
+      = f.input :bank_account, input_html: { class: 'span12' }
+      = f.input :bank_account_full_name, input_html: { class: 'span12' }
+      = f.input :bank_clabe, input_html: { class: 'span12' }
+
+%fieldset
   %legend Organizadores
   .well
     .row-fluid

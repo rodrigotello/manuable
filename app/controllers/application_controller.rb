@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def force_update_profile
-    if current_user && self.class != My::ProfilesController && (current_user.email.include?('manuablefakeemail') || current_user.name.blank?)
+
+    if current_user && self.class != My::ProfilesController && (current_user.email.include?('manuablefakeemail') || current_user.name.blank?) && !(params[:controller] == "devise/sessions" && params[:action] == 'destroy')
       flash[:notice] = 'Por favor llenar tú correo y/o nombre antes de continuar.'
       redirect_to my_profile_path
     end

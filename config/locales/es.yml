@@ -70,6 +70,10 @@ es:
         price: Precio
         name: Nombre
       event:
+        bank_name: 'Banco'
+        bank_account: 'Número de cuenta'
+        bank_account_full_name: 'Nombre completo'
+        bank_clabe: 'CLABE'
         user_ids: Organizadores
         cover: Imagen cover
         artisan_ids: Artesanos

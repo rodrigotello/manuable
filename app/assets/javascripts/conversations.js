@@ -11,7 +11,7 @@ var ConversationsNew = new function(){
   "use strict";
   var self = this;
   self.init = function(){
-    ConversationsHelpers.fitConversation();
+    // ConversationsHelpers.fitConversation();
     $('#conversation_to_text').typeahead({
         name: 'users',
         prefetch: '/users.json',
@@ -28,6 +28,7 @@ var ConversationsNew = new function(){
       });
   }
 };
+var MyConversationsNew = ConversationsNew;
 
 var ConversationsCreate = ConversationsNew;
 

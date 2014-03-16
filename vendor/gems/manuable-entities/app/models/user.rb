@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   belongs_to :last_product, class_name: "Product", foreign_key: 'last_product_id'
   has_many :access_tokens
   has_many :authentications, dependent: :destroy
-  has_many :products, dependent: :destroy
+  has_many :products, dependent: :destroy, inverse_of: :user
 
   has_many :my_followings, foreign_key: 'follower_id', class_name: "Following", dependent: :destroy
   has_many :followees, through: :my_followings, source: :followee, dependent: :destroy
@@ -71,7 +71,6 @@ class User < ActiveRecord::Base
   mount_uploader :cover, CoverUploader
 
   after_create :notify_signup
-  before_create :grab_avatar
   after_update :crop_avatar
 
   def slug

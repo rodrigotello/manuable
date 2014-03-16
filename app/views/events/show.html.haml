@@ -102,7 +102,8 @@
               - next unless user
               .span3
                 .mini-card
-                  = div_image user.avatar.url(:large), class: 'mini-card-avatar'
+                  - attachment = user.last_product.try(:attachments).try(:first).try(:attachment)
+                  = div_image (attachment || user.avatar).url(:large), class: 'mini-card-avatar'
                   .mini-card-footer
                     .mini-card-name= link_to user.name, user
                     .mini-card-location= user.location

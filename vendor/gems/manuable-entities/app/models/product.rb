@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   acts_as_taggable_on :prop
   acts_as_commontable
 
-  belongs_to :user, counter_cache: true
+  belongs_to :user, counter_cache: true, inverse_of: :products
   belongs_to :category, counter_cache: true
   belongs_to :notification, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
@@ -33,7 +33,7 @@ class Product < ActiveRecord::Base
     end
   }
   scope :recently_created, lambda { order('products.created_at DESC') }
-  scope :popular, lambda { order('products.likes_count DESC') }
+  scope :popular, lambda { order('coalesce(products.likes_count, 0) DESC') }
   scope :liked_by, lambda { |id_or_ids_or_record|
     if id_or_ids_or_record.is_a? user
       where(id: user.id)
