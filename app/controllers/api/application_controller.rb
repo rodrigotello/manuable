@@ -13,33 +13,70 @@ class Api::ApplicationController < ActionController::Base
   respond_to :json
   force_ssl if: :ssl_configured?
 
-  before_filter :authenticate!, except: :routing_error
+  # before_filter :hard_authenticate!, except: :routing_error
   before_filter :beta
-  before_filter :dev_user, if: proc { Rails.env.development? }
+  before_filter :dev_user, :set_headers, if: proc { Rails.env.development? }
 
   def routing_error
     raise ActionController::RoutingError.new(params[:path])
   end
 
+  def options_for_mopd
+    headers['Access-Control-Allow-Origin'] = request.headers["HTTP_ORIGIN"] || request.env['HTTP_ORIGIN'] || "*"
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, DELETE, OPTIONS, PUT'
+    headers['Access-Control-Max-Age'] = '1728000'
+    headers['Access-Control-Allow-Headers'] = 'X-CSRF-Token, Authorization, cache-control, content-range, accept, origin, session-id, content-disposition, x-requested-with, content-type, content-description, referer, user-agent'
+    head :ok
+  end
+
   protected
 
-  def authenticate!
+  def set_headers
+    headers['Access-Control-Allow-Origin'] = request.headers["HTTP_ORIGIN"] || request.env['HTTP_ORIGIN'] || "*"
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, DELETE, OPTIONS, PUT'
+    headers['Access-Control-Max-Age'] = '1728000'
+    headers['Access-Control-Allow-Headers'] = 'X-CSRF-Token, Authorization, cache-control, content-range, accept, origin, session-id, content-disposition, x-requested-with, content-type, content-description, referer, user-agent'
+  end
+
+  def hard_authenticate!
+    unless @current_user
+      render json: { status: 401, code: 'access_token.invalid' }
+    end
+    # # check out config/initializers/http_token.rb authenticate_or_request_with_http_token behevior modification
+
+    # authenticate_or_request_with_http_token do |token, options|
+    #   if token.blank?
+    #     render json: { status: 401, code: 'access_token.invalid' }
+    #   else
+    #     if access_token = AccessToken.where(token: token).first
+    #       if access_token.expires_at < DateTime.now
+    #         render json: { status: 401, code: 'access_token.expired' }
+    #       else
+    #         @current_token = access_token
+    #         @current_user = @current_token.user
+    #       end
+
+    #     else
+    #       render json: { status: 401, code: 'access_token.invalid' }
+    #     end
+    #   end
+    #   true
+    # end
+  end
+
+  def soft_authenticate!
     # check out config/initializers/http_token.rb authenticate_or_request_with_http_token behevior modification
 
     authenticate_or_request_with_http_token do |token, options|
-      if token.blank?
-        render json: { status: 401, code: 'access_token.invalid' }
-      else
+      unless token.blank?
         if access_token = AccessToken.where(token: token).first
-          if access_token.expires_at < DateTime.now
-            render json: { status: 401, code: 'access_token.expired' }
-          else
-            @current_token = access_token
-            @current_user = @current_token.user
+
+          unless access_token.expires_at < DateTime.now
+            access_token = access_token.user.access_tokens.create
           end
 
-        else
-          render json: { status: 401, code: 'access_token.invalid' }
+          @current_token = access_token
+          @current_user = @current_token.user
         end
       end
       true
@@ -61,7 +98,7 @@ class Api::ApplicationController < ActionController::Base
   end
 
   def catch_generic_exception exception
-    raise exception if Rails.env == "dev_api"
+    raise exception if Rails.env == "development"
     # raise exception if exception.is_a? Rack::OAuth2::Server::Resource::Bearer::Unauthorized
 
     exception_message = exception.message

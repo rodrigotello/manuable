@@ -30,6 +30,7 @@ class Product < ActiveRecord::Base
     else
       includes([:user, :category, :attachments])
       .where('products.attachments_count > 0')
+      .select("products.*, 0 AS liked")
     end
   }
   scope :recently_created, lambda { order('products.created_at DESC') }
@@ -52,11 +53,11 @@ class Product < ActiveRecord::Base
     end
 
     if params[:pop] == '1' || params[:new].blank?
-      query = query.popular
+      query = query.recently_created.popular
     end
 
     if params[:new] == '1'
-      query = query.order('products.created_at DESC')
+      query = query.recently_created
     end
 
     #if params[:special] == '1'
@@ -66,9 +67,16 @@ class Product < ActiveRecord::Base
     if params[:tags].present?
       query = query.tagged_with(params[:tags])
     end
+
+    if params[:user_id]
+      if params[:liked] == '1'
+        query = where(id: Like.where(user_id: params[:user_id]).pluck(:product_id))
+      else
+        query = where(user_id: params[:user_id])
+      end
+    end
     query
   end
-
   def ready?
     name.present? && attachments.count > 0 && category.present?
   end

@@ -86,6 +86,7 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    chunky_png (1.3.0)
     cliver (0.3.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -100,6 +101,10 @@ GEM
     commontator (4.2.1)
       jquery-rails
       rails (>= 3.1)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     conekta (0.3.6)
       bundler (~> 1.3)
       faraday
@@ -158,6 +163,7 @@ GEM
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
+    fssm (0.2.10)
     guard (2.2.5)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -428,6 +434,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails
   commontator (~> 4.2.0)
+  compass
   conekta
   daemons
   database_cleaner

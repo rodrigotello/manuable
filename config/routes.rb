@@ -72,6 +72,10 @@ Manuable::Application.routes.draw do
 
   scope defaults: { :format => :json }, :except => [:edit, :new] do
     namespace :api do
+      match '*path',
+            controller: 'application',
+            action: 'options_for_mopd',
+            via: :options
       resource :authentications, only: :create
       resources :categories
       resources :events

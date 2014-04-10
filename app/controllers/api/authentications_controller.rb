@@ -1,5 +1,4 @@
 class Api::AuthenticationsController < Api::ApplicationController
-  skip_before_filter :authenticate!
 
   def create
     @user = User.where(email: params[:email]).first!

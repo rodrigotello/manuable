@@ -1,7 +1,8 @@
 class Api::ProductsController < Api::ApplicationController
+  before_filter :hard_authenticate!, only: :like
 
   def index
-    @products = Product.feed(@current_user).page(params[:page])
+    @products = Product.filter(params).feed(@current_user).page(params[:page])
   end
 
   def show

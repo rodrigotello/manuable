@@ -14,6 +14,7 @@ gem "sprockets-rails"
 gem "pg"
 gem "conekta"
 gem "roadie", "~> 2.4.3"
+gem 'compass'
 # DB
   group :production do
     gem "puma", :github => "puma/puma"
