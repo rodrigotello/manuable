@@ -1,0 +1,19 @@
+<div class="product product-card">
+  <div class="product-card-image" ng-style="{ 'background-image': 'url(' + product.attachments[0].xmedium + ')' }">
+    <a class="product-img-link" ng-bind='product.name'></a>
+    <a class="manuable-like" ng-click='like()'>
+      <i class="fa" ng-class="{ true: 'fa-heart', false: 'fa-heart-o'}[product.liked]"></i>
+    </a>
+    <a class="fbshare" href="//www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.manuable.com%2Fproducts%2F1046" target="_blank">
+      <i class="fa fa-share-square-o"></i>
+    </a>
+  </div>
+  <div class="product-card-info">
+    <span class="product-card-name">
+      <a href="/products/1046" ng-bind='product.name'></a>
+    </span>
+    <a class="user" ui-sref="public.user.show.products({ id: product.user.id })">
+      <span class="user-name" ng-bind='product.user.name'></span>
+    </a>
+  </div>
+</div>

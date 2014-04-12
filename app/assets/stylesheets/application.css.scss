@@ -284,3 +284,42 @@ form .form-appendable{
   }
 }
 .text-center { text-align: center; }
+
+#about{
+  text-align: center;
+  h3{
+    font-weight: 400;
+    margin: 30px 0 0 0;
+    &:first-child{
+      margin-top: 0
+    }
+  }
+  .row-fluid{
+    margin-top: 50px;
+  }
+
+  .img-wrapper.claudio{
+    background-image: image-url('claudio.jpg')
+  }
+  .img-wrapper.rodrigo{
+    background-image: image-url('rodrigo.jpg')
+  }
+  .img-wrapper.cesar{
+    background-image: image-url('cesar.jpg')
+  }
+  .img-wrapper{
+    border-radius: 100px;
+    overflow: hidden;
+    margin: 0 auto 10px auto;
+    width: 150px;
+    height: 150px;
+    background-size: 150px;
+  }
+  .nombre, .desc{
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .nombre{
+    font-weight: bold;
+  }
+}

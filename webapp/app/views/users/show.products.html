@@ -1,0 +1,7 @@
+<section id="products">
+  <div masonry="{ transitionDuration: '0.4s', gutter: 30 }" column-width="240" preserve-order>
+    <product-card class='masonry-brick' ng-repeat="product in products" product='product'></product-card>
+  </div>
+
+  <a class="load-product-feed" ng-click='loadMore()'>Cargar más</a>
+</section>

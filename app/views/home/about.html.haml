@@ -7,58 +7,60 @@
   .span6.tab-content
     #about.tab-pane{ class: params[:s] == 'about' || params[:s].nil? ? 'active' : nil }
       %h3.text-center Manuable
-      %p.lead.text-center “Descubre productos hechos a mano”
+      %p.lead.text-center Amamo lo hecho a mano
 
+      %h3
+        Por qué Manuable
       %p
-        Queremos ser la comunidad de artesanos, artistas y consumidores conscientes que buscan vender y comprar sus productos directo de quien los hace.
-        Manuable es desarrollado por:
+        Sentimos que sólo del corazón nacen cosas hermosas y que comprar
+        %br
+        productos locales ayuda a integrarnos como sociedad, dándole valor a
+        %br
+        la intención de crear algo único para alguien más.
 
-      Claudio Tello.- Fundador y director creativo.
-      %br
-      Rodrigo Tello.- Cofundador, artista, arquitecto y diseñador.
-      %br
-      Mauricio Argüello.- Cofundador, diseño y sentido común.
-      %br
-      César Cejudo.- Cofundador, software guru
-      %br
-
-      %h4.text-center Nuestros valores
-      %h4 Sencillez
+      %h3
+        Cómo lo hacemos
       %p
-        Manuable quiere apreciar todos aquellos productos que se hacen con amor.
-      %h4 Personales
+        Somo un grupo de personas que intentamos consumir de manera
+        %br
+        diferente, buscamos un comercio más honesto y creemos que Manu-
+        %br
+        able puede cambiar la forma de vernos como una comunidad más
+        %br
+        integrade y alegre.
+      %h3
+        Qué es Manuable
       %p
-        Manuable quiere tratar con personas y no con compañías.
-      %h4 Honestos
-      %p
-        Manuable quiere hablar de quien hace y como se hace.
-      %h4 Alegres
-      %p
-        Manuable quiere hacerte sentir bien, por medio de nuestro espíritu de servicio.
-      %h4 Mejorables
-      %p
-        Manuable quiere aprender de nuestra comunidad creativa.
-      %h4 Multiculturales
-      %p
-        Manuable quiere incluir la riqueza de contrastes de quienes vivimos en México.
-
-
-      %h4.text-center Nuestro servicio
-      %h4 Accesible
-      %p
-        Es fácil de encontrar y sencillo de usar. Cualquiera puede comprar y vender.
-      %h4 Personalizado
-      %p
-        Puedes hacer tu perfil y hablar de tus productos como tú lo prefieras.
-      %h4 Confiable
-      %p
-        Protegemos al comprador así como al vendedor, porque nos respaldamos con instituciones sólidas.
-      %h4 Amigable
-      %p
-        Te permite tener una experiencia divertida, donde no solo compras sino además descubres.
-      %h4 Útil
-      %p
-        Es una herramienta de venta en línea,  que te conecta con personas creativas y artesanales.
+        Manuable es una herramiento para compartir productos hecho a
+        %br
+        mano y organizar Mercaditos, abrimos las puestas para mostrar al
+        %br
+        mercado el trabajo de diseñadores, artesanos y artisitas Mexicanos.
+      .row-fluid
+        .span4
+          .img-wrapper.cesar
+          .nombre
+            César Cejudo
+          .desc
+            Cofundador,
+            %br
+            "Pico teclas"
+        .span4
+          .img-wrapper.claudio
+          .nombre
+            Claudio Tello
+          .desc
+            Fundador y
+            %br
+            director creativo
+        .span4
+          .img-wrapper.rodrigo
+          .nombre
+            Rodrigo Tello
+          .desc
+            Cofundador, artista,
+            %br
+            arquitecto y diseñador
 
     #terms.tab-pane{ class: params[:s] == 'terms' ? 'active' : nil }
       %h3.text-center Términos y condiciones de uso

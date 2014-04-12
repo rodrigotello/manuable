@@ -1,0 +1,12 @@
+<section >
+  <div class="row">
+    <div class="col-md-3" ng-repeat='follow in follows'>
+      <div class="item">
+        <div class="user-avatar" ng-style="{ 'background-image': 'url(' + user.avatar.medium + ')' }"></div>
+        <div class="item-name"><a ui-sref="public.user.show.products({ id: follow.id })" ng-bind='follow.name'></a></div>
+        <div class="item-location" ng-bind='follow.location'></div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,76 @@
+body {
+  padding-top: 70px;
+}
+header {
+  .navbar {
+    margin-bottom: 0;
+    min-height: 68px;
+    .icon-bar {
+      background-color: #fff;
+    }
+  }
+  .navbar-brand {
+    padding: 8px 15px;
+    height: 68px;
+    line-height: 45px;
+    img {
+      height: 35px;
+    }
+  }
+  .navbar-nav>li>a{
+    padding: 8px 15px;
+    height: 68px;
+    line-height: 68px;
+  }
+  .navbar-toggle {
+    margin-top: 16px;
+  }
+}
+.navbar-subnav{
+  padding: 0;
+  min-height: 66px;
+  border: 1px solid #1970a2;
+  background: #3cadee;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #3cadee 0%, #2fa6ea 50%, #239fe7 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3cadee), color-stop(50%, #2fa6ea), color-stop(100%, #239fe7));
+  background: -webkit-linear-gradient(top, #3cadee 0%, #2fa6ea 50%, #239fe7 100%);
+  background: -o-linear-gradient(top, #3cadee 0%, #2fa6ea 50%, #239fe7 100%);
+  background: -ms-linear-gradient(top, #3cadee 0%, #2fa6ea 50%, #239fe7 100%);
+  background: linear-gradient(to bottom, #3cadee 0%, #2fa6ea 50%, #239fe7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3cadee', endColorstr='#239fe7',GradientType=0 );
+  .icon-bar {
+    background-color: #fff;
+  }
+  .divider-vertical{
+    border-right: 1px solid #1970a2;
+    height: 65px;
+  }
+  .nav .open>a, .nav .open>a:hover, .nav .open>a:focus { background-color: transparent; }
+  .navbar-nav>li>a {
+    color: #1f475d;
+    &.active {
+      color: #d8eaf5;
+      text-decoration: underline;
+    }
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 64px;
+    &:hover, &:active, &:focus{
+      background-color: transparent;
+    }
+  }
+  .container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .navbar-nav>li.dropdown>a {
+    color: #fff;
+    i{
+      margin-left: 10px;
+    }
+  }
+  .navbar-nav>li>.dropdown-menu a { color: #000; }
+
+}
