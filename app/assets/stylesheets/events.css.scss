@@ -454,6 +454,7 @@ $p-regular: 15px;
     padding-top: 1px;
     position: relative;
     background-position: top center;
+    background-size: 100% 100%;
     #event-admin-options {
       bottom: 20px;
       right: 20px;
@@ -464,6 +465,7 @@ $p-regular: 15px;
       bottom: 70px;
       left: 100px;
       color: #fff;
+      text-shadow: 1px 1px 1px #000;
       .event-name{
         font-weight: 600;
         margin: 0;

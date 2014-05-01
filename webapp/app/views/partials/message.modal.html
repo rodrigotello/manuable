@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h3 class='text-center' ng-bind='user.name'></h3>
+</div>
+
+<div class="modal-body" id='new-message'>
+  <div id="messages" scroll-glue>
+    <div class="media message" ng-repeat="message in messages">
+      <a class="pull-left" href="#">
+        <div class="media-object user-round-avatar" ng-style="{ 'background-image': 'url(' + message.from.avatar.small + ')' }"></div>
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading" ng-bind="message.from.name"></h4>
+        <span class="created_at pull-right">{{ message.created_at | amDateFormat:'Do YYYY, h:mm a' }}</span>
+        {{ message.body }}
+      </div>
+    </div>
+  </div>
+  <form role="form" ng-submit='submit()'>
+    <div class="form-group">
+      <div class="media message">
+        <a class="pull-left" href="#">
+          <div class="media-object user-round-avatar" ng-style="{ 'background-image': 'url(' + currentUser.avatar.small + ')' }"></div>
+        </a>
+        <div class="media-body">
+          <textarea ng-model='conversation.body' class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-group send">
+      <button type="submit" class="btn btn-block btn-primary">Enviar</button>
+    </div>
+  </form>
+
+</div>
+
+  <!--<div class="modal-footer">-->
+    <!--<button class="btn btn-primary" ng-click="ok()">OK</button>-->
+    <!--<button class="btn btn-warning" ng-click="cancel()">Cancel</button>-->
+  <!--</div>-->

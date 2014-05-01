@@ -76,12 +76,20 @@ Manuable::Application.routes.draw do
             controller: 'application',
             action: 'options_for_mopd',
             via: :options
+      namespace :my do
+        resource :profile, except: [:create, :destroy]
+        resources :products
+      end
       resource :authentications, only: :create
       resources :categories
       resources :events
       resources :users, only: [:show, :index] do
+        resources :messages
+        resources :conversations
+        post :follow, on: :member, controller: :followings, action: :create
+        delete :follow, on: :member, controller: :followings, action: :destroy
         resources :products, shallow: true do
-          post :like, on: :member
+          post :likes, on: :member
         end
       end
       resources :products, only: :index

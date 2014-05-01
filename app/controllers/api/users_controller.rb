@@ -11,7 +11,7 @@ class Api::UsersController < Api::ApplicationController
   end
 
   def show
-    @user = User.where(id: params[:id]).first!
+    @user = User.relation_with(@current_user).where(id: params[:id]).first!
   end
 
 end

@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h3 class='text-center'>Entrar</h3>
+</div>
+
+<div class="modal-body">
+  <div class="row" ng-init='signingin = false'>
+    <div class="col-xs-offset-2 col-xs-8" ng-show='signingin'>
+      <form class="form-horizontal" role="form" ng-submit='submit()'>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">OK</button>
+  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

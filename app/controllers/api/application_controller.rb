@@ -4,17 +4,12 @@ class Api::ApplicationController < ActionController::Base
   rescue_from Exception, with: :catch_generic_exception
   rescue_from ActiveRecord::RecordNotFound, :with => :catch_record_not_found_error
   rescue_from ActionController::RoutingError, :with => :catch_route_not_found_error
-  # rescue_from InteamExceptions::NotFoundError, :with => :catch_record_not_found_error
-  # rescue_from InteamExceptions::NotEnoughPermissionsError, :with => :catch_not_enough_permission
-  # rescue_from InteamExceptions::MissingParametersError, :with => :catch_bad_parameters_error
-  # rescue_from InteamExceptions::UnexpectedError, :with => :catch_unexpected_error
-  # rescue_from ActionController::RoutingError, :with => :catch_route_not_found
 
   respond_to :json
   force_ssl if: :ssl_configured?
 
   # before_filter :hard_authenticate!, except: :routing_error
-  before_filter :beta
+  before_filter :beta, :soft_authenticate!
   before_filter :dev_user, :set_headers, if: proc { Rails.env.development? }
 
   def routing_error
@@ -23,7 +18,7 @@ class Api::ApplicationController < ActionController::Base
 
   def options_for_mopd
     headers['Access-Control-Allow-Origin'] = request.headers["HTTP_ORIGIN"] || request.env['HTTP_ORIGIN'] || "*"
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, DELETE, OPTIONS, PUT'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, DELETE, OPTIONS, PUT, PATCH'
     headers['Access-Control-Max-Age'] = '1728000'
     headers['Access-Control-Allow-Headers'] = 'X-CSRF-Token, Authorization, cache-control, content-range, accept, origin, session-id, content-disposition, x-requested-with, content-type, content-description, referer, user-agent'
     head :ok
@@ -33,7 +28,7 @@ class Api::ApplicationController < ActionController::Base
 
   def set_headers
     headers['Access-Control-Allow-Origin'] = request.headers["HTTP_ORIGIN"] || request.env['HTTP_ORIGIN'] || "*"
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, DELETE, OPTIONS, PUT'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, DELETE, OPTIONS, PUT, PATCH'
     headers['Access-Control-Max-Age'] = '1728000'
     headers['Access-Control-Allow-Headers'] = 'X-CSRF-Token, Authorization, cache-control, content-range, accept, origin, session-id, content-disposition, x-requested-with, content-type, content-description, referer, user-agent'
   end

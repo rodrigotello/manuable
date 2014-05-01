@@ -29,23 +29,21 @@
             </li>
             <li ng-if='currentUser' class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <div class="user-round-avatar" style="background-image: url(https://manuable.s3.amazonaws.com/uploads/user/avatar/43/small_dontpanic_1024-300x225.jpg)"></div>
-                <span class="user-name">
-                César
-                </span>
+                <div class="user-round-avatar" ng-style="{ 'background-image': 'url(' + currentUser.avatar.small + ')' }"></div>
+                <span class="user-name" ng-bind='currentUser.first_name'></span>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="/users/43"><i class="fa fa-user"></i> Mi perfil</a>
+                  <a ui-sref='public.user.show.products({ id: currentUser.id })'><i class="fa fa-user"></i> Mi perfil</a>
                 </li>
                 <li>
-                  <a href="/my/profile/edit?f=s"><i class="fa fa-cogs"></i> Mi información</a>
+                  <a ui-sref="public.my.profile"><i class="fa fa-cogs"></i> Mi información</a>
                 </li>
                 <li>
                   <a href="/about"><i class="fa fa-question"></i> Ayuda</a>
                 </li>
                 <li>
-                  <a data-method="delete" href="/user/sign_out" rel="nofollow"><i class="fa fa-power-off"></i> Salir</a>
+                  <a ui-sref="public.logout"><i class="fa fa-power-off"></i> Salir</a>
                 </li>
               </ul>
             </li>

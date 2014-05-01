@@ -1,7 +1,20 @@
 body {
   padding-top: 70px;
 }
+.dropdown-menu>li>a{
+  padding: 3px 10px;
+  i { margin-right: 5px; width: 15px; }
+  &:hover{
+    color: #32C5E7;
+    background: #F2FBFD;
+  }
+}
 header {
+  .nav .open>a, .nav .open>a:hover, .nav .open>a:focus, .nav>li>a:hover, .nav>li>a:focus, .nav>li>a:active{
+    background: #32C5E7;
+    color: #fff;
+  }
+
   .navbar {
     margin-bottom: 0;
     min-height: 68px;
@@ -74,3 +87,4 @@ header {
   .navbar-nav>li>.dropdown-menu a { color: #000; }
 
 }
+

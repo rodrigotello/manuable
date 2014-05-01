@@ -1,23 +1,18 @@
 class Api::FollowingsController < Api::ApplicationController
-  before_filter :authenticate_user!
+  before_filter :find_user
+  before_filter :hard_authenticate!
 
   def create
-    @user = User.find params[:id]
     @following = current_user.follow!(@user)
-
-    respond_to do |format|
-      format.json { render json: @following }
-      format.html { redirect_to @user }
-    end
   end
 
   def destroy
-    @user = User.find params[:id]
     @following = current_user.unfollow!(@user)
+  end
 
-    respond_to do |format|
-      format.json { render json: true }
-      format.html { redirect_to @user }
-    end
+  private
+
+  def find_user
+    @user = User.find params[:id]
   end
 end

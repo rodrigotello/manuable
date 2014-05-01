@@ -1,0 +1,79 @@
+<div class="row m-t-lg">
+  <div class="col-xs-6 col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">Información Personal</div>
+      <div class="panel-body">
+        <form role="form" autosave='user' ng-submit='updateProfile()'>
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="test" class="form-control" id="name" ng-model='user.name' placeholder="Nombre">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" ng-model='user.email' placeholder="Correo eletrónico">
+          </div>
+          <div class="autosave-progress"></div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Cambiar contraseña</div>
+      <div class="panel-body">
+        <form role="form" autosave='password' ng-submit='updatePassword()'>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="test" class="form-control" id="password" ng-model='password.new' placeholder="Contraseña">
+          </div>
+          <div class="form-group">
+            <label for="confirmation">Confirmación</label>
+            <input type="test" class="form-control" id="confirmation" ng-model='password.confirm' placeholder="Confirmación">
+          </div>
+          <div class="form-group">
+            <label for="password_current">Contraseña actual</label>
+            <input type="test" class="form-control" id="password_current" ng-model='password.confirm' placeholder="Contraseña actual">
+          </div>
+          <button type="submit" class='btn btn-default pull-right'> Cambiar </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-8" id='mis-productos'>
+    <div class="panel panel-default">
+      <div class="panel-heading">Mis productos</div>
+      <div class="panel-body">
+        <div class="row">
+          <a ng-click='newProductModal()' class="col-sm-6 col-md-4 add-product">
+            <div class="thumbnail">
+              <div class="caption">
+                 <i class="fa fa-plus-circle"></i>
+              </div>
+            </div>
+          </a>
+          <div class="col-sm-6 col-md-4" ng-repeat="product in products">
+            <div class="thumbnail">
+              <img ng-src="{{ product.attachments[0].medium }}" style='height: 100px;'>
+              <div class="caption">
+                <h3 ng-bind='product.name'></h3>
+                <p class='acerca'>{{ product.about }}</p>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default"><i class='fa fa-times'></i></button>
+                  <button type="button" class="btn btn-default"><i class='fa fa-times'></i></button>
+                  <button type="button" class="btn btn-default"><i class='fa fa-pencil'></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 add-product" ng-show='products.length > 9'>
+            <div class="thumbnail">
+              <div class="caption">
+                 <i class="fa fa-plus-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ui-view="myYield"></div>

@@ -11,12 +11,6 @@ GIT
   specs:
     nested_form (0.3.2)
 
-PATH
-  remote: vendor/gems/manuable-entities
-  specs:
-    manuable-entities (0.0.1)
-      rails (~> 4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -458,7 +452,6 @@ DEPENDENCIES
   less-rails
   letter_opener
   libv8 (~> 3.11.8)
-  manuable-entities!
   meta_request
   nested_form!
   newrelic_rpm

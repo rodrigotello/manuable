@@ -7,10 +7,11 @@
     <div class="user-location" ng-bind='user.location'>
     </div>
     <div class="user-description">
-    <a class="transparent-button" href="/users/43/events" id="user-events" rel="modal">Mis Mercaditos</a>
-    <div class="user-about" ng-bind='user.about'>
-
-    </div>
+      <a class="transparent-button" href="/users/43/events" id="user-events" rel="modal">Mis Mercaditos</a>
+      <a ng-if="user.id !== currentUser.id" class="follow" ng-click='messageModal()' id="message-user"><i class="fa fa-envelope-o"></i></a>
+      <a ng-if="user.id !== currentUser.id" href="#" nonav id="follow-user" ng-show='user.followed' ng-click='unfollow()'>Siguiendo</a>
+      <a ng-if="user.id !== currentUser.id" href="#" nonav id="follow-user" ng-hide='user.followed' ng-click='follow()'>Seguir</a>
+      <div class="user-about" ng-bind='user.about'></div>
     </div>
   </div>
 
@@ -31,7 +32,7 @@
         <ul class="nav navbar-nav">
           <li><a ui-sref='public.user.show.products({ id: user.id })'>Productos</a></li>
           <li class="divider-vertical"></li>
-          <li><a ui-sref='public.user.show.likes({ id: user.id })'>Gustos</a></li>
+          <li><a ui-sref='public.user.show.likes({ id: user.id })' ng-click='$event.preventDefault()'>Gustos</a></li>
           <li class="divider-vertical"></li>
           <li><a ui-sref='public.user.show.followers({ id: user.id })'>Seguidores</a></li>
           <li class="divider-vertical"></li>
