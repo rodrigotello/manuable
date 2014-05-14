@@ -9,6 +9,7 @@ angular.module('manuableApp')
     });
   })
   .controller('MyShowCtrl', function($rootScope, $scope, $q, currentUser, Restangular, $fileUploader){
+    $scope.newProduct = {};
     $scope.updateProfile = function(){
       Restangular.all('my').one('profile').patch($scope.user).then(function(user){
         currentUser().updateUser(_.pick(user, ['country_id', 'cover_url', 'avatar', 'first_name', 'id', 'location', 'name', 'nickname', 'state_id']));
@@ -31,19 +32,24 @@ angular.module('manuableApp')
       return '|jpg|png|jpeg|gif|'.indexOf(type) !== -1;
     });
 
-
+    var newProductReveal = false;
     // REGISTER HANDLERS
 
     uploader.bind('afteraddingfile', function (event, item) {
-      console.info('After adding a file', item);
+      alert('x')
+      item.upload();
+      $scope.newProduct.attachments.push(item);
+
+      if ( !newProductReveal ){
+        newProductReveal = true;
+        $scope.newProductModal($scope);
+      }
     });
 
     uploader.bind('whenaddingfilefailed', function (event, item) {
-      console.info('When adding a file failed', item);
     });
 
     uploader.bind('afteraddingall', function (event, items) {
-      console.info('After adding all files', items);
     });
 
     uploader.bind('beforeupload', function (event, item) {

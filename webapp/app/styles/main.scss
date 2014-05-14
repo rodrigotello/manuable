@@ -445,9 +445,10 @@ header {
     }
   }
 }
-.my-drop-zone { border: dotted 3px lightgray; }
-.ng-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-.another-file-over-class { border: dotted 3px green; }
+.ng-file-over { border: 2px dashed red !important; }
+.ng-file-over-msg { display: none; }
+.ng-file-over .ng-file-over-msg { display: block; }
+.another-file-over-class { border: 3px dotted green; }
 canvas {
   background-color: #f3f3f3;
   -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
@@ -494,7 +495,7 @@ canvas {
         color: #32C5E7;
       }
       background: #F2FBFD;
-      border: 1px solid #32C5E7;
+      border: 2px solid #32C5E7;
       height: 298px;
       line-height: 265px;
     }

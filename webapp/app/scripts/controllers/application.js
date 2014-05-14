@@ -1,5 +1,6 @@
 'use strict';
 var LoginModalController = function($scope, $http, $modalInstance, currentUser, $state, $stateParams, Restangular, $cookieStore){
+  $scope.login = {};
   var login = function(email, password, callback){
     $http({
       method  : 'POST',
@@ -63,10 +64,11 @@ angular.module('manuableApp')
       });
     };
 
-    $rootScope.newProductModal = function(){
+    $rootScope.newProductModal = function(s){
       $modal.open({
         templateUrl: '/views/partials/new.product.html',
-        controller: NewProductModalController
+        controller: NewProductModalController,
+        scope: s || $rootScope
       });
     };
 

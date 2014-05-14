@@ -1,3 +1,10 @@
+production:
+  username: goreorto
+  adapter: postgresql
+  database: manuable_development
+  password:
+  pool: 5
+  timeout: 5000
 development:
   username: goreorto
   adapter: postgresql

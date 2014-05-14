@@ -42,13 +42,14 @@
       <div class="panel-heading">Mis productos</div>
       <div class="panel-body">
         <div class="row">
-          <a ng-click='newProductModal()' class="col-sm-6 col-md-4 add-product">
-            <div class="thumbnail">
+          <div ng-file-drop class="col-sm-6 col-md-4 add-product">
+            <div class="ng-file-over-msg">Saltar Aquí</div>
+            <div class="thumbnail" ng-file-over>
               <div class="caption">
                  <i class="fa fa-plus-circle"></i>
               </div>
             </div>
-          </a>
+          </div>
           <div class="col-sm-6 col-md-4" ng-repeat="product in products">
             <div class="thumbnail">
               <img ng-src="{{ product.attachments[0].medium }}" style='height: 100px;'>
