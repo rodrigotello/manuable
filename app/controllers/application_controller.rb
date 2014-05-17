@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   rescue_from Exception, with: :catch_generic_exception
-  force_ssl if: :ssl_configured?
+  #force_ssl if: :ssl_configured?
 
   layout :set_layout
   before_filter :force_update_profile
