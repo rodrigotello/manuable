@@ -6,7 +6,7 @@ CarrierWave.configure do |config|
   }
   config.cache_dir = "#{Rails.root}/tmp/uploads"
   config.fog_directory  = 'manuable02'                     # required
-  config.fog_public     = true                                   # optional, defaults to true
+  config.fog_public     = false                                   # optional, defaults to true
   config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }  # optional, defaults to {}
   # config.asset_host       = "//manuable.s3.amazonaws.com/"
 
