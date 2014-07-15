@@ -6,7 +6,7 @@ production:
   pool: 5
   timeout: 5000
 development:
-  username: goreorto
+  username: csrfls
   adapter: postgresql
   database: manuable_development
   password:
@@ -14,7 +14,7 @@ development:
   timeout: 5000
 
 dev_api:
-  username: goreorto
+  username: csrfls
   adapter: postgresql
   database: manuable_development
   password:
@@ -28,7 +28,7 @@ test:
   timeout: 5000
 
 staging:
-  username: goreorto
+  username: csrfls
   adapter: postgresql
   database: manuable_development
   password:
