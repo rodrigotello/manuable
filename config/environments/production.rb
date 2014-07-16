@@ -33,10 +33,10 @@ Manuable::Application.configure do
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
     :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "cesar@letwrong.com",
-    :password  => "bSskXYRHVB577XkXjkpPoA", # SMTP password is any valid API key
+    :user_name => "sesar.fls@gmail.com",
+    :password  => "tnomYP335DyIlbeS7LigLA", # SMTP password is any valid API key
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'letwrong.com', # your domain to identify your server when connecting
+    :domain => 'manuable.com', # your domain to identify your server when connecting
   }
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
