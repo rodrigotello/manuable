@@ -14,7 +14,7 @@ development:
   timeout: 5000
 
 dev_api:
-  username: csrfls
+  username: goreorto
   adapter: postgresql
   database: manuable_development
   password:
@@ -28,7 +28,7 @@ test:
   timeout: 5000
 
 staging:
-  username: csrfls
+  username: goreorto
   adapter: postgresql
   database: manuable_development
   password:
