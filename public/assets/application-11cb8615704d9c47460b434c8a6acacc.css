@@ -10132,7 +10132,7 @@ transform:scale(.3)}
 .user {
   width: 1064px;
   margin: 0 auto; }
-  .user #followees, .user #followers, .user #likes {
+  .user #followings, .user #followers, .user #likes {
     display: none; }
   .user .cover {
     background-position: top center;
