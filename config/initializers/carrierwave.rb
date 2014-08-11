@@ -1,8 +1,10 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
     :provider               => 'AWS',                        # required
-    :aws_access_key_id      => ENV['AWS_ACCESS_KEY'],                        # required
-    :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],
+    #:aws_access_key_id      => ENV['AWS_ACCESS_KEY'],                        # required
+    #:aws_secret_access_key  => ENV['AWS_SECRET_KEY'],
+    :aws_access_key_id      => 'AKIAJRMTLFJYA6JZYGHA',
+    :aws_secret_access_key  => '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',
     :region                 => 'us-west-2'
   }
   config.cache_dir = "#{Rails.root}/tmp/uploads"
