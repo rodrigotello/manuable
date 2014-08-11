@@ -42,7 +42,7 @@
           = div_image u.avatar.url(:medium), class: 'user-avatar'
           .item-name= link_to u.name, u
           .item-location= u.location
-  %section#followees
+  %section#followings
     %ul.user-list.clearfix
       - @user.followees.each do |u|
         .item
