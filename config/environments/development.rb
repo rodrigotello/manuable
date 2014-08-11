@@ -21,7 +21,24 @@ Manuable::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+  #config.action_mailer.default_url_options = { :host => "localhost", :port => '3000' }
+
+  # Specifies the header that your server uses for sending files
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  #config.action_mailer.default_url_options = { :host => "www.manuable.com" }
   config.action_mailer.default_url_options = { :host => "localhost", :port => '3000' }
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mailgun.org",
+    :port      => 587,
+    #:enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "postmaster@sandbox6a61ab7f86b243d381f88141d7baf32d.mailgun.org",
+    :password  => "d081135b9816dfd51c9c13d45737c019", # SMTP password is any valid API key
+    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
+    :domain => 'manuable.com', # your domain to identify your server when connecting
+  }
 
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict

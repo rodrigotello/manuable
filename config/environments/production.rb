@@ -30,12 +30,12 @@ Manuable::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => "www.manuable.com" }
   config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
+    :address   => "smtp.mailgun.org",
     :port      => 587,
     :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "sesar.fls@gmail.com",
-    :password  => "tnomYP335DyIlbeS7LigLA", # SMTP password is any valid API key
-    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :user_name => "postmaster@manuable.com",
+    :password  => "1d2058d7d9c02e887273b7cd19380663", # SMTP password is any valid API key
+    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
     :domain => 'manuable.com', # your domain to identify your server when connecting
   }
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.

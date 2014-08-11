@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.integer  "author_id"
     t.string   "author_type"
     t.text     "body"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "namespace"
   end
 
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_admin_notes_on_resource_type_and_resource_id", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.text     "parameters"
     t.integer  "recipient_id"
     t.string   "recipient_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.string   "attachment"
     t.string   "attachable_type"
     t.integer  "attachable_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "name"
   end
 
@@ -88,19 +88,24 @@ ActiveRecord::Schema.define(version: 20140316141247) do
   create_table "authentications", force: true do |t|
     t.string   "provider"
     t.string   "uuid"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "categories", force: true do |t|
     t.string   "name"
     t.integer  "sort"
     t.integer  "parent_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "value"
     t.integer  "products_count"
+  end
+
+  create_table "categories_products", id: false, force: true do |t|
+    t.integer "category_id"
+    t.integer "product_id"
   end
 
   create_table "cities", force: true do |t|
@@ -164,8 +169,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.integer  "to_id"
     t.integer  "unread_by_id"
     t.text     "last_message"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "conversations", ["from_id", "to_id"], name: "index_conversations_on_from_id_and_to_id", using: :btree
@@ -200,8 +205,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.string   "name"
     t.integer  "price"
     t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "event_products", ["event_id"], name: "index_event_products_on_event_id", using: :btree
@@ -210,8 +215,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.integer  "event_id"
     t.integer  "user_id"
     t.boolean  "accepted"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "event_sale_categories", force: true do |t|
@@ -224,8 +229,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
   create_table "event_schedule_categories", force: true do |t|
     t.string   "name"
     t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "event_schedules", force: true do |t|
@@ -234,8 +239,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.string   "name"
     t.integer  "event_schedule_category_id"
     t.integer  "event_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
@@ -248,8 +253,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.integer  "price"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.decimal  "lat"
     t.decimal  "lng"
     t.string   "location"
@@ -265,7 +270,6 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.text     "requirements"
     t.boolean  "paid",                    default: false
     t.text     "info_for_accepted_users"
-    t.integer  "attachments_count"
     t.integer  "plan_id"
     t.string   "conekta_charge_id"
     t.string   "bank_name"
@@ -282,8 +286,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
   create_table "followings", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "likes", force: true do |t|
@@ -297,8 +301,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.integer  "from_id"
     t.text     "body"
     t.integer  "conversation_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
@@ -309,8 +313,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.integer  "comment_id"
     t.string   "code"
     t.boolean  "read",       default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "product_id"
   end
 
@@ -319,8 +323,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
     t.integer  "user_id"
     t.integer  "price"
     t.text     "about"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "category_id"
     t.string   "amount"
     t.integer  "likes_count",       default: 0
@@ -351,8 +355,8 @@ ActiveRecord::Schema.define(version: 20140316141247) do
   end
 
   create_table "users", force: true do |t|
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -381,7 +385,7 @@ ActiveRecord::Schema.define(version: 20140316141247) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["nickname"], name: "index_users_on_nickname", using: :btree
+  add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
