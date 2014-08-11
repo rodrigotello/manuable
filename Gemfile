@@ -18,6 +18,7 @@ gem 'compass'
   group :production do
     gem "puma", :github => "puma/puma"
     gem "newrelic_rpm"
+    gem "rails_12factor"
   end
   gem "activemerchant"
   gem "jquery-rails"
