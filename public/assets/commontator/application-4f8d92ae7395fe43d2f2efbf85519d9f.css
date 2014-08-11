@@ -1,0 +1,122 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+.comment {
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+
+  border-top: 1px solid;
+  border-left: 1px solid;
+  
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  padding-top: 8px;
+  padding-left: 15px;
+
+  color: #000;
+  border-color: #ddd;
+  background-color: #fff;
+  
+  clear: both;
+}
+
+.comment_actions {
+  float: right;
+}
+
+.comment_body {
+  margin-left: 55px;
+  margin-right: 45px;
+
+  padding: 8px;
+}
+
+.comment_body p {
+	margin: 0px;
+
+	overflow: hidden;
+}
+
+.comment_div {
+	clear: both;
+}
+
+.comment_form_actions {
+  margin-top: 15px;
+}
+
+.comment_form_field > .field_with_errors {
+  display: block;
+  padding-right: 4px;
+}
+
+.comment_form_field textarea {
+  padding: 0px;
+
+  width: 100%;
+}
+
+.comment_gravatar_image {
+  float: left;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.comment_timestamp {
+	color: #777;
+  display: inline-block;
+}
+
+.comment_votes {
+  float: right;
+  
+  text-align: center;
+}
+
+.comment_votes input,
+.comment_votes img {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+}
+
+.comment_votes form {
+  margin: 0px;
+}
+
+.comment_vote_count p {
+  margin: 0px;
+}
+.thread {
+  display: block !important;
+}
+
+.thread_actions {
+  float: right;
+}
+
+.thread_header {
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.thread_new_comment {
+  display: none;
+  padding-left: 15px;
+}
