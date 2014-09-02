@@ -6,12 +6,14 @@ production:
   pool: 5
   timeout: 5000
 development:
-  username: csrfls
+  username: anasofiarivassepulveda
   adapter: postgresql
   database: manuable_development
   password:
   pool: 5
   timeout: 5000
+  host: localhost
+  port: 5432
 
 dev_api:
   username: goreorto
