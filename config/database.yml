@@ -1,22 +1,22 @@
 production:
-  username: goreorto
+  username: manuable
   adapter: postgresql
   database: manuable_development
   password:
   pool: 5
   timeout: 5000
+  
 development:
-  username: anasofiarivassepulveda
+  username: manuable
   adapter: postgresql
   database: manuable_development
-  password:
+  password: manuabledev
   pool: 5
   timeout: 5000
   host: localhost
-  port: 5432
 
 dev_api:
-  username: goreorto
+  username: manuable
   adapter: postgresql
   database: manuable_development
   password:
@@ -30,7 +30,7 @@ test:
   timeout: 5000
 
 staging:
-  username: goreorto
+  username: manuable
   adapter: postgresql
   database: manuable_development
   password:
