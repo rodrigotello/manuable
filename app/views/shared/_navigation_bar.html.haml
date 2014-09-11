@@ -34,6 +34,8 @@
           %li#inbox{ class: current_user.has_notifications? ? 'active' : '' }
             %a{ href: my_conversations_path }
               %i.fa.fa-envelope-o
+          %li
+            = link_to 'Carrito', carts_path , class: 'transparent-button'
           -#%li#notifications{ class: current_user.notifications.unread.count > 0 ? 'active' : '' }
             -#.dropdown
               -#%a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }

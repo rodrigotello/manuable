@@ -13,7 +13,9 @@
       - else
         = link_to( "#sign_popup", "data-toggle" => "modal", class: "manuable-like") do
           %i.fa.fa-heart-o
-      = link_to "//www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(product)}", target: "_blank", class: 'fbshare' do
+      /= link_to "//www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(product)}", target: "_blank", class: 'fbshare' do
+      /%i.fa.fa-share-square-o
+      = link_to( new_cart_path(product_id: product.id), class: 'fbshare') do
         %i.fa.fa-share-square-o
 
     .product-card-info

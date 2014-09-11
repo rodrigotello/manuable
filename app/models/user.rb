@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   has_many :products, dependent: :destroy, inverse_of: :user
 
+  has_one :premium_user_data
+
+  has_many :carts
+  has_many :cart_products, through: :carts, source: :product
+
   has_many :my_followings, foreign_key: 'follower_id', class_name: "Following", dependent: :destroy
   has_many :followees, through: :my_followings, source: :followee, dependent: :destroy
 

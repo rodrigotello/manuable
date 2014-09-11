@@ -1,4 +1,5 @@
 Manuable::Application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # match "/404", :to => "errors#not_found"
   # match "/500", :to => "errors#app_failure"
@@ -26,6 +27,8 @@ Manuable::Application.routes.draw do
     post :like, on: :member
     resources :attachments
   end
+
+  resources :carts 
 
   resources :event_payments do
     post :oxxo_payment, on: :member

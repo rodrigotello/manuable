@@ -1,0 +1,5 @@
+<h1>Mi carrito</h1>
+<%= @carts.each do |c| %>
+	<li><%= c.name %>
+	<%= link_to 'Borrar', c, method: :delete %>
+<% end %>
