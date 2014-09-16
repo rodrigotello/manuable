@@ -1,5 +1,14 @@
 <h1>Mi carrito</h1>
-<%= @carts.each do |c| %>
-	<li><%= c.name %>
-	<%= link_to 'Borrar', c, method: :delete %>
+<% @total = 0 %>
+<% @carts.each do |c| %>
+	<li><%= c.product.name %></li>
+	<li><%= c.product.user.name %></li>
+	<li>Precio: $<%= c.product.price %></li>
+	<h3><%= link_to 'Borrar', c, method: :delete %></h3>
+	<% @total = @total + c.product.price %>
 <% end %>
+<h2>Total a Pagar: <%= @total %></h2>
+<p>
+	<%= link_to 'Seguir comprando', root_path %>
+	<%= link_to 'Pasar a pagar', '#' %>
+</p>

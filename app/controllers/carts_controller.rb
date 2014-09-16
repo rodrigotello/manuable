@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   
   def index
-  	@carts = current_user.cart_products	
+  	@carts = current_user.carts
   end
 
   def new
@@ -9,9 +9,10 @@ class CartsController < ApplicationController
   	redirect_to carts_path
   end
 
-  def delete
-  	@products = current_user.cart_products
-	current_user.carts.find(params[:id]).delete
+  def destroy
+  	@carts = current_user.carts
+    #current_user.carts.find(params[:id]).delete
+    Cart.find(params[:id]).destroy
   	redirect_to carts_path
   end
 
