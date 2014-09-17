@@ -29,6 +29,7 @@ Manuable::Application.routes.draw do
   end
 
   resources :carts 
+  resources :premium_user_datum
 
   resources :event_payments do
     post :oxxo_payment, on: :member

@@ -1,0 +1,22 @@
+<%= form_for(@account) do |f| %>
+ <%#= render 'shared/error_messages' %>
+
+      <%= f.label :account_owner %>
+      <%= f.text_field :account_owner %>
+
+      <%= f.label :bank_account %>
+      <%= f.text_field :bank_account %>
+
+      <%= f.label :clabe %>
+      <%= f.text_field :clabe %>
+
+      <%= f.label :bank_name %>
+      <%= f.text_field :bank_name %>
+
+      <%= f.label :rfc %>
+      <%= f.text_field :rfc %>
+
+      <%# Agregar un método para que tenga que poner la contraseña del usuario %>
+
+      <%= f.submit "Guardar cambios", class: "btn btn-large btn-primary" %>
+<% end %>

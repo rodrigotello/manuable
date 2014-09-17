@@ -14,7 +14,8 @@
     = f.input :city_id, as: :string, autocomplete: "off", input_html: { name: 'city-autocomplete', id: 'city-autocomplete', value: f.object.city ? "#{f.object.city.name}, #{f.object.city.state.name}" : '' }
     = f.input :city_id, as: :hidden
     = f.input :about, as: :text, input_html: { rows: 3, class: 'input-xlarge' }
-
+  /- if current_user.id = premium_user.user.id
+  /= link_to 'Mi cuenta de banco', edit_premium_user_datas_path
   - if @my_section == 'p'
     .form-inputs
       = f.input :email, required: true, autofocus: true, input_html: { class: 'input-xlarge' }
@@ -24,3 +25,5 @@
 
   .form-actions
     = f.button :submit, "Guardar"
+
+= link_to 'Mi Cuenta de Banco', current_user.premium_user_data

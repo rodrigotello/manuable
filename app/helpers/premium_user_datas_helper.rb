@@ -1,0 +1,2 @@
+module PremiumUserDatasHelper
+end

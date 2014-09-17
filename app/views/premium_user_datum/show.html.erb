@@ -1,0 +1,15 @@
+<h1>Mi cuenta de Banco</h1>
+<strong>Nombre o Razón Social</strong>
+<p><%= current_user.premium_user_data.account_owner %></p>
+<strong>Nombre del banco</strong>
+<p><%= current_user.premium_user_data.bank_name %></p>
+<strong>Número de cuenta</strong>
+<p><%= current_user.premium_user_data.bank_account %></p>
+<strong>CLABE</strong>
+<p><%= current_user.premium_user_data.clabe %></p>
+<strong>RFC</strong>
+<p><%= current_user.premium_user_data.rfc %></p>
+
+<p><%= link_to 'Editar', edit_premium_user_datum_path(@account) %></p>
+<p><%= link_to 'Volver a mi Información de Perfil', my_profile_path %>
+
