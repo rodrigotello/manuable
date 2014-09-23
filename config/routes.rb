@@ -1,5 +1,6 @@
 Manuable::Application.routes.draw do
 
+  get "charges/new"
   get "order_address/new"
   get "order_address/save"
   get "order_address/delete"

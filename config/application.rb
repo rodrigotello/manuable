@@ -10,6 +10,13 @@ end
 
 module Manuable
   class Application < Rails::Application
+    #Rodrigo added this line from an article mentioned here:
+    # http://stackoverflow.com/questions/20361428/rails-i18n-validation-deprecation-warning
+    # Since I don't know what I'm doing, please forgive me, whomever reads this.
+    # I was havin problem running the line "rake secrets", which is supposed to enable a file/code required for Conekta:
+    config.i18n.enforce_available_locales = true
+    I18n.enforce_available_locales = false
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -70,5 +77,8 @@ module Manuable
       I18n.locale = :es
       I18n.default_locale = :es
     end
+
+    #Conekta.api_key = Rails.application.secrets.conekta_secret_key
+
   end
 end

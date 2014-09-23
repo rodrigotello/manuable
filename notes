@@ -1,0 +1,55 @@
+Rodrigo Development Notes
+
+¿Qué estoy haciendo?
+. Generando el "env" para poder integrar Conekta.
+. Agregué líneas a:
+	config/application.rb
+	config/secret.yml (creo)
+
+Archivos que he modificado:
+. views/layouts/application.rb
+. config/application.rb
+
+Changes:
+. Charges model was created
+. Order controlles generated
+. 
+
+Notas con Cejudo
+. El modelo de Charge no hace falta
+. No necesito el form_for & form_tag
+. con form_for ()
+. si hago un controlador, que se llama Charges
+. Cada vez que haces una petición a los servers de conectan, ellos me conectan a donde tú les digas (WebHooks)
+. El Webhook es el que importa
+	    # "id"=>"51cef9faf23668b1f4000001",
+	     "created_at"=>1390540322,
+	     "livemode"=>true,
+	     "type"=>"charge.paid",
+	     "data"=>
+	     	{"object"=>
+	     		{"id"=>"51d5ea80db49596aa9000001",
+	     		"created_at"=>1390540317,
+	     		"amount"=>10000,
+	     		"fee"=>310,
+	     		"currency"=>"MXN",
+	     		"status"=>"paid",
+	     		"livemode"=>true,
+	     		"description"=>"E-Book: Les Miserables",
+	     		"error"=>nil,
+	     		"error_message"=>nil,
+	     		"payment_method"=>
+	     			"object"=>"card_payment",
+	     			"last4"=>"1111",
+	     			"name"=>"Arturo Octavio Ortiz",
+	     			"dispute"=>nil
+	     		}
+	     	},
+	     "previous_attributes"=>
+	     				"status"=>"payment_pending"
+	     				}
+	     			}, "event"=>{"id"=>"51cef9faf23668b1f4000001", "created_at"=>1390540322
+	     		}
+	     	}
+
+. Decifrar que hace el JavaScript del Payment Methods.

@@ -1,0 +1,122 @@
+[14:22:31] Rodrigo Tello: ah ya
+[14:22:33] Rodrigo Tello: sí, medio spammer
+[14:22:35] Rodrigo Tello: a ver a donde llega
+[14:25:40] quantummachina: qué es la imágen?
+[14:26:05] quantummachina: por qué tu consola es transparente? :o
+[14:26:12] quantummachina: se ve bien jaquer ese pedo
+[14:26:18] quantummachina: le faltan letras verde matrix
+[14:27:06] quantummachina: ya entendí la imágen
+[14:27:57] quantummachina: perfecto
+[14:28:00] quantummachina: de order, lo mandas a charge
+[14:28:04] quantummachina: para que se la recargues
+[14:28:09] quantummachina: uh uh uh!
+[14:28:18] quantummachina: y le saques toda la lana que puedas
+[14:30:35] quantummachina: http://vimeo.com/106031252
+[14:30:46] Rodrigo Tello: sí, está bien chida mi consola, así viene
+[14:31:07] Rodrigo Tello: tengo una duda
+[14:31:40]  Call to quantummachina, no answer.
+[14:50:07] quantummachina: pues nomás no coincidimos. voy a comer
+[14:50:14] quantummachina: 2 30 estoy de buelta
+[15:05:28] Rodrigo Tello: Ya?
+[15:06:23] Rodrigo Tello: me agarraste hablando con cejudo
+[15:35:40] Rodrigo Tello: ya volviste?
+[15:35:41] Rodrigo Tello: vuelve puto
+[15:48:46] quantummachina: listones
+[15:48:53] quantummachina: sorry, se pasa el tiempo uff
+[15:48:56] quantummachina: no te imaginarías hall
+[15:49:06] quantummachina: bueno, que pedo, ya pudiste?
+[15:49:11] quantummachina: ya tenemos la primera compra?
+[15:49:26] quantummachina: me vas a tener que dar el 5% de cada venta, bastardo :@
+[15:50:22] Rodrigo Tello: jajaja, de hecho
+[15:50:26] Rodrigo Tello: mi hermano está dispuesto a darte un porcentaje
+[15:50:30] Rodrigo Tello: de compras
+[15:50:32] Rodrigo Tello: osea, de las ventas
+[15:50:36] quantummachina: perfecto, no se hable más
+[15:50:36] Rodrigo Tello: a cambio de horas .__.
+[15:50:42] quantummachina: ah
+[15:50:43] Rodrigo Tello: pero no, no ha habido una compra
+[15:50:51] quantummachina: o sea eso es a futuro
+[15:50:52] quantummachina: jaja
+[15:50:56] Rodrigo Tello: no pues, en cuanto ya se empiece a vender
+[15:50:59] Rodrigo Tello: osea, a los diseñadores
+[15:51:00] quantummachina: nais
+[15:51:01] Rodrigo Tello: les está diciendo
+[15:51:02] Rodrigo Tello: que
+[15:51:06] Rodrigo Tello: sí, en efecto les paga las horas
+[15:51:14] Rodrigo Tello: y pues, si quieren negociar un porcentaje del material generado
+[15:51:15] quantummachina: por q-ué no,justo lo que necesito para no caer tiempo completo con alebrijes
+[15:51:27] Rodrigo Tello: ya
+[15:51:36] quantummachina: pero bueno, ahi veremos
+[15:51:39] Rodrigo Tello: sí, sí
+[15:51:53] Rodrigo Tello: eso sería independiente de mi ayuda personal con todo lo que necesites de Unity
+[15:51:57] quantummachina: basta de chaquetas mentales y a jalar
+[15:52:01] Rodrigo Tello: sí
+[15:52:02] Rodrigo Tello: deja te marco
+[15:53:45] Rodrigo Tello: te está llegando la llamada?
+[15:53:45] Rodrigo Tello: pinche skype cagada
+[15:54:16] Rodrigo Tello: de linux
+[15:54:18]  Call to quantummachina, duration 00:00.
+[15:54:27] Rodrigo Tello: me lees?
+[15:54:31] quantummachina: sí
+[15:54:33] Rodrigo Tello: a ver, márcame tú
+[15:54:35] quantummachina: pero no te veo en la llamada
+[15:54:42] quantummachina: sin albur, vdD?
+[15:54:47] Rodrigo Tello: a ver
+[15:54:47] Rodrigo Tello: se que me marcaste
+[15:54:47] Rodrigo Tello: y le di aceptar
+[15:54:47] Rodrigo Tello: le dí aceptar
+[15:54:47] Rodrigo Tello: que aparece en el status de tu llamada?
+[15:54:59]  Missed call from quantummachina.
+[15:55:05] quantummachina: sigue marcando baja conectividad, en rojo
+[16:19:16]  Rodrigo Tello sent file Screenshot from 2014-09-19 16:19:05.png.
+[16:21:46] Rodrigo Tello: https://github.com/conekta-examples/hello-conekta-ruby-rails/blob/master/app/views/layouts/application.html.erb
+[16:26:42]  Rodrigo Tello sent file Screenshot from 2014-09-19 16:26:34.png.
+[16:27:58]  Rodrigo Tello sent file Screenshot from 2014-09-19 16:27:50.png.
+[16:42:39] Rodrigo Tello: https://github.com/conekta-examples/hello-conekta-ruby-rails/blob/master/app/views/products/_payment_form.html.erb
+[16:45:19] Rodrigo Tello: se apagó el ipad
+[16:45:20] Rodrigo Tello: puto ipad
+[16:45:23] quantummachina: puto
+[16:45:31] quantummachina: mmm tampoco tienes payments controller
+[16:45:50] Rodrigo Tello: .___.
+[16:45:56] Rodrigo Tello: event_payments
+[16:46:03] Rodrigo Tello: ese es el único "payments" que existe para procesar
+[16:46:06] Rodrigo Tello: segun yo ese hace todo
+[16:46:11] quantummachina: o
+[16:46:32] quantummachina: a heuvo ese es!
+[16:47:22] quantummachina: creo que es el update
+[16:47:55] quantummachina: pero sigo sin dar con donde empieza el uebjook
+[16:54:59] quantummachina: bueno, mi pregunta también sigue siendo por qué no simplemente copias o usas este modelo para tus otros pagos
+[16:56:59] quantummachina: en vez de todo lo que dice paymernt, usas tu modelo que es mmm
+[16:57:10] quantummachina: siempre se me olvida
+[16:57:22] quantummachina: Order
+[16:57:36] Rodrigo Tello: copio el controller
+[16:57:39] Rodrigo Tello: y copio el view
+[16:57:42] Rodrigo Tello: y chingose el asuntose?
+[16:57:42] quantummachina: por ejemplo, la línea 27
+[16:58:35] quantummachina: seggun yo es el equivalente a los order_items
+[17:00:59] quantummachina: la 56 es la info que le mandas de cuanta lana
+[17:01:07] quantummachina: la 57 es la referencia
+[17:01:12] quantummachina: la 58 es la descripción
+[17:01:18] quantummachina: la 59 la currency
+[17:02:05] quantummachina: y no entiendo bien lo de :card
+[17:02:16] quantummachina: no sé si un payment has one card, o de donde viene eso
+[17:04:10] quantummachina: no, no tiene. quiza se crea "on the fly" un Card que pertenece a ese payment y que le envías a conekta
+[17:04:58] quantummachina: yo lo copiaría igual, estoy hablando de la línea 60
+[17:05:46] quantummachina:  y ya, el 81 es el submit
+[17:07:21] quantummachina: que creo que lo que hace al picar submit es ir a la linea 118, crea una variable en la 119, desactiva el boton en la 120 (para evitar múltiples submits)
+[17:07:43] quantummachina: y la 121 lo manda y recibe. Si recibe positivo, va a sucfess handler, si es negativo va a error
+[17:08:07] quantummachina: si va a success, linea 106,
+[17:09:29] quantummachina: que no entiendo bien que hace, como que desactiva campos de la forma (109)
+[17:09:57] quantummachina: agrega el charge_id qiue te regresa conekta a la forma, 110
+[17:10:47] quantummachina: y la 111 creo que es el submit al controlador tuyo ya, una vez que pasó por conekta, y te debe mandar a event_payments_controller#update
+[17:15:04] quantummachina: ...el webhook de plano no entiendo donde se llama, si puedes preguntarle a cejudito eso en especíifico "en qué línea o momento se llama el webhook" porque no hallo ning´´un lado que lo mande al controlador ese, además que en las rutas viene como un get y un post bajo events, pero nada más (37 y 38 de ru routes
+[17:15:39] quantummachina: ...bueno, en veinte minutos tengo que ir a cambiarme, para ir a yoga, luego a hacer algo de super con mi madre y al cine :s yo creo regreso como a las 10
+[17:16:31] quantummachina: pero mira, yo haría esto. 1, tú puedes hacer que el view de tu index de Order sea como el view de payments del cejudo, donde está la forma
+[17:16:42] quantummachina: copia y pega, deshazte de la parte de oxxo y algun otra que no sirva
+[17:16:54] quantummachina: y cambia todo olo de Evento por Order
+[17:18:19] quantummachina: de manera que te muestre los datos para pagar una orden de la misma manera. Si te fijas son análogos, un event_payment tiene event_product_payments que se enlistan para hacer un total
+[17:19:15] quantummachina: y así, cambia los datos que le pasas a conekta a que sean los de tu pago con Order, por ejemplo @order.ir en la línea 57 en vez de @payment.id etc
+[17:19:28] quantummachina: y gual tienes que copiar o checar los controladores y ajustarlos
+[17:19:45] quantummachina: pero todo el javascriptaje debes de poderlo copiar id+entico, cambiando tus keys y ya
+[17:20:44] quantummachina: copia sus controladores y empieza a ver que te lleve de un lado a otro. 1 cuando le das pagar te manda a Order#index, 2. te despliega los campos sin error. 3, te admite un pago dumie, etc
+[17:23:32] quantummachina: si sigues los pasos encontrarás donde se necesita el uebjook jaa
