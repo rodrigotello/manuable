@@ -1,3 +1,4 @@
+#encoding: utf-8
 class OrdersController < ApplicationController
   def show
     @order = Order.find params[:id]
@@ -23,6 +24,13 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.where(user_id: current_user.id).find params[:id]
+
+    if params[:conektaChargeId].present? && @order.status != 2
+      @order.conekta_charge_id = params[:conektaChargeId]
+      @order.save
+      flash[:notice] = 'Gracias por comprar productos hechos a mano. Tu pago está siendo validado.'
+    end
   end
 
   def oxxo_payment
