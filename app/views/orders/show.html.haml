@@ -1,0 +1,104 @@
+= form_for @order, html: { id: "order-form" } do |f|
+  %span.order-errors
+  %h1 Tu pago de Manuable
+  -  @products = current_user.cart_products
+  %table#event-checkout.table
+    %thead
+      %tr
+        %th
+          Producto
+        %th
+          Creador
+        %th
+          Precio
+    %tbody
+      - @total=0
+      - @products.each do |p|
+        %tr
+          %td
+            = p.name
+          %td
+            = p.user.name
+          %td
+            = p.price.to_s
+          - @total += p.price
+      %tr
+        %td
+        %td
+        %td
+        %td
+          #total.strong
+            %strong= @total
+  %h4
+    Paga usando tu tarjeta de crédito o en tu tienda OXXO más cercana
+  .row
+    .span6
+      .hidden
+        %input{ type: "text", value: @total * 100, data: { conekta: "amount" } }
+        %input{ type: "text", value: "order-#{@order.id}", data: { conekta: "reference_id" } }
+        %input{ type: "text", value: "Compra en Manuable $ #{@total} MXN", data: { conekta: "description" } }
+        %input{ type: "text", value: "MXN", data: { conekta: "currency" } }
+      = f.fields_for :card do |f|
+        .row
+          .span3
+            = f.label :card_name, 'Nombre del tarjetahabiente'
+            = f.text_field :card_name, class: 'span3', data: { conekta: "card[name]" }
+        .row
+          .span4
+            = f.label :card_num, 'Número de tarjeta'
+            = f.text_field :card_num, class: 'span4', data: { conekta: "card[number]" }
+
+        .row
+          .span2
+            = f.label :card_exp, 'Expiración'
+            = f.text_field :card_exp_month, style: 'width: 67px; float: left;', placeholder: 'mes', data: { conekta: "card[exp_month]" }
+            = f.text_field :card_exp_year, style: 'width: 70px; float: left;margin-left:5px;', placeholder: 'año', data: { conekta: "card[exp_year]" }
+          .span2
+            = f.label :card_ccv2, 'Código de seguridad'
+            = f.text_field :card_ccv2, class: 'span1', data: { conekta: "card[cvc]" }
+        %br
+        .row
+          .span6
+            %button.btn.btn-primary.pull-right{ type: 'submit' }
+              Pagar &raquo;
+    .span6
+      - if @order.oxxo_ready? && @order.oxxo_expires_on > Date.today
+        .alert.alert-success
+          Gracias, estamos esperando por tu pago en OXXO
+        = image_tag @order.barcode_url
+        %br
+        = @order.oxxo_barcode
+      - else
+        - if @errors
+          .alert.alert-error
+            Tu petición no puedo ser procesada
+            %br
+            = @errors
+        #oxxo-order-option
+          Paga en tu OXXO más cercano
+          %br
+          %small Clic en el logo
+          %br
+          = link_to oxxo_payment_order_path(@order), method: :post, id: 'oxxo-link' do
+            = image_tag 'oxxo.jpg', style: 'width: 150px'
+
+  - content_for :script do
+    \Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
+    \var conektaSuccessResponseHandler = function(response) {
+    \  var $form = $('#order-form');
+    \  var charge_id = response.id;
+    \  $('#event_order_card_card_name, #event_order_card_card_num, #event_order_card_card_exp_month, #event_order_card_card_exp_year, #event_order_card_card_ccv2').attr('disabled', true);
+    \  $form.append($('<input type="hidden" name="conektaChargeId" />').val(charge_id));
+    \  $form.get(0).submit();
+    \};
+    \var conektaErrorResponseHandler = function(response) {
+    \  var $form = $('#order-form');
+    \  $form.find('.order-errors').text(response.message);
+    \  $form.find('button').prop('disabled', false);
+    \};
+    \$('#order-form').submit(function(event) {
+    \  var $form = $(this);
+    \  $form.find('button').prop('disabled', true);
+    \  Conekta.charge.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+    \  return false;
+    \});

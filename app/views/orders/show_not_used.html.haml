@@ -1,0 +1,135 @@
+= form_for @payment, html: { id: "payment-form" } do |f|
+  %span.payment-errors
+  %h1= @payment.event.name
+  %p.lead
+    = raw @payment.event.description
+  %table#event-checkout.table
+    %thead
+      %tr
+        %th
+          Cantidad
+        %th
+          Concepto
+        %th
+          Unitario
+        %th
+          Total
+    %tbody
+      %tr
+        %td
+          1
+        %td
+          = @payment.event_sale_category.name
+        %td
+          = number_to_currency @payment.event_sale_category.price
+        %td
+          = number_to_currency @payment.event_sale_category.price
+      - @payment.event_product_payments.each do |payment|
+        %tr
+          %td
+            = payment.units
+          %td
+            = payment.event_product.name
+          %td
+            = number_to_currency payment.unit_price
+          %td
+            = number_to_currency payment.total
+      %tr
+        %td
+        %td
+        %td
+        %td
+          #total.strong
+            %strong= number_to_currency @payment.grand_total
+  #space-selector{ style: 'display:none' }
+    Por favor selecciona la posición donde te gustaría estar durante el evento.
+    %br
+    = f.select :position, @payment.event_sale_category.available_positions, {}, class: 'input-small'
+  = link_to image_tag(@payment.event.location_map.url(:checkout)), @payment.event.location_map.url, target: '_blank'
+
+  - unless @payment.paid? || @payment.conekta_charge_id.present?
+    %h4
+      Paga usando tu tarjeta de crédito o en tu tienda OXXO más cercana
+    .row
+      .span6
+        .hidden
+          %input{ type: "text", value: @payment.grand_total * 100, data: { conekta: "amount" } }
+          %input{ type: "text", value: "eventpayment-#{@payment.id}", data: { conekta: "reference_id" } }
+          %input{ type: "text", value: "Participanción evento Manuable $ #{@payment.grand_total} MXN", data: { conekta: "description" } }
+          %input{ type: "text", value: "MXN", data: { conekta: "currency" } }
+        = f.fields_for :card do |f|
+          .row
+            .span3
+              = f.label :card_name, 'Nombre del tarjetahabiente'
+              = f.text_field :card_name, class: 'span3', data: { conekta: "card[name]" }
+          .row
+            .span4
+              = f.label :card_num, 'Número de tarjeta'
+              = f.text_field :card_num, class: 'span4', data: { conekta: "card[number]" }
+
+          .row
+            .span2
+              = f.label :card_exp, 'Expiración'
+              = f.text_field :card_exp_month, style: 'width: 67px; float: left;', placeholder: 'mes', data: { conekta: "card[exp_month]" }
+              = f.text_field :card_exp_year, style: 'width: 70px; float: left;margin-left:5px;', placeholder: 'año', data: { conekta: "card[exp_year]" }
+            .span2
+              = f.label :card_ccv2, 'Código de seguridad'
+              = f.text_field :card_ccv2, class: 'span1', data: { conekta: "card[cvc]" }
+          %br
+          .row
+            .span6
+              %button.btn.btn-primary.pull-right{ type: 'submit' }
+                Pagar &raquo;
+      .span6
+        - if @payment.oxxo_ready? && @payment.oxxo_expires_on > Date.today
+          .alert.alert-success
+            Gracias, estamos esperando por tu pago en OXXO
+          = image_tag @payment.barcode_url
+          %br
+          = @payment.oxxo_barcode
+        - else
+          - if @errors
+            .alert.alert-error
+              Tu petición no puedo ser procesada
+              %br
+              = @errors
+          #oxxo-payment-option
+            Paga en tu OXXO más cercano
+            %br
+            %small Clic en el logo
+            %br
+            = link_to oxxo_payment_event_payment_path(@payment, position: @payment.event_sale_category.available_positions.first), method: :post, id: 'oxxo-link' do
+              = image_tag 'oxxo.jpg', style: 'width: 150px'
+
+    - content_for :script do
+      \Conekta.setPublishableKey('#{ Rails.env.production? ? 'key_fm37zog88YPNhe1x' : 'key_F5HN9NRV8TxUWyyt' }');
+      \var conektaSuccessResponseHandler = function(response) {
+      \  var $form = $('#payment-form');
+      \  var charge_id = response.id;
+      \  $('#event_payment_card_card_name, #event_payment_card_card_num, #event_payment_card_card_exp_month, #event_payment_card_card_exp_year, #event_payment_card_card_ccv2').attr('disabled', true);
+      \  $form.append($('<input type="hidden" name="conektaChargeId" />').val(charge_id));
+      \  $form.get(0).submit();
+      \};
+      \var conektaErrorResponseHandler = function(response) {
+      \  var $form = $('#payment-form');
+      \  $form.find('.payment-errors').text(response.message);
+      \  $form.find('button').prop('disabled', false);
+      \};
+      \$('#payment-form').submit(function(event) {
+      \  var $form = $(this);
+      \  $form.find('button').prop('disabled', true);
+      \  Conekta.charge.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+      \  return false;
+      \});
+  - else
+    .alert.alert-success
+      - if @payment.paid?
+        Pagado!
+      - else
+        Tu pago está siendo validado.
+        %br
+        = image_tag @payment.barcode_url
+        %br
+        = @payment.oxxo_barcode
+    %p
+    = link_to "&laquo; Regresar a evento".html_safe, @payment.event

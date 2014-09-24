@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918045611) do
+ActiveRecord::Schema.define(version: 20140923035452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -373,6 +373,11 @@ ActiveRecord::Schema.define(version: 20140918045611) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "oxxo_ready"
+    t.date     "oxxo_expires_on"
+    t.string   "oxxo_barcode"
+    t.string   "conekta_charge_id"
+    t.string   "barcode_url"
   end
 
   create_table "premium_user_data", force: true do |t|

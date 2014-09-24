@@ -1,16 +1,5 @@
 Manuable::Application.routes.draw do
 
-  get "charges/new"
-  get "order_address/new"
-  get "order_address/save"
-  get "order_address/delete"
-  get "order_address/update"
-  get "order_items/new"
-  get "order_items/save"
-  get "order_items/delete"
-  get "orders/new"
-  get "orders/save"
-  get "orders/delete"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # match "/404", :to => "errors#not_found"
   # match "/500", :to => "errors#app_failure"
@@ -41,6 +30,11 @@ Manuable::Application.routes.draw do
 
   resources :carts 
   resources :premium_user_datum
+  resources :orders do
+    post :oxxo_payment, on: :member
+    post :oxxo_success, on: :collection
+    get :oxxo_success, on: :collection
+  end
 
   resources :event_payments do
     post :oxxo_payment, on: :member
