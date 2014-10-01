@@ -29,6 +29,14 @@ class EventsController < ApplicationController
         end
       end
 
+      if params[:data][:object][:reference_id].split('-')[0] == 'order'
+        @order = Order.find(params[:data][:object][:reference_id].split('-')[1])
+
+        if @order.total * 100 == params[:data][:object][:amount]
+          @order.status = 2
+          @order.save
+        end
+      end
     end
 
     head :ok

@@ -4,17 +4,34 @@ class OrdersController < ApplicationController
     @order = Order.find params[:id]
   end
 
+  #def new
+   # if current_user.order_addresses.count < 1 or nil
+     # redirect_to new_order_address_path
+    #else
+      #total = 0
+       # current_user.cart_products.each do |p|
+        #  total += p.price
+        #end
+      #@order = Order.where(status: 0).first
+      #if !@order.nil?
+       # @order.destroy
+      #end
+       # @order = current_user.orders.create(total: total, status: 0)
+        #redirect_to @order
+    #end
+  #end
+
   def new
-    total = 0
-      current_user.cart_products.each do |p|
-        total += p.price
+      total = 0
+        current_user.cart_products.each do |p|
+          total += p.price
+        end
+      @order = Order.where(status: 0).first
+      if !@order.nil?
+        @order.destroy
       end
-    @order = Order.where(status: 0).first
-    if !@order.nil?
-      @order.destroy
-    end
-      @order = current_user.orders.create(total: total, status: 0)
-      redirect_to @order
+        @order = current_user.orders.create(total: total, status: 0)
+        redirect_to @order
   end
 
   def save
@@ -30,6 +47,10 @@ class OrdersController < ApplicationController
       @order.conekta_charge_id = params[:conektaChargeId]
       @order.save
       flash[:notice] = 'Gracias por comprar productos hechos a mano. Tu pago está siendo validado.'
+    end
+    current_user.carts.each do |c|
+      @order.order_items.create(product_id: c.product_id)
+      c.delete
     end
   end
 

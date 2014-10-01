@@ -17,9 +17,9 @@
     - else
       = link_to '<i class="fa fa-heart-o">&nbsp;</i>Me gusta'.html_safe, like_product_path(@product, format: 'json'), class: 'manuable-like', remote: true, method: :post
 
-    /= link_to '<i class="fa fa-envelope-o">&nbsp;</i>Mensaje'.html_safe, new_my_conversation_path(to: @product.user_id), rel: 'modal', class: 'message'
+    = link_to '<i class="fa fa-envelope-o">&nbsp;</i>Mensaje'.html_safe, new_my_conversation_path(to: @product.user_id), rel: 'modal', class: 'message'
     /= link_to '<i class="fa fa-share-square-o">&nbsp;</i>Compartir'.html_safe, "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(@product)}", class: 'fbshare', target: '_blank'
-    = link_to '<i class="fa fa-share-square-o">&nbsp;</i>Comprar'.html_safe, class: 'fbshare', target: '_blank', remote: true, method: :post
+    = link_to '$ Comprar', new_cart_path(product_id: @product.id), class: '#', style: "background: #1AD8CA"
   .product-description
     = @product.about
     %br

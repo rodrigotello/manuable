@@ -1,0 +1,13 @@
+<h1>Hola Danos una dirección</h1>
+<p>Necesitamos guardar una dirección de envio antes de continuar con tu compra</p>
+<%= form_for(@address) do |address| %>
+	<p><%= address.text_field :street, placeholder: "Calle" %>
+	<p><%= address.text_area :in_between_street, placeholder: "Entre calles" %>
+	<p><%= address.text_field :number, placeholder: "Número" %>
+	<p><%= address.text_field :inner_number, placeholder: "Número de interior" %>
+	<p><%= address.text_field :neighborhood, placeholder: "Colonia" %>
+	<p><%= address.text_field :zip, placeholder: "Código postal" %>
+	<p><%= address.text_area :reference, placeholder: "¿Alguna otra referencia?" %>
+	<p><%= address.submit "Agregar dirección", class: "add-address"%>
+<% end %>
+

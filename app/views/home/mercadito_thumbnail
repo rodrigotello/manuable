@@ -1,0 +1,15 @@
+- unless local_assigns[:no_banner]
+  - content_for :products_feed_3 do
+    - link_to new_event_path, id: 'crea-mercadito-banner' do
+      = image_tag 'house.png'
+      %hr
+      Crea eventos en tu
+      %br
+      ciudad, organízate y vende
+      %br
+      tus productos dentro de
+      %br
+      tu comunidad
+      %hr
+      %span
+        Crear Mercadito

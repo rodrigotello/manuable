@@ -35,6 +35,7 @@ Manuable::Application.routes.draw do
     post :oxxo_success, on: :collection
     get :oxxo_success, on: :collection
   end
+  resources :order_addresses
 
   resources :event_payments do
     post :oxxo_payment, on: :member

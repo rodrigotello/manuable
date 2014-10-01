@@ -17,7 +17,7 @@
   }
   .nav > li > a {
     color: #fff;
-    text-shadow: none;
+    text-shadow: none !important;
   }
   .nav li.dropdown.open > .dropdown-toggle, .nav li.dropdown.active > .dropdown-toggle, .nav li.dropdown.open.active > .dropdown-toggle {
     background-color: inherit;

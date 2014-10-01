@@ -1,3 +1,98 @@
 // Place all the styles related to the Carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.checkout-wrapper {
+	padding: 4em 1em;
+}
+
+h2.mi-carrito {
+	color: #0a4e5e;
+	text-align: center;
+	margin: 2em 0 .5em 0;
+}
+
+p.mi-carrito {
+	text-align: center;
+	width: 50%;
+	padding: .25em;
+	margin: 0 auto;
+	margin-bottom: 2em;
+}
+
+li.cart-product {
+	display: inline;
+}
+
+a.delete-cart-item {
+	color: lightgray;
+	text-decoration: none;
+	font-size: 1em;
+	&:hover {
+		color: gray;
+		text-decoration: none;
+	}
+}
+
+
+h3.total-price {
+	text-align: right;
+}
+
+.cart-products-box {
+	display: inline-block;
+	float: left;
+	width: 200px;
+	padding: 0;
+}
+
+.cart-item-divider {
+	border-top: 1px lightgray solid;
+	width: 150px;
+	margin: 0 0 2em 0;
+}
+
+.checkout-box {
+	background: white;
+	border: 1px lightgray solid;
+	padding: 2em;
+	float: right;
+	width: 50%;
+}
+
+
+a.checkout-button {
+	background: #1AD8CA;
+	margin: .5em;
+	color: white;
+	padding: 1em 6em;
+	text-decoration: none;
+	text-align: right;
+	float: right;
+	&:hover {
+		background: #15aa9f;
+		text-decoration: none;
+	}
+}
+
+a.keep-buying-button {
+	background: #f2f2f2;
+	color: gray;
+	margin: .5em;
+	padding: 1em 6em;
+	text-decoration: none;
+	text-align: right;
+	float: right;
+	&:hover {
+		background: lightgray;
+		text-decoration: none;
+	}
+}
+
+
+input[type=submit].add-address {
+	color: white;
+	background: #0a4e5e;
+	padding: 1em 4em;
+	border: none;
+}

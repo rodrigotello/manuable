@@ -6,7 +6,7 @@
     .user-location
       = @user.location
     .user-description
-      = link_to 'Mis Mercaditos', user_events_path(@user), class: 'transparent-button', id: 'user-events', rel: 'modal'
+      /= link_to 'Mis Mercaditos', user_events_path(@user), class: 'transparent-button', id: 'user-events', rel: 'modal'
       - if current_user && @user != current_user
         = link_to '<i class="fa fa-envelope-o"></i>'.html_safe, new_my_conversation_path(to: @user.id), class: 'follow', id: 'message-user', rel: 'modal'
         - if @user.followed_by? current_user

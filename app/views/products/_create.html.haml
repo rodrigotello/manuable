@@ -15,8 +15,8 @@
           %i.fa.fa-heart-o
       /= link_to "//www.facebook.com/sharer/sharer.php?u=#{CGI.escape product_url(product)}", target: "_blank", class: 'fbshare' do
       /%i.fa.fa-share-square-o
-      = link_to( new_cart_path(product_id: product.id), class: 'fbshare') do
-        %i.fa.fa-share-square-o
+      = link_to( new_cart_path(product_id: product.id), class: 'fbshare', style: "background: #1AD8CA") do
+        %i.fa.fa-shopping-cart
 
     .product-card-info
       %span.product-card-name=link_to truncate(product.name, length: 20, omission: '…'), product

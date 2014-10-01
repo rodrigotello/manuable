@@ -51,7 +51,7 @@ body {
   }
 }
 .login-option {
-  .transparent-button { color: #fff !important; padding: 2px 5px !important; margin-top: 7px; }
+  .transparent-button { color: #fff !important; padding: 6px 12px !important; margin-top: 7px; }
   .fa-twitter-square, .fa-facebook-square {
     color: #072931;
     font-size: 23px;
@@ -90,8 +90,12 @@ footer {
         display: block;
         padding: 0px 5px;
         border-radius: 5px;
-        color: #787878;
+        color: lightgray;
         font-weight: bold;
+        &:hover {
+          text-decoration: none;
+          color: #999999;
+        }
       }
     }
   }
@@ -125,7 +129,7 @@ footer {
   }
   i.icon-bell-alt, .icon-envelope-alt{
     color: #90E4FF;
-    text-shadow: -1px 0px 0px #0087B3;
+    text-shadow: none !important;
   }
   &:hover{
     i.icon-bell-alt, .icon-envelope-alt{
@@ -148,7 +152,7 @@ footer {
 #notifications.active,#inbox.active{
   i.icon-bell-alt, .icon-envelope-alt{
     color: #b94a48;
-    text-shadow: -1px 0px 0px #550200;
+    text-shadow: 0;
   }
   &:hover{
     i.icon-bell-alt, .icon-envelope-alt{
@@ -182,12 +186,12 @@ form .form-appendable{
   background-position: center center;
 }
 .transparent-button{
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   background-color: transparent;
   color: #fff;
   display: block;
-  padding: 2px 5px;
-  border-radius: 5px;
+  padding: 6px 12px;
+  border-radius: 2px;
   &:hover{
     text-decoration: none;
   }
@@ -199,7 +203,10 @@ form .form-appendable{
 #nav-subir-producto{
   margin-top: 7px;
   color: #fff;
-  padding: 2px 5px;
+  padding: 6px 12px;
+  &:hover{
+    color: whitesmoke;
+  }
 }
 #current-user-options{
   margin: 5px 20px 0 0;
