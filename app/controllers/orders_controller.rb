@@ -4,24 +4,10 @@ class OrdersController < ApplicationController
     @order = Order.find params[:id]
   end
 
-  #def new
-   # if current_user.order_addresses.count < 1 or nil
-     # redirect_to new_order_address_path
-    #else
-      #total = 0
-       # current_user.cart_products.each do |p|
-        #  total += p.price
-        #end
-      #@order = Order.where(status: 0).first
-      #if !@order.nil?
-       # @order.destroy
-      #end
-       # @order = current_user.orders.create(total: total, status: 0)
-        #redirect_to @order
-    #end
-  #end
-
   def new
+    #if current_user.order_addresses.count < 1 or nil
+      #redirect_to new_order_address_path
+    #else
       total = 0
         current_user.cart_products.each do |p|
           total += p.price
@@ -32,6 +18,7 @@ class OrdersController < ApplicationController
       end
         @order = current_user.orders.create(total: total, status: 0)
         redirect_to @order
+    #end
   end
 
   def save

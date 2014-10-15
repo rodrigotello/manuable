@@ -18,6 +18,8 @@
 			<h3 class="total-price"><%= current_user.carts.count %></h3>
 			<h3 class="total-price">Total a Pagar:</h3>
 			<h3 class="total-price">$<%= @total %></h3>
+			<%# Esta linea de abajo se supone es la que tiene que mandar parámetros, más no se para qué. Esos parametros deben servirme para poder enviar datos al controlador y poder redireccionar al usuario al generar una dirección, en caso de no tenerla. #>
+			<%#= link_to 'Pasar a pagar', new_orders_path.params(order_id: order.id), class: "checkout-button" %>
 			<%= link_to 'Pasar a pagar', new_order_path, class: "checkout-button" %>
 			<%= link_to 'Seguir comprando', root_path, class: "keep-buying-button" %>
 		</div>

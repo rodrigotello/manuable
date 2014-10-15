@@ -1,16 +1,17 @@
+#encoding: utf-8
+
 class OrderAddressesController < ApplicationController
   def new
   	@address = OrderAddress.new
   end
 
   def create
-    @address = current_user.order_address.build(order_address_params)
+    @address = OrderAddress.build(order_address_params)
     if @address.save
-      flash[:success] = "Address created!"
+      flash[:success] = "Tienes una nueva dirección de envio."
       redirect_to root_url
     else
-      @feed_items = []
-      render 'static_pages/home'
+      redirect_to new_order_path
     end
   end
 

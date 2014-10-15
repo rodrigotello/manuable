@@ -20,6 +20,9 @@
       = f.input :price, :wrapper => :prepend do
         %span.add-on $
         = f.input_field :price, class: 'input-small'
+      = f.input :Envio, :wrapper => :prepend do
+        %span.add-on $
+        = f.input_field :shipping, class: 'input-small'
     .span6
       = f.input :amount, prompt: "Seleccionar", label: "¿Cuántos tienes?", input_html: {:class => "dropdown"}
 

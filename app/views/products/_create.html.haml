@@ -21,4 +21,4 @@
     .product-card-info
       %span.product-card-name=link_to truncate(product.name, length: 20, omission: '…'), product
       = link_to user_path(product.user), class: 'user' do
-        %span.user-name= product.user.first_name
+        %span.user-name= product.price
