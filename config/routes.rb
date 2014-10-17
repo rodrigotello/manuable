@@ -28,8 +28,8 @@ Manuable::Application.routes.draw do
     resources :attachments
   end
 
-  resources :carts 
   resources :premium_user_datum
+  resources :carts 
   resources :orders do
     post :oxxo_payment, on: :member
     post :oxxo_success, on: :collection

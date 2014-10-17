@@ -26,4 +26,5 @@
   .form-actions
     = f.button :submit, "Guardar"
 
-= link_to 'Mi Cuenta de Banco', current_user.premium_user_data
+%h3 Mi Cuenta de Banco
+= link_to "Mi Cuenta de Banco", premium_user_datum_path(current_user.premium_user_data)
