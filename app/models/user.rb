@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   mount_uploader :cover, CoverUploader
 
-  after_create :notify_signup
+  after_create :notify_signup, :premium_user_data_setup
   after_update :crop_avatar
 
 
@@ -175,6 +175,11 @@ class User < ActiveRecord::Base
 
   def notify_signup
     UserMailer.welcome_email(self).deliver
+  end
+
+  def premium_user_data_setup
+    self.create_premium_user_data account_owner: "", bank_account: 0, clabe: "", rfc: "", bank_name: ""
+
   end
 
   # CLASS
