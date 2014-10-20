@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
                                 }
 
   validates :email, uniqueness: true, allow_nil: true, allow_blank: true
-  validates :about, length: { maximum: 100 }, allow_nil: true, allow_blank: true
+  validates :about, length: { maximum: 200 }, allow_nil: true, allow_blank: true
   validates_with UserEventSlugValidator
 
   mount_uploader :avatar, AvatarUploader
@@ -179,7 +179,6 @@ class User < ActiveRecord::Base
 
   def premium_user_data_setup
     self.create_premium_user_data account_owner: "", bank_account: 0, clabe: "", rfc: "", bank_name: ""
-
   end
 
   # CLASS
