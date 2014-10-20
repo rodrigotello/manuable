@@ -82,7 +82,7 @@ PREGUNTAS A CEJUDO:
 
 ¿Por qué está lleno de eventos el User y no el Controller?
 
-
+El contador de Heroku me regresa diferente cantidad a los registros. ¿Será porque están borrados?
 
 
 User (
