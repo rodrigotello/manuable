@@ -12,10 +12,6 @@
       = link_to 'COMPARTIR UN PRODUCTO', new_my_product_path, id: 'subir-producto'
     - else
       = link_to 'COMPARTIR UN PRODUCTO', new_session_path(:user, return_to: new_my_product_path), id: 'subir-producto', rel: 'modal'
-  %h2
-    Encuentra productos originales hechos a mano
-    %br
-    en México
   #products-wrapper
     .navbar.categories-menu.sub-menu
       .navbar-inner

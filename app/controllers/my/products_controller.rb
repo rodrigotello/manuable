@@ -75,6 +75,7 @@ class My::ProductsController < ApplicationController
   end
 
   def destroy
+    @product = current_user.products.find(params[:id])
     @product.destroy
     redirect_to :back
   end
