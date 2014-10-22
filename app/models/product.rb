@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   belongs_to :user, counter_cache: true, inverse_of: :products
   belongs_to :category, counter_cache: true
   belongs_to :notification, dependent: :destroy
-  has_many :carts
+  has_many :carts, dependent: :destroy
   has_many :attachments, as: :attachable, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :likers, through: :likes, source: :user do
