@@ -83,6 +83,6 @@ class My::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:about, :made_by, :name, :price, { :attachments_attributes => [:attachment, :_destroy, :id, :attachable_type, :attachable_id] }, :category_id, :on_sale, :amount, :prop_list)
+    params.require(:product).permit(:about, :made_by, :name, :shipping, :price, { :attachments_attributes => [:attachment, :_destroy, :id, :attachable_type, :attachable_id] }, :category_id, :on_sale, :amount, :prop_list)
   end
 end

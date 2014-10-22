@@ -15,10 +15,10 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   has_many :products, dependent: :destroy, inverse_of: :user
 
-  has_one :premium_user
-  has_one :premium_user_data
+  has_one :premium_user, dependent: :destroy
+  has_one :premium_user_data, dependent: :destroy
 
-  has_many :carts
+  has_many :carts, dependent: :destroy
   has_many :cart_products, through: :carts, source: :product
 
   has_many :orders

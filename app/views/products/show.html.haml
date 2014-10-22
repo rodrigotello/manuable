@@ -22,6 +22,8 @@
     = link_to '$ Comprar', new_cart_path(product_id: @product.id), class: '#', style: "background: #1AD8CA"
   .product-description
     = @product.about
+    :erb
+      Precio: <strong>$<%= @product.price  %></strong>
     %br
   .spacer
   = commontator_thread(@product)

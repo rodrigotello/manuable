@@ -10,7 +10,7 @@ CarrierWave.configure do |config|
   config.fog_public     = false                                   # optional, defaults to true
   #config.asset_host     = "https://manuable02.s3-us-west-2.amazonaws.com/"
   config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }  # optional, defaults to {}
-  config.fog_authenticated_url_expiration = 600
+  #config.fog_authenticated_url_expiration = 600
 
   config.storage = :fog
   config.enable_processing = false
