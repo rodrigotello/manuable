@@ -75,6 +75,16 @@ a.checkout-button {
 	}
 }
 
+a.checkout-button-empty {
+	background: gray;
+	margin: .5em;
+	color: white;
+	padding: 1em 6em;
+	text-decoration: none;
+	text-align: right;
+	float: right;
+}
+
 a.keep-buying-button {
 	background: #f2f2f2;
 	color: gray;

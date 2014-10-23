@@ -17,4 +17,14 @@ class CartsController < ApplicationController
 
   def show
   end
+
+  def shipping_local
+    @c = params[:id]
+    Cart.find(params[:id]).toggle(shipping_boolean)
+    respond_to do |format|
+      format.html {redirect_to carts_path}
+      format.js
+    end
+  end
+
 end

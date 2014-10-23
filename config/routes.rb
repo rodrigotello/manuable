@@ -29,7 +29,8 @@ Manuable::Application.routes.draw do
   end
 
   resources :premium_user_datum
-  resources :carts 
+  resources :carts
+  get '/shipping_local', to: 'carts#shipping_local'
   resources :orders do
     post :oxxo_payment, on: :member
     post :oxxo_success, on: :collection
