@@ -8,7 +8,7 @@
 				<div class="cart-item-divider"></div>
 				<li class="cart-product"><h3><%= c.product.name %></h3></li>
 				<li class="cart-product">por <%= c.product.user.name %></li>
-				<div id="shipping-button"> 
+				<div id="shipping-button-<%=c.id%>"> 
 					<%= render('carts/shipping_button', c: c) %>
 				</div>
 				<p>
@@ -16,6 +16,7 @@
 				</p>
 				<p>
 					<li class="cart-product">Envio: $<%= c.product.shipping %></li></p>
+
 				<%= link_to '<i class="fa fa-times"></i> Borrar'.html_safe, c, class: "delete-cart-item", method: :delete %>
 				<% @total = @total + c.product.price + c.product.shipping %>
 			<% end %>

@@ -1,4 +1,4 @@
-<% if c.shipping_boolean == true then %>
+<% if c.shipping_boolean == true %>
 	<%= link_to 'Envio agregado. Picale aquí para recogerlo', shipping_local_path(id: c.id), remote: true %>
 <% else %>
 	<%= link_to 'Pícale aquí para que te lo envien', shipping_local_path(id: c.id), remote: true %>
