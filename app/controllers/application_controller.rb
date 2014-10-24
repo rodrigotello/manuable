@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :force_update_profile
   before_filter :beta, :stored_return_path
   before_filter :dev_user, if: proc { Rails.env.development? }
+  
 
   protected
 

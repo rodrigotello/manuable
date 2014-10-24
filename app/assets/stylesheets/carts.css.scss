@@ -61,7 +61,7 @@ h3.total-price {
 }
 
 
-a.checkout-button {
+a.checkout-button, input[type=submit].checkout-button, input[type=button].checkout-button {
 	background: #1AD8CA;
 	margin: .5em;
 	color: white;

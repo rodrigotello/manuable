@@ -1,2 +1,2 @@
 $("#shipping-button-<%=@c.id%>").html("<%= escape_javascript(render('carts/shipping_button', c: @c)) %>")
-
+$("#total-price").html("<%= escape_javascript(render('carts/total_price')) %>")

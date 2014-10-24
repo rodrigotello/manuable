@@ -1,24 +1,25 @@
 #encoding: utf-8
 class OrdersController < ApplicationController
+  include CartsHelper
   def show
     @order = Order.find params[:id]
   end
 
+  # About this method:
+  # The Order Status just generates one at a time.
+  # This time it means 
   def new
-    #if current_user.order_addresses.count < 1 or nil
-      #redirect_to new_order_address_path
-    #else
-      total = 0
-        current_user.cart_products.each do |p|
-          total += p.price
-        end
+    if current_user.order_addresses.count < 1 or nil
+      redirect_to new_order_address_path
+    else
       @order = Order.where(status: 0).first
+      @total = cart_total_price
       if !@order.nil?
         @order.destroy
       end
-        @order = current_user.orders.create(total: total, status: 0)
+        @order = current_user.orders.create(total: @total, status: 0)
         redirect_to @order
-    #end
+    end
   end
 
   def save

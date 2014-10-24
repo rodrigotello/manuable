@@ -12,7 +12,6 @@
         %th
           Precio
     %tbody
-      - @total=0
       - @products.each do |p|
         %tr
           %td
@@ -21,7 +20,6 @@
             = p.user.name
           %td
             = p.price.to_s
-          - @total += p.price
       %tr
         %td
         %td
@@ -29,8 +27,8 @@
         %td
           #total.strong
             %strong= @total
-  %h4
-    Paga usando tu tarjeta de crédito o en tu tienda OXXO más cercana
+  %h3
+    Escoge tu método de pago
   .row
     .span6
       .hidden
@@ -41,6 +39,7 @@
       = f.fields_for :card do |f|
         .row
           .span3
+            %h4 Paga con tarjeta de crédito
             = f.label :card_name, 'Nombre del tarjetahabiente'
             = f.text_field :card_name, class: 'span3', data: { conekta: "card[name]" }
         .row
@@ -59,7 +58,7 @@
         %br
         .row
           .span6
-            %button.btn.btn-primary.pull-right{ type: 'submit' }
+            %button.checkout-button{ type: 'submit' }
               Pagar &raquo;
     .span6
       - if @order.oxxo_ready? && @order.oxxo_expires_on > Date.today
@@ -75,9 +74,9 @@
             %br
             = @errors
         #oxxo-order-option
-          Paga en tu OXXO más cercano
+          %h4 Paga en tu OXXO más cercano
           %br
-          %small Clic en el logo
+          %small Haz clic en el logo para generar un ticket
           %br
           = link_to oxxo_payment_order_path(@order), method: :post, id: 'oxxo-link' do
             = image_tag 'oxxo.jpg', style: 'width: 150px'
