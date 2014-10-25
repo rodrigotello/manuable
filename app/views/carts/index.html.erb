@@ -1,8 +1,9 @@
 <div class="container">
 	<div class="checkout-wrapper">
 		<h2 class="mi-carrito">Mi carrito</h2>
-		<p class="mi-carrito">Recuerda revisar todos los antes de pasar a pagar. Puedes usar tarjeta de crédito, débito, transferencia bancaria u OXXO.</p>
-		<div class="cart-products-box">
+		<p class="mi-carrito">Recuerda revisar todos los antes de pasar a pagar. Puedes usar tarjeta de crédito, débito, transferencia bancaria u OXXO. Si prefieres conocer al artesano, puedes hacer una <strong><%= link_to 'Compra Local', local_path %></strong>.
+		<div class="cart-products-box"></p>
+		<p>
 			<% @total = 0 %>
 			<% @carts.each do |c| %>
 				<div class="cart-item-divider"></div>

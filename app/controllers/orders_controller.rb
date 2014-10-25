@@ -1,10 +1,7 @@
 #encoding: utf-8
 class OrdersController < ApplicationController
   include CartsHelper
-  def show
-    @order = Order.find params[:id]
-  end
-
+  
   # About this method:
   # The Order Status just generates one at a time.
   # This time it means 
@@ -20,6 +17,11 @@ class OrdersController < ApplicationController
         @order = current_user.orders.create(total: @total, status: 0)
         redirect_to @order
     end
+  end
+
+  def show
+    @order = Order.find params[:id]
+    @products = current_user.cart_products
   end
 
   def save

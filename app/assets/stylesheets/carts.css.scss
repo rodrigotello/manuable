@@ -6,7 +6,13 @@
 	padding: 4em 1em;
 }
 
-h2.mi-carrito {
+h2.mi-carrito, h1.mi-carrito {
+	color: #0a4e5e;
+	text-align: center;
+	margin: 2em 0 .5em 0;
+}
+
+h3.mi-carrito {
 	color: #0a4e5e;
 	text-align: center;
 	margin: 2em 0 .5em 0;
@@ -105,4 +111,35 @@ input[type=submit].add-address {
 	background: #0a4e5e;
 	padding: 1em 4em;
 	border: none;
+}
+
+a.shipping-on {
+	background: #0a4e5e;
+	padding: 2px 12px;
+	color: white;
+	margin: 0;
+	text-decoration: none;
+	border-radius: 2px;
+}
+
+a.shipping-off {
+	background: lightgray;
+	padding: 2px 12px;
+	color: white;
+	margin: 0;
+	text-decoration: none;
+	border-radius: 2px;
+}
+
+.line-divider {
+	border-top: 1px solid gray;
+	width: 100px;
+	margin: 100px 0;
+}
+
+img.image-center, .line-divider {
+	text-align: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

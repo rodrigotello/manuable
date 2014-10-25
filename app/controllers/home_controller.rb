@@ -24,4 +24,7 @@ class HomeController < ApplicationController
 
   end
 
+  def local
+  end
+
 end

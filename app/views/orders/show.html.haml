@@ -1,7 +1,6 @@
 = form_for @order, html: { id: "order-form" } do |f|
   %span.order-errors
   %h1 Tu pago de Manuable
-  -  @products = current_user.cart_products
   %table#event-checkout.table
     %thead
       %tr
@@ -9,6 +8,8 @@
           Producto
         %th
           Creador
+        %th
+          Envio
         %th
           Precio
     %tbody
@@ -19,6 +20,8 @@
           %td
             = p.user.name
           %td
+            = p.shipping
+          %td
             = p.price.to_s
       %tr
         %td
@@ -26,13 +29,14 @@
         %td
         %td
           #total.strong
-            %strong= @total
+            %strong Total: $
+            %strong= @order.total
   %h3
     Escoge tu método de pago
-  .row
+  .row 
     .span6
       .hidden
-        %input{ type: "text", value: @total * 100, data: { conekta: "amount" } }
+        %input{ type: "text", value: @order.total * 100, data: { conekta: "amount" } }
         %input{ type: "text", value: "order-#{@order.id}", data: { conekta: "reference_id" } }
         %input{ type: "text", value: "Compra en Manuable $ #{@total} MXN", data: { conekta: "description" } }
         %input{ type: "text", value: "MXN", data: { conekta: "currency" } }

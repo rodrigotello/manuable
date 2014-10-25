@@ -10,6 +10,7 @@ Manuable::Application.routes.draw do
   # get "/mercadosemilla", to: "events#show", id: 6
   # get "/octapus", to: "events#show", id: 5
   get "about", to: "home#about"
+  get "local", to: "home#local"
 
   # match 'product/:id' => 'home#product'
 
