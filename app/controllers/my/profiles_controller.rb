@@ -10,6 +10,7 @@ module My
 
     def edit
       @my_section = params[:f]
+      @premium_user = PremiumUser.where(premium_user: current_user.id)[0].nil? ? false : true
     end
 
     def update
@@ -40,7 +41,7 @@ module My
     protected
 
     def user_params
-      params.require(:user).permit(:password, :password_confirmation, :remember_me, :avatar, :name, :nickname, :remote_avatar_url, :city_id, :state_id, :address, :zipcode, :occupation, :about, :birthday, :nickname).tap do |h|
+      params.require(:user).permit(:password, :password_confirmation, :remember_me, :avatar, :cover, :remote_cover_url, :name, :nickname, :remote_avatar_url, :city_id, :state_id, :address, :zipcode, :occupation, :about, :birthday, :nickname).tap do |h|
         h[:email] = params[:user][:email] if current_user.email.include?('manuablefakeemail')
       end
     end

@@ -23,7 +23,7 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   version :cover do
-    process resize_to_limit: [851, 315]
+    process resize_to_fill: [1064, 396]
   end
 
   def default_url

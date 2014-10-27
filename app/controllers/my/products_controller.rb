@@ -9,12 +9,16 @@ class My::ProductsController < ApplicationController
   end
 
   def new
-    @my_section = "new_product"
-    @product = current_user.products.new
-    if @product.attachments.length < 4
-      (4 - @product.attachments.length).times { @product.attachments.build }
+    @premium_user = PremiumUser.where(premium_user: current_user.id)[0].nil? ? false : true
+    if @premium_user
+      @my_section = "new_product"
+      @product = current_user.products.new
+      if @product.attachments.length < 4
+        (4 - @product.attachments.length).times { @product.attachments.build }
+      end
+    else
+      redirect_to root_path
     end
-
   end
 
   def show

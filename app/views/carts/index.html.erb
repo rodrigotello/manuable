@@ -12,15 +12,6 @@
 				<div id="shipping-button-<%=c.id%>"> 
 					<%= render('carts/shipping_button', c: c) %>
 				</div>
-				<!-- Fighting with this shit, from here...
-				<div id="shipping-button"> 
-					<% if c.shipping_boolean == true %>
-						<%= render('carts/shipping_button_on', c: c) %>
-					<% else %>
-						<%= render('carts/shipping_button_off', c: c) %>
-					<% end %>
-				</div>
-				<to here-->
 				<p>
 					<li class="cart-product">Precio: $<%= c.product.price %></li>
 				</p>
@@ -38,8 +29,6 @@
 			<div id="total-price">
 				<%= render('carts/total_price') %>
 			</div>
-			<%# Esta linea de abajo se supone es la que tiene que mandar parámetros, más no se para qué. Esos parametros deben servirme para poder enviar datos al controlador y poder redireccionar al usuario al generar una dirección, en caso de no tenerla. #>
-			<%#= link_to 'Pasar a pagar', new_orders_path.params(order_id: order.id), class: "checkout-button" %>
 			<% if @carts.count > 0 %> 
 				<%= link_to 'Pasar a pagar', new_order_path, class: "checkout-button" %>
 			<% else %>

@@ -4,11 +4,14 @@
   - if @my_section == 's' || @my_section.blank?
     = f.input :name, input_html: { class: 'input-xlarge' }
     = f.input :email, input_html: { class: 'input-xlarge', disabled: current_user.email.present? && !current_user.email.include?('manuablefakeemail') }
-    = f.input :nickname, wrapper: :prepend do
-      %span.add-on
-        http://manuable.com/
-      = f.input_field :nickname, class: 'input-xlarge'
+    - if @premium_user      
+      = f.input :nickname, wrapper: :prepend do
+        %span.add-on
+          http://manuable.com/
+        = f.input_field :nickname, class: 'input-xlarge'
     = f.input :avatar, as: :file
+    - if @premium_user
+      = f.input :cover, as: :file
     = f.input :birthday, input_html: { class: 'input-small datepicker' }, as: :string
     = f.association :state, input_html: { class: 'input-xlarge' }
     = f.input :city_id, as: :string, autocomplete: "off", input_html: { name: 'city-autocomplete', id: 'city-autocomplete', value: f.object.city ? "#{f.object.city.name}, #{f.object.city.state.name}" : '' }
@@ -24,5 +27,6 @@
   .form-actions
     = f.button :submit, "Guardar"
 
-%h3 Mi Cuenta de Banco
-= link_to "Mi Cuenta de Banco", premium_user_datum_path(current_user.premium_user_data)
+- if @premium_user
+  %h3 Mi Cuenta de Banco
+  = link_to "Mi Cuenta de Banco", premium_user_datum_path(current_user.premium_user_data)
