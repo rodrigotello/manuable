@@ -17,7 +17,7 @@ class My::ProductsController < ApplicationController
         (4 - @product.attachments.length).times { @product.attachments.build }
       end
     else
-      redirect_to root_path
+      redirect_to 'http://premium.manuable.com'
     end
   end
 
