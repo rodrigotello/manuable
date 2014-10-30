@@ -3,19 +3,17 @@
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
     %h3.text-center Regístrate
   .modal-body.text-center
-    %p Usa Facebook , Twitter o tu correo para que unirte a Manuable
+    %p Usa tu correo para que unirte a Manuable
     %small
       Al registrarte aceptas los
       = link_to "Términos y condiciones de uso", '/about?s=terms', rel: 'modal'
     %br
     %br
     %div
-      = link_to "<i class='fa fa-facebook-square'></i>".html_safe, user_omniauth_authorize_path(:facebook), class: 'login-service'
-      = link_to "<i class='fa fa-twitter-square'></i>".html_safe, user_omniauth_authorize_path(:twitter), class: 'login-service'
+      /= link_to "<i class='fa fa-facebook-square'></i>".html_safe, user_omniauth_authorize_path(:facebook), class: 'login-service'
+      /= link_to "<i class='fa fa-twitter-square'></i>".html_safe, user_omniauth_authorize_path(:twitter), class: 'login-service'
       = link_to "<i class='fa fa-envelope'></i>".html_safe, new_user_registration_path, rel: "modal", class: 'login-service'
-    %p
-      o
-    = link_to "Entra", new_session_path(:user), rel: "modal"
+    = link_to "¿Ya eres usuario? Entra aquí", new_session_path(:user), rel: "modal"
   .modal-footer
 %script
 
