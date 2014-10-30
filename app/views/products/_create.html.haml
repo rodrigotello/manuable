@@ -1,7 +1,7 @@
 - if product.attachments.length >= 1
   = div_for product, class: "product-card" do
     - liked = product.respond_to?(:liked) ? product.liked.to_i != 0 : false
-    .product-card-image{ style: "background-image: url(#{ product.attachments[0].attachment.url :medium })" }
+    .product-card-image{ style: "background-image: url(#{ product.attachments[0].attachment.url :large })" }
       = link_to product.name, product, class: 'product-img-link'
       - if user_signed_in?
         - if !liked
