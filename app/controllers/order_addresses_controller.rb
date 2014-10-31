@@ -3,7 +3,7 @@
 class OrderAddressesController < ApplicationController
   
   def index
-    
+    @order_address = current_user.order_addresses
   end
 
   def new

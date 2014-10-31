@@ -1,3 +1,13 @@
 <h2>Tus direcciones de envio</h2>
 <p>Aquí puedes administrar las direcciones a las que te podamos enviar producto.</p>
-
+<% @order_address.each do |a| %>
+	<%#= @order_address.street %>
+	<p>Calle: <%= a.street %></p>
+	<p>Entre calle: <%= a.in_between_street %></p>
+	<p>Número exterior: <%= a.number %></p>
+	<p>Número interior: <%= a.inner_number %></p>
+	<p>Colonia: <%= a.neighborhood %></p>
+	<p>Código Postal: <%= a.zip %></p>
+	<p>¿Alguna referencia?: <%= a.reference %></p>
+<% end %>
+<p><%= link_to 'Agregar una nueva dirección', new_order_address_path %></p>
