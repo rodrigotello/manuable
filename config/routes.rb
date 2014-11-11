@@ -1,5 +1,6 @@
 Manuable::Application.routes.draw do
 
+  get "sales/dashboard"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # match "/404", :to => "errors#not_found"
   # match "/500", :to => "errors#app_failure"
@@ -7,6 +8,7 @@ Manuable::Application.routes.draw do
   mount Commontator::Engine => '/commontator'
 
   get "home/index"
+  get "index_2", to: "home#index_2"
   # get "/mercadosemilla", to: "events#show", id: 6
   # get "/octapus", to: "events#show", id: 5
   get "about", to: "home#about"

@@ -1,0 +1,14 @@
+<h2> Mis Ventas <h2>
+<p>Aquí puedes consular la información de tus ventas.</p>
+<% if @sales.count < 1 %>
+	<h2>Lo sentimos</h2>
+	<p>No tienes ninguna venta aun :( </p>
+<% else %>
+	<% @sales.each do |p| %>
+		<%= @sales.product %>
+		<%= @sales.date %>
+		<%= @sales.buyer %>
+		<%= @sales.price %>
+		<%= @sales.status %>
+	<% end %>
+<% end %>
