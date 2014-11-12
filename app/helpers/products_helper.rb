@@ -40,8 +40,8 @@ module ProductsHelper
     end
   end
 
-  #def premium_product(product)
-    #!PremiumUser.find_by_premium_user(product.user.id).nil?
-  #end
+  def premium_product(product)
+    !PremiumUser.find_by_premium_user(product.user.id).nil?
+  end
 
 end
