@@ -39,4 +39,9 @@ module ProductsHelper
       output.html_safe
     end
   end
+
+  #def premium_product(product)
+    #!PremiumUser.find_by_premium_user(product.user.id).nil?
+  #end
+
 end

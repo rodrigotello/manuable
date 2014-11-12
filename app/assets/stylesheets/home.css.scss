@@ -24,6 +24,7 @@
   #myDiv {
     position: relative;
     z-index: 5;
+    background-image: image-url('homecover.jpg');
   }
 
   #myDiv::before {
@@ -115,13 +116,6 @@
     line-height: 23px;
     margin: 40px 0;
   }
-}
-
-.main-folding {
-  background-image: image-url("homecover.jpg");
-  background-size: cover;
-  text-align: center;
-  height: 50vh;
 }
 
 .navbar.sub-menu {

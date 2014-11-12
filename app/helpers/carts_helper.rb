@@ -9,8 +9,4 @@ module CartsHelper
 		end
 		total
 	end
-
-	def premium_product
-		 @premium_product = PremiumUser.where(premium_user: current_user.id)[0].nil? ? false : true
-	end
 end
