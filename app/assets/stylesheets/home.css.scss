@@ -20,11 +20,11 @@
 }
 
 #welcome {
-  margin-top: -100;
   #fold {
     position: relative;
     z-index: 5;
     background-image: image-url('homecover.jpg');
+    height: 50vh;
   }
 
   #fold::before {
@@ -42,7 +42,7 @@
       -o-filter: brightness(0.8);
       -ms-filter: brightness(0.8);
       width: 100%;
-      height: 50vh;
+      height: 50em;
       margin-top: -200px;
   }
 
@@ -116,6 +116,14 @@
     line-height: 23px;
     margin: 40px 0;
   }
+  img {
+    padding: 4em;
+    margin: 0 auto;
+  }
+}
+
+.logo-center {
+  margin: 0 auto;
 }
 
 .navbar.sub-menu {
