@@ -21,13 +21,13 @@
 
 #welcome {
   margin-top: -100;
-  #myDiv {
+  #fold {
     position: relative;
     z-index: 5;
     background-image: image-url('homecover.jpg');
   }
 
-  #myDiv::before {
+  #fold::before {
       content: "";
       position: absolute;
       z-index: -1;
