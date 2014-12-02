@@ -24,7 +24,7 @@
     position: relative;
     z-index: 5;
     background-image: image-url('homecover.jpg');
-    height: 50vh;
+    height: 50em;
   }
 
   #fold::before {
@@ -43,7 +43,6 @@
       -ms-filter: brightness(0.8);
       width: 100%;
       height: 50em;
-      margin-top: -200px;
   }
 
   #home-cover {
@@ -99,8 +98,10 @@
     text-align: center;
     color: #fff;
     margin-top: 160px;
-    font-size: 52px;
+    font-size: 4.8em;
+    letter-spacing: .12em;
     line-height: 50px;
+    font-weight: 200;
     filter: brightness(1) blur(0px);
     // Browser Specific
     -webkit-filter: brightness(1) blur(0px);
@@ -116,14 +117,75 @@
     line-height: 23px;
     margin: 40px 0;
   }
+
   img {
-    padding: 4em;
-    margin: 0 auto;
+    width: 100%;
+    height: auto;
   }
+}
+
+.premium-banner {
+  background: #bdd1d8;
+  padding: 8.2em;
+  margin: 4em 0;
+}
+
+.premium-banner h2, .premium-banner h3, .premium-banner a{
+  text-align: center;
+  color: #133d4c;
+}
+
+.premium-banner h2, .premium-banner h3 {
+  color: #133d4c;
+}
+
+.center-button {
+  margin: 0 auto;
+}
+
+a.banner-premium-button {
+  background: #1dda71;
+  padding: 1.2em 4em;
+  color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  text-align: center;
+  display: block;
+  margin: 2em auto;
+  width: 16em;
+}
+
+a.banner-premium-button:hover {
+  background: #17ad5a;
+}
+
+.text-box {
+  margin: 0 auto;
+  max-width: 640px;
 }
 
 .logo-center {
   margin: 0 auto;
+  margin-bottom: -40px;
+  width: 250px;
+  padding: 4em 0 0 0;
+  float: center;
+}
+
+.city-block {
+  margin: 100px auto;
+}
+
+.premium-user {
+  width: 30%;
+  margin: 0 2% 0 0;
+  display: inline;
+  float: left;
+}
+
+.premium-user img {
+  width: 100%;
+  height: auto;
 }
 
 .navbar.sub-menu {
@@ -203,7 +265,7 @@
     min-height: 62px;
     border: 1px solid #e1e1e1;
     border-top: 0;
-    border-radius: 0 0 3px 3px;
+    border-radius: 0 0 0 0;
     text-align: center;
     padding-top: 1px;
     a {
@@ -429,20 +491,6 @@
     background-color: #fff;
     border-radius: 0 0 3px 3px;
   }
-}
-.repairing-banner {
-  color: white;
-  background: tomato;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 100;
-  padding: 1.5em 0 1.5em 0;
-  display: block;
-  position: static;
-}
-
-.repairing-banner a, .repairing-banner a:hover{
-  color:white
 }
 
 .container-pusher {
