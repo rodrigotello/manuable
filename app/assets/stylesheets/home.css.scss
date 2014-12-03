@@ -173,12 +173,30 @@ a.banner-premium-button:hover {
 }
 
 .city-block {
-  margin: 100px auto;
+  margin: 2em auto;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+}
+
+.city-label {
+  border: 2px solid lightgray;
+  border-right: none;
+  border-left: none;
+  width: 20%;
+  padding: 1em;
+}
+
+.city-label h3 {
+  font-weight: 400;
+  color: #333332;
 }
 
 .premium-user {
-  width: 30%;
-  margin: 0 2% 0 0;
+  width: 40%;
+  padding: 0;
+  margin: 2.5% 5%;
   display: inline;
   float: left;
 }
@@ -186,6 +204,25 @@ a.banner-premium-button:hover {
 .premium-user img {
   width: 100%;
   height: auto;
+}
+
+.premium-user a{
+  text-decoration: none;
+}
+
+.premium-user-label {
+  border: 1px solid lightgray;
+  padding: 1em;
+  color: #333332;
+  text-decoration: none;
+  text-align: center;
+}
+
+.press {
+  margin: 4em 0;
+}
+.press h2, .press h3{
+  text-align: center;
 }
 
 .navbar.sub-menu {
@@ -246,6 +283,13 @@ a.banner-premium-button:hover {
     }
   }
 }
+
+.container-pusher {
+  margin-top: 200px;
+}
+
+/*--This classes are no longer being used. Please delete them. --*/
+
 .product-card{
   width: 240px;
   float: left;
@@ -491,8 +535,4 @@ a.banner-premium-button:hover {
     background-color: #fff;
     border-radius: 0 0 3px 3px;
   }
-}
-
-.container-pusher {
-  margin-top: 200px;
 }

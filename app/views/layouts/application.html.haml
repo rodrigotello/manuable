@@ -31,13 +31,7 @@
       #notice
         = bootstrap_flash
       = yield
-      %footer
-        = image_tag 'logo-ccc.svg'
-        %ul.text-center
-          %li
-            = link_to 'Nosotros', '/about', rel: 'modal'
-          %li
-            = link_to 'Términos y Condiciones', '/about', rel: 'modal'
+    = render partial: 'shared/footer'
     = javascript_include_tag "application"
     %script{ type: "text/javascript", src: "https://conektaapi.s3.amazonaws.com/v0.3.0/js/conekta.js" }
 
