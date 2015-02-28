@@ -9,13 +9,9 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap_and_overrides
+
  *= require font-awesome.min
  *= require prefixed-props
- *= require font-awesome.min
- *= require bootstrap-modal
- *= require bootstrap-timepicker
- *= require bootstrap-datepicker
  *= require jquery-ui-1.10.2.custom
  *= require markitup_set
  *= require markitup_skin
@@ -27,7 +23,7 @@
  *= require_tree .
  */
 
-body {
+/*body {
   background: #FFF;
   font-family: 'Source Sans Pro', sans-serif;
   padding-top: 70px;
@@ -331,3 +327,4 @@ form .form-appendable{
     margin-top: 30px;
   }
 }
+*/

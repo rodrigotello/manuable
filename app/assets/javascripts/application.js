@@ -213,3 +213,19 @@ $(function(){
   });
 
 });
+
+//tabs
+$(document).ready(function(){
+  
+  $('.profile-tabs').on('click', 'a', function(evt) {
+    evt.preventDefault();
+    
+    var newItemID = $(this).attr('href');
+
+    $('.tab, .tab-content').removeClass('active');
+    $(this).parent().addClass('active');
+    $(newItemID).addClass('active');
+  });
+  
+});
+
