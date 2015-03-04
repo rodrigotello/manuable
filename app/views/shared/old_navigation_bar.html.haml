@@ -9,7 +9,8 @@
       %ul.nav.pull-right
         - if !user_signed_in?
           %li.login-option
-            = link_to 'Entrar', new_registration_path(:user), rel: "modal", class: 'transparent-button'
+            = link_to 'Entrar', new_registration_path(:u
+            ser), rel: "modal", class: 'transparent-button'
           %li.login-option.login-icons
             /= link_to "<i class='fa fa-facebook-square'></i>".html_safe, user_omniauth_authorize_path(:facebook)
             /= link_to "<i class='fa fa-twitter-square'></i>".html_safe, user_omniauth_authorize_path(:twitter)

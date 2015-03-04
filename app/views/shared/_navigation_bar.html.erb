@@ -1,0 +1,53 @@
+<div class="navbar navbar-fixed-top">
+  <nav class="container">
+    <input type="checkbox" id="burguer" />
+      <label class="burguer" for="burguer">Menu</label>
+        <ul class="top-menu">
+          <li class="navlogo"><%= link_to image_tag("logo.svg"), root_path, class: 'brand' %></li>
+          <li>
+            <a href="#">Descubre <i class="fa fa-caret-down"></i></a>
+            <ul class="submenu">
+              <li><a href="#">Todos los Artesanos</a></li>
+              <li><a href="#">Eventos</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Manuable Premium</a></li>
+            </ul>
+          </li>
+          <% if user_signed_in? %> 
+          <li><a href="#">Subir Producto</a></li>
+          <li><a href="#">Mensaje</a></li>
+          <li><%=link_to "<i class='fa fa-shopping-cart'></i>".html_safe, carts_path %>
+          </li>
+
+          <li id="current-user-options">
+            <a href="#">
+              <div class="user-round-avatar">
+                <span><%= @current_user.first_name %></span>
+                 <i class="fa fa-caret-down"></i>
+              </div>
+             
+            </a>
+            <ul class="submenu">
+              <li><%= link_to "<i class='fa fa-smile-o'></i> Mi perfil".html_safe, user_path(current_user)%></li>
+              <li><%=link_to "<i class='fa fa-cogs'></i> Mi información".html_safe, edit_my_profile_path(f: 's')%></li>
+              <li><%= link_to "<i class='fa fa-question'></i> Ayuda".html_safe, '/about'%>
+              <li>
+                <%= link_to "<i class='fa fa-power-off'></i> Salir".html_safe, destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+            
+        </li>
+        
+
+       <% else %>
+        <li class="login-option">
+          <%=link_to 'Entrar', new_registration_path(:user), class: 'transparent-button' %></li>
+
+        
+      <% end %>
+      </ul>
+    
+  </nav>
+</div>
+
+
