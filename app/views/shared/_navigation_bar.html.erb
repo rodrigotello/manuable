@@ -14,9 +14,9 @@
             </ul>
           </li>
           <% if user_signed_in? %> 
-          <li><a href="#">Subir Producto</a></li>
+          <li><%=link_to "Subir Producto", new_my_product_path%> </li>
           <li><a href="#">Mensaje</a></li>
-          <li><%=link_to "<i class='fa fa-shopping-cart'></i>".html_safe, carts_path %>
+          <li class="top-cart"><%=link_to "<i class='fa fa-shopping-cart'></i> Carrito ".html_safe, carts_path %>
           </li>
 
           <li id="current-user-options">

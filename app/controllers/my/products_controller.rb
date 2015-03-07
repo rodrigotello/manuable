@@ -10,15 +10,15 @@ class My::ProductsController < ApplicationController
 
   def new
     @premium_user = PremiumUser.where(premium_user: current_user.id)[0].nil? ? false : true
-    if @premium_user
+    #if @premium_user
       @my_section = "new_product"
       @product = current_user.products.new
       if @product.attachments.length < 4
         (4 - @product.attachments.length).times { @product.attachments.build }
       end
-    else
-      redirect_to 'http://premium.manuable.com'
-    end
+    #else
+      #redirect_to 'http://premium.manuable.com'
+    #end
   end
 
   def show

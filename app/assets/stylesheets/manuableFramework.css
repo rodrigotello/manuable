@@ -111,6 +111,7 @@ hr {
   border-top: 1px solid #f8f9f9; }
 
 
+
 /* ----------------------------Typography ------------------------*/
 h1, h2, h3, h4, h5, h6 { 
   font-family: "Open Sans"; 
@@ -589,20 +590,21 @@ background-color: #41cbeb;
 }
 
 .top-menu a:hover {
-  opacity: .85;
+ background-color: #b4c7cb;
 }
 
 .top-menu > li {
 
   float: left;
-  width: 15%;
+  width: 14%;
   box-sizing: border-box; 
   text-align: left;
 }
 
 .top-menu li.navlogo {
-  width:25%;
+  width:30%;
 }
+
 .submenu {
   display: none;
 }
@@ -680,3 +682,20 @@ background-color: #41cbeb;
     padding-left: 20px;
   }
 }
+
+/*        SHOPPING CART          */
+
+table.cart-table {
+  width: 100%;
+  box-sizing: border-box; 
+ 
+}
+
+.cart-table th {
+ 
+  text-align:left;
+}
+.cart-table td {
+   vertical-align: middle;
+}
+

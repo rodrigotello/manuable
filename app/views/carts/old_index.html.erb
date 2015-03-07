@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="checkout-wrapper">
+		<h2 class="mi-carrito">Mi carrito</h2>
+		<p class="mi-carrito">Recuerda revisar todos los productos antes de pasar a pagar. Puedes usar tarjeta de crédito, débito, transferencia bancaria u OXXO. Si prefieres conocer al artesano, puedes hacer una <strong><%= link_to 'Compra Local', local_path %></strong>.
+		<div class="cart-products-box"></p>
+		<p>
+			<% @total = 0 %>
+			<% @carts.each do |c| %>
+				<div class="cart-item-divider"></div>
+				<li class="cart-product"><h3><%= c.product.name %></h3></li>
+				<li class="cart-product">por <%= c.product.user.name %></li>
+				<div id="shipping-button-<%=c.id%>"> 
+					<%= render('carts/shipping_button', c: c) %>
+				</div>
+				<p>
+					<li class="cart-product">Precio: $<%= c.product.price %></li>
+				</p>
+				<p>
+					<li class="cart-product">Envio: $<%= c.product.shipping %></li></p>
+
+				<%= link_to '<i class="fa fa-times"></i> Borrar'.html_safe, c, class: "delete-cart-item", method: :delete %>
+				<% @total = @total + c.product.price + c.product.shipping %>
+			<% end %>
+		</div>
+		<div class="checkout-box">
+			<h3 class="total-price">Cantidad de Productos:</h3>
+			<h3 class="total-price"><%= current_user.carts.count %></h3>
+			<h3 class="total-price">Total a Pagar:</h3>
+			<div id="total-price">
+				<%= render('carts/total_price') %>
+			</div>
+			<% if @carts.count > 0 %> 
+				<%= link_to 'Pasar a pagar', new_order_path, class: "checkout-button" %>
+			<% else %>
+				<%= link_to 'Nada por pagar', '#', class: "checkout-button-empty" %>
+			<% end %>
+			<%= link_to 'Seguir comprando', root_path, class: "keep-buying-button" %>
+		</div>
+	</div>
+</div>
