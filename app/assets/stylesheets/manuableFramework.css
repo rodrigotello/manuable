@@ -188,7 +188,7 @@ a {
   line-height: inherit; 
 }
 
-a:hover { color: #fafafa; }
+a:hover { color: #9fa4a5; }
 
 .white-text { color:white;}
 
@@ -299,10 +299,10 @@ a:hover { color: #fafafa; }
   box-sizing: border-box; }
 
 
-.row {
+/*.row {
   overflow: hidden;
  
-}
+}*/
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
@@ -652,9 +652,14 @@ background-color: #41cbeb;
   .burguer:after {
     display: block;
     position: absolute;
-    content: 'v'; /* Remplazar con tu glyph */
+    content: "\f107";
+    font: normal normal normal 14px/1 FontAwesome;
+    color:#fff;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased; 
     right: 15px;
     top: 10px;
+
   }
   
   .top-menu {
@@ -699,3 +704,22 @@ table.cart-table {
    vertical-align: middle;
 }
 
+
+/* Product Details */
+.product-controller {
+  float:right;
+  text-align: right;
+  clear:both;
+}
+.product-controller a {
+  font-size: .750em;
+}
+.product-actions .btn-main-cta {
+  width:85%;
+}
+
+.product-actions .row{
+ 
+  padding:10px 0;
+
+} 
