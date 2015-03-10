@@ -125,6 +125,13 @@
   }
 }
 
+.more-info-banner {
+  text-align: center;
+  background: whitesmoke;
+  color: gray;
+  padding: 2em 0;
+}
+
 .premium-banner {
   background: #bdd1d8;
   padding: 8.2em;
@@ -220,10 +227,24 @@ a.banner-premium-button:hover {
 }
 
 .press {
-  margin: 4em 0;
+  margin: 0 auto;
+  width: 50%;
+  padding: 2em;
 }
+
 .press h2, .press h3{
   text-align: center;
+}
+
+img.press-logo {
+  height: auto;
+  width: 30%;
+  margin: 0 5%;
+}
+
+.press-logo-center {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .navbar.sub-menu {
