@@ -1,19 +1,60 @@
 Rodrigo Development Notes
 
-¿Qué estoy haciendo?
-. Generando el "env" para poder integrar Conekta.
-. Agregué líneas a:
-	config/application.rb
-	config/secret.yml (creo)
+. Decifrar que hace el JavaScript del Payment Methods.
 
-Archivos que he modificado:
-. views/layouts/application.rb
-. config/application.rb
+PREGUNTAS
 
-Changes:
-. Charges model was created
-. Order controlles generated
-. 
+¿Cómo agrego las llaves para que no se vean?
+¿Cómo le aviso a la persona que ya se proceso el pago?
+¿Por qué me pide el nombre si ya lo puse en el Sign_In?
+¿Por qué hay un espacio en negro entre la caja de comments?
+¿Cómo está construido el botón de borrar dentro de los Comments?
+¿Por qué no está montado el Cover Photo?
+¿Por qué hay campos que no se les puede modificar el Tag?
+¿Qúé puedo optimizar?
+¿Como configuro Mandrill?
+	¿Qué tengo que cambiar?
+
+¿Por qué el "main container-width" reacciona?
+¿Por qué está lleno de eventos el User y no el Controller?
+El contador de Heroku me regresa diferente cantidad a los registros. ¿Será porque están borrados?
+¿Cómo debo de manejar la lógica, en el sitio o en la página?
+
+Bugs
+
+* No puedo guardar más de 18 números en un Integer. ¿Qué hago?
+
+
+User (
+	id: integer,
+	created_at: datetime,
+	updated_at: datetime,
+	email: string,
+	encrypted_password: string,
+	reset_password_token: string,
+	reset_password_sent_at: datetime,
+	remember_created_at: datetime,
+	sign_in_count: integer,
+	current_sign_in_at: datetime,
+	last_sign_in_at: datetime,
+	current_sign_in_ip: string,
+	last_sign_in_ip: string,
+	nickname: string,
+	name: string,
+	avatar: string,
+	about: text,
+	address: string,
+	zipcode: integer,
+	city_id: integer,
+	state_id: integer,
+	country_id: integer,
+	geolocation: string,
+	occupation: string,
+	birthday: date,
+	last_product_id: integer,
+	cover: string,
+	products_count: integer
+)
 
 Notas con Cejudo
 . El modelo de Charge no hace falta
@@ -52,64 +93,4 @@ Notas con Cejudo
 	     		}
 	     	}
 
-. Decifrar que hace el JavaScript del Payment Methods.
-
-
-
-PREGUNTAS A CEJUDO:
-
-¿Cómo agrego las llaves para que no se vean?
-
-¿Cómo le aviso a la persona que ya se proceso el pago?
-
-¿Por qué me pide el nombre si ya lo puse en el Sign_In?
-¿Por qué hay un espacio en negro entre la caja de comments?
-
-¿Cómo está construido el botón de borrar dentro de los Comments?
-
-¿Por qué no está montado el Cover Photo?
-
-¿Por qué hay campos que no se les puede modificar el Tag?
-
-¿Qúé puedo optimizar?
-
-¿Como configuro Mandrill?
-	¿Qué tengo que cambiar?
-
-¿Por qué el "main container-width" reacciona?
-
-¿Por qué está lleno de eventos el User y no el Controller?
-
-El contador de Heroku me regresa diferente cantidad a los registros. ¿Será porque están borrados?
-
-
-User (
-	id: integer,
-	created_at: datetime,
-	updated_at: datetime,
-	email: string,
-	encrypted_password: string,
-	reset_password_token: string,
-	reset_password_sent_at: datetime,
-	remember_created_at: datetime,
-	sign_in_count: integer,
-	current_sign_in_at: datetime,
-	last_sign_in_at: datetime,
-	current_sign_in_ip: string,
-	last_sign_in_ip: string,
-	nickname: string,
-	name: string,
-	avatar: string,
-	about: text,
-	address: string,
-	zipcode: integer,
-	city_id: integer,
-	state_id: integer,
-	country_id: integer,
-	geolocation: string,
-	occupation: string,
-	birthday: date,
-	last_product_id: integer,
-	cover: string,
-	products_count: integer
-)
+Rails

@@ -1,31 +1,31 @@
 <div id="profile-premium">
   
   <section class="profile-hero">
-
     <div class="container profile-content">
       <div class="twelve columns text-center">
-
         <h1 class="white-text"><%= @user.name %></h1>
         <div class="profile-avatar">
           <a href="#" class="profileTooltip">
             <div class="avatar-img"></div>
           </a>
         </div>
-        <h3 class="white-text">Ciudad, Estado.</h3>
-        <h5 class="white-text">Breve Descripción acerca de </h5>
+        <h3><%= @user.location %></h3>
+        <h5><%= @user.about %></h5>
       </div>
       <div class="profile-actions">
-          <a href="#" class="btn btn-regular"><i class="fa fa-envelope"></i> Enviar Mensaje</a>
-          <a href="#" class="btn btn-regular">
-            <i class="fa fa-arrow-right"></i> Seguir</a>
+        <% if current_user && @user != current_user %>
+          <%= link_to '<i class="fa fa-envelope-o"></i> Enviar Mensaje'.html_safe, new_my_conversation_path(to: @user.id), class: 'btn btn-regular', id: 'message-user', rel: 'modal' %>
+          <% if @user.followed_by? current_user %>
+            <%= link_to '<i class="fa fa-arrow-right"></i> Siguiendo'.html_safe, unfollow_user_path(@user), method: 'delete', remote: true, id: 'follow-user' %>
+            <% else %>
+            <%= link_to '<i class="fa fa-arrow-right"></i> Seguir'.html_safe, follow_user_path(@user), method: 'post', remote: true, id: 'follow-user' %>
+          <% end %>
+        <% end %>
       </div>
-
     </div>
   </section> 
   
-  
   <nav class="profile-nav">
-    
     <ul class="row profile-tabs">
       <li class="oneFifth tab active">
         <a href="#store">Mi Marca</a>
@@ -40,190 +40,113 @@
         <a href="#followers">Seguidores</a>
       </li>
       <li class="oneFifth tab">
-        <a href="#following">Siguiendo</a>
+        <a href="#followees">Siguiendo</a>
       </li>
     </ul>
   </nav>
-  <!--               MI MARCA                 -->
+
+  <!-- MI MARCA -->
   <div class="container tab-container">
     <section id="store" class="tab-content active">
-      
       <div class="row">
         <div class=" twelve columns text-center">
-          <h2>Hacer lo que nos gusta es bien bonito</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+          <h2><%# @user.punchline %></h2>
+          <p><%# @user.mini-bio %></p>
         </div>
       </div>
-      <hr>
-      <div class="row">
-        <div class="twelve columns text-center">
-          <h2>Productos</h2>
-        </div>
-      </div>
-      <!--             store products          -->
-      <div class="row product-grid">
-        <div class="four columns">
-          <div class="product-box">
-       
-              <div class="product-img">
-                <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/t/54b8132ae4b0c2c1fadf8773/1421349697025/Ik10.jpg" class="img-responsive" alt="">
-                <div class="product-buttons">
-                <a href="#" class="like"><i class="fa fa-heart"></i></a>
-                <a href="#" class="cart"><i class="fa fa-shopping-cart"></i>
-                </a>
-                </div>
-              </div>
-              <div class="product-info">
-                <p>Nombre del Item</p>
-                <p>$50.00 MXN</p>
-              </div>
-      
-          </div>
-        </div>
-
-        <div class="four columns">
-          <div class="product-box">
-            <div class="product-img">
-              <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/54b81270e4b0ff95698049e4/54b814abe4b06f2c55e50154/1421350067149/Ik17.jpg" class="img-responsive" alt="">
-              <div class="product-buttons">
-              <a href="#" class="like"><i class="fa fa-heart"></i></a>
-              <a href="#" class="cart"><i class="fa fa-shopping-cart"></i></a>
-              </div>
-            </div>
-            <div class="product-info">
-              <p>Nombre del Item</p>
-              <p>$50.00 MXN</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="four columns">
-          <div class="product-box">
-            <div class="product-img">
-              <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/54b81270e4b0ff95698049e4/54b814ade4b095413a4d50cc/1421350067247/Ik18.jpg" class="img-responsive" alt="">
-              <div class="product-buttons">
-              <a href="#" class="like"><i class="fa fa-heart"></i></a>
-              <a href="#" class="cart"><i class="fa fa-shopping-cart"></i></a>
-              </div>
-            </div>
-            <div class="product-info">
-              <p>Nombre del Item</p>
-              <p>$50.00 MXN</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="four columns">
-          <div class="product-box">
-            <div class="product-img">
-              <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/t/54b8132ae4b0c2c1fadf8773/1421349697025/Ik10.jpg" class="img-responsive" alt="">
-              <div class="product-buttons">
-              <a href="#" class="like"><i class="fa fa-heart"></i></a>
-              <a href="#" class="cart"><i class="fa fa-shopping-cart"></i></a>
-              </div>
-            </div>
-            <div class="product-info">
-              <p>Nombre del Item</p>
-              <p>$50.00 MXN</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="four columns">
-          <div class="product-box">
-     
-              <div class="product-img">
-                <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/54b81270e4b0ff95698049e4/54b814abe4b06f2c55e50154/1421350067149/Ik17.jpg" class="img-responsive" alt="">
-                <div class="product-buttons">
-                <a href="#" class="like"><i class="fa fa-heart"></i></a>
-                <a href="#" class="cart"><i class="fa fa-shopping-cart"></i></a>
-                </div>
-              </div>
-              <div class="product-info">
-                <p>Nombre del Item</p>
-                <p>$50.00 MXN</p>
-              </div>
-          
-          </div>
-        </div>
-
-        <div class="four columns">
-          <div class="product-box">
-            <div class="product-img">
-              <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/54b81270e4b0ff95698049e4/54b814ade4b095413a4d50cc/1421350067247/Ik18.jpg" class="img-responsive" alt="">
-              <div class="product-buttons">
-              <a href="#" class="like"><i class="fa fa-heart"></i></a>
-              <a href="#" class="cart"><i class="fa fa-shopping-cart"></i></a>
-              </div>
-            </div>
-            <div class="product-info">
-              <p><strong>Nombre del Item</strong></p>
-              <p>$50.00 MXN</p>
-            </div>
-          </div>
-
-          
-        </div>
-      
-      </div>
-      <hr>
-    
-      <div class="row">
-        <div class=" twelve columns text-center">
-          <h2>Locales</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
-          <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/t/54b8132ae4b0c2c1fadf8773/1421349697025/Ik10.jpg" class="img-responsive" alt="">
-        </div>
-      
-      </div>
-      <hr>
-      <div class="row">
-        <div class="twelve columns text-center">
-          <h2>Mercaditos</h2>
-        </div>
-      </div>
-      <div class="row pic-grid">
-        <div class="four columns">
-        
-          <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/t/54b8132ae4b0c2c1fadf8773/1421349697025/Ik10.jpg" class="img-responsive" alt="">
-        </div>
-        <div class="four columns">
-          <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/54b81270e4b0ff95698049e4/54b814abe4b06f2c55e50154/1421350067149/Ik17.jpg" class="img-responsive" alt="">
-        </div>
-      </div>
-
-      <hr>
-      <footer>
-         <div class="row">
-          <div class="twelve columns text-center">
-            <h2>Contacto</h2>
-          </div>
-        </div>
+      <div id="products-container">
         <div class="row">
-          <div class="six columns text-center">
-            <p>Dirección del lugar o teléfono de contacto </p>
-          </div>
-          <div class="six columns text-center">
-            <ul class="social">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-              <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
-            </ul>
+          <div class="twelve columns text-center">
+            <h2>Productos</h2>
           </div>
         </div>
-        
+        <!-- Products -->
+        <div class="row product-grid">
+          <div class="four columns">
+            <div class="product-box">
+                <div class="product-img">
+                  <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/t/54b8132ae4b0c2c1fadf8773/1421349697025/Ik10.jpg" class="img-responsive" alt="">
+                  <div class="product-buttons">
+                  <a href="#" class="like"><i class="fa fa-heart"></i></a>
+                  <a href="#" class="cart"><i class="fa fa-shopping-cart"></i>
+                  </a>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <p>Nombre del Item</p>
+                  <p>$50.00 MXN</p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="stores-container">
+        <div class="row">
+          <div class=" twelve columns text-center">
+            <h2>Locales</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div class="stores-wrapper">
+              <div class="stores-box">
+                <!-- Put here the merket content -->
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div> <!--- Close STORE -->
+      
+      <div id="markets-container">
+        <div class="row">
+          <div class="twelve columns text-center">
+            <h2>Mercaditos</h2>
+          </div>
+        </div>
+        <div class="row pic-grid">
+          <div class="four columns">
+            <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/t/54b8132ae4b0c2c1fadf8773/1421349697025/Ik10.jpg" class="img-responsive" alt="">
+          </div>
+        </div>
+      </div><!-- Close MARKETS -->
+      
+      <footer>
+        <div id="contact-container">
+          <div class="row">
+            <div class="twelve columns text-center">
+              <h2>Contacto</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="six columns text-center">
+              <p>Dirección:</p>
+              <p>
+                <%#= @user.contact.street %><br/>
+                <%#= @user.contact.street2 %><br/>
+                <%#= @user.contact.zip %><br/>
+                <%#= @user.contact.city %><br/>
+                <%#= @user.contact.state %><br/>
+                <%#= @user.contact.mobile_phone %><br/>
+                <%#= @user.contact.local_phone %><br/>
+                <%#= @user.contact.email %><br/>
+              </p>
+            </div>
+            <div class="six columns text-center">
+              <ul class="social">
+                <li><a href="<%#= @user.contact.facebook %>"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="<%#= @user.contact.twitter %>"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="<%#= @user.contact.pinterest %>"><i class="fa fa-pinterest"></i></a></li>
+                <li><a href="<%#= @user.contact.instagram %>"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="<%#= @user.contact.youtube %>"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="<%#= @user.contact.tumblr %>"><i class="fa fa-tumblr"></i></a></li>
+              </ul>
+            </div>
+          </div>  
+        </div><!-- Close CONTACT -->
       </footer>
     </section>
     
-
-    <!--                 ACERCA DE                           -->
-    <section id="about" class="tab-content">
-    
+    <!-- ACERCA DE -->
+    <section id="about" class="tab-content"> 
       <div class="row">
         <div class="twelve columns text-center">
           <h2>Acerca de</h2>
@@ -231,15 +154,53 @@
       </div>
       <div class="row">
         <div class="six columns">
-          <img src="http://static1.squarespace.com/static/5494c01ee4b02c7503364155/54b81270e4b0ff95698049e4/54b814abe4b06f2c55e50154/1421350067149/Ik17.jpg" class="img-responsive" alt="">
+          <%#= @user.story.image %>
         </div>
         <div class="six columns">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+          <p><%# @user.story %></p>
         </div>
       </div>
-    
-    
-    </section>
-  </div>
-</div>
+    </section> <!-- This close "ACERCA DE" section -->
+
+    <!-- MIS GUSTOS -->
+    <section id="likes" class="tab-content"> 
+      <div class="row">
+        <div class="twelve columns text-center">
+          <h2>Mis gustos</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+        </div>
+      </div>
+    </section> <!-- This close "MIS GUSTOS" section -->
+
+    <!-- SEGUIDORES -->
+    <section id="followers" class="tab-content"> 
+      <div class="row">
+        <div class="twelve columns text-center">
+          <h2>Seguidores</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+        </div>
+      </div>
+    </section> <!-- This close "SEGUIDORES" section -->
+
+    <!-- SIGUIENDO -->
+    <section id="followees" class="tab-content"> 
+      <div class="row">
+        <div class="twelve columns text-center">
+          <h2>Siguiendo</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="six columns">
+        </div>
+      </div>
+    </section> <!-- This close "SIGUIENDO" section -->
+
+  </div> <!-- This close "MI MARCA" section -->
+</div> <!-- This close id="profile-premium" -->
 
