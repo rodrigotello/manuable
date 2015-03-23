@@ -1,5 +1,6 @@
 Manuable::Application.routes.draw do
 
+  get "shipping/info"
   get "sales/dashboard"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   # match "/404", :to => "errors#not_found"
